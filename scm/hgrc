@@ -1,0 +1,20 @@
+#  -*- mode: conf -*-
+
+[diff]
+git = True
+
+[ui]
+username = Martin Kuehl <martin.kuehl@gmail.com>
+
+[extensions] 
+extdiff =
+
+[extdiff]
+cmd.chdiff =
+opts.chdiff = --wait
+
+[merge-tools]
+chdiff.args = $local $other
+chdiff.checkconflicts = True
+chdiff.checkchanged = True
+chdiff.gui = True

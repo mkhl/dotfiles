@@ -1,0 +1,7 @@
+#  -*- mode: shell-script -*-
+
+cvs         -q -z3
+diff        -Nu
+rdiff       -Nu
+checkout    -P
+update      -Pd

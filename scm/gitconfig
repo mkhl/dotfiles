@@ -1,0 +1,17 @@
+#  -*- mode: conf -*-
+
+[user]
+	name = Martin Kuehl
+	email = martin.kuehl@gmail.com
+[github]
+	user = mkhl
+	token = 43120f831dded748384a1736f9b1787e
+[color]
+	ui = auto
+[man]
+	viewer = ManOpen
+[man.ManOpen]
+	cmd = openman
+# [alias]
+# The name 'push?' is not supported
+# 	push? = cherry -v origin
