@@ -1,0 +1,20 @@
+#  -*- mode: ruby -*-
+
+require 'rubygems' rescue nil
+require 'pp' rescue nil
+require 'what_methods' rescue nil
+
+# A grab-bag of tricks, tools, techniques, trifles, and toys for IRB
+begin
+  require "utility_belt"
+  UtilityBelt.equip :defaults
+  UtilityBelt::Themes.background :light
+rescue LoadError
+  require "irb/completion"
+  require "irb/ext/save-history"
+ensure
+  IRB.conf[:PROMPT_MODE] = :SIMPLE
+  IRB.conf[:AUTO_INDENT] = true
+  IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+  IRB.conf[:SAVE_HISTORY] = 5000
+end
