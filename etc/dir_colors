@@ -1,0 +1,155 @@
+#  -*- mode: shell-script -*-
+
+### When to colorize output
+# COLOR needs one of these arguments:
+# 'tty' colorizes output to ttys, but not pipes. 'all' adds color characters
+# to all output. 'none' shuts colorization off.
+COLOR   tty
+
+### Default options to ls(1)
+# Extra command line options for ls(1) go here.
+# Basically these ones are:
+#  -F = show '/' for dirs, '*' for executables, etc.
+#  -q = hide control characters, display '?' instead.
+#  -T 0 = don't trust tab spacing when formatting ls output.
+OPTIONS -F -q -T 0
+
+### List of colorizable termtypes
+# Below, there should be one TERM entry for each termtype that is colorizable.
+TERM    linux
+TERM    linux-c
+TERM    console
+TERM    cons25
+TERM    con132x25
+TERM    con132x30
+TERM    con132x43
+TERM    con132x60
+TERM    con80x25
+TERM    con80x28
+TERM    con80x30
+TERM    con80x43
+TERM    con80x50
+TERM    con80x60
+TERM    xterm
+TERM    xterm-color
+TERM    xterm-debian
+TERM    color-xterm
+TERM    color_xterm
+TERM    vt100
+TERM    vt102
+TERM    ansi
+TERM    dtterm
+TERM    gnome
+TERM    mach-color
+TERM    rxvt
+TERM    screen
+TERM    screen-w
+
+### Whether to use 8-bit output
+# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
+EIGHTBIT 1
+
+### Colors for basic file types
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+#
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+NORMAL  00              # global default
+FILE    00              # normal file
+DIR     01;34           # directory
+LINK    00;36           # symbolic link
+FIFO    40;33           # pipe
+SOCK    01;35           # socket
+DOOR    01;35           # door
+BLK     40;33;01        # block device driver
+CHR     40;33;01        # character device driver
+ORPHAN  40;31           # orphaned syminks
+MISSING 40;31           # ... and the files they point to
+# This is for files with execute permission:
+EXEC    00;32
+
+### Colors for specific file types (by extension)
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to colorize below. Put the extension, a space, and the color init string.
+# (and any comments you want to add after a '#')
+
+## Executables (bright green)
+.cmd    01;32
+.exe    01;32
+.com    01;32
+.btm    01;32
+.bat    01;32
+.sh     01;32
+.csh    01;32
+
+#@ Archives or compressed (dark red)
+.tar    00;31
+.tgz    00;31
+.tbz    00;31
+.arj    00;31
+.taz    00;31
+.lzh    00;31
+.zip    00;31
+.zoo    00;31
+.z      00;31
+.Z      00;31
+.gz     00;31
+.bz2    00;31
+.bz     00;31
+.tb2    00;31
+.tz2    00;31
+.tbz2   00;31
+.tz     00;31
+.cpio   00;31
+.rpm    00;31
+.deb    00;31
+.udeb   00;31
+.jar    00;31
+.war    00;31
+.rar    00;31
+.ace    00;31
+
+## Image formats (bright magenta)
+.jpg    01;35
+.jpeg   01;35
+.gif    01;35
+.png    01;35
+.mng    01;35
+.bmp    01;35
+.pbm    01;35
+.pgm    01;35
+.ppm    01;35
+.pcx    01;35
+.xbm    01;35
+.xpm    01;35
+.tif    01;35
+.tiff   01;35
+.tga    01;35
+
+## Video formats (bright magenta)
+.mpg    01;35
+.mpeg   01;35
+.avi    01;35
+.ogm    01;35
+.mov    01;35
+.fli    01;35
+.dl     01;35
+.gl     01;35
+.xcf    01;35
+.xwd    01;35
+.wmv    01;35
+
+## Sound formats (dark magenta)
+.aiff   00;35
+.au     00;35
+.mid    00;35
+.voc    00;35
+.ogg    00;35
+.mp3    00;35
+.flac   00;35
+.wav    00;35
