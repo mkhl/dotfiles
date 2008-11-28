@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Load the given source files if they exist.
+# Usage: source_maybe [FILE ...]
+source_maybe () {
+	for file; do
+		[[ -e "$file" ]] && source "$file"
+	done
+}

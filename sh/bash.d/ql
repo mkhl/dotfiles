@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Display files with QuickLook.
+# Note: QuickLook is only available on Mac OS X.
+# Usage: ql [FILE ...]
+ql () {
+	qlmanage -p -- "$@" 2>/dev/null
+}

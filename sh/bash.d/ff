@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Search PWD for files of the given name.
+# Usage: ff [FILE ...]
+ff () {
+	for f in "$@" ; do
+	    find . -name $f -print
+	done
+}

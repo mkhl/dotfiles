@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# When given a file, cd to that files parent directory.
+# Usage: cd [PATH [PATH]]
+cd () {
+	if (( $# != 1 )); then
+		builtin cd "$@"
+		return
+	fi
+
+	if [[ -f "$1" ]]; then
+		# builtin cd "$1:h"     # Works in zsh only.
+		builtin cd "${1%/*}"    # Ugly, but works.
+	else
+		builtin cd "$1"
+	fi
+}

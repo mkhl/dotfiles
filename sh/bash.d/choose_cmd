@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Print the path of the first available of the given commands.
+# Usage: choose_cmd [COMMAND ...]
+choose_cmd () {
+	command type -p "$@" | head -1
+}

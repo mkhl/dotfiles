@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Return 0 if this user has got the "wheel".
+has_wheel () {
+	groups | egrep -q "(admin|wheel)"
+}

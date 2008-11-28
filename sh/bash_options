@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# bash_options
+# bash-specific options
+
+# Select bash options to enable
+enable=(
+	cdspell
+	checkhash
+	checkwinsize
+	cmdhist
+	extglob
+	histappend
+	histreedit
+	histverify
+	hostcomplete
+	no_empty_cmd_completion
+	nullglob
+)
+# Select bash options to disable
+disable=(
+	dotglob
+)
+# Set bash options
+shopt -s ${enable[@]}
+shopt -u ${disable[@]}
+unset -v enable disable

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Ensure that the given command is available.
+# Usage: require_cmd COMMAND
+require_cmd () {
+	if ! command type -p "$1" >/dev/null; then
+		echo "$(basename -- "$0"): command not found: $1" >&2
+		shift
+		if [[ $# -ne 0 ]]; then
+			echo "$@" >&2
+		fi
+		return 1
+	fi
+}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Return 0 if this shell is interactive.
+is_interactive () {
+	test -n "$PS1"
+	# Alternative test:
+	# case "$-" in
+	# 	*i*) return 0 ;;
+	# 	*)   return 1 ;;
+	# esac
+}

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# bashrc
+# bash-specific interactive settings
+shopt -s nullglob
+
+# Don't configure a non-interactive shell
+test -n "$PS1" || return
+
+# Don't recurse
+test -z "$SH_RC_DONE" || return
+SH_RC_DONE=t
+
+# Load login/environment settings
+[[ -e "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
+
+# History
+HISTFILESIZE="5000"
+HISTSIZE="5000"
+HISTCONTROL="ignoredups:erasedups"      # "erasedups" is new in bash 3
+HISTIGNORE="&:[bf]g:exit:logout:rm *"
+
+# Dircolors
+if has_cmd dircolors ; then
+	if [[ -f "$HOME/.dir_colors" ]]; then
+		eval $(dircolors -b "$HOME/.dir_colors")
+	else
+		eval $(dircolors -b)
+	fi
+fi
+
+# Pager
+if has_cmd lesspipe.sh ; then
+	export LESSOPEN="|$(choose_cmd lesspipe.sh) %s"
+fi
+
+# Process limits
+ulimit -Sc 0                   # This wants to be increased.
+ulimit -Sd unlimited
+ulimit -Sm unlimited
+ulimit -Ss unlimited
+
+# "Colorized" emacs
+if has_emacs ; then
+    tset -I -Q
+    stty cooked pass8 dec nl -echo
+    test "$is" == "zsh" && unsetopt zle
+fi
+
+# Load options
+source_maybe "$HOME/.bash_options"
+
+# Load prompting
+source_maybe "$HOME/.bash_prompt"
+
+# Load aliases
+source_maybe "$HOME/.alias"
+
+# Load advanced completion
+source_maybe "$HOME/.bash_completion_link"
+
+# Augment PATH
+munge PATH "$HOME/bin" after
+munge PATH . after
+
+# Load local overrides
+source_maybe "$HOME/.bashrc_local"
