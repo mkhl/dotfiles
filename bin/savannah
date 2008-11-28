@@ -1,0 +1,77 @@
+#!/bin/sh
+# MACHINE GENERATED SOURCE: DO NOT EDIT BY HAND!
+# build-host: SBCL 1.0.15
+# In Public Domain
+# Original available as: http://random-state.net/files/upstream-1.1.tar.gz
+project_or_option="$1"
+module="${2:-$project_or_option}"
+directory="${3:-$module}"
+upstream_user="$4"
+version() {
+  echo "savannah (Upstream 1.1)"
+  echo "savannah is in Public Domain."
+}
+usage() {
+  echo "usage: savannah [--help | --version] project [module] [directory] [username]"
+}
+help() {
+  usage
+  echo
+  echo "Check out a Savannah project from developer or anonymous CVS."
+  echo
+  echo "Options:"
+  echo "  --help      Prints this message and exits."
+  echo "  --version   Prints version string and exits."
+  echo
+  echo "Arguments:"
+  echo "  project     Name of the project to check out."
+  echo "  module      Name of the CVS module the check out. Defaults to project."
+  echo "  directory   Local directory to check out to. Defaults to module."
+  echo "  username    Savannah username to use for developer checkout."
+  echo
+  echo "Uses the developer CVS if username is given, otherwise uses anonymous CVS."
+  echo "Aborts if a file or directory with the same name as the local checkout"
+  echo "directory already exists."
+}
+case $project_or_option in
+  "")
+    usage
+    exit 1
+    ;;
+  "--help")
+    help
+    exit 0
+    ;;
+  "--version")
+    version
+    exit 0
+    ;;
+  -*)
+    usage
+    exit 1
+    ;;
+  *)
+    project="$project_or_option"
+    ;;
+esac
+if test -e "$directory"
+then
+  echo "File or directory exists already: $directory"
+  exit 1
+fi
+run() {
+  what="$project/$module -> $directory"
+  echo "Checking out $what $2"
+  if cvs -z3 -d $1@cvs.sv.gnu.org:/sources/$project co -d $directory $module
+  then
+    echo "$what $2 checked out"
+  else
+    echo "$what $2 CHECKOUT FAILED"
+  fi
+}
+if test -n "$upstream_user"
+then
+  run "$upstream_user" "(from Savannah developer cvs)"
+else
+  run ":pserver:anonymous" "(from Savannah anonymous cvs)"
+fi
