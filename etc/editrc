@@ -1,0 +1,7 @@
+#  -*- mode: shell-script -*-
+
+bind "^R" em-inc-search-prev
+bind "^S" em-inc-search-next
+bind "^/" ed-command
+bind "\eP" ed-search-prev-history
+bind "\eN" ed-search-next-history
