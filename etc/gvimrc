@@ -1,0 +1,38 @@
+" {{{   -*- mode: text -*-
+"       gvimrc:         gvim/kvim(1) configuration
+" }}}
+" {{{  5 syntax and highlighting
+
+set background=light
+colorscheme default
+
+" }}}
+" {{{  9 GUI
+
+" guifont	list of font names to be used in the GUI
+if has ("gui_kde")	" kvim
+    set guifont=Bitstream\ Vera\ Sans\ Mono/10/-1/5/50/0/0/0/1/0
+else			" gvim
+    set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
+endif " has ("gui_kde")
+" toolbar	"icons", "text" and/or "tooltips"; how to show the toolbar
+"set tb=icons,tooltips
+" toolbariconsize	Size of toolbar icons
+"set tbis=small
+" langmenu	language to be used for the menus
+"set langmenu=none " English
+" force langmenu=none, even if menus have already been changed
+" Warning: This deletes all menus that you defined yourself!
+"source $VIMRUNTIME/delmenu.vim
+"set langmenu=none
+"source $VIMRUNTIME/menu.vim
+
+" }}}
+" {{{ 24 multi-byte characters
+
+" encoding	character encoding used in Vim
+" Warning: This breaks "Umlauts" and requires forcing langmenu=none (s. above)
+"set encoding=utf-8 " recommended for GTK2
+
+" }}}
+" vim: fdm=marker ft=vim

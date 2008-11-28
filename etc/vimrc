@@ -1,0 +1,274 @@
+" {{{   -*- mode: text -*-
+"       vimrc:          vim(1) configuration
+" }}}
+" {{{ Settings
+" {{{  1 important
+
+" compatible	behave very Vi compatible (not advisable)
+set nocompatible
+
+" }}}
+" {{{  2 moving around, searching and patterns
+
+" wrapscan	search commands wrap around the end of the buffer
+set nowrapscan
+" incsearch	show match for partly typed search command
+set incsearch
+" ignorecase	ignore case when using a search pattern
+set ignorecase
+" smartcase	override 'ignorecase' when pattern has upper case characters
+set smartcase
+
+" }}}
+" {{{  3 tags
+" nothing to change...
+" }}}
+" {{{  4 displaying text
+
+" scrolloff	number of screen lines to show around the cursor
+set scrolloff=3
+" wrap	long lines wrap
+set wrap
+" showbreak	string to put before wrapped screen lines
+set showbreak=\\
+" display	include "lastline" to show the last line even if it doesn't fit
+"		include "uhex" to show unprintable characters as a hex number
+set display=lastline
+" lazyredraw	don't redraw while executing macros
+set lazyredraw
+
+" }}}
+" {{{  5 syntax and highlighting
+
+" background	"dark" or "light"; the background color brightness
+if $TERM == 'linux'
+    set background=dark
+else
+    set background=light
+endif " TERM == 'linux'
+" hlsearch	highlight all matches for the last used search pattern
+set hlsearch
+
+" }}}
+" {{{  6 multiple windows
+" nothing to change...
+" }}}
+" {{{  7 terminal
+
+" title	show info in the window title
+set title
+" titlestring	when not empty, string to be used for the window title
+"set titlestring=
+
+" }}}
+" {{{  8 using the mouse
+
+" mouse	list of flags for using the mouse
+set mouse=a
+" mousehide	hide the mouse pointer while typing
+set mousehide
+
+" }}}
+" {{{  9 GUI
+" moved to gvimrc...
+" }}}
+" {{{ 10 printing
+" nothing to change...
+" }}}
+" {{{ 11 messages and info
+
+" showcmd	show (partial) command keys in the status line
+set showcmd
+" showmode	display the current mode in the status line
+set showmode
+" ruler	show cursor position below each window
+set ruler
+" more	pause listings when the screen is full
+set more
+" visualbell	use a visual bell instead of beeping
+set visualbell
+
+" }}}
+" {{{ 12 selecting text
+" nothing to change...
+" }}}
+" {{{ 13 editing text
+
+" undolevels	maximum number of changes that can be undone
+set undolevels=5000
+" backspace	specifies what <BS>, CTRL-W, etc. can do in Insert mode
+set backspace=indent,eol,start
+" showmatch	When inserting a bracket, briefly jump to its match
+set showmatch
+" spaces	use two spaces after '.' when joining a line
+set nojoinspaces
+
+" }}}
+" {{{ 15 folding
+
+" foldclose	set to "all" to close a fold when the cursor leaves it
+"set foldclose=
+" foldopen	specifies for which commands a fold will be opened
+"set foldopen=block,hor,mark,percent,quickfix,search,tag,undo
+
+" }}}
+" {{{ 14 tabs and indenting
+
+" tabstop	number of spaces a <Tab> in the text stands for
+set tabstop=4
+" shiftwidth	number of spaces used for each step of (auto)indent
+set shiftwidth=4
+" smarttab	a <Tab> in an indent inserts 'shiftwidth' spaces
+set smarttab
+" softtabstop	if non-zero, number of spaces to insert for a <Tab>
+set softtabstop=0
+" shiftround	round to 'shiftwidth' for "<<" and ">>"
+set shiftround
+" expandtab	expand <Tab> to spaces in Insert mode
+set expandtab
+" autoindent	automatically set the indent of a new line
+set autoindent
+" smartindent	do clever autoindenting
+set smartindent
+" cindent	enable specific indenting for C code
+set nocindent
+" cinoptions	options for C-indenting
+"set cinoptions=l1,p0,t0,(0,u0,U1,m1,j1
+
+" }}}
+" {{{ 16 diff mode
+" nothing to change...
+" }}}
+" {{{ 17 mapping
+" nothing to change...
+" }}}
+" {{{ 18 reading and writing files
+
+" backup	keep a backup after overwriting a file
+set backup
+" backupskip	patterns that specify for which files a backup is not made
+"set backupskip=/tmp/*
+" backupdir	list of directories to put backup files in
+set backupdir=~/.backup,.,~/tmp,~
+" backupext	file name extension for the backup file
+set backupext=~
+
+" }}}
+" {{{ 19 the swap file
+
+" directory	list of directories for the swap file
+set directory=~/.backup,.,~/tmp,/var/tmp,/tmp
+
+" }}}
+" {{{ 20 command line editing
+
+" history	how many command lines are remembered 
+set history=50
+" wildmode	specifies how command line completion works
+set wildmode=full
+" wildmenu	command-line completion shows a list of matches
+set wildmenu
+
+" }}}
+" {{{ 21 executing external commands
+
+" equalprg	program used for "=" command
+"set ep=
+" formatprg	program used to format lines with "gq" command
+"set formatprg=
+" keywordprg	program used for the "K" command
+"set keywordprg=man
+
+" }}}
+" {{{ 22 running make and jumping to errors
+" nothing to change...
+" }}}
+" {{{ 23 language specific
+" nothing to change...
+" }}}
+" {{{ 24 multi-byte characters
+" only set in gvimrc
+" }}}
+" {{{ 25 various
+
+" exrc	enable reading .vimrc/.exrc/.gvimrc in the current directory
+set exrc
+" secure	safer working with script files in the current directory
+set secure
+
+" }}}
+" {{{ 99 the rest
+
+" begin commands with ,
+let mapleader = ","
+
+" }}}
+" }}}
+" {{{ Keybindings
+" {{{ Various collected Keybindings
+
+" Don't use ex(1) mode, use Q for formatting
+noremap         Q               gq
+" This is not vi-compatible but much more logical
+noremap         Y               y$
+" Some emacs(1) style keybindings 
+" 'I know it's horrible for a vi master but useful anyway.'
+inoremap        <C-A>           <Esc>I
+inoremap        <C-E>           <ESC>A
+cnoremap        <C-A>           <Home>
+cnoremap        <C-E>           <End>
+cnoremap        <C-B>           <Left>
+cnoremap        <C-F>           <Right>
+cnoremap        <C-D>           <Del>
+" Fold and Unfold with the <tab>-key
+nnoremap        <TAB>           za
+nnoremap        <S-Tab>         zc
+" Complete with <C-Space> as with <C-n>
+inoremap        <C-Space>       <C-n>
+inoremap        <C-S-Space>     <C-p>
+" Jump to tag (under cursor) definition on <C-CR>
+noremap         <C-CR>          <C-]>
+" Jump back on <C-BackSpace>
+noremap         <C-BS>          <C-T>
+" Toggle listing with ls and highlighting with hs
+nnoremap <silent> <Leader>l     :set list!<CR>
+nnoremap <silent> <Leader>h     :nohlsearch<CR>
+" Make p in Visual mode replace the selected text with the "" register.
+"vnoremap        p
+"            \   <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
+" Switch between multiple windows with <C-Tab>
+nnoremap        <C-Tab>         <C-W>w
+inoremap        <C-Tab>         <C-O><C-W>w
+"cnoremap        <C-Tab>         <C-C><C-Tab>
+" Switch between multiple buffers with <C-PgUp/PgDn>
+nnoremap        <silent>        <C-PageUp>      :bp<CR>
+nnoremap        <silent>        <C-PageDown>    :bn<CR>
+"inoremap        <silent>        <C-PageUp>      <Esc>:bp<CR>
+"inoremap        <silent>        <C-PageDown>    <Esc>:bn<CR>
+" avoid typos and be more compatible with ed(1)
+command!        Q               q!
+command!        W               w!
+command!        E               e!
+command!        Wq              wq
+command!        WQ              wq
+
+" }}}
+" }}}
+" {{{ Autocommands
+" enable file type detection, load highlighting and indenting plugins
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+" remove global autocmds:
+autocmd! BufRead        *       " removes jumping to last session's line
+" fix keywordprg for some languages
+autocmd FileType    perl    setlocal keywordprg=perldoc
+autocmd FileType    python  setlocal keywordprg=pydoc
+autocmd FileType    ruby    setlocal keywordprg=ri
+" mini-templates
+autocmd FileType    perl    imap <buffer> <S-CR>    <Space>{<CR><CR>}<Esc>-cc
+autocmd FileType    python  imap <buffer> <S-CR>    <CR><BS>
+autocmd FileType    ruby    imap <buffer> <S-CR>    <CR><CR>end<Esc>-cc
+" }}}
+" vim: fdm=marker ft=vim
