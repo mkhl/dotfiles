@@ -1,0 +1,7 @@
+;;  -*- mode: scheme -*-
+
+(use readline)
+(current-input-port (make-gnu-readline-port "csi> "))
+;(use objc cocoa)
+;(use riaxpander)
+;(use foof-loop)
