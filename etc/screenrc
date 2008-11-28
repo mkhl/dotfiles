@@ -1,0 +1,51 @@
+#  -*- mode: shell-script -*-
+
+# UTF-8 everywhere!
+defutf8 on
+
+# Disable Ctrl-S/Ctrl-Q "flow control"
+defflow off
+
+# Reserve scrollback space
+defscrollback 1024
+
+# Skip intro
+startup_message off
+
+# Restore window contents after using (e.g.) vi
+altscreen on
+
+# Detach on disconnect
+autodetach on
+
+# Ignore blank lines
+compacthist on
+
+# Print wackier status messages
+nethack on
+
+# Ring the visual bell
+vbell on
+
+# Set the caption on the bottom line
+# window-list <nowplaying> <mm/dd/yy> <HH:MM>am/pm
+# caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= %1` %m/%d/%y %C:%s%a"
+
+# An alternative hardstatus to display a bar at the bottom listing the
+# window names and highlighting the current window name in blue.
+# hardstatus on
+# hardstatus alwayslastline
+# hardstatus string "%{.kw}%-w%{+b}%n %t%{-}%+w %=%{+u}%H%{-} - %D, %d.%m, %c "
+
+# Use <Ctrl-^> as command prefix.
+# Setting <^> only doesn't work...
+# escape	^^\^
+# That is spelled <Ctrl-§> on a US keyboard.
+escape	^§
+
+# Make scrollbars work
+# termcapinfo xterm ti@:te@
+
+# Default sessions
+# screen 0 htop
+# screen 1 bash
