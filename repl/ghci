@@ -1,0 +1,3 @@
+#  -*- mode: haskell -*-
+
+:def hoogle \x -> return $ ":!hoogle " ++ x
