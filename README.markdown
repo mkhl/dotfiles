@@ -1,3 +1,26 @@
-All of this stuff is still in need of a way to install it, and I might as well use that as an excuse to learn rake or somesuch. ;-)
+mkhl’s dotfiles
+===============
 
-For now, you will probably get the most out of it if you steal^Wfork those parts you like, and start using them.
+Yet another collection of dotfiles.
+
+
+Installation
+------------
+
+Just run:
+
+    rake install
+
+to install copies of all the files into your home directory.
+
+    rake symlink
+
+to create symlinks to all the files in your home directory.
+
+    rake dryrun
+
+to check out what’s going on before installing random files off the internet.
+
+    rake
+
+to find out more.
