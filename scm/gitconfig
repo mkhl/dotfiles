@@ -12,6 +12,7 @@
 	viewer = ManOpen
 [man.ManOpen]
 	cmd = openman
-# [alias]
+[alias]
 # The name 'push?' is not supported
-# 	push? = cherry -v origin
+    needs-pushing = cherry -v origin/master
+    chainsaw = rebase --interactive
