@@ -1,3 +1,3 @@
 with File.basename(File.dirname(__FILE__)) do |base|
-  register_files base, false
+  mirror base, homedir, '.%f', :shallow => FileList[File.join(base, '*.d')]
 end
