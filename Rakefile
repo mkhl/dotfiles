@@ -2,11 +2,8 @@ verbose(true) if verbose == :default
 
 BASEDIR = File.expand_path(File.dirname(__FILE__))
 HOMEDIR = File.expand_path(ENV['DESTDIR'] || '~')
-VALID_MODES = [:copy, :install, :link, :symlink]
-DEFAULT_MODE = :symlink
 
 @known_filetypes = {}
-@install_mode = :default
 
 def basedir(*paths)
   File.join BASEDIR, *paths
@@ -21,11 +18,6 @@ def with(*values, &block)
 end
 
 
-def set_install_mode(mode)
-  mode = mode.to_sym
-  @install_mode = (VALID_MODES.include? mode) ? mode : nil
-end
-
 def install_file(src, dest, dir = nil)
   ext = src.pathmap('%x')
   if @known_filetypes.include? ext
@@ -36,13 +28,8 @@ def install_file(src, dest, dir = nil)
       task dest => dir
     end
     file dest => src do
-      @install_mode = DEFAULT_MODE if @install_mode == :default
-      case @install_mode
-      when :link, :symlink
-        ln_sf File.expand_path(src), dest
-      when :copy, :install
-        install File.expand_path(src), dest
-      end
+      ln_sf File.expand_path(src), dest
+      # install File.expand_path(src), dest
     end
     task :all => dest
   end
@@ -50,17 +37,12 @@ end
 
 def install_dir(src, dest)
   file dest => src do
-    @install_mode = DEFAULT_MODE if @install_file == :default
-    case @install_mode
-    when :link, :symlink
-      if File.exists? dest
-        return unless File.symlink? dest
-        rm_f dest
-      end
-      ln_sf File.expand_path(src), dest
-    when :copy, :install
-      cp_r File.expand_path(src), dest
+    if File.exists? dest
+      return unless File.symlink? dest
+      rm_f dest
     end
+    ln_sf File.expand_path(src), dest
+    # cp_r File.expand_path(src), dest
   end
   task :all => dest
 end
