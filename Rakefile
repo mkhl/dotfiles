@@ -1,8 +1,9 @@
+verbose(true) if verbose == :default
 
-verbose(false) if verbose == :default
 BASEDIR = File.expand_path(File.dirname(__FILE__))
-HOMEDIR = File.expand_path('~')
-TARGETS = [:install, :symlink]
+HOMEDIR = File.expand_path(ENV['DESTDIR'] || '~')
+
+@known_filetypes = {}
 
 def basedir(*paths)
   File.join BASEDIR, *paths
@@ -17,100 +18,135 @@ def with(*values, &block)
 end
 
 
-def do_install(from, to)
-  install basedir(from), to
+def symlink_file(src, dest)
+  ln_sf File.expand_path(src), dest
 end
 
-def do_symlink(from, to)
-  if File.directory? to
-    return unless File.symlink? to
-    rm_f to
+def symlink_dir(src, dest)
+  if File.exists? dest
+    return unless File.symlink? dest
+    rm_f dest
   end
-  ln_sf basedir(from), to
+  ln_sf File.expand_path(src), dest
 end
 
-def list_files(dir)
-  FileList[File.join(dir, '*')].exclude("#{dir}/#{dir}.rake")
+def install_file(src, dest)
+  install src, dest
 end
 
-def register_files(dir, recurse = true)
-  base = dir.to_sym
-  list_files(dir).each do |from|
-    to = yield(from) if block_given?
-    to ||= from.pathmap(homedir('.%f'))
-    if recurse and File.directory? from
-      list_files(from).each do |file|
-        from_to base, file, File.join(to, File.basename(file)), to
-      end
-    else
-      from_to base, from, to
+def install_dir(src, dest)
+  cp_r src, dest
+end
+
+alias :handle_file :symlink_file
+alias :handle_dir  :symlink_dir
+
+def mirror_file(src, dest, dir = nil)
+  ext = src.pathmap('%x')
+  if @known_filetypes.include? ext
+    @known_filetypes[ext][src, dest]
+  else
+    unless dir.nil?
+      directory dir
+      file dest => dir
+    end
+    file dest => src do
+      handle_file src, dest
+    end
+    task :all => dest
+  end
+end
+
+def mirror_dir(src, dest)
+  file dest => src do
+    handle_dir src, dest
+  end
+  task :all => dest
+end
+
+def mirror(src, dest, shallow, ignored)
+  return if ignored[src]
+
+  if File.file? src
+    mirror_file src, dest
+  elsif shallow
+    mirror_dir src, dest
+  else
+    FileList[File.join(src, '**', '*')].each do |srcfile|
+      next if File.directory? srcfile
+      next if ignored[srcfile]
+      destfile = srcfile.pathmap("%{^#{src},#{dest}}p")
+      mirror_file srcfile, destfile, File.dirname(destfile)
     end
   end
-  TARGETS.each do |action|
-    namespace action do
-      task base => "#{action}:#{base}:all"
-    end
-    task action => "#{action}:#{base}"
-  end
 end
 
-def from_to(base, from, to, dir = nil)
-  TARGETS.each do |action|
-    namespace action do
-      namespace base do
-        task_name = "#{action}_#{from}"
-        task task_name do
-          mkdir_p dir unless dir.nil?
-          self.__send__("do_#{action}", from, to)
-        end
-        task :all => task_name
-      end
+def filetype(ext, &block)
+  @known_filetypes[ext] = block
+  @known_filetypes[".#{ext}"] = block
+end
+
+def submodule(subdir, destdir, pathmap, options = {})
+  name = subdir.to_sym
+  subdir = name.to_s unless subdir.is_a? String
+  subjoin = proc { |p| File.join(subdir, p) }
+  excludes = FileList[options.fetch(:exclude, []).map(&subjoin)]
+  shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
+  subfiles = FileList[subjoin['*']].exclude(subjoin["#{subdir}.rake"])
+  ignored = proc do |f|
+    options.fetch(:ignore, []).any? { |p| File.fnmatch?(p, File.basename(f)) }
+  end
+
+  directory destdir
+  namespace name do
+    subfiles.exclude(*excludes).each do |src|
+      dest = File.join(destdir, src.pathmap(pathmap))
+      mirror src, dest, shallows.include?(src), ignored
     end
   end
+  desc "Install the files under #{subdir}"
+  task name => [destdir, "#{subdir}:all"]
+  desc "Install the files under #{subdir} through copying"
+  task "#{name}:copy" do
+    alias :handle_file :install_file
+    alias :handle_dir  :install_dir
+    Rake::Task[name].invoke
+  end
+  desc "Install the files under #{subdir} through symbolic links"
+  task "#{name}:link" do
+    alias :handle_file :symlink_file
+    alias :handle_dir  :symlink_dir
+    Rake::Task[name].invoke
+  end
+  task :all => name
+end
+
+
+desc "Install all files from all subdirectories"
+task :all
+
+desc "Install all files through copying"
+task "all:copy" do
+  alias :handle_file :install_file
+  alias :handle_dir  :install_dir
+  Rake::Task[:all].invoke
+end
+
+desc "Install all files through symbolic links"
+task "all:link" do
+  alias :handle_file :symlink_file
+  alias :handle_dir  :symlink_dir
+  Rake::Task[:all].invoke
+end
+
+task :default do
+  Rake.application.options.show_tasks = true
+  Rake.application.options.show_task_pattern = //
+  Rake.application.options.full_description = false
+  Rake.application.display_tasks_and_comments
 end
 
 FileList['*/*.rake'].each do |rakefile|
   # Rake.application.rake_require rakefile.ext
   import rakefile
-
-  subtree = File.dirname rakefile
-  TARGETS.each do |action|
-    namespace action do
-      desc "Invoke #{action} for the dotfiles under #{subtree}"
-      task subtree
-    end
-  end
-end
-
-
-desc "Install copies of the dotfiles into your $HOME"
-task :install
-
-desc "Create symlinks to the dotfiles in your $HOME"
-task :symlink
-
-namespace :dryrun do
-  TARGETS.each do |action|
-    desc "Just show which actions #{action}ing would invoke"
-    task action do
-      verbose(true) { nowrite(true) { Rake::Task[action].invoke } }
-    end
-  end
-end
-
-desc "Just show what would be done"
-task :dryrun do
-  TARGETS.each do |action|
-    puts "Dry-running #{action}..." if verbose
-    Rake::Task["dryrun:#{action}"].invoke
-  end
-end
-
-task :default do
-  with(Rake.application) do |app|
-    app.options.show_tasks = true
-    app.options.show_task_pattern = //
-    app.options.full_description = false
-    app.display_tasks_and_comments
-  end
 end
