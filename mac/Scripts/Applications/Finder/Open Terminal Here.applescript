@@ -72,7 +72,8 @@ on process_item(this_item)
 		set the_path to text 1 thru -2 of the_path
 	end repeat
 	
-	set cmd to "cd " & quoted form of the_path & " && echo $'\\ec'"
+    -- set cmd to "cd " & quoted form of the_path & " && echo $'\\ec'"
+	set cmd to "cd " & quoted form of the_path
 	
 	tell application "System Events" to set terminalIsRunning to exists application process "Terminal"
 	
