@@ -9,15 +9,15 @@ Installation
 
 Just run:
 
-    rake install
+    rake all:copy
 
 to install copies of all the files into your home directory.
 
-    rake symlink
+    rake all:link
 
 to create symlinks to all the files in your home directory.
 
-    rake dryrun
+    rake --dry-run all
 
 to check out what’s going on before installing random files off the internet.
 
