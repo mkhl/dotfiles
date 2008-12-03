@@ -150,3 +150,7 @@ FileList['*/*.rake'].each do |rakefile|
   # Rake.application.rake_require rakefile.ext
   import rakefile
 end
+
+task :dryrun do
+  nowrite(true)
+end

@@ -17,7 +17,7 @@ to install copies of all the files into your home directory.
 
 to create symlinks to all the files in your home directory.
 
-    rake --dry-run all
+    rake dryrun all
 
 to check out what’s going on before installing random files off the internet.
 
