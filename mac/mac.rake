@@ -1,33 +1,37 @@
-with File.basename(File.dirname(__FILE__)) do |base|
-  mirror base, homedir('Library'), '%f', :exclude => 'Scripts'
+filetype 'applescript' do |src, dest|
+  icon = src.pathmap("%d/%{.*,*}n-*.icns") { |x| x.gsub(/\s+/, '').downcase }
+  icon = FileList[icon].existing.first
+  if icon.nil?
+    install_script src, dest.ext('scpt')
+  else
+    install_applet src, dest.ext('app'), icon
+  end
 end
 
-# def applet_icon(file, type = '*')
-#   file.pathmap("%d/%{.*,*}n-#{type}.icns") { |name| name.gsub(/\s+/, '').downcase }
-# end
-# 
-# rule '.scpt' => ['.applescript'] do |task|
-#   sh "osacompile -o '#{task.name}' '#{task.source}'"
-# end
-# 
-# rule '.app' => ['.applescript'] do |task|
-#   # Create the applet bundle
-#   sh "osacompile -o '#{task.name}' '#{task.source}'"
-#   # Make the applet "faceless"
-#   plist = File.expand_path(File.join(task.name, 'Contents', 'Info'))
-#   sh "defaults write '#{plist}' NSUIElement -int 1"
-#   # Include the custom icon
-#   type = `defaults read '#{plist}' CFBundleIconFile`.chomp
-#   icon = applet_icon(task.source, type)
-#   copy icon, File.join(task.name, 'Contents', 'Resources', "#{type}.icns")
-# end
-# 
-# register_type 'applescript' do |infile|
-#   imgname = applet_icon(infile)
-#   return infile.ext('scpt') if FileList[imgname].existing.to_a.empty?
-#   infile.ext('app')
-# end
-# 
-# with File.basename(File.dirname(__FILE__)) do |base|
-#   register_files base, File.join('Library', '%f')
-# end
+def install_script(src, dest)
+  dir = File.dirname dest
+  directory dir
+  file dest => [src, dir] do
+    sh "osacompile -o '#{dest}' '#{src}'"
+  end
+  task :all => dest
+end
+
+def install_applet(src, dest, srcicon)
+  dir = File.dirname dest
+  directory dir
+  file dest => [src, srcicon, dir] do
+    # Create the applet bundle
+    sh "osacompile -o '#{dest}' '#{src}'"
+    # Make the applet "faceless"
+    plist = File.expand_path(File.join(dest, 'Contents', 'Info'))
+    sh "defaults write '#{plist}' NSUIElement -int 1"
+    # Install the custom icon
+    type = srcicon.pathmap('%{.*-,}n')
+    desticon = File.join(dest, 'Contents', 'Resources', "#{type}.icns")
+    copy srcicon, desticon
+  end
+  task :all => dest
+end
+
+submodule :mac, homedir('Library'), '%f', :ignore => ['*.icns']

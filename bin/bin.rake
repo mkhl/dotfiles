@@ -1,3 +1,1 @@
-with File.basename(File.dirname(__FILE__)) do |base|
-  mirror base, homedir('bin'), '%f'
-end
+submodule :bin, homedir('bin'), '%f'
