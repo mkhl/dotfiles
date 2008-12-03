@@ -18,31 +18,48 @@ def with(*values, &block)
 end
 
 
-def install_file(src, dest, dir = nil)
+def symlink_file(src, dest)
+  ln_sf File.expand_path(src), dest
+end
+
+def symlink_dir(src, dest)
+  if File.exists? dest
+    return unless File.symlink? dest
+    rm_f dest
+  end
+  ln_sf File.expand_path(src), dest
+end
+
+def install_file(src, dest)
+  install src, dest
+end
+
+def install_dir(src, dest)
+  cp_r src, dest
+end
+
+alias :handle_file :symlink_file
+alias :handle_dir  :symlink_dir
+
+def mirror_file(src, dest, dir = nil)
   ext = src.pathmap('%x')
   if @known_filetypes.include? ext
     @known_filetypes[ext][src, dest]
   else
     unless dir.nil?
       directory dir
-      task dest => dir
+      file dest => dir
     end
     file dest => src do
-      ln_sf File.expand_path(src), dest
-      # install File.expand_path(src), dest
+      handle_file src, dest
     end
     task :all => dest
   end
 end
 
-def install_dir(src, dest)
+def mirror_dir(src, dest)
   file dest => src do
-    if File.exists? dest
-      return unless File.symlink? dest
-      rm_f dest
-    end
-    ln_sf File.expand_path(src), dest
-    # cp_r File.expand_path(src), dest
+    handle_dir src, dest
   end
   task :all => dest
 end
@@ -51,15 +68,15 @@ def mirror(src, dest, shallow, ignored)
   return if ignored[src]
 
   if File.file? src
-    install_file src, dest
+    mirror_file src, dest
   elsif shallow
-    install_dir src, dest
+    mirror_dir src, dest
   else
     FileList[File.join(src, '**', '*')].each do |srcfile|
       next if File.directory? srcfile
       next if ignored[srcfile]
       destfile = srcfile.pathmap("%{^#{src},#{dest}}p")
-      install_file srcfile, destfile, File.dirname(destfile)
+      mirror_file srcfile, destfile, File.dirname(destfile)
     end
   end
 end
@@ -87,14 +104,40 @@ def submodule(subdir, destdir, pathmap, options = {})
       mirror src, dest, shallows.include?(src), ignored
     end
   end
-  desc "Install the dotfiles under #{subdir}"
+  desc "Install the files under #{subdir}"
   task name => [destdir, "#{subdir}:all"]
+  desc "Install the files under #{subdir} through copying"
+  task "#{name}:copy" do
+    alias :handle_file :install_file
+    alias :handle_dir  :install_dir
+    Rake::Task[name].invoke
+  end
+  desc "Install the files under #{subdir} through symbolic links"
+  task "#{name}:link" do
+    alias :handle_file :symlink_file
+    alias :handle_dir  :symlink_dir
+    Rake::Task[name].invoke
+  end
   task :all => name
 end
 
 
-desc "Install all dotfiles from all subdirectories"
+desc "Install all files from all subdirectories"
 task :all
+
+desc "Install all files through copying"
+task "all:copy" do
+  alias :handle_file :install_file
+  alias :handle_dir  :install_dir
+  Rake::Task[:all].invoke
+end
+
+desc "Install all files through symbolic links"
+task "all:link" do
+  alias :handle_file :symlink_file
+  alias :handle_dir  :symlink_dir
+  Rake::Task[:all].invoke
+end
 
 task :default do
   Rake.application.options.show_tasks = true
