@@ -4,8 +4,11 @@
 # bash-specific prompting
 
 # Helper functions
+__parse_git_dirty () {
+	git status 2> /dev/null | tail -n1 | egrep -q '^nothing to commit \(working directory clean\)$' || echo '*'
+}
 __parse_git_branch () {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(__parse_git_dirty)]/"
 }
 
 # Set the prompt
