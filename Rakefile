@@ -151,6 +151,7 @@ FileList['*/*.rake'].each do |rakefile|
   import rakefile
 end
 
+desc 'Just show what would be done'
 task :dryrun do
   nowrite(true)
 end
