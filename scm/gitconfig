@@ -16,3 +16,9 @@
 # The name 'push?' is not supported
     needs-pushing = cherry -v origin/master
     chainsaw = rebase --interactive
+    st = status
+    co = checkout
+    ci = commit
+    cp = cherry-pick
+    fp = format-patch
+    bs = bisect
