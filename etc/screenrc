@@ -7,7 +7,7 @@ defutf8 on
 defflow off
 
 # Reserve scrollback space
-defscrollback 1024
+defscrollback 10000
 
 # Skip intro
 startup_message off
@@ -36,6 +36,8 @@ vbell on
 # hardstatus on
 # hardstatus alwayslastline
 # hardstatus string "%{.kw}%-w%{+b}%n %t%{-}%+w %=%{+u}%H%{-} - %D, %d.%m, %c "
+# hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+
 
 # Use <Ctrl-^> as command prefix.
 # Setting <^> only doesn't work...
