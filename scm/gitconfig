@@ -22,3 +22,4 @@
     cp = cherry-pick
     fp = format-patch
     bs = bisect
+    np = needs-pushing
