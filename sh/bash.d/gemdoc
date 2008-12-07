@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Open Rubygems documentation in a browser.
+# Note: This version assumes Mac OS X.
+# Usage: gemdoc GEM
+# From http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts
+gemdoc () {
+	local gemdir="$(gem env gemdir)"
+	open "$gemdir/doc/$(ls "$gemdir/doc/" | grep $1 | sort | tail -n1)/rdoc/index.html"
+}
+
+_gemdocomplete () {
+	COMPREPLY=($(compgen -W "$(ls $(gem env gemdir)/doc)" -- ${COMP_WORDS[COMP_CWORD]}))
+	return 0
+}
+
+complete -o default -o nospace -F _gemdocomplete gemdoc
