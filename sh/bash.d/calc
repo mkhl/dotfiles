@@ -3,5 +3,5 @@
 # Pipe simple calculation through `bc`
 # Usage: calc [EXPRESSION]
 calc () {
-	echo "$*" | bc
+    echo "$*" | bc
 }

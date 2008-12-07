@@ -2,5 +2,5 @@
 
 # Return 0 if this shell is connected to an X server.
 has_display () {
-	test -n "$DISPLAY"
+    test -n "$DISPLAY"
 }

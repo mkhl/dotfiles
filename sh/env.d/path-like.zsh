@@ -20,14 +20,14 @@ typeset -U rubylib
 
 # Set library search path variables
 perl5lib=(
-	$HOME/lib/perl
-	$perl5lib
+    $HOME/lib/perl
+    $perl5lib
 )
 pythonpath=(
-	$HOME/lib/python
-	$pythonpath
+    $HOME/lib/python
+    $pythonpath
 )
 rubylib=(
-	$HOME/lib/ruby
-	$rubylib
+    $HOME/lib/ruby
+    $rubylib
 )

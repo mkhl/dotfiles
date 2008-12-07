@@ -3,5 +3,5 @@
 # Return 0 if the given command is available.
 # Usage: has_command COMMAND
 has_cmd () {
-	require_cmd "$1" 2>/dev/null
+    require_cmd "$1" 2>/dev/null
 }

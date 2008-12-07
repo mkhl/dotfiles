@@ -22,16 +22,16 @@ HISTIGNORE="&:[bf]g:exit:logout:rm *"
 
 # Dircolors
 if has_cmd dircolors ; then
-	if [[ -f "$HOME/.dir_colors" ]]; then
-		eval $(dircolors -b "$HOME/.dir_colors")
-	else
-		eval $(dircolors -b)
-	fi
+    if [[ -f "$HOME/.dir_colors" ]]; then
+        eval $(dircolors -b "$HOME/.dir_colors")
+    else
+        eval $(dircolors -b)
+    fi
 fi
 
 # Pager
 if has_cmd lesspipe.sh ; then
-	export LESSOPEN="|$(choose_cmd lesspipe.sh) %s"
+    export LESSOPEN="|$(choose_cmd lesspipe.sh) %s"
 fi
 
 # Process limits

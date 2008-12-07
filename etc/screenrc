@@ -41,9 +41,9 @@ vbell on
 
 # Use <Ctrl-^> as command prefix.
 # Setting <^> only doesn't work...
-# escape	^^\^
+# escape ^^\^
 # That is spelled <Ctrl-§> on a US keyboard.
-escape	^§
+escape ^§
 
 # Make scrollbars work
 # termcapinfo xterm ti@:te@

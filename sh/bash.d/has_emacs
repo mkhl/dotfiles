@@ -2,5 +2,5 @@
 
 # Return 0 if this shell is running inside Emacs.
 has_emacs () {
-	test -n "$EMACS"
+    test -n "$EMACS"
 }

@@ -23,110 +23,110 @@ unset _AUTOLOADS
 
 _aload()
 {
-	local func
-	for func; do
-		eval $func '()
-			{
-				local f=$(_autoload_resolve '$func')
-				if [[ $f ]]; then
-					. $f
-					'$func' "$@"
-					return $?
-				else
-					return 1
-				fi
-			}'
-		_autoload_addlist $func
-	done
+    local func
+    for func; do
+        eval $func '()
+            {
+                local f=$(_autoload_resolve '$func')
+                if [[ $f ]]; then
+                    . $f
+                    '$func' "$@"
+                    return $?
+                else
+                    return 1
+                fi
+            }'
+        _autoload_addlist $func
+    done
 }
 
 _autoload_addlist()
 {
-	local func
+    local func
 
-	for func in ${_AUTOLOADS[@]}; do
-		[[ $func = "$1" ]] && return
-	done
+    for func in ${_AUTOLOADS[@]}; do
+        [[ $func = "$1" ]] && return
+    done
 
-	_AUTOLOADS[${#_AUTOLOADS[@]}]=$1
+    _AUTOLOADS[${#_AUTOLOADS[@]}]=$1
 }
 
 _autoload_dump()
 {
-	local func
+    local func
 
-	for func in ${_AUTOLOADS[@]}; do
-		[[ $1 ]] && echo -n "autoload "
-		echo $func
-	done
+    for func in ${_AUTOLOADS[@]}; do
+        [[ $1 ]] && echo -n "autoload "
+        echo $func
+    done
 }
 
 _autoload_remove_one()
 {
-	local func
-	local -a NEW_AUTOLOADS
+    local func
+    local -a NEW_AUTOLOADS
 
-	for func in ${_AUTOLOADS[@]}; do
-		[[ $func != "$1" ]] && NEW_AUTOLOADS[${#NEW_AUTOLOADS[@]}]=$func
-	done
+    for func in ${_AUTOLOADS[@]}; do
+        [[ $func != "$1" ]] && NEW_AUTOLOADS[${#NEW_AUTOLOADS[@]}]=$func
+    done
 
-	_AUTOLOADS=( ${NEW_AUTOLOADS[@]} )
+    _AUTOLOADS=( ${NEW_AUTOLOADS[@]} )
 }
 
 _autoload_remove()
 {
-	local victim func
+    local victim func
 
-	for victim; do
-		for func in ${_AUTOLOADS[@]}; do
-			[[ $victim = "$func" ]] && unset -f $func && continue 2
-		done
-		echo "autoload: $func: not an autoloaded function" >&2
-	done
+    for victim; do
+        for func in ${_AUTOLOADS[@]}; do
+            [[ $victim = "$func" ]] && unset -f $func && continue 2
+        done
+        echo "autoload: $func: not an autoloaded function" >&2
+    done
 
-	for func; do
-		_autoload_remove_one $func
-	done
+    for func; do
+        _autoload_remove_one $func
+    done
 }
 
 _autoload_resolve()
 {
-	if [[ ! "$FPATH" ]]; then
-		echo "autoload: FPATH not set or null" >&2
-		return
-	fi
+    if [[ ! "$FPATH" ]]; then
+        echo "autoload: FPATH not set or null" >&2
+        return
+    fi
 
-	local p
+    local p
 
-	for p in $( (IFS=':'; set -- ${FPATH}; echo "$@") ); do
-		p=${p:-.}
-		if [ -f $p/$1 ]; then
-			echo $p/$1
-			return
-		fi
-	done
+    for p in $( (IFS=':'; set -- ${FPATH}; echo "$@") ); do
+        p=${p:-.}
+        if [ -f $p/$1 ]; then
+            echo $p/$1
+            return
+        fi
+    done
 
-	echo "autoload: $1: function source file not found" >&2
+    echo "autoload: $1: function source file not found" >&2
 }
 
 autoload()
 {
-	if (( $# == 0 )); then
-		_autoload_dump
-		return
-	fi
+    if (( $# == 0 )); then
+        _autoload_dump
+        return
+    fi
 
-		local opt OPTIND
+        local opt OPTIND
 
-		while getopts pu opt; do
-			case $opt in
-				p) _autoload_dump printable; return;;
-				u) shift $((OPTIND-1)); _autoload_remove "$@"; return;; 
-				*) echo "autoload: usage: autoload [-pu] [function ...]" >&2; return;;
-		esac
-	done
+        while getopts pu opt; do
+            case $opt in
+                p) _autoload_dump printable; return;;
+                u) shift $((OPTIND-1)); _autoload_remove "$@"; return;; 
+                *) echo "autoload: usage: autoload [-pu] [function ...]" >&2; return;;
+        esac
+    done
 
-	shift $(($OPTIND-1))
+    shift $(($OPTIND-1))
 
-	_aload "$@"
+    _aload "$@"
 }

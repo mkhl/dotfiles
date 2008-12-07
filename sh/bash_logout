@@ -5,9 +5,9 @@
 
 # Clear ttys
 if type tty >/dev/null 2>&1 ; then
-	case "$(tty)" in
-		/dev/tty[0-9]*) clear ;;
-	esac
+    case "$(tty)" in
+        /dev/tty[0-9]*) clear ;;
+    esac
 fi
 
 
