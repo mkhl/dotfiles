@@ -16,6 +16,8 @@ $include /etc/inputrc
 # "\e[5D": backward-word
 # "\e\e[C": forward-word
 # "\e\e[D": backward-word
+# "\e[3;5~": kill-word
+# "\e[3;3~": backward-kill-word
 
 # Emacs line editing
 $if mode=emacs
