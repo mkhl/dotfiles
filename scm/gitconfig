@@ -9,9 +9,11 @@
 [color]
     ui = auto
 [man]
-    viewer = ManOpen
+    viewer = Bwana
 [man.ManOpen]
     cmd = openman
+[man.Bwana]
+    cmd = bwana
 [alias]
 # The name 'push?' is not supported
     needs-pushing = cherry -v origin/master

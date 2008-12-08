@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for page; do
+    open "man:${page}"
+done
