@@ -7,20 +7,13 @@
 __parse_git_dirty () {
     git status 2> /dev/null | tail -n1 | egrep -q '^nothing to commit \(working directory clean\)$' || echo '*'
 }
-__parse_git_branch () {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(__parse_git_dirty)]/"
-}
 __pwd_with_tilde () {
     echo $PWD | sed -e "s:$HOME:~:"
 }
 
 # Set the prompt
-# PS1='\u@\h:\w$(__parse_git_branch)> '
-PS1='\h:\W$(__parse_git_branch) \u> '
-# With git completions loaded, that could read
-# PS1='\h:\W$(__git_ps1 "[%s]") \u> '
+PS1='\h:\W$(__git_ps1 "[%s$(__parse_git_dirty)]") \u> '
 
 
 # Set terminal titles
-# PROMPT_COMMAND='print_term_title "$USER@$HOST:$PWD"'
-PROMPT_COMMAND='print_term_title "$(hostname -s):$(basename "$(__pwd_with_tilde)")$(__parse_git_branch) $USER"'
+PROMPT_COMMAND='print_term_title "${HOSTNAME%%.*}:$(basename "$(__pwd_with_tilde)")$(__git_ps1 "[%s$(__parse_git_dirty)]") $USER"'
