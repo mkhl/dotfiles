@@ -1,4 +1,4 @@
-filetype 'applescript' do |src, dest|
+filetype :applescript do |src, dest|
   icon = src.pathmap("%d/%{.*,*}n-*.icns") { |x| x.gsub(/\s+/, '').downcase }
   icon = FileList[icon].existing.first
   if icon.nil?

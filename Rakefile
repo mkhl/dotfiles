@@ -82,9 +82,10 @@ def mirror(src, dest, shallow, ignored)
   end
 end
 
+
 def filetype(ext, &block)
-  @known_filetypes[ext] = block
-  @known_filetypes[".#{ext}"] = block
+  @known_filetypes[ext.to_s] = block
+  @known_filetypes[".#{ext.to_s}"] = block
 end
 
 def submodule(subdir, destdir, pathmap, options = {})
