@@ -30,6 +30,8 @@ def install_applet(src, dest, srcicon)
     type = srcicon.pathmap('%{.*-,}n')
     desticon = File.join(dest, 'Contents', 'Resources', "#{type}.icns")
     copy srcicon, desticon
+    # Update the timestamp, in case the bundle existed before
+    sh "touch '#{dest}'"
   end
   dest
 end
