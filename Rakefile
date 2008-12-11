@@ -4,6 +4,7 @@ BASEDIR = File.expand_path(File.dirname(__FILE__))
 HOMEDIR = File.expand_path(ENV['DESTDIR'] || '~')
 
 @known_filetypes = {}
+@private_data = 'private/data.rb'
 
 def basedir(*paths)
   File.join BASEDIR, *paths
@@ -127,12 +128,16 @@ end
 filetype :erb do |src, dest|
   dest = dest.ext('')
   dir = File.dirname dest
-  file dest => [dir, src] do
+  file dest => [@private_data, dir, src] do
     sh %[erb -r ./private/data.rb <#{src} >#{dest}]
   end
   dest
 end
 
+
+file @private_data do
+  sh "./fetch-private.sh"
+end
 
 desc "Install all files from all subdirectories"
 task :all
