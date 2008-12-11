@@ -124,6 +124,16 @@ def submodule(subdir, destdir, pathmap, options = {})
 end
 
 
+filetype :erb do |src, dest|
+  dest = dest.ext('')
+  dir = File.dirname dest
+  file dest => [dir, src] do
+    sh %[erb -r ./private/data.rb <#{src} >#{dest}]
+  end
+  dest
+end
+
+
 desc "Install all files from all subdirectories"
 task :all
 
