@@ -3,17 +3,45 @@
 # bash_prompt
 # bash-specific prompting
 
+# Helper definitions
+case $(uname) in
+    Darwin)
+        PS_ARROW="»"
+        # PS_DIRTY="✗"
+        PS_DIRTY="*"
+        ;;
+    *)
+        PS_ARROW=">"
+        PS_DIRTY="*"
+        ;;
+esac
+
 # Helper functions
 __parse_git_dirty () {
-    git status 2> /dev/null | tail -n1 | egrep -q '^nothing to commit \(working directory clean\)$' || echo '*'
+    local marker=$PS_DIRTY
+    if [[ -n "$1" ]]; then
+        marker="$1"
+    fi
+    git status 2> /dev/null | grep -c : | awk "{if (\$1 > 0) print \"$marker\"}"
 }
+__parse_svn_dirty () {
+    if [[ -d '.svn' ]]; then
+        local marker="$PS_DIRTY"
+        if [[ -n "$1" ]]; then
+            marker="$1"
+        fi
+        if svn status|egrep -q . ; then
+            builtin echo -ne " (svn)$marker"
+        fi
+    fi
+}
+
 __pwd_with_tilde () {
     echo $PWD | sed -e "s:$HOME:~:"
 }
 
 # Set the prompt
-PS1='\h:\W$(__git_ps1 "[%s$(__parse_git_dirty)]") \u> '
-
+PS1='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) $PS_ARROW '
 
 # Set terminal titles
-PROMPT_COMMAND='print_term_title "${HOSTNAME%%.*}:$(basename "$(__pwd_with_tilde)")$(__git_ps1 "[%s$(__parse_git_dirty)]") $USER"'
+PROMPT_COMMAND='print_term_title "$(__pwd_with_tilde)$(__git_ps1)$(__parse_git_dirty "*")$(__parse_svn_dirty)"'
