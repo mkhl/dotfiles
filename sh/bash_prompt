@@ -4,15 +4,19 @@
 # bash-specific prompting
 
 # Helper definitions
+COLOUR_RED="\[\e[31m\]"
+COLOUR_NONE="\[\e[0m\]"
 case $(uname) in
     Darwin)
         PS_ARROW="»"
         # PS_DIRTY="✗"
         PS_DIRTY="*"
+        # PS_FAIL="‼"
         ;;
     *)
         PS_ARROW=">"
         PS_DIRTY="*"
+        # PS_FAIL="!"
         ;;
 esac
 
@@ -35,13 +39,26 @@ __parse_svn_dirty () {
         fi
     fi
 }
-
 __pwd_with_tilde () {
     echo $PWD | sed -e "s:$HOME:~:"
 }
 
-# Set the prompt
-PS1='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) $PS_ARROW '
 
-# Set terminal titles
-PROMPT_COMMAND='print_term_title "$(__pwd_with_tilde)$(__git_ps1)$(__parse_git_dirty "*")$(__parse_svn_dirty)"'
+# Set the prompt depending on the last exit status
+__prompt_func () {
+    local retval=$?
+    local prompt='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) $PS_ARROW '
+    if [[ $retval -eq 0 ]]; then
+        PS1="$prompt"
+    else
+        PS1="$COLOUR_RED$PS_FAIL[$retval]$COLOUR_NONE $prompt"
+    fi
+}
+
+# Set terminal titles 
+__term_func () {
+    print_term_title "$(__pwd_with_tilde)$(__git_ps1)$(__parse_git_dirty "*")$(__parse_svn_dirty)"
+}
+
+# Bring it all together
+PROMPT_COMMAND='__prompt_func ; __term_func'
