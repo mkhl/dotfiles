@@ -14,7 +14,7 @@ def install_script(src, dest)
   file dest => [src, dir] do
     sh "osacompile -o '#{dest}' '#{src}'"
   end
-  task :all => dest
+  dest
 end
 
 def install_applet(src, dest, srcicon)
@@ -31,7 +31,7 @@ def install_applet(src, dest, srcicon)
     desticon = File.join(dest, 'Contents', 'Resources', "#{type}.icns")
     copy srcicon, desticon
   end
-  task :all => dest
+  dest
 end
 
 submodule :mac, homedir('Library'), '%f', :ignore => ['*.icns']

@@ -41,10 +41,11 @@ end
 alias :handle_file :symlink_file
 alias :handle_dir  :symlink_dir
 
+
 def mirror_file(src, dest, dir = nil)
   ext = src.pathmap('%x')
   if @known_filetypes.include? ext
-    @known_filetypes[ext][src, dest]
+    dest = @known_filetypes[ext][src, dest]
   else
     unless dir.nil?
       directory dir
@@ -53,8 +54,8 @@ def mirror_file(src, dest, dir = nil)
     file dest => src do
       handle_file src, dest
     end
-    task :all => dest
   end
+  task :all => dest
 end
 
 def mirror_dir(src, dest)
