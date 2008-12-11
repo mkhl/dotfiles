@@ -1,4 +1,7 @@
 {
+    /* For the GlyphInput bundle */
+    "^§" = "insertGlyphRepresentationOfKeyEquivalent:";
+    "~§" = "insertTextualRepresentationOfKeyEquivalent:";
     /* Modifier keys: start with C-m */
     "^m" = {
         "^ "    = ("insertText:", "\U2423");  /* C-space space */
