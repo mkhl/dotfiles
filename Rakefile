@@ -5,6 +5,7 @@ HOMEDIR = File.expand_path(ENV['DESTDIR'] || '~')
 
 @known_filetypes = {}
 @private_data = 'private/data.rb'
+@private_files = []
 
 def basedir(*paths)
   File.join BASEDIR, *paths
@@ -95,10 +96,12 @@ def submodule(subdir, destdir, pathmap, options = {})
   subjoin = proc { |p| File.join(subdir, p) }
   excludes = FileList[options.fetch(:exclude, []).map(&subjoin)]
   shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
+  privates = FileList[options.fetch(:private, []).map(&subjoin)]
   subfiles = FileList[subjoin['*']].exclude(subjoin["#{subdir}.rake"])
   ignored = proc do |f|
     options.fetch(:ignore, []).any? { |p| File.fnmatch?(p, File.basename(f)) }
   end
+  @private_files += privates.existing
 
   directory destdir
   namespace name do
@@ -128,12 +131,17 @@ end
 filetype :erb do |src, dest|
   dest = dest.ext('')
   dir = File.dirname dest
-  file dest => [@private_data, dir, src] do
-    sh %[erb -r ./private/data.rb <#{src} >#{dest}]
+  if @private_files.include? src
+    file dest => [@private_data, dir, src] do
+      sh %[erb -r ./private/data.rb <#{src} >#{dest}]
+    end
+  else
+    file dest => [dir, src] do
+      sh %[erb <#{src} >#{dest}]
+    end
   end
   dest
 end
-
 
 file @private_data do
   sh "./fetch-private.sh"

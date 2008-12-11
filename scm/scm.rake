@@ -1,1 +1,1 @@
-submodule :scm, homedir, '.%f'
+submodule :scm, homedir, '.%f', :private => 'gitconfig.erb'
