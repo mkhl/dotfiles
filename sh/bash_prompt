@@ -34,7 +34,7 @@ __parse_svn_dirty () {
         if [[ -n "$1" ]]; then
             marker="$1"
         fi
-        if svn status|egrep -q . ; then
+        if svn status 2> /dev/null | egrep -q . ; then
             builtin echo -ne " (svn)$marker"
         fi
     fi
