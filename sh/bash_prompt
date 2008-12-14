@@ -9,7 +9,6 @@ COLOUR_NONE="\[\e[0m\]"
 case $(uname) in
     Darwin)
         PS_ARROW="»"
-        # PS_DIRTY="✗"
         PS_DIRTY="*"
         # PS_FAIL="‼"
         ;;
@@ -46,14 +45,13 @@ __pwd_with_tilde () {
 
 # Set the prompt depending on the last exit status
 __prompt_func () {
-    # local retval=$?
-    # local prompt='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) $PS_ARROW '
-    PS1='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) $PS_ARROW '
-    # if [[ $retval -eq 0 ]]; then
-        # PS1="$prompt"
-    # else
-        # PS1="$COLOUR_RED$PS_FAIL[$retval]$COLOUR_NONE $prompt"
-    # fi
+    local retval=$?
+    local prompt='\w$(__git_ps1)$(__parse_git_dirty)$(__parse_svn_dirty) '
+    if [[ $retval -eq 0 ]]; then
+        PS1="$prompt$PS_ARROW "
+    else
+        PS1="$prompt$COLOUR_RED$PS_ARROW$COLOUR_NONE "
+    fi
 }
 
 # Set terminal titles 
