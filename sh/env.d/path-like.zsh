@@ -1,22 +1,22 @@
 # Set up search path variables
-typeset -T INFOPATH infopath
-typeset -T DYLD_FRAMEWORK_PATH dyld_framework_path
-typeset -T DYLD_LIBRARY_PATH dyld_library_path
-typeset -T LD_LIBRARY_PATH ld_library_path
-typeset -T PERL5LIB perl5lib
-typeset -T PYTHONPATH pythonpath
-typeset -T RUBYLIB rubylib
+typeset -xT INFOPATH infopath
+typeset -xT DYLD_FRAMEWORK_PATH dyld_framework_path
+typeset -xT DYLD_LIBRARY_PATH dyld_library_path
+typeset -xT LD_LIBRARY_PATH ld_library_path
+typeset -xT PERL5LIB perl5lib
+typeset -xT PYTHONPATH pythonpath
+typeset -xT RUBYLIB rubylib
 
 # Ignore duplicates
-typeset -U path
-typeset -U manpath
-typeset -U infopath
-typeset -U dyld_framework_path
-typeset -U dyld_library_path
-typeset -U ld_library_path
-typeset -U perl5lib
-typeset -U pythonpath
-typeset -U rubylib
+typeset -xU path
+typeset -xU manpath
+typeset -xU infopath
+typeset -xU dyld_framework_path
+typeset -xU dyld_library_path
+typeset -xU ld_library_path
+typeset -xU perl5lib
+typeset -xU pythonpath
+typeset -xU rubylib
 
 # Set library search path variables
 perl5lib=(
