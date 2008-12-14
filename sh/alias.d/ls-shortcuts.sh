@@ -1,11 +1,11 @@
 # Convenient listing
 alias l='ls -lh'
-alias l.='ls -d -- .[a-zA-Z]*'
+alias l.='ls -d -- .[^.]*'
 alias la='ls -lha'
 alias lar='ls -lhaR'
 alias lart='ls -larth'
 alias lh='ls -lh'
-alias ll.='ls -lhd -- .[a-zA-Z]*'
+alias ll.='ls -lhd -- .[^.]*'
 alias ll='ls -l'
 alias lla='ls -la'
 alias llar='la -laR'
