@@ -12,7 +12,9 @@ test -z "$SH_RC_DONE" || return
 SH_RC_DONE=t
 
 # Load login/environment settings
-[[ -e "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
+if [[ -e "$HOME/.bash_profile" ]]; then
+    source "$HOME/.bash_profile"
+fi
 
 # History
 HISTFILESIZE="5000"

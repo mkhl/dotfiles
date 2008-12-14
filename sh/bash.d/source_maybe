@@ -4,6 +4,8 @@
 # Usage: source_maybe [FILE ...]
 source_maybe () {
     for file; do
-        [[ -e "$file" ]] && source "$file"
+        if [[ -e "$file" ]]; then
+            source "$file"
+        fi
     done
 }
