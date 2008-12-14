@@ -58,7 +58,7 @@ __prompt_func () {
 
 # Set terminal titles 
 __term_func () {
-    print_term_title "$(__pwd_with_tilde)$(__git_ps1)$(__parse_git_dirty "*")$(__parse_svn_dirty)"
+    print_term_title "$USER@${HOSTNAME%.*} | $is:$(__pwd_with_tilde)"
 }
 
 # Bring it all together
