@@ -1,52 +1,44 @@
 #  -*- mode: shell-script -*-
 
-# UTF-8 everywhere!
 defutf8 on
-
-# Disable Ctrl-S/Ctrl-Q "flow control"
 defflow off
-
-# Reserve scrollback space
+# deflogin off                  # no utmp support on OS X, it seems
 defscrollback 10000
-
-# Skip intro
+# defzombie on                  # not sure I *always* want them...
 startup_message off
 
-# Restore window contents after using (e.g.) vi
 altscreen on
-
-# Detach on disconnect
 autodetach on
-
-# Ignore blank lines
 compacthist on
+hardcopy_append on
+silencewait 15
 
-# Print wackier status messages
-nethack on
+# Keybindings
+escape ^qq
+# escape "^\\\"
+# Use with the default escape sequence:
+# bind ^k
+# bind k
+# bind K kill
 
-# Ring the visual bell
+# Activity
 vbell on
+activity "%0c activity -> %n%f %t"
+bell_msg "%0c bell -> %n%f %t^G"
+vbell_msg "%0c *beep* -> %n%n %t"
 
-# Set the caption on the bottom line
-# window-list <nowplaying> <mm/dd/yy> <HH:MM>am/pm
-# caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= %1` %m/%d/%y %C:%s%a"
+# Modeline
+caption always " %d%M%y %0c | %{.kw}%-w%{+b}%n %t%{-}%+w"
 
-# An alternative hardstatus to display a bar at the bottom listing the
-# window names and highlighting the current window name in blue.
-# hardstatus on
-# hardstatus alwayslastline
-# hardstatus string "%{.kw}%-w%{+b}%n %t%{-}%+w %=%{+u}%H%{-} - %D, %d.%m, %c "
-# hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
-
-
-# Use <Ctrl-^> as command prefix.
-# Setting <^> only doesn't work...
-# escape ^^\^
-# That is spelled <Ctrl-§> on a US keyboard.
-escape ^§
-
-# Make scrollbars work
-# termcapinfo xterm ti@:te@
+# Terminal Title
+# Stolen from _why:
+termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+# defhstatus "$USER@H | # | t"
+# hardstatus off
+# I'd like PWD with tilde in the status, but I
+# backtick 1 0 1 echo $PWD | sed -e "s:$HOME:~:"    # can't get this to work..
+# hardstatus string "$USER@%H | #%n | %t:%1`"
+hardstatus string "$USER@%H | #%n | %t"
 
 # Default sessions
 # screen 0 htop
