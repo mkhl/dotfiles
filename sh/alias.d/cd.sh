@@ -1,6 +1,4 @@
 # Navigating the filesystem
-# alias -- +='pushd .'
-# alias -- -='popd'
 alias -- -='cd -'
 alias ..='cd ..'
 alias ...='cd ../..'
