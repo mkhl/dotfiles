@@ -11,6 +11,13 @@ is=bash
 test -z "$SH_ENV_DONE" || return
 SH_ENV_DONE=t
 
+# System-wide profile
+if [[ -e "/etc/bash_profile" ]]; then
+    source "/etc/bash_profile"
+elif [[ -e "/etc/profile" ]]; then
+    source "/etc/profile"
+fi
+
 # Remap <Caps-Lock> on ttys
 if uname | egrep -q "Linux" && type tty >/dev/null 2>&1 ; then
     case "$(tty)" in

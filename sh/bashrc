@@ -16,6 +16,11 @@ if [[ -e "$HOME/.bash_profile" ]]; then
     source "$HOME/.bash_profile"
 fi
 
+# System-wide bashrc
+if [[ -e "/etc/bashrc" ]]; then
+    source "/etc/bashrc"
+fi
+
 # History
 HISTFILESIZE="5000"
 HISTSIZE="5000"
