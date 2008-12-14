@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Restart the current shell
+# Usage: restart_shell
+restart_shell () {
+    exec "$is" --login
+}
