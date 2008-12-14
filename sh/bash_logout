@@ -10,6 +10,5 @@ if type tty >/dev/null 2>&1 ; then
     esac
 fi
 
-
 # Load local overrides
 source_maybe "$HOME/.bash_logout_local"
