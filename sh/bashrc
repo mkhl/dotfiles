@@ -21,32 +21,8 @@ if [[ -e "/etc/bashrc" ]]; then
     source "/etc/bashrc"
 fi
 
-# History
-HISTFILESIZE="5000"
-HISTSIZE="5000"
-HISTCONTROL="ignoredups:erasedups"      # "erasedups" is new in bash 3
-HISTIGNORE="&:[bf]g:exit:logout:rm -r*:sudo rm -r*"
-
-# Dircolors
-if has_cmd dircolors ; then
-    if [[ -f "$HOME/.dir_colors" ]]; then
-        eval $(dircolors -b "$HOME/.dir_colors")
-    else
-        eval $(dircolors -b)
-    fi
-fi
-
-# Pager
-if has_cmd lesspipe.sh ; then
-    export LESSOPEN="|$(choose_cmd lesspipe.sh) %s"
-fi
-
-# "Colorized" emacs
-if has_emacs ; then
-    tset -I -Q
-    stty cooked pass8 dec nl -echo
-    test "$is" == "zsh" && unsetopt zle
-fi
+# Load common settings
+source_all "$HOME/.sh.d"
 
 # Load options
 source_maybe "$HOME/.bash_options"
