@@ -28,14 +28,14 @@ if uname | egrep -q "Linux" && type tty >/dev/null 2>&1 ; then
 fi
 
 # Set up autoloading
-FPATH="$HOME/lib/bash:$HOME/.bash.d"
+FPATH="$HOME/lib/bash:$HOME/.bash.d:$HOME/.fpath.d"
 if [[ -e "$HOME/.bash_autoload" ]]; then
     # Load the autoload function
     source "$HOME/.bash_autoload"
     # Autoload shell functions from all executable files in bash.d.
     # The executable bit is not necessary, but gives you an easy way to
     # stop the autoloading of a particular shell function.
-    for file in "$HOME/.bash.d"/*; do
+    for file in "$HOME/.bash.d"/* "$HOME/.fpath.d"/*; do
         if [[ -x "$file" ]]; then
             autoload "$(basename "$file")"
         fi
