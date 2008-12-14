@@ -41,12 +41,6 @@ if has_cmd lesspipe.sh ; then
     export LESSOPEN="|$(choose_cmd lesspipe.sh) %s"
 fi
 
-# Process limits
-ulimit -Sc 0                   # This wants to be increased.
-ulimit -Sd unlimited
-ulimit -Sm unlimited
-ulimit -Ss unlimited
-
 # "Colorized" emacs
 if has_emacs ; then
     tset -I -Q
