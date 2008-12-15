@@ -1,85 +1,42 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby -KU
 
-require "net/http"
-require "uri"
-require "optparse"
+require 'open-uri'
 
-pattern = /\$\('paste_authorization'\)\.value='([^']+)';/
-
-# url = 'http://pastie.textmate.org/pastes/%s'
-url = 'http://pastie.org/pastes/%s'
-
-# Available parsers (as of 2007-10-14):
-all_parsers = [:diff, :html, :javascript, :nitro_xhtml, :pascal, :plaintext, :rhtml, :ruby, :sql]
-
-parser = :plaintext
-priv = 0
-wrap = 0
-author = "#{`dscl . read "/Users/$USER" realname|cut -f2 -d:`.strip} (#{ENV['USER']})"
-
-opts = OptionParser.new do |opts|
-  opts.banner = "Usage: pastie [OPTIONS] [PASTES]"
-  opts.on("-p", "--parser PARSER", all_parsers,
-          "Specify the syntax for the pasted text") do |p|
-    parser = p
+def read(uri)
+  open(uri) do |io|
+    io.read
   end
-  opts.on("-P", "--private", "Create a private paste") do
-    priv = 1
-  end
-  opts.on("-w", "--wrap", "Soft wrap the pasted text") do
-    wrap = 1
-  end
-  opts.on_tail("--show-parsers", "Show which parsers are available") do
-    puts "Available parsers:"
-    puts "  #{all_parsers.join "\n  "}"
-    puts "Default: #{parser}"
-    exit
-  end
-  opts.on_tail("-h", "--help", "Show this help screen") do
-    puts opts
-    exit
-  end
-end.parse!
-
-if ARGV.all? { |arg| arg.match(/^\d+$/) } and not ARGV.empty?
-  ARGV.each do |arg|
-    Net::HTTP.get_print(URI.parse(url % "#{arg}/download"))
-  end
-  exit
 end
 
-text_file = `mktemp -q -t pastie`
-at_exit { File.delete text_file }
+def read_public(name)
+  read(URI("http://pastie.org/#{name}.txt"))
+end
 
-File.open(text_file, 'w') { |file| file << ARGF.read }
+def read_private(url)
+  require 'rubygems'
+  require 'hpricot'
+  read(URI(Hpricot(open(url)).at('a.utility')['href']))
+end
 
-password = Net::HTTP.get(URI.parse(url % :create)).match(pattern)[1]
+def main(arg)
+  pattern = /^\d+$/
+  return read_public(arg) if pattern =~ arg
+  url = URI(arg)
+  name = File.basename(url.path)
+  return read_public(name) if pattern =~ name
+  read_private(url)
+end
 
-url = %x{
-  curl #{url % :create} \
-  -s -L -o /dev/null -w "%{url_effective}" \
-  -H "Expect:" \
-  -F "paste[parser]=#{parser}" \
-  -F "paste[restricted]=#{priv}" \
-  -F "paste[wrap]=#{wrap}" \
-  -F "paste[display_name]=#{author}" \
-  -F "paste[body]=<#{text_file}" \
-  -F "paste[authorization]=#{password}"
-}
+def usage
+  return <<-USAGE
+Usage: #{File.basename $PROGRAM_NAME} PASTE_ID | PASTE_URL
+USAGE
+end
 
-# This is what TextMate uses:
-# %x{
-#   curl #{PASTE_URL} \
-#   -s -L -o /dev/null -w "%{url_effective}" \
-#   -H "Expect:" \
-#   -F "paste[parser]=plaintext" \
-#   -F "paste[restricted]=#{priv}" \
-#   -F "paste[wrap]=#{wrap}" \
-#   -F "paste[display_name]=#{author}" \
-#   -F "paste[file_extension]=#{ext}" \
-#   -F "paste[body]=<#{text_file}" \
-#   -F "paste[textmate_html_gz]=<#{html_file}"
-# }
-
-# `echo -n #{url} | pbcopy`
-puts url
+if __FILE__ == $PROGRAM_NAME
+  unless ARGV.length == 1
+    puts usage
+    exit 2
+  end
+  puts main(ARGV.first)
+end
