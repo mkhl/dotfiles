@@ -1,8 +1,10 @@
 # Dircolors
-if has_cmd dircolors ; then
+cmd=$(choose_cmd dircolors gdircolors)
+if [[ -n "$cmd" ]]; then
     if [[ -f "$HOME/.dir_colors" ]]; then
-        eval $(dircolors -b "$HOME/.dir_colors")
+        eval $($cmd -b "$HOME/.dir_colors")
     else
-        eval $(dircolors -b)
+        eval $($cmd -b)
     fi
 fi
+unset -v cmd
