@@ -2,8 +2,5 @@
 
 # Return 0 if this terminal can display titlebar text.
 has_titlebar () {
-    case "$TERM" in
-        dumb|linux|sun|emacs) return 1 ;;
-        *)                    return 0 ;;
-    esac
+    test -n "$PROMPT_HS"
 }
