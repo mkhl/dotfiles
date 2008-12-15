@@ -172,6 +172,7 @@ task :default do
 end
 
 FileList['*/*.rake'].each do |rakefile|
+  next unless File.basename(File.dirname(rakefile)) == File.basename(rakefile.ext(''))
   import rakefile
 end
 
