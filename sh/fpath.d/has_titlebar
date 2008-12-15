@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Return 0 if this terminal can display titlebar text.
-has_titlebar () {
-    test -n "$PROMPT_HS"
-}

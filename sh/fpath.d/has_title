@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Return 0 if this terminal can display a title.
+has_title () {
+    test -n "$PROMPT_HS"
+}

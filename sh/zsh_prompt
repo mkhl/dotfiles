@@ -19,5 +19,5 @@ prompt="$PS_WINDOW%~$PS_ARROW "
 
 # Set the title
 precmd () {
-    print_term_title "%n@%m | $is:%~"
+    title "%n@%m | $is:%~"
 }

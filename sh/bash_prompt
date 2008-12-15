@@ -56,7 +56,7 @@ __prompt_func () {
 
 # Set terminal titles 
 __term_func () {
-    print_term_title "$USER@${HOSTNAME%.*} | $is:$(__pwd_with_tilde)"
+    title "$USER@${HOSTNAME%.*} | $is:$(__pwd_with_tilde)"
 }
 
 # Bring it all together

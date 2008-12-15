@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Display title
+title () {
+    if has_title ; then
+        builtin echo -ne "${PROMPT_TS}$@${PROMPT_FS}"
+    fi
+}

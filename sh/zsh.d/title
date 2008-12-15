@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Display title
+title () {
+    if has_title ; then
+        print -Pn "${PROMPT_TS}$@${PROMPT_FS}"
+    fi
+}
