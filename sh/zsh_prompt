@@ -4,5 +4,15 @@
 # zsh-specific prompting
 autoload -U promptinit
 promptinit
-prompt walters blue
-# TODO: Replace me!
+
+# Helper definitions
+PS_ARROW=">"
+PS_DIRTY="*"
+PS_FAIL="!"
+PS_WINDOW=""
+if [[ -n "$WINDOW" ]]; then
+    PS_WINDOW="#$WINDOW:"
+fi
+
+# Set the prompt
+prompt="$PS_WINDOW%~$PS_ARROW "
