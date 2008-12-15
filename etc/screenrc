@@ -31,8 +31,7 @@ vbell_msg "%0c *beep* -> %n%n %t"
 caption always " %d%M%y %0c | %{.kw}%-w%{+b}%n %t%{-}%+w"
 
 # Terminal Title
-# Stolen from _why:
-termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+source $HOME/.screenrc_terminfo
 # defhstatus "$USER@H | # | t"
 # hardstatus off
 # I'd like PWD with tilde in the status, but I
