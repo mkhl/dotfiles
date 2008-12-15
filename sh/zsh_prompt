@@ -10,9 +10,9 @@ PS_ARROW=">"
 PS_DIRTY="*"
 PS_FAIL="!"
 PS_WINDOW=""
-if [[ -n "$WINDOW" ]]; then
-    PS_WINDOW="#$WINDOW:"
-fi
+# if [[ -n "$WINDOW" ]]; then
+#     PS_WINDOW="#$WINDOW:"
+# fi
 
 # Set the prompt
 prompt="$PS_WINDOW%~$PS_ARROW "

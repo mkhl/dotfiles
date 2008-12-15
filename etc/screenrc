@@ -28,7 +28,9 @@ bell_msg "%0c bell -> %n%f %t^G"
 vbell_msg "%0c *beep* -> %n%n %t"
 
 # Modeline
-caption always " %d%M%y %0c | %{.kw}%-w%{+b}%n %t%{-}%+w"
+caption always " %d%M%y %0c | #%n | %t"
+# caption always " %d%M%y %0c | %{+r}%-w%{+b}%n %t%{-}%+w"
+# caption always " %d%M%y %0c | %>%{+r}%-w%{+b}%L>%n %t%{-}%+w%L<"
 
 # Terminal Title
 source $HOME/.screenrc_terminfo
