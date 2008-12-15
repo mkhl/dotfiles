@@ -5,9 +5,9 @@ __term_title_begin () {
     case "$TERM" in
         dumb|linux|sun|emacs)
             ;;
-        screen)
-            echo -n "\e_"
-            ;;
+        # screen)
+        #     echo -n "\e_"
+        #     ;;
         sun-cmd)
             echo -n "\e]l"
             #echo -n "\e]L"
@@ -25,9 +25,9 @@ __term_title_end () {
     case "$TERM" in
         dumb|linux|sun|emacs)
             ;;
-        screen)
-            echo -n "\e\\"
-            ;;
+        # screen)
+        #     echo -n "\e\\"
+        #     ;;
         sun-cmd)
             echo -n "\e\\"
             ;;
