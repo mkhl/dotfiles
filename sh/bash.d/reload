@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Reload the given functions or otherwise the shells rc file
+# Usage: reload [FUNCTION ...]
+reload () {
+    if (( $# != 1 )); then
+        unset "SH_RC_DONE"
+        source "$HOME/.${is}rc"
+    else
+        local fn
+        for fn in "$@"; do
+            case "$is" in
+                bash)
+                    unset -f "$fn"
+                    autoload "$fn"
+                    ;;
+                zsh)
+                    unfunction "$fn"
+                    autoload -U "$fn"
+                    ;;
+            esac
+        done
+    fi
+}
+# compdef _functions reload
