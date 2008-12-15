@@ -3,6 +3,7 @@
 @term_dumb    = { :hs => false }
 @term_sun_cmd = { :hs => true, :ts => '\E]l', :fs => '\E\\\\' }
 @term_ansi    = { :hs => true, :ts => '\E]2;',  :fs => '\007' }
+@term_screen  = { :hs => true, :ts => '\Ek', :fs => '\E\\\\' }
 
 @term_types = {
   @term_dumb => %w[
@@ -10,8 +11,6 @@
     linux
     sun
     emacs
-    screen
-    screen-w
   ],
   @term_ansi => %w[
     ansi
@@ -25,6 +24,10 @@
   ],
   @term_sun_cmd => %w[
     sun-cmd
+  ],
+  @term_screen => %w[
+    screen
+    screen-w
   ],
 }
 
@@ -70,7 +73,8 @@ end
 
 def screen
   lines = @term_types.collect do |term, types|
-    types = types.reject { |t| /^screen(-w)?$/ === t }
+    types.reject! { |t| /^screen(-w)?$/ === t }
+    next if types.empty?
     "termcapinfo #{to_pattern(types)} '#{to_screen(term)}'"
   end
   lines.join("\n")
