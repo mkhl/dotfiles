@@ -1,0 +1,9 @@
+#!/bin/zsh
+#
+# zsh_completion
+# zsh-specific programmable completion
+autoload -U compinit
+compinit
+
+# Colorful listings
+zstyle ':completion:*' list-colors $LS_COLORS

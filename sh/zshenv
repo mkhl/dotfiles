@@ -1,0 +1,28 @@
+#!/bin/zsh
+#
+# zshenv
+# zsh-specific environment settings
+setopt extended_glob
+
+# We're running the Z Shell
+is=zsh
+
+# Don't recurse
+test -z "$SH_ENV_DONE" || return
+SH_ENV_DONE=t
+
+# Set up autoloading
+typeset -xU fpath
+fpath=(
+    $HOME/lib/zsh
+    $fpath
+    $HOME/.zsh.d
+    $HOME/.fpath.d
+)
+autoload -U $HOME/.{zsh,fpath}.d/*~*~(-N.x:t)
+
+# Load environment settings
+source_maybe $HOME/.env
+
+# Load local overrides
+source_maybe $HOME/.zshenv_local

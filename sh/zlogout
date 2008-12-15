@@ -1,0 +1,14 @@
+#!/bin/zsh
+#
+# zlogout
+# zsh-specific logout script
+
+# Clear tty
+if whence tty >/dev/null; then
+    case $(tty) in
+        /dev/tty[0-9]*) clear ;;
+    esac
+fi
+
+# Load local overrides
+source_maybe $HOME/.zlogout_local

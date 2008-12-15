@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Load the given source files if they exist.
+# Usage: source_maybe [FILE ...]
+source_maybe () {
+    for file; do
+        if [[ -e $file ]]; then
+            source $file
+        fi
+    done
+}

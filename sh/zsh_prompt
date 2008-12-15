@@ -1,0 +1,8 @@
+#!/bin/zsh
+#
+# zsh_prompt
+# zsh-specific prompting
+autoload -U promptinit
+promptinit
+prompt walters blue
+# TODO: Replace me!

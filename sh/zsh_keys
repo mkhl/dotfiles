@@ -1,0 +1,8 @@
+#!/bin/zsh
+#
+# zsh_keys
+# zsh-specific key bindings
+
+# Prefer bash-style word functions
+autoload -U select-word-style
+select-word-style bash
