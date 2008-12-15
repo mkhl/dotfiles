@@ -3,6 +3,13 @@
 # Display title
 title () {
     if has_title ; then
-        builtin echo -ne "${PROMPT_TS}$@${PROMPT_FS}"
+        case "$TERM" in
+        screen*)
+            builtin echo -ne "${PROMPT_TS}$1:$3${PROMPT_FS}"
+            ;;
+        *)
+            builtin echo -ne "${PROMPT_TS}$2 | $1:$3${PROMPT_FS}"
+            ;;
+        esac
     fi
 }

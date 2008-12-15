@@ -19,5 +19,10 @@ prompt="$PS_WINDOW%~$PS_ARROW "
 
 # Set the title
 precmd () {
-    title "%n@%m | $is:%~"
+    title "$is" "%n@%m" "%55<...<%~"
+}
+
+# Set the title for external commands
+preexec () {
+    title "$1" "%n@%m" "%35<...<%~"
 }
