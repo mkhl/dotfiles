@@ -6,5 +6,11 @@
 # From http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts
 gemdoc () {
     local gemdir="$(gem env gemdir)"
-    open "$gemdir/doc/$(ls "$gemdir/doc/" | grep $1 | sort | tail -n1)/rdoc/index.html"
+    local gem="$(ls "$gemdir/doc" | grep -i $1 | sort | tail -n1)"
+    if [[ -n "$gem" ]]; then
+        open "$gemdir/doc/$gem/rdoc/index.html"
+    else
+        echo "$(basename -- $0): gem not found: $1" 1>&2
+        return 1
+    fi
 }
