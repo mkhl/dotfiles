@@ -25,7 +25,7 @@ escape ^qq
 vbell on
 activity "%0c activity -> %n%f %t"
 bell_msg "%0c bell -> %n%f %t^G"
-vbell_msg "%0c *beep* -> %n%n %t"
+vbell_msg "*beep*"
 
 # Modeline
 caption always " %d%M%y %0c | #%n | %t"
