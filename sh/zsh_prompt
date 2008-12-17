@@ -15,7 +15,7 @@ PS_WINDOW=""
 # fi
 
 # Set the prompt
-prompt="$PS_WINDOW%~$PS_ARROW "
+prompt="$PS_WINDOW%~ $PS_ARROW "
 
 # Set the title
 precmd () {
