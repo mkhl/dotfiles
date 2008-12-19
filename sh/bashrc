@@ -37,7 +37,7 @@ source_maybe "$HOME/.alias"
 source_maybe "$HOME/.bash_completion_link"
 
 # Augment PATH
-munge PATH "$HOME/bin" after
+munge PATH "$HOME/bin" before
 munge PATH "/Developer/Tools" after
 munge PATH . after
 
