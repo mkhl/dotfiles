@@ -1,6 +1,12 @@
 #  -*- mode: ruby -*-
 
-%w{rubygems pp what_methods}.each { |mod| require mod rescue nil }
+%w{rubygems pp what_methods}.each do |mod|
+  begin
+    require mod
+  rescue LoadError
+    nil
+  end
+end
 
 # A grab-bag of tricks, tools, techniques, trifles, and toys for IRB
 begin
