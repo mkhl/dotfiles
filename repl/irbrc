@@ -1,6 +1,6 @@
 #  -*- mode: ruby -*-
 
-%w[rubygems pp what_methods].each { |mod| require mod rescue nil }
+%w{rubygems pp what_methods}.each { |mod| require mod rescue nil }
 
 # A grab-bag of tricks, tools, techniques, trifles, and toys for IRB
 begin
@@ -8,7 +8,7 @@ begin
   UtilityBelt.equip :defaults
   UtilityBelt::Themes.background :light
 rescue LoadError
-  %w[irb/completion irb/ext/save-history].each(&method(:require))
+  %w{irb/completion irb/ext/save-history}.each(&method(:require))
   begin
     require 'wirble'
     Wirble.init
