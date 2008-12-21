@@ -9,6 +9,13 @@ begin
   UtilityBelt::Themes.background :light
 rescue LoadError
   %w[irb/completion irb/ext/save-history].each(&method(:require))
+  begin
+    require 'wirble'
+    Wirble.init
+    Wirble.colorize
+  rescue LoadError
+    nil
+  end
 ensure
   IRB.conf[:PROMPT][:SNAZZY] = {
     :PROMPT_I => ">> ",
