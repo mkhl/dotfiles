@@ -37,5 +37,9 @@
 
         "^x"    = ("insertText:", "\U238B");  /* C-x     escape */ 
         "x"     = ("insertText:", "\U23CF");  /* x       eject */ 
+
+        "^i"    = ("insertText:", "\U203D");  // C-i     interrobang
+        "^k"    = ("insertText:", "\U2665");  // C-k     black heart
+        "a"     = ("insertText:", "\UF8FF");  // a       apple logo
     };
 }
