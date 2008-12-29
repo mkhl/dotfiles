@@ -1,0 +1,1 @@
+export LISTMAX=0
