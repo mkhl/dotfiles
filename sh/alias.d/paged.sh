@@ -1,5 +1,10 @@
 # Run commands through a pager
+alias cabal='paged cabal'
 alias cheat='paged cheat'
+alias easy_install='paged easy_install'
+alias find='paged find'
 alias gem='paged gem'
-alias tree='paged tree'
 alias path_shadows='paged path_shadows'
+alias pip='paged pip'
+alias port='paged port'
+alias tree='paged tree'
