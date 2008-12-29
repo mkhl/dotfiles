@@ -18,3 +18,6 @@ __sake_task_list () {
 }
 # I should really learn how to use compdef here...
 compctl -K __sake_task_list sake
+
+# GitHub command completion
+compctl -k "($(github help | perl -ne 'print if s/^\s+(\S+)\s+=>.*$/$1/'))" github gh
