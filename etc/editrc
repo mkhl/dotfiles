@@ -1,3 +1,4 @@
+edit on
 bind "^R" em-inc-search-prev
 bind "^S" em-inc-search-next
 bind "^/" ed-command
