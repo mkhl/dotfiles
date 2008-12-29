@@ -7,3 +7,10 @@ compinit
 
 # Colorful listings
 zstyle ':completion:*' list-colors $LS_COLORS
+
+# Sake task completion
+__sake_task_list () {
+	reply=($(sake -T | awk '{ print $2 }'))
+}
+# I should really learn how to use compdef here...
+compctl -K __sake_task_list sake
