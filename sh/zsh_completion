@@ -5,6 +5,10 @@
 autoload -U compinit
 compinit
 
+# Bash compatibility
+autoload -U bashcompinit
+bashcompinit
+
 # Colorful listings
 zstyle ':completion:*' list-colors $LS_COLORS
 
