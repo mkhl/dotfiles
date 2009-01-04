@@ -15,7 +15,10 @@ PS_WINDOW=""
 # fi
 
 # Set the prompt
-prompt="$PS_WINDOW%~ $PS_ARROW "
+prompt="$PS_WINDOW%~$PS_ARROW "
+if [[ -n "$SSH_CLIENT" ]]; then
+    rprompt="%n@%m"
+fi
 
 # Set the title
 precmd () {
