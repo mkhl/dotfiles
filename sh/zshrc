@@ -21,7 +21,7 @@ source_maybe $HOME/.zsh_options
 source_maybe $HOME/.zsh_prompt
 
 # Load aliases
-source_maybe $HOME/.alias
+source_all $HOME/.alias.d
 
 # Load advanced completion
 source_maybe $HOME/.zsh_completion

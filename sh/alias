@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# alias
-# shell-agnostic command aliases
-source_all "$HOME/.alias.d"

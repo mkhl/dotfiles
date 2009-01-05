@@ -43,10 +43,10 @@ if [[ -e "$HOME/.bash_autoload" ]]; then
 fi
 
 # Load environment settings
-source_maybe "$HOME/.env"
-
-# Load interactive settings
-source_maybe "$HOME/.bashrc"
+source_all "$HOME/.env.d"
 
 # Load local overrides
 source_maybe "$HOME/.bash_profile_local"
+
+# Load interactive settings
+source_maybe "$HOME/.bashrc"

@@ -22,7 +22,7 @@ fpath=(
 autoload -U $HOME/.{zsh,fpath}.d/*~*~(-N.x:t)
 
 # Load environment settings
-source_maybe $HOME/.env
+source_all $HOME/.env.d
 
 # Load local overrides
 source_maybe $HOME/.zshenv_local

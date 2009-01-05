@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# env
-# shell-agnostic environment settings
-source_all "$HOME/.env.d"

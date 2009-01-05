@@ -31,7 +31,7 @@ source_maybe "$HOME/.bash_options"
 source_maybe "$HOME/.bash_prompt"
 
 # Load aliases
-source_maybe "$HOME/.alias"
+source_all "$HOME/.alias.d"
 
 # Load advanced completion
 source_maybe "$HOME/.bash_completion_link"
