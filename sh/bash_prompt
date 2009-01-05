@@ -13,22 +13,11 @@ PS_WINDOW=""
 # fi
 
 # Helper functions
-__parse_git_dirty () {
-    local marker=$PS_DIRTY
-    if [[ -n "$1" ]]; then
-        marker="$1"
-    fi
-    git status 2> /dev/null | grep -c : | awk "{if (\$1 > 0) print \"$marker\"}"
-}
-__parse_svn_dirty () {
+__svn_ps1 () {
     if [[ -d '.svn' ]]; then
-        local marker="$PS_DIRTY"
-        if [[ -n "$1" ]]; then
-            marker="$1"
-        fi
-        if svn status 2> /dev/null | egrep -q . ; then
-            builtin echo -ne " (svn)$marker"
-        fi
+        local svnroot="$(svn info|sed -n 's/^Repository Root: //p')"
+        local svnpath="$(svn info|sed -n 's/^URL: //p')"
+        builtin echo -ne " ($(echo $svnpath | sed -e "s|$svnroot/||" -e "s|/.*||"))"
     fi
 }
 __pwd_with_tilde () {
@@ -36,7 +25,7 @@ __pwd_with_tilde () {
 }
 
 # Set the prompt
-PS1='\w$(__git_ps1)$PS_ARROW '
+PS1='\w$(__git_ps1)$(__svn_ps1)$PS_ARROW '
 
 
 # Set terminal titles 
