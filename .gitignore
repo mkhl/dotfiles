@@ -1,3 +1,4 @@
 private
 etc/screenrc_terminfo
 sh/sh.d/terminfo.sh
+sh/bash_completion.d/tabtab.bash
