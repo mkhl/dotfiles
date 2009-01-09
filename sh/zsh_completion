@@ -23,4 +23,4 @@ compctl -K __sake_task_list sake
 # compctl -k "($(github help | perl -ne 'print if s/^\s+(\S+)\s+=>.*$/$1/'))" github gh
 
 # Command completion via tabtab:
-source_maybe ~/.tabtab.bash
+source_maybe ~/.tabtab.zsh
