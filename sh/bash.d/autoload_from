@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Autoload the given function from the given source file if it exists.
+# Usage: autoload_from FUNCTION FILENAME
+function autoload_from () {
+	local func="$1"; shift
+	local file="$1"; shift
+	eval "$func () {
+		if [[ -f \"$file\" ]]; then
+			. \"$file\"
+			$func \"\$@\"
+			return \$?
+		else
+			return 1
+		fi
+	}"
+}
