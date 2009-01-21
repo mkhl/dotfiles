@@ -13,7 +13,7 @@ opts=(
     pushd_silent
     pushd_to_home
     # Completion:
-    list_rows_first
+    # list_rows_first
     NO_rec_exact                # Some distros set this...
     # Expansion and Globbing:
     # csh_null_glob
@@ -28,6 +28,7 @@ opts=(
     NO_clobber
     # correct
     # dvorak
+    ignore_eof
     sun_keyboard_hack
     # Prompting:
     transient_rprompt
