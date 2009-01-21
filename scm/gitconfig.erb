@@ -17,6 +17,7 @@
 [alias]
 # The name 'push?' is not supported
     needs-pushing = cherry -v origin/master
+    ignored = ls-files --others --exclude-standard
     chainsaw = rebase --interactive
     st = status
     co = checkout
@@ -27,3 +28,4 @@
     np = needs-pushing
     publish = !ruby $HOME/lib/gx/git-publish.rb
     update = !ruby $HOME/lib/gx/git-update.rb
+    track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
