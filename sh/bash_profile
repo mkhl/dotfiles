@@ -35,11 +35,7 @@ if [[ -e "$HOME/.bash_autoload" ]]; then
     # Autoload shell functions from all executable files in bash.d.
     # The executable bit is not necessary, but gives you an easy way to
     # stop the autoloading of a particular shell function.
-    for file in "$HOME/.bash.d"/* "$HOME/.fpath.d"/*; do
-        if [[ -x "$file" ]]; then
-            autoload "$(basename "$file")"
-        fi
-    done
+    autoload $(find -H ~/.bash.d ~/.fpath.d -type f -perm -0111 | sed 's,^.*/,,')
 fi
 
 # Load environment settings
