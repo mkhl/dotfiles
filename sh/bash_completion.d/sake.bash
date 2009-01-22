@@ -1,1 +1,0 @@
-complete -W "$(sake -T | awk '{print $2}')" sake
