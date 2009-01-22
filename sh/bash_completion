@@ -3,3 +3,4 @@
 # bash_completion
 # bash-specific programmable completion
 source_all "$HOME/.bash_completion.d"
+source_maybe "$HOME/.tabtab.bash"
