@@ -1,76 +1,132 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env python
 
-=begin
+from optparse import OptionParser
+import os, sys, string
+from cStringIO import StringIO
+import urllib2, urllib, subprocess, pprint
 
-INSTALL:
+optparser = OptionParser("usage: %prog [-p] file1 file2 file3\n\nPass files to me and I'll post them to http://gist.github.com")
+optparser.set_defaults(gistread="", debug=False)
+optparser.add_option( "-p", "--private",
+        action="store_true", dest="private",
+        help="Make the Gist private." )
+optparser.add_option( "-c", "--clone",
+        action="store_true", dest="clone",
+        help="Clone this repository, only valid with the -r option." )
+optparser.add_option( "-d", "--debug",
+        action="store_true", dest="debug",
+        help="Run in debug mode." )
+optparser.add_option( "-r", "--read",
+        action="store", dest="gistread", type="string",
+        help="The Gist to read.." )
+optparser.add_option( "-e", "--ext",
+        action="store", dest="gistext", type="string",
+        help="The extension you want this gist to have. Overrides the filename extension. (ex: .js .xml .php)" )
 
-  curl http://github.com/defunkt/gist/tree/master%2Fgist.rb?raw=true > gist &&
-  chmod 755 gist &&
-  sudo mv gist /usr/local/bin/gist
 
-USE:
+(opts, filenames) = optparser.parse_args()
 
-  cat file.txt | gist
-  echo secret | gist -p  # or --private
-  gist 1234 > something.txt
+if opts.debug:
+    pp = pprint.PrettyPrinter(indent=4)
+    print "Running in Debug Mode.."
+    if opts.gistext:
+        print "Using Ext: %s" % opts.gistext
 
-=end
 
-require 'open-uri'
-require 'net/http'
 
-module Gist
-  extend self
+def copy(content):
+    system = sys.platform
+    if system == 'darwin':
+        p = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+        p.stdin.write(content)
+        p.stdin.close()
+        retcode = p.wait()
+    elif system == 'linux':
+        p = subprocess.Popen(['xclip'], stdin=subprocess.PIPE)
+        p.stdin.write(content)
+        p.stdin.close()
+        retcode = p.wait()
+        
 
-  @@gist_url = 'http://gist.github.com/%s.txt'
+def write(filenames):
+    out = {}
+    counter = 1
 
-  def read(gist_id)
-    return help if gist_id == '-h' || gist_id.nil? || gist_id[/help/]
-    open(@@gist_url % gist_id).read
-  end
+    for i in filenames:
+        ext_key = "file_ext[gistfile%s]" % counter
+        name_key = "file_name[gistfile%s]" % counter
+        content_key = "file_contents[gistfile%s]" % counter
+        if i == sys.stdin:
+            if opts.debug:
+                print "Getting file from STDIN"
+            name = ''
+            fileStr = sys.stdin.read()
+        elif os.path.isfile(i):
+            if opts.debug:
+                print "Getting file from: %s" % i
 
-  def write(content, private_gist)
-    url = URI.parse('http://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, data(nil, nil, content, private_gist))
-    copy req['Location']
-  end
+            info = os.path.splitext(i)
+            name = os.path.basename(i)
+            f = open(i)
+            fileStr = StringIO(f.read()).getvalue()
+            if info[1]:
+                out[ext_key] = info[1]
 
-  def help
-    "USE:\n  " + File.read(__FILE__).match(/USE:(.+?)=end/m)[1].strip
-  end
+        if opts.gistext:
+            out[ext_key] = opts.gistext
+        else:
+            out[ext_key] = '.txt'
 
-private
-  def copy(content)
-    case RUBY_PLATFORM
-    when /darwin/
-      return content if `which pbcopy`.strip == ''
-      IO.popen('pbcopy', 'r+') { |clip| clip.puts content }
-    when /linux/
-      return content if `which xclip`.strip == ''
-      IO.popen('xclip', 'r+') { |clip| clip.puts content }
-    end
+        out[name_key] = name
+        out[content_key] = fileStr
+        counter = counter + 1
+        
+    if opts.private:
+        out['private'] = 'on'
 
-    content
-  end
+    out['login'] = os.popen('git config --global github.user').read().strip()
+    out['token'] = os.popen('git config --global github.token').read().strip()
 
-  def data(name, ext, content, private_gist)
-    return {
-      'file_ext[gistfile1]'      => ext,
-      'file_name[gistfile1]'     => name,
-      'file_contents[gistfile1]' => content
-    }.merge(private_gist ? { 'private' => 'on' } : {}).merge(auth)
-  end
+    if opts.debug:
+        print "POST DATA:"
+        pp.pprint(out)
+    else:
+        url = 'http://gist.github.com/gists'
+        data = urllib.urlencode(out)
+        req = urllib2.Request(url, data)
+        response = urllib2.urlopen(req)
 
-  def auth
-    user  = `git config --global github.user`.strip
-    token = `git config --global github.token`.strip
+        url = response.geturl()
+        copy(url)
+        print url
 
-    user.empty? ? {} : { :login => user, :token => token }
-  end
-end
 
-if $stdin.tty?
-  puts Gist.read(ARGV.first)
-else
-  puts Gist.write($stdin.read, %w[-p --private].include?(ARGV.first))
-end
+def read(id):
+    if opts.clone:
+        print "Cloning Gist: %s" % id
+        cmd = 'git clone git://gist.github.com/%s.git gist-%s' % (id, id)
+        os.popen(cmd)
+    else:
+        url = "http://gist.github.com/%s.txt" % id;
+        req = urllib2.Request(url)
+        response = urllib2.urlopen(req)
+        
+        data = response.read()
+        copy(data)
+        print data
+
+
+if opts.gistread:
+    read(opts.gistread)
+    sys.exit(0)
+
+
+if len(filenames) == 0:
+    if sys.stdin:
+        filenames.append(sys.stdin)
+        #print sys.stdin.read()
+    else:
+        print "No files given.."
+        sys.exit(1)
+
+write(filenames)
