@@ -42,7 +42,7 @@
         "^k"    = ("insertText:", "\U2665");  // C-k     black heart
         "a"     = ("insertText:", "\UF8FF");  // a       apple logo
         "^l"    = ("insertText:", "\U03BB");  // C-l     lambda
-        "^p"    = ("insertText:", "\U03C0");  // C-p     pi
+        // "^p"    = ("insertText:", "\U03C0");  // C-p     pi
         "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
     };
 }
