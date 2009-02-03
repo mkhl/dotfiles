@@ -1,11 +1,9 @@
-mkhl’s dotfiles
-===============
+# mkhl’s dotfiles
 
 Yet another collection of dotfiles.
 
 
-Installation
-------------
+## Installation
 
 Just run:
 
@@ -26,8 +24,7 @@ to check out what’s going on before installing random files off the internet.
 to find out more.
 
 
-Caveats
--------
+## Caveats
 
 This package includes some files you'll **not** want to install, like my SSH
 public key. You should replace it with your own key, or just remove it from
