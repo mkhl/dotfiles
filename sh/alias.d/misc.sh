@@ -1,13 +1,9 @@
 # Handy shortcuts
 alias beep='echo -ne "\a"'
-alias bz='bzip2'
-alias buz='bunzip2'
 alias cls='clear'
 alias j='jobs -l'
 alias h='history 1 | less +G'
 alias hh='history'
-alias md='mkdir -p'
-alias rd='rmdir'
 alias rehash='hash -r'
 alias resc='screen -r'
 alias rescreen='screen -r'
