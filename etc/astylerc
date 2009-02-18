@@ -1,0 +1,8 @@
+# style=kr
+convert-tabs
+indent=spaces=4
+brackets=attach
+indent-cases
+pad=oper
+unpad=paren
+one-line=keep-blocks
