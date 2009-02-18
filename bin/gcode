@@ -4,8 +4,8 @@
 # In Public Domain
 # Original available as: http://random-state.net/files/upstream-1.1.tar.gz
 project_or_option="$1"
-module="${2:-$trunk}"
-directory="${3:project_or_option}"
+module="${2:-trunk}"
+directory="${3:-$project_or_option}"
 version() {
   echo "gcode (Upstream 1.1)"
   echo "gcode is in Public Domain."
