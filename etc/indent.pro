@@ -14,12 +14,12 @@
 -ndj
 -ei
 -neei
--fc1
+-nfc1
 -i8
 -nip
 -l512
 -lp
 -npcs
--nps1
--sc
+-npsl
+-nsc
 -nsob
