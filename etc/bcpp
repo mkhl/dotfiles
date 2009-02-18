@@ -1,0 +1,7 @@
+function_spacing = 1
+use_tabs = no
+indent_spacing = 4
+comments_with_code = 41
+indent_preprocessor = no
+leave_comments_nocode = yes
+place_brace_on_new_line = off
