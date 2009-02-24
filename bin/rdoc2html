@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby -wKU -rubygems
+
+require 'rdoc/markup/to_html'
+
+def format(input)
+  return RDoc::Markup::ToHtml.new.convert(input)
+end
+
+if __FILE__ == $PROGRAM_NAME
+  print format(ARGF.read)
+end
