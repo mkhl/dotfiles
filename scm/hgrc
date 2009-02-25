@@ -7,7 +7,9 @@ git = True
 username = Martin Kuehl <martin.kuehl@gmail.com>
 
 [extensions] 
+color =
 extdiff =
+pager =
 
 [extdiff]
 cmd.chdiff =
