@@ -13,6 +13,8 @@
 	<string>"&lt;#key#&gt;" = "&lt;#value#&gt;";</string>
 	<key>/</key>
 	<string>/* &lt;#comment#&gt; */</string>
+	<key>:</key>
+	<string>:(&lt;#type#&gt;)&lt;#name#&gt;</string>
 	<key>;</key>
 	<string>[&lt;#message#&gt;];</string>
 	<key>&lt;</key>
@@ -246,7 +248,7 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 }
 </string>
 	<key>h</key>
-	<string>- (void)&lt;#methodname#&gt;;</string>
+	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt;;</string>
 	<key>ha</key>
 	<string>- (NSArray *)&lt;#methodname#&gt;;</string>
 	<key>hb</key>
@@ -275,10 +277,14 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 &lt;/body&gt;
 &lt;/html&gt;
 </string>
+	<key>hv</key>
+	<string>- (void)&lt;#methodname#&gt;;</string>
 	<key>hx</key>
 	<string>- (void)&lt;#methodname#&gt;:(id)sender;</string>
 	<key>ic</key>
 	<string>unsigned int i, count = [&lt;#array#&gt; count];</string>
+	<key>id</key>
+	<string>id &lt;&lt;#protocol#&gt;&gt;</string>
 	<key>if</key>
 	<string>if (&lt;#condition#&gt;) {
 	&lt;#statements#&gt;
@@ -376,7 +382,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>lst</key>
 	<string>NSLocalizedStringFromTable(@"&lt;#string#&gt;", @"&lt;#table#&gt;", @"&lt;#comment#&gt;")</string>
 	<key>m</key>
-	<string>- (void)&lt;#methodname#&gt; {
+	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt; {
 	&lt;#statements#&gt;
 }
 </string>
@@ -385,6 +391,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	return &lt;#expression#&gt;;
 }
 </string>
+	<key>mark</key>
+	<string>#pragma mark -#pragma mark &lt;#label#&gt;</string>
 	<key>mb</key>
 	<string>- (BOOL)&lt;#methodname#&gt; {
 	return &lt;#expression#&gt;;
@@ -434,6 +442,11 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<string>NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];</string>
 	<key>mus</key>
 	<string>NSMutableString *string = [NSMutableString stringWithCapacity:&lt;#capacity#&gt;];</string>
+	<key>mv</key>
+	<string>- (void)&lt;#methodname#&gt; {
+	&lt;#statements#&gt;
+}
+</string>
 	<key>mx</key>
 	<string>- (void)&lt;#methodname#&gt;:(id)sender {
 	&lt;#statements#&gt;
