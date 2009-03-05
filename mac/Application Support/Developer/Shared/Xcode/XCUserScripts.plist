@@ -940,7 +940,7 @@ print resultText,
 use strict;
 
 # Get the header file contents from Xcode user scripts
-my $headerFileContents = &lt;&lt;'HEADERFILECONTENTS';
+chomp(my $headerFileContents = &lt;&lt;'HEADERFILECONTENTS');
 %%%{PBXAllText}%%%
 HEADERFILECONTENTS
 
@@ -1064,7 +1064,7 @@ GETFILESCRIPT
 
 # Get the contents of the implmentation file
 open(SCRIPTFILE, '-|') || exec 'osascript', '-e', $getFileContentsScript, $implementationFilePath;
-my $implementationFileContents = do {local $/; &lt;SCRIPTFILE&gt;};
+chomp(my $implementationFileContents = do {local $/; &lt;SCRIPTFILE&gt;});
 close(SCRIPTFILE);
 
 # Look for the class implementation statement
