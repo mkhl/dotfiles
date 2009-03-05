@@ -299,8 +299,7 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 	<key>if</key>
 	<string>if (&lt;#condition#&gt;) {
 	&lt;#statements#&gt;
-}
-</string>
+}</string>
 	<key>iff</key>
 	<string>#if &lt;#condition#&gt;
 &lt;#statements#&gt;
@@ -406,7 +405,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 }
 </string>
 	<key>mark</key>
-	<string>#pragma mark -#pragma mark &lt;#label#&gt;</string>
+	<string>#pragma mark -
+#pragma mark &lt;#label#&gt;</string>
 	<key>mb</key>
 	<string>- (BOOL)&lt;#methodname#&gt; {
 	return &lt;#expression#&gt;;
