@@ -4,8 +4,7 @@
 <dict>
 	<key>menu</key>
 	<dict>
-		<key>$@
-</key>
+		<key>$@</key>
 		<string>stopGoSession:</string>
 		<key>$@B</key>
 		<string>showBuildResults:</string>
@@ -45,8 +44,7 @@
 		<string>showDebugger:</string>
 		<key>$@Z</key>
 		<string>redo:</string>
-		<key>@
-</key>
+		<key>@</key>
 		<string>buildAndGo:</string>
 		<key>@+</key>
 		<string>previousBuildResult:</string>
@@ -150,8 +148,6 @@
 		<string>addAttribute:</string>
 		<key>^@b</key>
 		<string>toggleModelBrowser:</string>
-		<key>^@c</key>
-		<string>copyRuler:</string>
 		<key>^@e</key>
 		<string>enterSelectionForReplace:</string>
 		<key>^@f</key>
@@ -170,8 +166,6 @@
 		<string>makeSnapshotFromMainMenu:</string>
 		<key>^@t</key>
 		<string>toggleTokenizedEditing:</string>
-		<key>^@v</key>
-		<string>pasteRuler:</string>
 		<key>^@w</key>
 		<string>closeProject:</string>
 		<key>^@</key>
@@ -210,8 +204,7 @@
 		<string>revealCurrentFileInGroupTree:</string>
 		<key>~$@V</key>
 		<string>pasteAsPlainText:</string>
-		<key>~@
-</key>
+		<key>~@</key>
 		<string>toggleGo:</string>
 		<key>~@?</key>
 		<string>showDocumentationWindow:</string>
@@ -272,6 +265,8 @@
 		<string>PBX_indentFriendlyInsertTab:</string>
 		<key>
 </key>
+		<string>PBX_insertNewlineAndIndent:</string>
+		<key></key>
 		<string>PBX_insertNewlineAndIndent:</string>
 		<key></key>
 		<string>insertBacktab:</string>
@@ -341,6 +336,8 @@
 		<string>selectNextKeyView:</string>
 		<key>^
 </key>
+		<string>insertLineBreak:</string>
+		<key>^</key>
 		<string>insertLineBreak:</string>
 		<key>^</key>
 		<string>selectPreviousKeyView:</string>
@@ -622,6 +619,8 @@
 		<string>insertTabIgnoringFieldEditor:</string>
 		<key>~
 </key>
+		<string>insertNewlineIgnoringFieldEditor:</string>
+		<key>~</key>
 		<string>insertNewlineIgnoringFieldEditor:</string>
 		<key>~</key>
 		<string>complete:</string>
