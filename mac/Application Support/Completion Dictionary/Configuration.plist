@@ -248,6 +248,11 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 	<string>NSFileManager *fileManager = [NSFileManager defaultManager];</string>
 	<key>fmm</key>
 	<string>[[NSFileManager defaultManager] &lt;#message#&gt;]</string>
+	<key>forin</key>
+	<string>for (&lt;#object#&gt; in &lt;#array#&gt;) {
+	&lt;#statements#&gt;
+}
+</string>
 	<key>fun</key>
 	<string>&lt;#?return type=void#&gt;&lt;#%ctypedelimiter#&gt;&lt;#?name=function#&gt;(&lt;#arguments#&gt;) {
 	&lt;#statements#&gt;
