@@ -5,6 +5,8 @@
 	<key>&amp;</key>
 	<string>&amp;amp;</string>
 	<key>(</key>
+	<string>(&lt;#expression#&gt;)</string>
+	<key>)</key>
 	<string>(&lt;#%clipboard#&gt;)</string>
 	<key>-</key>
 	<string>// -----------------------------------------------------------------------------
