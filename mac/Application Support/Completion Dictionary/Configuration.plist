@@ -34,6 +34,8 @@
 	<string>@"&lt;#string#&gt;"</string>
 	<key>[</key>
 	<string>[&lt;#message#&gt;]</string>
+	<key>]</key>
+	<string>[&lt;#%clipboard#&gt;]</string>
 	<key>a</key>
 	<string>[[&lt;#class#&gt; alloc] init];</string>
 	<key>aa</key>
