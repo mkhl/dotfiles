@@ -319,7 +319,7 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 	<string>#import "&lt;#header#&gt;"</string>
 	<key>in</key>
 	<string>@interface &lt;#class#&gt; (&lt;#category#&gt;)
-- (void)&lt;#methodname#&gt;;
+- (&lt;#type#&gt;)&lt;#methodname#&gt;;
 @end
 </string>
 	<key>init</key>
