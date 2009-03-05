@@ -988,10 +988,10 @@ if (length($selectedText) &amp;&amp; ($selectedText =~ /([_A-Za-z][_A-Za-z0-9]*\
 	$asterisk = $2;
 	$asterisk = trim $asterisk;
 	$name = $3;
-	$behavior = "";
-	if (defined($asterisk) &amp;&amp; length($asterisk) == 1)
+	$behavior = "(assign) ";
+	if ((defined($asterisk) &amp;&amp; length($asterisk) == 1) or ($type eq "id"))
 	{
-		$behavior = "(nonatomic, retain) ";
+		$behavior = "(retain) ";
 	}
 	else
 	{
