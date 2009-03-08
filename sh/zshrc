@@ -30,7 +30,7 @@ source_maybe $HOME/.zsh_completion
 source_maybe $HOME/.zsh_keys
 
 # Augment PATH
-path=($HOME/bin $path /Developer/Tools .)
+path=($HOME/bin $path .)
 
 # Load local overrides
 source_maybe $HOME/.zshrc_local
