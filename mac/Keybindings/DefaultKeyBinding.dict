@@ -45,4 +45,11 @@
         // "^p"    = ("insertText:", "\U03C0");  // C-p     pi
         "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
     };
+    /*IncrementalSearchInputManager*/
+    "^s" = "ISIM_incrementalSearch:";
+    "^r" = "ISIM_reverseIncrementalSearch:";
+    "^g" = "abort:";
+
+    // "~\Uf700" = "ISIM_handleOptionUpArrow:";
+    // "~\Uf701" = "ISIM_handleOptionDownArrow:";
 }
