@@ -39,9 +39,9 @@
 	<key>]</key>
 	<string>[&lt;#%clipboard#&gt;]</string>
 	<key>a</key>
-	<string>[[&lt;#class#&gt; alloc] init];</string>
+	<string>[[&lt;#class#&gt; alloc] &lt;#init#&gt;];</string>
 	<key>aa</key>
-	<string>[[[&lt;#class#&gt; alloc] init] autorelease];</string>
+	<string>[[[&lt;#class#&gt; alloc] &lt;#init&gt;#] autorelease];</string>
 	<key>ac</key>
 	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=int#&gt;)&lt;#name#&gt; { _&lt;#name#&gt; = &lt;#name#&gt;; }
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
