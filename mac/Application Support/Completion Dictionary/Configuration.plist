@@ -406,7 +406,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 </string>
 	<key>mark</key>
 	<string>#pragma mark -
-#pragma mark &lt;#label#&gt;</string>
+#pragma mark &lt;#label#&gt;
+</string>
 	<key>mb</key>
 	<string>- (BOOL)&lt;#methodname#&gt; {
 	return &lt;#expression#&gt;;
