@@ -2,15 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>&amp;</key>
-	<string>&amp;amp;</string>
 	<key>(</key>
 	<string>(&lt;#expression#&gt;)</string>
 	<key>)</key>
 	<string>(&lt;#%clipboard#&gt;)</string>
-	<key>-</key>
-	<string>// -----------------------------------------------------------------------------
-</string>
 	<key>.</key>
 	<string>"&lt;#key#&gt;" = "&lt;#value#&gt;";</string>
 	<key>/</key>
@@ -19,15 +14,6 @@
 	<string>:(&lt;#type#&gt;)&lt;#name#&gt;</string>
 	<key>;</key>
 	<string>[&lt;#message#&gt;];</string>
-	<key>&lt;</key>
-	<string>&amp;lt;</string>
-	<key>=</key>
-	<string>// -----------------------------------------------------------------------------
-// &lt;#title#&gt;
-// -----------------------------------------------------------------------------
-</string>
-	<key>&gt;</key>
-	<string>&amp;gt;</string>
 	<key>?</key>
 	<string>&lt;#condition#&gt; ? &lt;#expression#&gt; : &lt;#expression#&gt;</string>
 	<key>@</key>
@@ -47,14 +33,16 @@
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
 </string>
 	<key>acc</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt; {
+	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
+{
 	[_&lt;#name#&gt; autorelease];
 	_&lt;#name#&gt; = [&lt;#name#&gt; copy];
 }
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
 </string>
 	<key>acr</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt; {
+	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
+{
 	[_&lt;#name#&gt; autorelease];
 	_&lt;#name#&gt; = [&lt;#name#&gt; retain];
 }
@@ -78,7 +66,8 @@
 [alert addButtonWithTitle:NSLocalizedString(@"OK", @"")];
 [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
 }
 </string>
 	<key>ao</key>
@@ -88,7 +77,8 @@
 	<key>ar</key>
 	<string>autorelease</string>
 	<key>arg</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSString *)format, ... {
+	<string>- (void)&lt;#methodname#&gt;:(NSString *)format, ...
+{
 	va_list argList;
 	va_start(argList, format);
 	format = [[NSString alloc] initWithFormat:format arguments:argList];
@@ -100,7 +90,8 @@
 }
 </string>
 	<key>awa</key>
-	<string>- (void)awakeFromNib {
+	<string>- (void)awakeFromNib
+{
 	&lt;#statements#&gt;
 }
 </string>
@@ -109,8 +100,6 @@
 &lt;#statements#&gt;
 NSLog(@"duration %f", [NSDate timeIntervalSinceReferenceDate] - t); /* DEBUG LOG */
 </string>
-	<key>br</key>
-	<string>&lt;br&gt;</string>
 	<key>can</key>
 	<string>[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(&lt;#selector#&gt;) object:nil];</string>
 	<key>cc</key>
@@ -120,26 +109,27 @@ NSLog(@"duration %f", [NSDate timeIntervalSinceReferenceDate] - t); /* DEBUG LOG
 	<key>cl</key>
 	<string>@class &lt;#classname#&gt;;</string>
 	<key>coding</key>
-	<string>// -----------------------------------------------------------------------------
-// NSCoding
-// -----------------------------------------------------------------------------
+	<string>#pragma mark -
+#pragma mark NSCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (id)initWithCoder:(NSCoder *)decoder
+{
 	[super init];
 	&lt;#?variable name=_object#&gt; = [[decoder decodeObjectForKey:@"&lt;#?key=object#&gt;"] retain];
 	return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder {
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
 	[encoder encodeObject:&lt;#variable name#&gt; forKey:@"&lt;#key#&gt;"];
 }
 </string>
 	<key>copy</key>
-	<string>// -----------------------------------------------------------------------------
-// NSCopying
-// -----------------------------------------------------------------------------
+	<string>#pragma mark -
+#pragma mark NSCopying
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone
+{
     return [self retain];
 }
 </string>
@@ -148,29 +138,26 @@ NSLog(@"duration %f", [NSDate timeIntervalSinceReferenceDate] - t); /* DEBUG LOG
 	&lt;#statements#&gt;
 	break;
 </string>
-	<key>css</key>
-	<string>&lt;style type="text/css"&gt;
-	.&lt;#class#&gt; { &lt;#property#&gt;: &lt;#value#&gt;; }
-&lt;/style&gt;
-</string>
 	<key>d</key>
-	<string>- (void)dealloc {
+	<string>- (void)dealloc
+{
 	[&lt;#ivar#&gt; release];
 	[super dealloc];
 }
 </string>
 	<key>datasource</key>
-	<string>// -----------------------------------------------------------------------------
-// NSTableDataSource
-// -----------------------------------------------------------------------------
+	<string>#pragma mark -
+#pragma mark NSTableDataSource
 
-- (int)numberOfRowsInTableView:(NSTableView *)tableView {
+- (int)numberOfRowsInTableView:(NSTableView *)tableView
+{
 	return [&lt;#?sorted array=array#&gt; count];
 }
 
 - (id)tableView:(NSTableView *)tableView
 	objectValueForTableColumn:(NSTableColumn *)tableColumn
-	row:(int)rowIndex {
+	row:(int)rowIndex
+{
 	id object = [&lt;#sorted array#&gt; objectAtIndex:rowIndex];
 	return [object valueForKey:[tableColumn identifier]];
 }
@@ -190,11 +177,6 @@ NSLog(@"duration %f", [NSDate timeIntervalSinceReferenceDate] - t); /* DEBUG LOG
 	<key>dep</key>
 	<string>[self setKeys:[NSArray arrayWithObjects:@"&lt;#firstKey#&gt;", nil]
 	triggerChangeNotificationsForDependentKey:@"&lt;#dependentKey#&gt;"];</string>
-	<key>div</key>
-	<string>&lt;div class="&lt;#?class=classname#&gt;"&gt;
-	&lt;#text#&gt;
-&lt;/div&gt;
-</string>
 	<key>dok</key>
 	<string>[NSDictionary dictionaryWithObject:&lt;#object#&gt; forKey:&lt;#key#&gt;]</string>
 	<key>doks</key>
@@ -217,10 +199,6 @@ NS_ENDHANDLER
 	&lt;#statements#&gt;
 } while (&lt;#condition#&gt;);
 </string>
-	<key>e</key>
-	<string>&amp;&lt;#entity name#&gt;;</string>
-	<key>em</key>
-	<string>&lt;em&gt;&lt;#text#&gt;&lt;/em&gt;</string>
 	<key>enum</key>
 	<string>NSEnumerator *&lt;#?enumerator name=enumerator#&gt; = [&lt;#?enumerated collection=array#&gt; objectEnumerator];
 &lt;#?object type=id#&gt;&lt;#%ctypedelimiter#&gt;&lt;#?object name=object#&gt;;
@@ -254,7 +232,8 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 }
 </string>
 	<key>fun</key>
-	<string>&lt;#?return type=void#&gt;&lt;#%ctypedelimiter#&gt;&lt;#?name=function#&gt;(&lt;#arguments#&gt;) {
+	<string>&lt;#?return type=void#&gt;&lt;#%ctypedelimiter#&gt;&lt;#?name=function#&gt;(&lt;#arguments#&gt;)
+{
 	&lt;#statements#&gt;
 }
 </string>
@@ -272,22 +251,8 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 	<string>- (IBAction)&lt;#methodname#&gt;:(id)sender;</string>
 	<key>hid</key>
 	<string>- (id)&lt;#methodname#&gt;;</string>
-	<key>href</key>
-	<string>&lt;a href="&lt;#URL#&gt;"&gt;&lt;#text#&gt;&lt;/a&gt;</string>
 	<key>hs</key>
 	<string>- (NSString *)&lt;#methodname#&gt;;</string>
-	<key>html</key>
-	<string>&lt;html&gt;
-	&lt;title&gt;&lt;#title#&gt;&lt;/title&gt;
-	&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
-&lt;head&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-&lt;#body#&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</string>
 	<key>hv</key>
 	<string>- (void)&lt;#methodname#&gt;;</string>
 	<key>hx</key>
@@ -322,7 +287,8 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 @end
 </string>
 	<key>init</key>
-	<string>- (id)init {
+	<string>- (id)init
+{
 	if (!(self = [super init]))
 		return nil;
 	&lt;#statements#&gt;
@@ -330,22 +296,21 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 }
 </string>
 	<key>isequal</key>
-	<string>- (BOOL)isEqual:(id)object {
-	if (object == self) {
+	<string>- (BOOL)isEqual:(id)object
+{
+	if (object == self)
 		return YES;
-	}
-	if (object == nil || ![object isKindOfClass:[self class]]) {
+	if (object == nil || ![object isKindOfClass:[self class]])
 		return NO;
-	}
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>kvo</key>
-	<string>// -----------------------------------------------------------------------------
-// KVO notifications
-// -----------------------------------------------------------------------------
+	<string>#pragma mark -
+#pragma mark KVO notifications
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
 	if (object == [NSUserDefaultsController sharedUserDefaultsController]) {
 		if ([keyPath isEqualToString:@"values.&lt;#key#&gt;"]) {
 			&lt;#statements#&gt;;
@@ -365,8 +330,6 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 </string>
 	<key>l</key>
 	<string>NSLog(@"&lt;#message#&gt;"); /* DEBUG LOG */</string>
-	<key>li</key>
-	<string>&lt;li&gt;&lt;#item#&gt;&lt;/li&gt;</string>
 	<key>ll</key>
 	<string>NSLog(@"%@", &lt;#object#&gt;); /* DEBUG LOG */</string>
 	<key>llf</key>
@@ -384,7 +347,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>lls</key>
 	<string>NSLog(@"&lt;#%clipboard#&gt;: %@", NSStringFromSize(&lt;#%clipboard#&gt;)); /* DEBUG LOG */</string>
 	<key>load</key>
-	<string>+ (void)load {
+	<string>+ (void)load
+{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	&lt;#statements#&gt;
 	[pool release];
@@ -395,12 +359,14 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>lst</key>
 	<string>NSLocalizedStringFromTable(@"&lt;#string#&gt;", @"&lt;#table#&gt;", @"&lt;#comment#&gt;")</string>
 	<key>m</key>
-	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt; {
+	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt;
+{
 	&lt;#statements#&gt;
 }
 </string>
 	<key>ma</key>
-	<string>- (NSArray *)&lt;#methodname#&gt; {
+	<string>- (NSArray *)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
@@ -409,32 +375,38 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 #pragma mark &lt;#label#&gt;
 </string>
 	<key>mb</key>
-	<string>- (BOOL)&lt;#methodname#&gt; {
+	<string>- (BOOL)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>md</key>
-	<string>- (NSDictionary *)&lt;#methodname#&gt; {
+	<string>- (NSDictionary *)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>me</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSEvent *)event {
+	<string>- (void)&lt;#methodname#&gt;:(NSEvent *)event
+{
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mi</key>
-	<string>- (int)&lt;#methodname#&gt; {
+	<string>- (int)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>miba</key>
-	<string>- (IBAction)&lt;#methodname#&gt;:(id)sender {
+	<string>- (IBAction)&lt;#methodname#&gt;:(id)sender
+{
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mid</key>
-	<string>- (id)&lt;#methodname#&gt; {
+	<string>- (id)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
@@ -447,7 +419,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>mmf</key>
 	<string>#import &lt;Foundation/&lt;#classname#&gt;.h&gt;</string>
 	<key>ms</key>
-	<string>- (NSString *)&lt;#methodname#&gt; {
+	<string>- (NSString *)&lt;#methodname#&gt;
+{
 	return &lt;#expression#&gt;;
 }
 </string>
@@ -458,17 +431,20 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>mus</key>
 	<string>NSMutableString *string = [NSMutableString stringWithCapacity:&lt;#capacity#&gt;];</string>
 	<key>mv</key>
-	<string>- (void)&lt;#methodname#&gt; {
+	<string>- (void)&lt;#methodname#&gt;
+{
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mx</key>
-	<string>- (void)&lt;#methodname#&gt;:(id)sender {
+	<string>- (void)&lt;#methodname#&gt;:(id)sender
+{
 	&lt;#statements#&gt;
 }
 </string>
 	<key>n</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSNotification *)notification {
+	<string>- (void)&lt;#methodname#&gt;:(NSNotification *)notification
+{
 	&lt;#statements#&gt;
 }
 </string>
@@ -529,7 +505,8 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 
 - (void)openPanelDidEnd:(NSOpenPanel *)openPanel
 	returnCode:(int)returnCode
-	contextInfo:(void *)contextInfo {
+	contextInfo:(void *)contextInfo
+{
 	if (returnCode == NSOKButton) {
 		NSEnumerator *filenames = [[openPanel filenames] objectEnumerator];
 		NSString *path;
@@ -558,7 +535,7 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<string>[[NSNotificationCenter defaultCenter] postNotificationName:&lt;#name#&gt; object:self];
 </string>
 	<key>pp</key>
-	<string>&lt;p&gt;&lt;#text#&gt;&lt;/p&gt;</string>
+	<string>(&lt;#type#&gt;)&lt;#parameter#&gt;</string>
 	<key>ppa</key>
 	<string>(NSArray *)&lt;#parameter#&gt;</string>
 	<key>ppb</key>
@@ -580,10 +557,6 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 </string>
 	<key>ps</key>
 	<string>performSelector:@selector(&lt;#selector#&gt;)</string>
-	<key>q</key>
-	<string>&lt;q&gt;&lt;#text#&gt;&lt;/q&gt;</string>
-	<key>qq</key>
-	<string>“&lt;#text#&gt;”</string>
 	<key>r</key>
 	<string>return &lt;#value#&gt;;</string>
 	<key>res</key>
@@ -602,12 +575,13 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<string>NSSavePanel *savePanel = [NSSavePanel savePanel];
 [savePanel beginSheetForDirectory:&lt;#directory#&gt; file:@""
 	modalForWindow:window modalDelegate:self
-	didEndSelector:@selector(_savePanelDidEnd:returnCode:contextInfo:)
+	didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:)
 	contextInfo:NULL];
 
-- (void)_savePanelDidEnd:(NSSavePanel *)savePanel
+- (void)savePanelDidEnd:(NSSavePanel *)savePanel
 	returnCode:(int)returnCode
-	contextInfo:(void *)contextInfo {
+	contextInfo:(void *)contextInfo
+{
 	if (returnCode == NSOKButton) {
 		NSString *path = [savePanel filename];
 		&lt;#statements#&gt;
@@ -617,22 +591,16 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<key>sel</key>
 	<string>@selector(&lt;#selector#&gt;)</string>
 	<key>shi</key>
-	<string>+ (&lt;#?class name=NSObject#&gt; *)&lt;#?method name=sharedInstance#&gt; {
+	<string>+ (&lt;#?class name=NSObject#&gt; *)&lt;#?method name=sharedInstance#&gt;
+{
 	static &lt;#class name#&gt; *&lt;#?variable name=singleton#&gt; = nil;
-	if (&lt;#variable name#&gt; == nil) {
+	if (&lt;#variable name#&gt; == nil)
 		&lt;#variable name#&gt; = [[self alloc] init];
-	}
 	return &lt;#variable name#&gt;;
 }
 </string>
 	<key>so</key>
 	<string>setObject:&lt;#object#&gt; forKey:&lt;#key#&gt;</string>
-	<key>span</key>
-	<string>&lt;span class="&lt;#?class=classname#&gt;"&gt;&lt;#text#&gt;&lt;/span&gt;</string>
-	<key>str</key>
-	<string>&lt;strong&gt;&lt;#text#&gt;&lt;/strong&gt;</string>
-	<key>style</key>
-	<string>style="&lt;#property#&gt;:&lt;#value#&gt;"</string>
 	<key>sv</key>
 	<string>setValue:&lt;#value#&gt; forKey:&lt;#key#&gt;</string>
 	<key>sw</key>
@@ -644,30 +612,6 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 		break;
 }
 </string>
-	<key>t</key>
-	<string>&lt;&lt;#?tag=p#&gt;&gt;&lt;#text#&gt;&lt;/&lt;#tag#&gt;&gt;</string>
-	<key>table</key>
-	<string>&lt;table&gt;
-	&lt;tr&gt;
-		&lt;th&gt;&lt;#header 1#&gt;&lt;/th&gt;
-		&lt;th&gt;&lt;#header 2#&gt;&lt;/th&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;&lt;#cell 1/1#&gt;&lt;/td&gt;
-		&lt;td&gt;&lt;#cell 1/2#&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;&lt;#cell 2/1#&gt;&lt;/td&gt;
-		&lt;td&gt;&lt;#cell 2/2#&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;
-</string>
-	<key>td</key>
-	<string>&lt;td&gt;&lt;#text#&gt;&lt;/td&gt;</string>
-	<key>tr</key>
-	<string>&lt;tr&gt;
-	&lt;td&gt;&lt;#text#&gt;&lt;/td&gt;
-&lt;/tr&gt;</string>
 	<key>trigger</key>
 	<string>[self setKeys:[NSArray arrayWithObjects:&lt;#firstKey#&gt;, nil]
 	triggerChangeNotificationsForDependentKey:&lt;#dependentKey#&gt;];
@@ -694,11 +638,6 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<string>[[NSUserDefaults standardUserDefaults] setObject:&lt;#object#&gt; forKey:@"&lt;#key#&gt;"]</string>
 	<key>ui</key>
 	<string>unsigned int</string>
-	<key>ul</key>
-	<string>&lt;ul&gt;
-	&lt;li&gt;&lt;#item#&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</string>
 	<key>uni</key>
 	<string>unichar</string>
 	<key>v</key>
@@ -721,7 +660,8 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<key>ww</key>
 	<string>#warning &lt;#message#&gt;</string>
 	<key>z</key>
-	<string>+ (void)initialize {
+	<string>+ (void)initialize
+{
 	if (self == [&lt;#classname#&gt; class]) {
 		&lt;#statements#&gt;
 	}
