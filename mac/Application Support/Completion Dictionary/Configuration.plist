@@ -29,11 +29,11 @@
 	<key>aa</key>
 	<string>[[[&lt;#class#&gt; alloc] &lt;#init&gt;#] autorelease];</string>
 	<key>ac</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=int#&gt;)&lt;#name#&gt; { _&lt;#name#&gt; = &lt;#name#&gt;; }
+	<string>- (void) set&lt;#?Name=value#&gt;:(&lt;#?type=int#&gt;)&lt;#name#&gt; { _&lt;#name#&gt; = &lt;#name#&gt;; }
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
 </string>
 	<key>acc</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
+	<string>- (void) set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
 {
 	[_&lt;#name#&gt; autorelease];
 	_&lt;#name#&gt; = [&lt;#name#&gt; copy];
@@ -41,7 +41,7 @@
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
 </string>
 	<key>acr</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
+	<string>- (void) set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;
 {
 	[_&lt;#name#&gt; autorelease];
 	_&lt;#name#&gt; = [&lt;#name#&gt; retain];
@@ -49,7 +49,7 @@
 - (&lt;#type#&gt;)&lt;#name#&gt; { return _&lt;#name#&gt;; }
 </string>
 	<key>ah</key>
-	<string>- (void)set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;;
+	<string>- (void) set&lt;#?Name=value#&gt;:(&lt;#?type=NSString *#&gt;)&lt;#name#&gt;;
 - (&lt;#type#&gt;)&lt;#name#&gt;;
 </string>
 	<key>alert</key>
@@ -77,7 +77,7 @@
 	<key>ar</key>
 	<string>autorelease</string>
 	<key>arg</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSString *)format, ...
+	<string>- (void) &lt;#methodname#&gt;:(NSString *)format, ...
 {
 	va_list argList;
 	va_start(argList, format);
@@ -90,7 +90,7 @@
 }
 </string>
 	<key>awa</key>
-	<string>- (void)awakeFromNib
+	<string>- (void) awakeFromNib
 {
 	&lt;#statements#&gt;
 }
@@ -139,7 +139,7 @@ NSLog(@"duration %f", [NSDate timeIntervalSinceReferenceDate] - t); /* DEBUG LOG
 	break;
 </string>
 	<key>d</key>
-	<string>- (void)dealloc
+	<string>- (void) dealloc
 {
 	[&lt;#ivar#&gt; release];
 	[super dealloc];
@@ -238,25 +238,25 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 }
 </string>
 	<key>h</key>
-	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt;;</string>
+	<string>- (&lt;#type#&gt;) &lt;#methodname#&gt;;</string>
 	<key>ha</key>
-	<string>- (NSArray *)&lt;#methodname#&gt;;</string>
+	<string>- (NSArray *) &lt;#methodname#&gt;;</string>
 	<key>hb</key>
-	<string>- (BOOL)&lt;#methodname#&gt;;</string>
+	<string>- (BOOL) &lt;#methodname#&gt;;</string>
 	<key>hd</key>
-	<string>- (NSDictionary *)&lt;#methodname#&gt;;</string>
+	<string>- (NSDictionary *) &lt;#methodname#&gt;;</string>
 	<key>hi</key>
-	<string>- (int)&lt;#methodname#&gt;;</string>
+	<string>- (int) &lt;#methodname#&gt;;</string>
 	<key>hiba</key>
-	<string>- (IBAction)&lt;#methodname#&gt;:(id)sender;</string>
+	<string>- (IBAction) &lt;#methodname#&gt;:(id)sender;</string>
 	<key>hid</key>
-	<string>- (id)&lt;#methodname#&gt;;</string>
+	<string>- (id) &lt;#methodname#&gt;;</string>
 	<key>hs</key>
-	<string>- (NSString *)&lt;#methodname#&gt;;</string>
+	<string>- (NSString *) &lt;#methodname#&gt;;</string>
 	<key>hv</key>
-	<string>- (void)&lt;#methodname#&gt;;</string>
+	<string>- (void) &lt;#methodname#&gt;;</string>
 	<key>hx</key>
-	<string>- (void)&lt;#methodname#&gt;:(id)sender;</string>
+	<string>- (void) &lt;#methodname#&gt;:(id)sender;</string>
 	<key>ic</key>
 	<string>unsigned int i, count = [&lt;#array#&gt; count];</string>
 	<key>id</key>
@@ -287,7 +287,7 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 @end
 </string>
 	<key>init</key>
-	<string>- (id)init
+	<string>- (id) init
 {
 	if (!(self = [super init]))
 		return nil;
@@ -296,7 +296,7 @@ while ((&lt;#object name#&gt; = [&lt;#enumerator name#&gt; nextObject]) != nil) 
 }
 </string>
 	<key>isequal</key>
-	<string>- (BOOL)isEqual:(id)object
+	<string>- (BOOL) isEqual:(id)object
 {
 	if (object == self)
 		return YES;
@@ -347,7 +347,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>lls</key>
 	<string>NSLog(@"&lt;#%clipboard#&gt;: %@", NSStringFromSize(&lt;#%clipboard#&gt;)); /* DEBUG LOG */</string>
 	<key>load</key>
-	<string>+ (void)load
+	<string>+ (void) load
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	&lt;#statements#&gt;
@@ -359,13 +359,13 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>lst</key>
 	<string>NSLocalizedStringFromTable(@"&lt;#string#&gt;", @"&lt;#table#&gt;", @"&lt;#comment#&gt;")</string>
 	<key>m</key>
-	<string>- (&lt;#type#&gt;)&lt;#methodname#&gt;
+	<string>- (&lt;#type#&gt;) &lt;#methodname#&gt;
 {
 	&lt;#statements#&gt;
 }
 </string>
 	<key>ma</key>
-	<string>- (NSArray *)&lt;#methodname#&gt;
+	<string>- (NSArray *) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
@@ -375,37 +375,37 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 #pragma mark &lt;#label#&gt;
 </string>
 	<key>mb</key>
-	<string>- (BOOL)&lt;#methodname#&gt;
+	<string>- (BOOL) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>md</key>
-	<string>- (NSDictionary *)&lt;#methodname#&gt;
+	<string>- (NSDictionary *) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>me</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSEvent *)event
+	<string>- (void) &lt;#methodname#&gt;:(NSEvent *)event
 {
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mi</key>
-	<string>- (int)&lt;#methodname#&gt;
+	<string>- (int) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
 </string>
 	<key>miba</key>
-	<string>- (IBAction)&lt;#methodname#&gt;:(id)sender
+	<string>- (IBAction) &lt;#methodname#&gt;:(id)sender
 {
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mid</key>
-	<string>- (id)&lt;#methodname#&gt;
+	<string>- (id) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
@@ -419,7 +419,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>mmf</key>
 	<string>#import &lt;Foundation/&lt;#classname#&gt;.h&gt;</string>
 	<key>ms</key>
-	<string>- (NSString *)&lt;#methodname#&gt;
+	<string>- (NSString *) &lt;#methodname#&gt;
 {
 	return &lt;#expression#&gt;;
 }
@@ -431,19 +431,19 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	<key>mus</key>
 	<string>NSMutableString *string = [NSMutableString stringWithCapacity:&lt;#capacity#&gt;];</string>
 	<key>mv</key>
-	<string>- (void)&lt;#methodname#&gt;
+	<string>- (void) &lt;#methodname#&gt;
 {
 	&lt;#statements#&gt;
 }
 </string>
 	<key>mx</key>
-	<string>- (void)&lt;#methodname#&gt;:(id)sender
+	<string>- (void) &lt;#methodname#&gt;:(id)sender
 {
 	&lt;#statements#&gt;
 }
 </string>
 	<key>n</key>
-	<string>- (void)&lt;#methodname#&gt;:(NSNotification *)notification
+	<string>- (void) &lt;#methodname#&gt;:(NSNotification *)notification
 {
 	&lt;#statements#&gt;
 }
@@ -591,7 +591,7 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<key>sel</key>
 	<string>@selector(&lt;#selector#&gt;)</string>
 	<key>shi</key>
-	<string>+ (&lt;#?class name=NSObject#&gt; *)&lt;#?method name=sharedInstance#&gt;
+	<string>+ (&lt;#?class name=NSObject#&gt; *) &lt;#?method name=sharedInstance#&gt;
 {
 	static &lt;#class name#&gt; *&lt;#?variable name=singleton#&gt; = nil;
 	if (&lt;#variable name#&gt; == nil)
@@ -660,7 +660,7 @@ NSDictionary *&lt;#?variable name=dictionary#&gt; = [NSDictionary dictionaryWith
 	<key>ww</key>
 	<string>#warning &lt;#message#&gt;</string>
 	<key>z</key>
-	<string>+ (void)initialize
+	<string>+ (void) initialize
 {
 	if (self == [&lt;#classname#&gt; class]) {
 		&lt;#statements#&gt;
