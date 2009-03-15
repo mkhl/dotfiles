@@ -5,17 +5,17 @@
 	<key>Colors</key>
 	<dict>
 		<key>Background</key>
-		<string>0.976 0.976 0.976</string>
+		<string>1.000 1.000 1.000</string>
 		<key>InsertionPoint</key>
 		<string>0.000 0.000 0.000</string>
 		<key>Selection</key>
-		<string>0.977 0.921 0.529</string>
+		<string>0.824 0.961 0.620</string>
 		<key>xcode.syntax.attribute</key>
 		<string>0.512 0.423 0.157</string>
 		<key>xcode.syntax.character</key>
 		<string>0.110 0.000 0.810</string>
 		<key>xcode.syntax.comment</key>
-		<string>0.000 0.456 0.000</string>
+		<string>0.498 0.498 0.498</string>
 		<key>xcode.syntax.comment.doc</key>
 		<string>0.000 0.456 0.000</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
@@ -70,27 +70,27 @@
 	<key>Fonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.character</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.number</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.string</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 		<key>xcode.syntax.url</key>
-		<string>EspressoMono-Regular - 11.0</string>
+		<string>Monaco - 11.0</string>
 	</dict>
 </dict>
 </plist>
