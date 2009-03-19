@@ -1,5 +1,5 @@
 (
-    // Basic Cleanup
+    // Objective C Cleanup
     {
         Identifier = objc.array;
         BasedOn = objc;
@@ -13,96 +13,6 @@
         IsMenuItem = NO;
         Name = "Mutable Array Declaration";
         TextString = "NSMutableArray *array;";
-    },
-    // C language basics
-    {
-        Identifier = c.brace;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Brace Selection";
-        TextString = "{$(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing)}";
-        IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
-    },
-    {
-        Identifier = c.conditional;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Conditional Expression";
-        TextString = "<#!condition!#> ? <#true-expression#> : <#false-expression#>";
-        CompletionPrefix = "?";
-        IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
-    },
-    {
-        Identifier = c.define;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "#Define";
-        TextString = "#define <#key#> <#value#>";
-        CompletionPrefix = def;
-    },
-    {
-        Identifier = c.import.cocoa;
-        BasedOn = c.import;
-        IsMenuItem = NO;
-        Name = "#Import Statement (Cocoa)";
-        TextString = "#import <Cocoa/Cocoa.h>";
-        CompletionPrefix = pimc;
-    },
-    {
-        Identifier = c.warning;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "#Warning";
-        TextString = "#warning <#!message!#>";
-        CompletionPrefix = pw;
-    },
-    {
-        Identifier = c.function;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Function";
-        TextString = "<#type#> <#function#>$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#arguments#>$(InFunctionArgsSpacing))$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
-        CompletionPrefix = fun;
-    },
-    // C return values
-    {
-        Identifier = c.return;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Return Value";
-        ReturnValue = "<#!value!#>";
-        TextString = "return $(ReturnValue);";
-        CompletionPrefix = ret;
-        CycleList = (
-            c.return,
-            c.return.yes,
-            c.return.no,
-            c.return.self,
-        );
-    },
-    {
-        Identifier = c.return.yes;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Yes";
-        ReturnValue = "YES";
-        CompletionPrefix = rety;
-    },
-    {
-        Identifier = c.return.no;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return No";
-        ReturnValue = "NO";
-        CompletionPrefix = retn;
-    },
-    {
-        Identifier = c.return.self;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Self";
-        ReturnValue = "self";
-        CompletionPrefix = rets;
     },
     // Objective C language basics
     {
