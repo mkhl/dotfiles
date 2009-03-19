@@ -1,0 +1,165 @@
+(
+    // Objective C Unit Testing
+    {
+        Identifier = objc.ocunit;
+        Name = "Objective C Unit Testing";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.objc" );
+        ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+    },
+    // Methods
+    {
+        Identifier = objc.ocunit.setup;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "-setUp Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)setUp$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = setup;
+    },
+    {
+        Identifier = objc.ocunit.teardown;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "-tearDown Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)tearDown$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = teardown;
+    },
+    // Tests
+    {
+        Identifier = objc.ocunit.test;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "Test Method Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)test<#Method#>$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = test;
+    },
+    // Assertions
+    {
+        Identifier = objc.ocunit.assert.nil;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertNil";
+        TextString = "STAssertNil(<#object#>, <#!description, ...!#>)";
+        CompletionPrefix = stan;
+    },
+    {
+        Identifier = objc.ocunit.assert.not-nil;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertNotNil";
+        TextString = "STAssertNotNil(<#object#>, <#!description, ...!#>)";
+        CompletionPrefix = stann;
+    },
+    {
+        Identifier = objc.ocunit.assert.true;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertTrue";
+        TextString = "STAssertTrue(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = stat;
+    },
+    {
+        Identifier = objc.ocunit.assert.false;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertFalse";
+        TextString = "STAssertFalse(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = staf;
+    },
+    {
+        Identifier = objc.ocunit.assert.equal-objects;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertEqualObjects";
+        TextString = "STAssertEqualObjects(<#left#>, <#right#>, <#!description, ...!#>)";
+        CompletionPrefix = staeo;
+    },
+    {
+        Identifier = objc.ocunit.assert.equals;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertEquals";
+        TextString = "STAssertEquals(<#left#>, <#right#>, <#!description, ...!#>)";
+        CompletionPrefix = stae;
+    },
+    {
+        Identifier = objc.ocunit.assert.equals-with-accuracy;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertEqualsWithAccuracy";
+        TextString = "STAssertEqualsWithAccuracy(<#left#>, <#right#>, <#accuracy#>, <#!description, ...!#>)";
+        CompletionPrefix = staewa;
+    },
+    {
+        Identifier = objc.ocunit.assert.throws;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertThrows";
+        TextString = "STAssertThrows(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = stax;
+    },
+    {
+        Identifier = objc.ocunit.assert.throws-specific;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertThrowsSpecific";
+        TextString = "STAssertThrowsSpecific(<#expression#>, <#specificException#>, <#!description, ...!#>)";
+        CompletionPrefix = staxs;
+    },
+    {
+        Identifier = objc.ocunit.assert.throws-specific-named;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertThrowsSpecificNamed";
+        TextString = "STAssertThrowsSpecificNamed(<#expression#>, <#specificException#>, <#name#>, <#!description, ...!#>)";
+        CompletionPrefix = staxsn;
+    },
+    {
+        Identifier = objc.ocunit.assert.no-throws;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertNoThrows";
+        TextString = "STAssertNoThrows(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = stanx;
+    },
+    {
+        Identifier = objc.ocunit.assert.no-throws-specific;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertNoThrowsSpecific";
+        TextString = "STAssertNoThrowsSpecific(<#expression#>, <#specificException#>, <#!description, ...!#>)";
+        CompletionPrefix = stanxs;
+    },
+    {
+        Identifier = objc.ocunit.assert.no-throws-specific-named;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertNoThrowsSpecificNamed";
+        TextString = "STAssertNoThrowsSpecificNamed(<#expression#>, <#specificException#>, <#name#>, <#!description, ...!#>)";
+        CompletionPrefix = stanxsn;
+    },
+    {
+        Identifier = objc.ocunit.assert.true-no-throw;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertTrueNoThrow";
+        TextString = "STAssertTrueNoThrow(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = statnx;
+    },
+    {
+        Identifier = objc.ocunit.assert.false-no-throw;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STAssertFalseNoThrow";
+        TextString = "STAssertFalseNoThrow(<#expression#>, <#!description, ...!#>)";
+        CompletionPrefix = stafnx;
+    },
+    {
+        Identifier = objc.ocunit.fail;
+        BasedOn = objc.ocunit;
+        IsMenuItem = YES;
+        Name = "STFail";
+        TextString = "STFail(<#!description, ...!#>)";
+        CompletionPrefix = stf;
+    },
+)
