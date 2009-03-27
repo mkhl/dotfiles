@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+'''Print the POSIX path of the target of the front window of Finder.app.
+
+The path is printed without special quotation.
+If no Finder window is open, the path of the Desktop is printed.
+'''
+
+from appscript import app, k
+
+def finder():
+    return app('Finder')
+
+def folder(app = None):
+    if app is None:
+        app = finder()
+    try:
+        return app.windows[1].target.get(resulttype = k.alias).path
+    except Exception:
+        return app.desktop.get(resulttype = k.alias).path
+
+if __name__ == '__main__':
+    print folder(finder())
