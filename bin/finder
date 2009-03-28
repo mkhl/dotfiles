@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-'''Print the POSIX path of the target of the front window of Finder.app.
+'''Print the POSIX path of the current selection of Finder.app.
 
-The path is printed without special quotation.
-If no Finder window is open, the path of the Desktop is printed.
+If the selection spans multiple items, print one item per line.
+Each path is printed without special quotation.
+If there is no selection, use the target of the current window.
+If there is no window open, use the Desktop folder.
 '''
 
 from appscript import app, k
@@ -11,13 +13,26 @@ from appscript import app, k
 def finder():
     return app('Finder')
 
-def folder(app = None):
-    if app is None:
-        app = finder()
+def desktop(app = finder()):
+    return app.desktop.get(resulttype = k.alias)
+
+def folder(app = finder()):
+    return app.windows[1].target.get(resulttype = k.alias)
+
+def selection(app = finder()):
+    return app.selection.get(resulttype = k.alias)
+
+def finder_items(app = finder()):
     try:
-        return app.windows[1].target.get(resulttype = k.alias).path
+        items = selection(app)
+        if items:
+            return items
+        return [folder(app)]
     except Exception:
-        return app.desktop.get(resulttype = k.alias).path
+        return [desktop(app)]
+
+def main():
+    return [alias.path for alias in finder_items(finder())]
 
 if __name__ == '__main__':
-    print folder(finder())
+    print '\n'.join(main())
