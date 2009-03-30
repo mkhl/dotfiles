@@ -1,2 +1,0 @@
-#!/usr/bin/env perl
-map(print(unpack('H*',$_) . "\n"), @ARGV);

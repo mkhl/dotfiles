@@ -1,5 +1,0 @@
-#!/usr/bin/env zsh
-
-for dir; do
-    ls $dir/*(@^.-/)
-done

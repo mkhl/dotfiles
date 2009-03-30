@@ -1,3 +1,6 @@
 [submodule "emacs"]
 	path = emacs
 	url = git://github.com/mkhl/emacs.git
+[submodule "bin"]
+	path = bin
+	url = git://github.com/mkhl/bin.git
