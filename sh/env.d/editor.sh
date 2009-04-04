@@ -1,7 +1,7 @@
 # Default editor
 # I'll use Emacs for a while, and fall back to TextMate:
-export ALTERNATE_EDITOR="mate_wait"
-export EDITOR="emacsclient"
+export ALTERNATE_EDITOR="aquamacs"
+export EDITOR="aquamacs"
 export CVSEDITOR="emacsclient"
 export SVN_EDITOR="$CVSEDITOR"
 # export GIT_EDITOR="$CVSEDITOR -l1"
