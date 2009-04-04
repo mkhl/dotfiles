@@ -6,11 +6,15 @@
 -- script was clicked
 on run
     tell application "Finder"
-        if selection is {} then
-            set finderSelection to folder of the front window as string
-        else
-            set finderSelection to selection as alias list
-        end if
+        try
+            if selection is {} then
+                set finderSelection to folder of the front window as string
+            else
+                set finderSelection to selection as alias list
+            end if
+        on error
+           set finderSelection to home as string
+        end try
     end tell
 
     gitx(finderSelection)
