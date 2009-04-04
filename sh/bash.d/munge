@@ -4,13 +4,13 @@
 # Usage: munge VARIABLE VALUE [after]
 munge () {
     local var="\$$1"
-    if eval test -z "$var" ; then
+    if eval test -z "\"$var\"" ; then
         eval "$1=$2"
-    elif ! eval echo "$var" | egrep -q "(^|:)$2($|:)" ; then
-        if test "$3" == "after" ; then
-            eval "$1=$var:$2"
+    elif ! eval echo "$var" | egrep -q "\"(^|:)$2($|:)\"" ; then
+        if test "\"$3\"" == "after" ; then
+            eval "$1=\"$var:$2\""
         else
-            eval "$1=$2:$var"
+            eval "$1=\"$2:$var\""
         fi
     fi
 }
