@@ -1,12 +1,11 @@
 # Default editor
-# I'll use Emacs for a while, and fall back to TextMate:
-export ALTERNATE_EDITOR="aquamacs"
-export EDITOR="aquamacs"
-export CVSEDITOR="emacsclient"
+# I'm currently using TextMate.
+export EDITOR="mate_wait"
+export CVSEDITOR="mate_wait"
 export SVN_EDITOR="$CVSEDITOR"
-# export GIT_EDITOR="$CVSEDITOR -l1"
-export GIT_EDITOR="$CVSEDITOR"
+export GIT_EDITOR="$CVSEDITOR --line 1"
+# export GIT_EDITOR="$CVSEDITOR"
 export FCEDIT="$CVSEDITOR"
 export VISUAL="$EDITOR"
-# export TEXEDIT="$EDITOR --wait --line %d '%s'"
-# export LESSEDIT="$EDITOR --line %lm %f"
+export TEXEDIT="$CVSEDITOR --line %d '%s'"
+export LESSEDIT="$EDITOR --line %lm %f"
