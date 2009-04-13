@@ -16,13 +16,13 @@ PS_WINDOW=""
 autoload_from __git_ps1 "$HOME/.bash_completion.d/git-completion.bash"
 __svn_ps1 () {
     if [[ -d '.svn' ]]; then
-        local svnroot="$(svn info|sed -n 's/^Repository Root: //p')"
-        local svnpath="$(svn info|sed -n 's/^URL: //p')"
-        builtin echo -ne " ($(echo $svnpath | sed -e "s|$svnroot/||" -e "s|/.*||"))"
+        local svnroot="$(svn info|/usr/bin/sed -n 's/^Repository Root: //p')"
+        local svnpath="$(svn info|/usr/bin/sed -n 's/^URL: //p')"
+        builtin echo -ne " ($(echo $svnpath | /usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||"))"
     fi
 }
 __pwd_with_tilde () {
-    echo $PWD | sed -e "s:$HOME:~:"
+    echo $PWD | /usr/bin/sed -e "s:$HOME:~:"
 }
 
 # Set the prompt
