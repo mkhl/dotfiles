@@ -25,3 +25,6 @@ disable=(
 shopt -s ${enable[@]}
 shopt -u ${disable[@]}
 unset -v enable disable
+
+# Set v4 options
+shopt -s globstar
