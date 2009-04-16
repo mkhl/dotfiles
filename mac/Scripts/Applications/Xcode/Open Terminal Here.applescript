@@ -47,8 +47,8 @@ on run
         
     end tell
     
-    if exists this_foler then
-        process_item(this_foler)
+    if exists this_folder then
+        process_item(this_folder)
     end if
     
 end run
