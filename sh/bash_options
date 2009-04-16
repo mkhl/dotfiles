@@ -27,4 +27,6 @@ shopt -u ${disable[@]}
 unset -v enable disable
 
 # Set v4 options
-shopt -s globstar
+if (( ${BASH_VERSINFO[0]} >= 4 )); then
+    shopt -s globstar
+fi
