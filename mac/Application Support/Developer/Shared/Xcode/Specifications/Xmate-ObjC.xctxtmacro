@@ -1449,7 +1449,7 @@
         BasedOn = objc;
         IsMenuItem = NO;
         Name = "NSMutableSet Declaration and Initialization";
-        TextString = "NSMutableSet *<#!set!#> = [NSSet set]";
+        TextString = "NSMutableSet *<#!set!#> = [NSMutableSet set]";
         CompletionPrefix = nsmtpi;
     },
     {
