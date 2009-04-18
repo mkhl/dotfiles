@@ -9,7 +9,7 @@
 		<key>InsertionPoint</key>
 		<string>0.000 0.000 0.000</string>
 		<key>Selection</key>
-		<string>0.824 0.961 0.620</string>
+		<string>0.737 0.835 0.976</string>
 		<key>xcode.syntax.attribute</key>
 		<string>0.512 0.423 0.157</string>
 		<key>xcode.syntax.character</key>
@@ -70,27 +70,27 @@
 	<key>Fonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.character</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.number</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.string</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 		<key>xcode.syntax.url</key>
-		<string>Monaco - 11.0</string>
+		<string>Inconsolata - 13.0</string>
 	</dict>
 </dict>
 </plist>
