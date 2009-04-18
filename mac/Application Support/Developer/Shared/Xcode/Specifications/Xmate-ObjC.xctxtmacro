@@ -1370,7 +1370,7 @@
         BasedOn = objc;
         IsMenuItem = NO;
         Name = "NSMutableString Declaration and Initialization";
-        TextString = "NSMutableString *<#!string!#> = [NSMutableString string]";
+        TextString = "NSMutableString *<#!string!#> = [NSMutableString string];";
         CompletionPrefix = nsmspi;
     },
     {
@@ -1419,7 +1419,7 @@
         BasedOn = objc;
         IsMenuItem = NO;
         Name = "NSMutableArray Declaration and Initialization";
-        TextString = "NSMutableArray *<#!array!#> = [NSMutableArray array]";
+        TextString = "NSMutableArray *<#!array!#> = [NSMutableArray array];";
         CompletionPrefix = nsmapi;
     },
     {
@@ -1468,7 +1468,7 @@
         BasedOn = objc;
         IsMenuItem = NO;
         Name = "NSMutableDictionary Declaration and Initialization";
-        TextString = "NSMutableDictionary *<#!dict!#> = [NSMutableDictionary dictionary]";
+        TextString = "NSMutableDictionary *<#!dict!#> = [NSMutableDictionary dictionary];";
         CompletionPrefix = nsmdpi;
     },
     {
@@ -1517,7 +1517,7 @@
         BasedOn = objc;
         IsMenuItem = NO;
         Name = "NSMutableSet Declaration and Initialization";
-        TextString = "NSMutableSet *<#!set!#> = [NSMutableSet set]";
+        TextString = "NSMutableSet *<#!set!#> = [NSMutableSet set];";
         CompletionPrefix = nsmtpi;
     },
     {
