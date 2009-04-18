@@ -925,12 +925,6 @@ print resultText,
 			</dict>
 			<dict>
 				<key>ClassName</key>
-				<string>XCUserScriptSeparator</string>
-				<key>uuid</key>
-				<string>A55F15C0-E5FA-43FF-87A6-FFF6CD634DB0</string>
-			</dict>
-			<dict>
-				<key>ClassName</key>
 				<string>XCUserScript</string>
 				<key>isFileScript</key>
 				<integer>1</integer>
@@ -939,7 +933,7 @@ print resultText,
 				<key>language</key>
 				<string>xcode.lang.sh</string>
 				<key>name</key>
-				<string>Method Declaration from Definition</string>
+				<string>Place Method Decls on Clipboard</string>
 				<key>script</key>
 				<string>/Users/mkhl/Library/Application Support/Developer/Shared/Xcode/Scripts/MethodDefToDecl.rb</string>
 				<key>scriptError</key>
@@ -947,11 +941,17 @@ print resultText,
 				<key>scriptInput</key>
 				<integer>1</integer>
 				<key>scriptOutput</key>
-				<integer>1</integer>
+				<integer>6</integer>
 				<key>scriptWorkingDirectory</key>
-				<integer>0</integer>
+				<integer>3</integer>
 				<key>uuid</key>
 				<string>B4599CCB-0698-4DFA-9C0C-CF9B86DB0917</string>
+			</dict>
+			<dict>
+				<key>ClassName</key>
+				<string>XCUserScriptSeparator</string>
+				<key>uuid</key>
+				<string>437A82D5-BDEE-4A84-BA7B-0D756FCBCF46</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
