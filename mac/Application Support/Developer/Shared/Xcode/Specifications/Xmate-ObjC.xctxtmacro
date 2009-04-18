@@ -1064,6 +1064,14 @@
         CompletionPrefix = sfs;
     },
     {
+        Identifier = objc.string.mutable.withformat;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableString with Format";
+        TextString = "[NSMutableString stringWithFormat:<#!format!#>, ...]";
+        CompletionPrefix = msf;
+    },
+    {
         Identifier = objc.array.withobject;
         BasedOn = objc;
         IsMenuItem = YES;
@@ -1082,6 +1090,26 @@
         Name = "NSArray with Objects";
         TextString = "[NSArray arrayWithObjects:<#!objects!#>, nil]";
         CompletionPrefix = aoo;
+    },
+    {
+        Identifier = objc.array.mutable.withobject;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableArray with Object";
+        TextString = "[NSMutableArray arrayWithObject:<#!object!#>]";
+        CompletionPrefix = mao;
+        CycleList = (
+            objc.array.withobject,
+            objc.array.withobjects,
+        );
+    },
+    {
+        Identifier = objc.array.mutable.withobjects;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableArray with Objects";
+        TextString = "[NSMutableArray arrayWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = maoo;
     },
     {
         Identifier = objc.dictionary.withobjectforkey;
@@ -1104,6 +1132,26 @@
         CompletionPrefix = doks;
     },
     {
+        Identifier = objc.dictionary.mutable.withobjectforkey;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableDictionary with Object for Key";
+        TextString = "[NSMutableDictionary dictionaryWithObject:<#!object!#> forKey:<#key#>]";
+        CompletionPrefix = mdok;
+        CycleList = (
+            objc.dictionary.withobjectforkey,
+            objc.dictionary.withobjectsandkeys,
+        );
+    },
+    {
+        Identifier = objc.dictionary.mutable.withobjectsandkeys;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableDictionary with Objects and Keys";
+        TextString = "[NSMutableDictionary dictionaryWithObjectsAndKeys:<#!objectsAndKeys!#>, nil]";
+        CompletionPrefix = mdoks;
+    },
+    {
         Identifier = objc.set.withobject;
         BasedOn = objc;
         IsMenuItem = YES;
@@ -1122,6 +1170,26 @@
         Name = "NSSet with Objects";
         TextString = "[NSSet setWithObjects:<#!objects!#>, nil]";
         CompletionPrefix = too;
+    },
+    {
+        Identifier = objc.set.mutable.withobject;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableSet with Object";
+        TextString = "[NSMutableSet setWithObject:<#!object!#>]";
+        CompletionPrefix = mto;
+        CycleList = (
+            objc.set.withobject,
+            objc.set.withobjects,
+        );
+    },
+    {
+        Identifier = objc.set.mutable.withobjects;
+        BasedOn = objc;
+        IsMenuItem = YES;
+        Name = "NSMutableSet with Objects";
+        TextString = "[NSMutableSet setWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = mtoo;
     },
     // Objective C common messages
     {
