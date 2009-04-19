@@ -1,16 +1,20 @@
-projects = home["Projects/"]
-src = home["src/"]
-ext = src["ext/"]
-begin
-  require "appscript"
-  require "osax"
-  prefs = root[OSAX::osax.path_to(:preferences, :from => :user_domain).path + '/']
-  appsup = root[OSAX::osax.path_to(:application_support, :from => :user_domain).path + '/']
-  mate = appsup['TextMate/']
-  esp = appsup['Espresso/']
-  $prefs = root[OSAX.osax.path_to(:preferences, :from => :local_domain).path + '/']
-  $appsup = root[OSAX.osax.path_to(:application_support, :from => :local_domain).path + '/']
-  $mate = $appsup['TextMate/']
-rescue LoadError
-  nil
-end
+require "osx/cocoa"
+# include OSX
+
+user_path = lambda { |dir| root[OSX::NSSearchPathForDirectoriesInDomains(dir, OSX::NSUserDomainMask, true).first.to_s] }
+root_path = lambda { |dir| root[OSX::NSSearchPathForDirectoriesInDomains(dir, OSX::NSLocalDomainMask, true).first.to_s] }
+
+projects = home['Projects']
+bin = home['bin']
+src = home['src']
+ext = src['ext']
+qsb = src['blacktree/qsb-mac']
+
+prefs = user_path[OSX::NSLibraryDirectory]['Preferences']
+appsup = user_path[OSX::NSApplicationSupportDirectory]
+mate = appsup['TextMate']
+esp = appsup['Espresso']
+
+$prefs = root_path[OSX::NSLibraryDirectory]['Preferences']
+$appsup = root_path[OSX::NSApplicationSupportDirectory]
+$mate = $appsup['TextMate']
