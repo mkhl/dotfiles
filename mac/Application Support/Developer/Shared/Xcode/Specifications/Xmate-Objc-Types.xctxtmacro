@@ -1,0 +1,794 @@
+(
+    // Objective C Classes and Types
+    {
+        Identifier = objc.types;
+        Name = "Objective C Types";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.objc" );
+        ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+    },
+    // Objective C Common Classes
+    {
+        Identifier = objc.types.id-protocol;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "id with Protocol";
+        TextString = "id <<#!protocol!#>>";
+        CompletionPrefix = id;
+    },
+    {
+        Identifier = objc.types.nss;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString";
+        TextString = "NSString";
+        CompletionPrefix = nss;
+        CycleList = (
+            objc.nss,
+            objc.nss.decl,
+        );
+    },
+    {
+        Identifier = objc.types.nss.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSString Declaration";
+        TextString = "NSString *<#!string!#>";
+        CompletionPrefix = nssp;
+    },
+    {
+        Identifier = objc.types.nsms;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableString";
+        TextString = "NSMutableString";
+        CompletionPrefix = nsms;
+        CycleList = (
+            objc.nsms,
+            objc.nsms.decl,
+            objc.nsms.decl.init,
+        );
+    },
+    {
+        Identifier = objc.types.nsms.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableString Declaration";
+        TextString = "NSMutableString *<#!string!#>";
+        CompletionPrefix = nsmsp;
+    },
+    {
+        Identifier = objc.types.nsms.decl.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableString Declaration and Initialization";
+        TextString = "NSMutableString *<#!string!#> = [NSMutableString string];";
+        CompletionPrefix = nsmspi;
+    },
+    {
+        Identifier = objc.types.nsa;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSArray";
+        TextString = "NSArray";
+        CompletionPrefix = nsa;
+        CycleList = (
+            objc.nsa,
+            objc.nsa.decl,
+        );
+    },
+    {
+        Identifier = objc.types.nsa.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSArray Declaration";
+        TextString = "NSArray *<#!array!#>";
+        CompletionPrefix = nsap;
+    },
+    {
+        Identifier = objc.types.nsma;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableArray";
+        TextString = "NSMutableArray";
+        CompletionPrefix = nsma;
+        CycleList = (
+            objc.nsma,
+            objc.nsma.decl,
+            objc.nsma.decl.init,
+        );
+    },
+    {
+        Identifier = objc.types.nsma.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableArray Declaration";
+        TextString = "NSMutableArray *<#!array!#>";
+        CompletionPrefix = nsmap;
+    },
+    {
+        Identifier = objc.types.nsma.decl.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableArray Declaration and Initialization";
+        TextString = "NSMutableArray *<#!array!#> = [NSMutableArray array];";
+        CompletionPrefix = nsmapi;
+    },
+    {
+        Identifier = objc.types.nsd;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSDictionary";
+        TextString = "NSDictionary";
+        CompletionPrefix = nsd;
+        CycleList = (
+            objc.nsd,
+            objc.nsd.decl,
+        );
+    },
+    {
+        Identifier = objc.types.nsd.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSDictionary Declaration";
+        TextString = "NSDictionary *<#!dict!#>";
+        CompletionPrefix = nsdp;
+    },
+    {
+        Identifier = objc.types.nsmd;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableDictionary";
+        TextString = "NSMutableDictionary";
+        CompletionPrefix = nsmd;
+        CycleList = (
+            objc.nsmd,
+            objc.nsmd.decl,
+            objc.nsmd.decl.init,
+        );
+    },
+    {
+        Identifier = objc.types.nsmd.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableDictionary Declaration";
+        TextString = "NSMutableDictionary *<#!dict!#>";
+        CompletionPrefix = nsmdp;
+    },
+    {
+        Identifier = objc.types.nsmd.decl.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableDictionary Declaration and Initialization";
+        TextString = "NSMutableDictionary *<#!dict!#> = [NSMutableDictionary dictionary];";
+        CompletionPrefix = nsmdpi;
+    },
+    {
+        Identifier = objc.types.nst;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSSet";
+        TextString = "NSSet";
+        CompletionPrefix = nst;
+        CycleList = (
+            objc.nst,
+            objc.nst.decl,
+        );
+    },
+    {
+        Identifier = objc.types.nst.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSSet Declaration";
+        TextString = "NSSet *<#!set!#>";
+        CompletionPrefix = nstp;
+    },
+    {
+        Identifier = objc.types.nsmt;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableSet";
+        TextString = "NSMutableSet";
+        CompletionPrefix = nsmt;
+        CycleList = (
+            objc.nsmt,
+            objc.nsmt.decl,
+            objc.nsmt.decl.init,
+        );
+    },
+    {
+        Identifier = objc.types.nsmt.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableSet Declaration";
+        TextString = "NSMutableSet *<#!set!#>";
+        CompletionPrefix = nsmtp;
+    },
+    {
+        Identifier = objc.types.nsmt.decl.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableSet Declaration and Initialization";
+        TextString = "NSMutableSet *<#!set!#> = [NSMutableSet set];";
+        CompletionPrefix = nsmtpi;
+    },
+    {
+        Identifier = objc.types.nsi;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSInteger";
+        TextString = "NSInteger";
+        CompletionPrefix = nsi;
+    },
+    {
+        Identifier = objc.types.nsui;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSUInteger";
+        TextString = "NSUInteger";
+        CompletionPrefix = nsui;
+    },
+    {
+        Identifier = objc.types.nsn;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSNumber";
+        TextString = "NSNumber";
+        CompletionPrefix = nsn;
+        CycleList = (
+            objc.nsn,
+            objc.nsn.decl,
+            objc.nsn.with.bool,
+            objc.nsn.with.double,
+            objc.nsn.with.float,
+            objc.nsn.with.int,
+            objc.nsn.with.uint,
+        );
+    },
+    {
+        Identifier = objc.types.nsn.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSNumber Declaration";
+        TextString = "NSNumber *<#!number!#>";
+        CompletionPrefix = nsnp;
+    },
+    {
+        Identifier = objc.types.nsn.with;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSNumber numberWith…";
+        TextString = "[NSNumber numberWith$(ValueType):<#!value!#>]";
+    },
+    {
+        Identifier = objc.types.nsn.with.bool;
+        BasedOn = objc.types.nsn.with;
+        IsMenuItem = NO;
+        Name = "NSNumber Number With Bool";
+        ValueType = "Bool";
+        CompletionPrefix = nsnb;
+    },
+    {
+        Identifier = objc.types.nsn.with.double;
+        BasedOn = objc.types.nsn.with;
+        IsMenuItem = NO;
+        Name = "NSNumber Number With Double";
+        ValueType = "Double";
+        CompletionPrefix = nsnd;
+    },
+    {
+        Identifier = objc.types.nsn.with.float;
+        BasedOn = objc.types.nsn.with;
+        IsMenuItem = NO;
+        Name = "NSNumber Number With Float";
+        ValueType = "Float";
+        CompletionPrefix = nsnf;
+    },
+    {
+        Identifier = objc.types.nsn.with.int;
+        BasedOn = objc.types.nsn.with;
+        IsMenuItem = NO;
+        Name = "NSNumber Number With Integer";
+        ValueType = "Integer";
+        CompletionPrefix = nsni;
+    },
+    {
+        Identifier = objc.types.nsn.with.uint;
+        BasedOn = objc.types.nsn.with;
+        IsMenuItem = NO;
+        Name = "NSNumber Number With Unsigned Integer";
+        ValueType = "UnsignedInteger";
+        CompletionPrefix = nsnui;
+    },
+    {
+        Identifier = objc.types.localizedstring;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSLocalizedString";
+        TextString = "NSLocalizedString(@\"<#!string!#>\", @\"<#comment#>\")";
+        CompletionPrefix = ls;
+    },
+    {
+        Identifier = objc.types.localizedstring.fromtable;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSLocalizedStringFromTable";
+        TextString = "NSLocalizedStringFromTable(@\"<#!string!#>\", @\"<#table#>\", @\"<#comment#>\")";
+        CompletionPrefix = lst;
+    },
+    // Objective C Common C Types
+    {
+        Identifier = objc.types.nsrange;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSRange";
+        TextString = "NSRange";
+        CompletionPrefix = nsg;
+    },
+    {
+        Identifier = objc.types.nsrange.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMakeRange";
+        TextString = "NSMakeRange";
+        CompletionPrefix = nsmg;
+    },
+    {
+        Identifier = objc.types.nspoint;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSPoint";
+        TextString = "NSPoint";
+        CompletionPrefix = nsp;
+    },
+    {
+        Identifier = objc.types.nspoint.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMakePoint";
+        TextString = "NSMakePoint";
+        CompletionPrefix = nsmp;
+    },
+    {
+        Identifier = objc.types.nsrect;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSRect";
+        TextString = "NSRect";
+        CompletionPrefix = nsr;
+    },
+    {
+        Identifier = objc.types.nsrect.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMakeRect";
+        TextString = "NSMakeRect";
+        CompletionPrefix = nsmr;
+    },
+    {
+        Identifier = objc.types.nssize;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSSize";
+        TextString = "NSSize";
+        CompletionPrefix = nsz;
+    },
+    {
+        Identifier = objc.types.nssize.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMakeSize";
+        TextString = "NSMakeSize";
+        CompletionPrefix = nsmz;
+    },
+    {
+        Identifier = objc.types.cgrange;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "CGRange";
+        TextString = "CGRange";
+        CompletionPrefix = cgg;
+    },
+    {
+        Identifier = objc.types.cgrange.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "CGRangeMake";
+        TextString = "CGRangeMake";
+        CompletionPrefix = cggm;
+    },
+    {
+        Identifier = objc.types.cgpoint;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "CGPoint";
+        TextString = "CGPoint";
+        CompletionPrefix = cgp;
+    },
+    {
+        Identifier = objc.types.cgpoint.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "CGPointMake";
+        TextString = "CGPointMake";
+        CompletionPrefix = cgpm;
+    },
+    {
+        Identifier = objc.types.cgrect;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "CGRect";
+        TextString = "CGRect";
+        CompletionPrefix = cgr;
+    },
+    {
+        Identifier = objc.types.cgrect.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "CGRectMake";
+        TextString = "CGRectMake";
+        CompletionPrefix = cgrm;
+    },
+    {
+        Identifier = objc.types.cgsize;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "CGSize";
+        TextString = "CGSize";
+        CompletionPrefix = cgz;
+    },
+    {
+        Identifier = objc.types.cgsize.make;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "CGSizeMake";
+        TextString = "CGSizeMake";
+        CompletionPrefix = cgzm;
+    },
+    // Objective C common objects
+    {
+        Identifier = objc.types.nsapplication;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSApplication";
+        TextString = "[NSApplication sharedApplication]";
+        CompletionPrefix = nsapp;
+    },
+    {
+        Identifier = objc.types.filemanager;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSFileManager";
+        TextString = "NSFileManager *fileManager = [NSFileManager defaultManager];";
+        CompletionPrefix = fm;
+        CycleList = (
+            objc.filemanager,
+            objc.filemanager.message,
+        );
+    },
+    {
+        Identifier = objc.types.filemanager.message;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "[NSFileManager message]";
+        TextString = "[[NSFileManager defaultManager] <#!message!#>]";
+        CompletionPrefix = fmm;
+    },
+    {
+        Identifier = objc.types.notificationcenter;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSNotificationCenter";
+        TextString = "NSNotificationCenter *center = [NSNotificationCenter defaultCenter];";
+        CompletionPrefix = nc;
+        CycleList = (
+            objc.notificationcenter,
+            objc.notificationcenter.message,
+        );
+    },
+    {
+        Identifier = objc.types.notificationcenter.message;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "[NSNotificationCenter message]";
+        TextString = "[[NSNotificationCenter defaultCenter] <#!message!#>]";
+        CompletionPrefix = ncm;
+    },
+    {
+        Identifier = objc.types.userdefaults;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSUserDefaults";
+        TextString = "NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];";
+        CompletionPrefix = ud;
+        CycleList = (
+            objc.userdefaults,
+            objc.userdefaults.message,
+        );
+    },
+    {
+        Identifier = objc.types.userdefaults.message;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults message]";
+        Message = "<#!message!#>";
+        TextString = "[[NSUserDefaults standardUserDefaults] $(Message)]";
+        CompletionPrefix = udm;
+    },
+    {
+        Identifier = objc.types.userdefaults.boolforkey;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults boolForKey]";
+        Message = "boolForKey:@\"<#!key!#>\"";
+        CompletionPrefix = udb;
+    },
+    {
+        Identifier = objc.types.userdefaults.floatforkey;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults floatForKey]";
+        Message = "floatForKey:@\"<#!key!#>\"";
+        CompletionPrefix = udf;
+    },
+    {
+        Identifier = objc.types.userdefaults.intforkey;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults integerForKey]";
+        Message = "integerForKey:@\"<#!key!#>\"";
+        CompletionPrefix = udi;
+    },
+    {
+        Identifier = objc.types.userdefaults.objectforkey;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults objectForKey]";
+        Message = "objectForKey:@\"<#!key!#>\"";
+        CompletionPrefix = udo;
+    },
+    {
+        Identifier = objc.types.userdefaults.stringforkey;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults stringForKey]";
+        Message = "stringForKey:@\"<#!key!#>\"";
+        CompletionPrefix = uds;
+    },
+    {
+        Identifier = objc.types.userdefaults.set;
+        BasedOn = objc.types.userdefaults.message;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setThing:forKey:]";
+        Message = "set$(ValueType):<#!value!#> forKey:@\"<#key#>\"";
+    },
+    {
+        Identifier = objc.types.userdefaults.set.boolforkey;
+        BasedOn = objc.types.userdefaults.set;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setBool:ForKey]";
+        ValueType = "Bool";
+        CompletionPrefix = udsb;
+    },
+    {
+        Identifier = objc.types.userdefaults.set.floatforkey;
+        BasedOn = objc.types.userdefaults.set;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setFloat:ForKey]";
+        ValueType = "Float";
+        CompletionPrefix = udsf;
+    },
+    {
+        Identifier = objc.types.userdefaults.set.intforkey;
+        BasedOn = objc.types.userdefaults.set;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setInteger:ForKey]";
+        ValueType = "Integer";
+        CompletionPrefix = udsi;
+    },
+    {
+        Identifier = objc.types.userdefaults.set.objectforkey;
+        BasedOn = objc.types.userdefaults.set;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setObject:ForKey]";
+        ValueType = "Object";
+        CompletionPrefix = udso;
+    },
+    {
+        Identifier = objc.types.userdefaults.set.stringforkey;
+        BasedOn = objc.types.userdefaults.set;
+        IsMenuItem = NO;
+        Name = "[NSUserDefaults setString:ForKey]";
+        ValueType = "String";
+        CompletionPrefix = udss;
+    },
+    {
+        Identifier = objc.types.workspace;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSWorkspace";
+        TextString = "NSWorkspace *workspace = [NSWorkspace sharedWorkspace];";
+        CompletionPrefix = ws;
+        CycleList = (
+            objc.workspace,
+            objc.workspace.message,
+        );
+    },
+    {
+        Identifier = objc.types.workspace.message;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "[NSWorkspace message]";
+        TextString = "[[NSWorkspace sharedWorkspace] <#!message!#>]";
+        CompletionPrefix = wsm;
+    },
+    // Objective C Common Object Instantiations
+    {
+        Identifier = objc.string.withformat;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString with Format";
+        TextString = "[NSString stringWithFormat:<#!format!#>, ...]";
+        CompletionPrefix = sf;
+    },
+    {
+        Identifier = objc.string.from.range;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString from NSRange";
+        TextString = "NSStringFromRange(<#!range!#>)";
+        CompletionPrefix = sfg;
+    },
+    {
+        Identifier = objc.string.from.point;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString from NSPoint";
+        TextString = "NSStringFromPoint(<#!point!#>)";
+        CompletionPrefix = sfp;
+    },
+    {
+        Identifier = objc.string.from.rect;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString from NSRect";
+        TextString = "NSStringFromRect(<#!rect!#>)";
+        CompletionPrefix = sfr;
+    },
+    {
+        Identifier = objc.string.from.size;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSString from NSSize";
+        TextString = "NSStringFromSize(<#!size!#>)";
+        CompletionPrefix = sfz;
+    },
+    {
+        Identifier = objc.string.mutable.withformat;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableString with Format";
+        TextString = "[NSMutableString stringWithFormat:<#!format!#>, ...]";
+        CompletionPrefix = msf;
+    },
+    {
+        Identifier = objc.array.withobject;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSArray with Object";
+        TextString = "[NSArray arrayWithObject:<#!object!#>]";
+        CompletionPrefix = ao;
+        CycleList = (
+            objc.array.withobject,
+            objc.array.withobjects,
+        );
+    },
+    {
+        Identifier = objc.array.withobjects;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSArray with Objects";
+        TextString = "[NSArray arrayWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = aoo;
+    },
+    {
+        Identifier = objc.array.mutable.withobject;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableArray with Object";
+        TextString = "[NSMutableArray arrayWithObject:<#!object!#>]";
+        CompletionPrefix = mao;
+        CycleList = (
+            objc.array.withobject,
+            objc.array.withobjects,
+        );
+    },
+    {
+        Identifier = objc.array.mutable.withobjects;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableArray with Objects";
+        TextString = "[NSMutableArray arrayWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = maoo;
+    },
+    {
+        Identifier = objc.dictionary.withobjectforkey;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSDictionary with Object for Key";
+        TextString = "[NSDictionary dictionaryWithObject:<#!object!#> forKey:<#key#>]";
+        CompletionPrefix = dok;
+        CycleList = (
+            objc.dictionary.withobjectforkey,
+            objc.dictionary.withobjectsandkeys,
+        );
+    },
+    {
+        Identifier = objc.dictionary.withobjectsandkeys;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSDictionary with Objects and Keys";
+        TextString = "[NSDictionary dictionaryWithObjectsAndKeys:<#!objectsAndKeys!#>, nil]";
+        CompletionPrefix = doks;
+    },
+    {
+        Identifier = objc.dictionary.mutable.withobjectforkey;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableDictionary with Object for Key";
+        TextString = "[NSMutableDictionary dictionaryWithObject:<#!object!#> forKey:<#key#>]";
+        CompletionPrefix = mdok;
+        CycleList = (
+            objc.dictionary.withobjectforkey,
+            objc.dictionary.withobjectsandkeys,
+        );
+    },
+    {
+        Identifier = objc.dictionary.mutable.withobjectsandkeys;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableDictionary with Objects and Keys";
+        TextString = "[NSMutableDictionary dictionaryWithObjectsAndKeys:<#!objectsAndKeys!#>, nil]";
+        CompletionPrefix = mdoks;
+    },
+    {
+        Identifier = objc.set.withobject;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSSet with Object";
+        TextString = "[NSSet setWithObject:<#!object!#>]";
+        CompletionPrefix = to;
+        CycleList = (
+            objc.set.withobject,
+            objc.set.withobjects,
+        );
+    },
+    {
+        Identifier = objc.set.withobjects;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSSet with Objects";
+        TextString = "[NSSet setWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = too;
+    },
+    {
+        Identifier = objc.set.mutable.withobject;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSMutableSet with Object";
+        TextString = "[NSMutableSet setWithObject:<#!object!#>]";
+        CompletionPrefix = mto;
+        CycleList = (
+            objc.set.withobject,
+            objc.set.withobjects,
+        );
+    },
+    {
+        Identifier = objc.set.mutable.withobjects;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableSet with Objects";
+        TextString = "[NSMutableSet setWithObjects:<#!objects!#>, nil]";
+        CompletionPrefix = mtoo;
+    },
+)
