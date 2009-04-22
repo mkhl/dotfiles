@@ -10,6 +10,8 @@ username = Martin Kuehl <martin.kuehl@gmail.com>
 color =
 extdiff =
 # pager =
+rebase =
+svn = ~/src/ext/hgsubversion
 
 [extdiff]
 cmd.chdiff =
