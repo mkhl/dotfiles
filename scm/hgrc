@@ -9,7 +9,7 @@ username = Martin Kuehl <martin.kuehl@gmail.com>
 [extensions] 
 color =
 extdiff =
-pager =
+# pager =
 
 [extdiff]
 cmd.chdiff =
