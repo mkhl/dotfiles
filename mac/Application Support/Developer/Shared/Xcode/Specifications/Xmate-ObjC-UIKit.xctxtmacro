@@ -1,0 +1,61 @@
+(
+    // Objective C for iPhone
+    {
+        Identifier = objc.uikit;
+        Name = "Objective C for iPhone";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.objc" );
+        ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+    },
+    // UIViewController common method definitions
+    {
+        Identifier = objc.uikit.viewDidLoad;
+        BasedOn = objc.uikit;
+        IsMenuItem = YES;
+        Name = "-viewDidLoad Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)viewDidLoad$(FunctionBlockSeparator){\n\t[super viewDidLoad];\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = vdl;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.uikit.viewWillAppear;
+        BasedOn = objc.uikit;
+        IsMenuItem = YES;
+        Name = "-viewWillAppear Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)viewWillAppear$(PreColonSpacing):$(PostColonSpacing)(BOOL)$(MessageArgSpacing)animated$(FunctionBlockSeparator){\n\t[super viewWillAppear:animated];\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = vwa;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.uikit.viewDidAppear;
+        BasedOn = objc.uikit;
+        IsMenuItem = YES;
+        Name = "-viewDidAppear Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)viewDidAppear$(PreColonSpacing):$(PostColonSpacing)(BOOL)$(MessageArgSpacing)animated$(FunctionBlockSeparator){\n\t[super viewDidAppear:animated];\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = vda;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.uikit.viewWillDisappear;
+        BasedOn = objc.uikit;
+        IsMenuItem = YES;
+        Name = "-viewWillDisappear Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)viewWillDisappear$(PreColonSpacing):$(PostColonSpacing)(BOOL)$(MessageArgSpacing)animated$(FunctionBlockSeparator){\n\t[super viewWillDisappear:animated];\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = vwd;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.uikit.viewDidDisappear;
+        BasedOn = objc.uikit;
+        IsMenuItem = YES;
+        Name = "-viewDidDisappear Definition";
+        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)viewDidDisappear$(PreColonSpacing):$(PostColonSpacing)(BOOL)$(MessageArgSpacing)animated$(FunctionBlockSeparator){\n\t[super viewDidDisappear:animated];\n\t<#!statements!#>\n}\n";
+        CompletionPrefix = vdd;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+)
