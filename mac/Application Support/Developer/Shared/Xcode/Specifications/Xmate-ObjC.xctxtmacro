@@ -1638,6 +1638,135 @@ return self;";
         TextString = "NSLocalizedStringFromTable(@\"<#!string!#>\", @\"<#table#>\", @\"<#comment#>\")";
         CompletionPrefix = lst;
     },
+    // Objective C common C types
+    {
+        Identifier = objc.nsrange;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSRange";
+        TextString = "NSRange";
+        CompletionPrefix = nsg;
+    },
+    {
+        Identifier = objc.nsrange.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSMakeRange";
+        TextString = "NSMakeRange";
+        CompletionPrefix = nsmg;
+    },
+    {
+        Identifier = objc.nspoint;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSPoint";
+        TextString = "NSPoint";
+        CompletionPrefix = nsp;
+    },
+    {
+        Identifier = objc.nspoint.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSMakePoint";
+        TextString = "NSMakePoint";
+        CompletionPrefix = nsmp;
+    },
+    {
+        Identifier = objc.nsrect;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSRect";
+        TextString = "NSRect";
+        CompletionPrefix = nsr;
+    },
+    {
+        Identifier = objc.nsrect.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSMakeRect";
+        TextString = "NSMakeRect";
+        CompletionPrefix = nsmr;
+    },
+    {
+        Identifier = objc.nssize;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSSize";
+        TextString = "NSSize";
+        CompletionPrefix = nsz;
+    },
+    {
+        Identifier = objc.nssize.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "NSMakeSize";
+        TextString = "NSMakeSize";
+        CompletionPrefix = nsmz;
+    },
+    {
+        Identifier = objc.cgrange;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGRange";
+        TextString = "CGRange";
+        CompletionPrefix = cgg;
+    },
+    {
+        Identifier = objc.cgrange.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGRangeMake";
+        TextString = "CGRangeMake";
+        CompletionPrefix = cggm;
+    },
+    {
+        Identifier = objc.cgpoint;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGPoint";
+        TextString = "CGPoint";
+        CompletionPrefix = cgp;
+    },
+    {
+        Identifier = objc.cgpoint.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGPointMake";
+        TextString = "CGPointMake";
+        CompletionPrefix = cgpm;
+    },
+    {
+        Identifier = objc.cgrect;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGRect";
+        TextString = "CGRect";
+        CompletionPrefix = cgr;
+    },
+    {
+        Identifier = objc.cgrect.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGRectMake";
+        TextString = "CGRectMake";
+        CompletionPrefix = cgrm;
+    },
+    {
+        Identifier = objc.cgsize;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGSize";
+        TextString = "CGSize";
+        CompletionPrefix = cgz;
+    },
+    {
+        Identifier = objc.cgsize.make;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "CGSizeMake";
+        TextString = "CGSizeMake";
+        CompletionPrefix = cgzm;
+    },
     // Objective C common objects
     {
         Identifier = objc.nsapplication;
