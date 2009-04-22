@@ -1212,7 +1212,7 @@ return self;";
         IsMenuItem = NO;
         Name = "autorelease";
         TextString = "autorelease";
-//        CompletionPrefix = ar;
+        CompletionPrefix = ar;
     },
     {
         Identifier = objc.msg.characteratindex;
@@ -1220,7 +1220,15 @@ return self;";
         IsMenuItem = NO;
         Name = "characterAtIndex:";
         TextString = "characterAtIndex:<#!index!#>";
-//        CompletionPrefix = ci;
+        CompletionPrefix = ci;
+    },
+    {
+        Identifier = objc.msg.isequal;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "isEqual:";
+        TextString = "isEqual:<#!object!#>";
+        CompletionPrefix = eq;
     },
     {
         Identifier = objc.msg.isequaltostring;
@@ -1228,7 +1236,7 @@ return self;";
         IsMenuItem = NO;
         Name = "isEqualToString:";
         TextString = "isEqualToString:<#!string!#>";
-//        CompletionPrefix = es;
+        CompletionPrefix = es;
     },
     {
         Identifier = objc.msg.iskindofclass;
@@ -1236,7 +1244,7 @@ return self;";
         IsMenuItem = NO;
         Name = "isKindOfClass:";
         TextString = "isKindOfClass:[<#!class!#> class]";
-//        CompletionPrefix = ik;
+        CompletionPrefix = ik;
     },
     {
         Identifier = objc.msg.objectenumerator;
@@ -1244,7 +1252,7 @@ return self;";
         IsMenuItem = NO;
         Name = "objectEnumerator";
         TextString = "objectEnumerator";
-//        CompletionPrefix = oe;
+        CompletionPrefix = oe;
     },
     {
         Identifier = objc.msg.objectatindex;
@@ -1252,7 +1260,7 @@ return self;";
         IsMenuItem = NO;
         Name = "objectAtIndex:";
         TextString = "objectAtIndex:<#!index!#>";
-//        CompletionPrefix = oi;
+        CompletionPrefix = oi;
     },
     {
         Identifier = objc.msg.objectforkey;
@@ -1260,7 +1268,7 @@ return self;";
         IsMenuItem = NO;
         Name = "objectForKey:";
         TextString = "objectForKey:<#!key!#>";
-//        CompletionPrefix = ok;
+        CompletionPrefix = ok;
     },
     {
         Identifier = objc.msg.setobjectforkey;
@@ -1268,7 +1276,7 @@ return self;";
         IsMenuItem = NO;
         Name = "setObject:forKey:";
         TextString = "setObject:<#!object!#> forKey:<#key#>";
-//        CompletionPrefix = so;
+        CompletionPrefix = so;
     },
     {
         Identifier = objc.msg.valueforkey;
@@ -1276,7 +1284,7 @@ return self;";
         IsMenuItem = NO;
         Name = "valueForKey:";
         TextString = "valueForKey:<#!key!#>";
-//        CompletionPrefix = vk;
+        CompletionPrefix = vk;
     },
     {
         Identifier = objc.msg.setvalueforkey;
@@ -1284,7 +1292,7 @@ return self;";
         IsMenuItem = NO;
         Name = "setValue:forKey:";
         TextString = "setValue:<#!value!#> forKey:<#key#>";
-//        CompletionPrefix = sv;
+        CompletionPrefix = sv;
     },
     {
         Identifier = objc.msg.withobject;
@@ -1292,7 +1300,7 @@ return self;";
         IsMenuItem = NO;
         Name = "withObject:";
         TextString = "withObject:<#!object!#>";
-//        CompletionPrefix = wo;
+        CompletionPrefix = wo;
     },
     {
         Identifier = objc.msg.writetofile;
@@ -1300,7 +1308,7 @@ return self;";
         IsMenuItem = NO;
         Name = "writeToFile:atomically:";
         TextString = "writeToFile:<#!path!#> atomically:YES";
-//        CompletionPrefix = write;
+        CompletionPrefix = write;
     },
     // Objective C iteration
     {
