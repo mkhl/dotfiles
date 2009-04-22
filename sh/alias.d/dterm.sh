@@ -2,6 +2,6 @@ if [[ "$TERM_PROGRAM" == "DTerm" ]]; then
     function sudo () {
         cmd="$1"
         shift
-        authexec "$(whereis "$cmd")" "$@"
+        authexec "$(command which "$cmd")" "$@"
     }
 fi
