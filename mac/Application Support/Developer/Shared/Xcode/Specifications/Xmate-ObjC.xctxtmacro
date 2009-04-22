@@ -1075,7 +1075,7 @@ return self;";
         IsMenuItem = YES;
         Name = "NSString from NSSize";
         TextString = "NSStringFromSize(<#!size!#>)";
-        CompletionPrefix = sfs;
+        CompletionPrefix = sfz;
     },
     {
         Identifier = objc.string.mutable.withformat;
