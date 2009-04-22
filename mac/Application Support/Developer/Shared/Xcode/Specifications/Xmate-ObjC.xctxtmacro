@@ -231,6 +231,20 @@
         ExcludeContexts = ( "xcode.lang.objc.block" );
     },
     {
+        Identifier = objc.init.body;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "-init Definition Body";
+        TextString =
+"self = [super init];
+if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == nil$(InExpressionsSpacing))
+	return nil;
+<#!initializations!#>
+return self;";
+        CompletionPrefix = init;
+        IncludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
         Identifier = objc.awakeFromNib;
         BasedOn = objc;
         IsMenuItem = YES;
