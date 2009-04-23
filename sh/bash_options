@@ -5,6 +5,7 @@
 
 # Select bash options to enable
 enable=(
+    cdable_vars
     cdspell
     checkhash
     checkwinsize
