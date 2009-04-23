@@ -16,9 +16,9 @@ svn = ~/src/ext/hgsubversion
 [extdiff]
 cmd.chdiff =
 opts.chdiff = --wait
+cmd.filemerge = opendiff
 
 [merge-tools]
-chdiff.args = $local $other
-chdiff.checkconflicts = True
-chdiff.checkchanged = True
-chdiff.gui = True
+chdiff.args = $output $other
+filemerge.executable = opendiff
+filemrge.args = $local $other -ancestor $base -merge $output
