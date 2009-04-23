@@ -1,3 +1,5 @@
+#!/usr/bin/osascript
+
 (*
 
     Open Terminal Here
@@ -34,7 +36,6 @@
     26-OCT-2008: Version 2.3: Incorporated changes from Florian ?, handling case where Terminal was not already running
 *)
 
-
 -- when the toolbar script icon is clicked
 --
 on run
@@ -53,8 +54,6 @@ on run
     
 end run
 
-
-
 -- This handler processes folders dropped onto the toolbar script icon
 --
 on open these_items
@@ -62,8 +61,6 @@ on open these_items
         my process_item(this_item)
     end repeat
 end open
-
-
 
 -- this subroutine does the actual work
 --
@@ -88,6 +85,3 @@ on process_item(this_item)
     end tell
     
 end process_item
-
-
-

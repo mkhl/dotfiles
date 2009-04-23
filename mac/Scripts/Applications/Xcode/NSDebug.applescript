@@ -1,3 +1,5 @@
+#!/usr/bin/osascript
+
 -- Script to turn on Cocoa debugging options for a the active executable of an XCode project. See <Foundation/NSDebug.h>
 -- For extra points change "project document 1" to whatever the right specifier for front most project document.
 
@@ -19,4 +21,3 @@ createvariable("NSEnableAutoreleasePool", "YES")
 createvariable("NSAutoreleaseFreedObjectCheckEnabled", "NO")
 createvariable("NSAutoreleaseHighWaterMark", "0")
 createvariable("NSAutoreleaseHighWaterResolution", "0")
-

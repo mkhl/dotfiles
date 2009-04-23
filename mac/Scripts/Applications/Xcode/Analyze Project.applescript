@@ -1,6 +1,7 @@
 #!/usr/bin/osascript
 
 -- Analyze Project
+
 -- Analyze the current Xcode project with AnalysisTool.
 -- Relies on UI Scripting to access AnalysisTool. You have been warned.
 
