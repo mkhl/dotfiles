@@ -7,10 +7,13 @@ git = True
 username = Martin Kuehl <martin.kuehl@gmail.com>
 
 [extensions] 
+bookmarks =
 color =
 extdiff =
+fetch =
 # pager =
 rebase =
+record =
 svn = ~/src/ext/hgsubversion
 
 [extdiff]
