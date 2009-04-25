@@ -1,1 +1,20 @@
-set the_terminal to "Terminal"tell application "System Events"	if exists application process the_terminal then		set terminalProcess to application process the_terminal		if frontmost of terminalProcess then			tell terminalProcess to set visible to false		else			tell terminalProcess to set frontmost to true		end if	else		tell application the_terminal			launch			activate		end tell	end ifend tell
+set the_terminal to "Terminal"
+
+if running of application the_terminal then
+	if frontmost of application the_terminal then
+		tell application "System Events"
+			tell application process the_terminal
+				set visible to false
+			end tell
+		end tell
+	else
+		tell application the_terminal
+			activate
+		end tell
+	end if
+else
+	tell application the_terminal
+		launch
+		activate
+	end tell
+end if
