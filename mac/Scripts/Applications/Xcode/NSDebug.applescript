@@ -4,7 +4,7 @@
 
 on createvariable(inName, inValue)
 	tell application "Xcode"
-		set theExecutable to active executable of first project document
+		set theExecutable to active executable of project of active project document
 		if (every environment variable of theExecutable where name is inName) is {} then
 			make new environment variable at end of theExecutable with properties {name:inName, value:inValue, active:true}
 		end if

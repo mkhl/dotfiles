@@ -43,7 +43,7 @@ on run
         activate
         
         try
-            set this_folder to (the path of the first project document)
+            set this_folder to (the path of the project of the active project document)
         on error
             set this_folder to (the path to the application "Xcode")
         end try
