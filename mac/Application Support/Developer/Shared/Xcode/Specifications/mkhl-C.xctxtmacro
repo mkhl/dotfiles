@@ -54,16 +54,26 @@
         Identifier = c.return;
         BasedOn = c;
         IsMenuItem = YES;
-        Name = "Return Value";
-        ReturnValue = "<#!value!#>";
+        Name = "Return";
+        ReturnValue = "";
         TextString = "return $(ReturnValue);";
         CompletionPrefix = ret;
         CycleList = (
             c.return,
+            c.return.value,
             c.return.yes,
             c.return.no,
             c.return.self,
+            c.return.nil,
         );
+    },
+    {
+        Identifier = c.return.value;
+        BasedOn = c.return;
+        IsMenuItem = NO;
+        Name = "Return Yes";
+        ReturnValue = "<#!value!#>";
+        CompletionPrefix = retv;
     },
     {
         Identifier = c.return.yes;
@@ -88,5 +98,13 @@
         Name = "Return Self";
         ReturnValue = "self";
         CompletionPrefix = rets;
+    },
+    {
+        Identifier = c.return.nil;
+        BasedOn = c.return;
+        IsMenuItem = NO;
+        Name = "Return Nil";
+        ReturnValue = "nil";
+        CompletionPrefix = retnil;
     },
 )
