@@ -15,7 +15,10 @@ set menubarHeight to 22
 
 set projectWindowWidth to 907
 set projectWindowHeight to screenHeight - menubarHeight
+set editorWindowWidth to 630
+set editorWindowHeight to screenHeight - menubarHeight - 10
 
 tell application "Xcode"
 	set the size of the front window to {projectWindowWidth, projectWindowHeight}
+	--set the bounds of the front window to {15, 5, 15 + editorWindowWidth, 5 + editorWindowHeight}
 end tell
