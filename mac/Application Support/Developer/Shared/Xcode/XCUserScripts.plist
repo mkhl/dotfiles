@@ -304,7 +304,7 @@ print "%%%{PBXSelection}%%%";
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>7D87C38A-7B15-44A7-8F50-92A0BE2F933C</string>
+				<string>E01AF5A9-71E3-49A6-80C0-CC7DB93BF236</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
@@ -927,7 +927,7 @@ print resultText,
 				<key>ClassName</key>
 				<string>XCUserScript</string>
 				<key>isFileScript</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>keyEquivalent</key>
 				<string>@{</string>
 				<key>language</key>
@@ -935,7 +935,11 @@ print resultText,
 				<key>name</key>
 				<string>Place Method Decls on Clipboard</string>
 				<key>script</key>
-				<string>/Users/mkhl/Library/Application Support/Developer/Shared/Xcode/Scripts/MethodDefToDecl.rb</string>
+				<string>#!/usr/bin/env ruby -wKU
+# -*- coding: utf-8 -*-
+
+print ARGF.read.gsub(/(;)?\s+\{$/, ';')
+</string>
 				<key>scriptError</key>
 				<integer>1</integer>
 				<key>scriptInput</key>
@@ -945,19 +949,19 @@ print resultText,
 				<key>scriptWorkingDirectory</key>
 				<integer>3</integer>
 				<key>uuid</key>
-				<string>B4599CCB-0698-4DFA-9C0C-CF9B86DB0917</string>
+				<string>6D3A9658-6DE5-49CF-9E1A-D03CDB4E3ABF</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>437A82D5-BDEE-4A84-BA7B-0D756FCBCF46</string>
+				<string>0A16A1E5-190B-4F0B-B331-29E4FCE67947</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
 				<string>XCUserScript</string>
 				<key>isFileScript</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>keyEquivalent</key>
 				<string>@|</string>
 				<key>language</key>
@@ -965,7 +969,169 @@ print resultText,
 				<key>name</key>
 				<string>Property from Instance Variable</string>
 				<key>script</key>
-				<string>/Users/mkhl/Library/Application Support/Developer/Shared/Xcode/Scripts/PropertyFromInstanceVariable.pl</string>
+				<string>#! /usr/bin/perl -w
+
+use strict;
+
+# Get the header file contents from Xcode user scripts
+chomp(my $headerFileContents = &lt;&lt;'HEADERFILECONTENTS');
+%%%{PBXAllText}%%%
+HEADERFILECONTENTS
+
+# Get the indices of the selection from Xcode user scripts
+my $selectionStartIndex = %%%{PBXSelectionStart}%%%;
+my $selectionEndIndex = %%%{PBXSelectionEnd}%%%;
+
+# Get path of the header file
+my $implementationFilePath = "%%%{PBXFilePath}%%%";
+my $headerFilePath = $implementationFilePath;
+
+# Look for an implemenation file with a ".m" or ".mm" extension
+$implementationFilePath =~ s/\.[hm]*$/.m/;
+if (!(-e $implementationFilePath))
+{
+	$implementationFilePath =~ s/.m$/.mm/;
+}
+
+# Handle subroutine to trime whitespace off both ends of a string
+sub trim
+{
+	my $string = shift;
+	$string =~ s/^\s*(.*?)\s*$/$1/;
+	return $string;
+}
+
+# Get the selection out of the header file
+my $selectedText =  substr $headerFileContents, $selectionStartIndex, ($selectionEndIndex - $selectionStartIndex);
+$selectedText = trim $selectedText;
+
+my $type = "";
+my $asterisk = "";
+my $name = "";
+my $behavior = "";
+
+# Test that the selection is:
+#  At series of identifiers (the type name and access specifiers)
+#  Possibly an asterisk
+#  Another identifier (the variable name)
+#  A semi-colon
+if (length($selectedText) &amp;&amp; ($selectedText =~ /([_A-Za-z][_A-Za-z0-9]*\s*)+([\s\*]+)([_A-Za-z][_A-Za-z0-9]*);/))
+{
+	$type = $1;
+	$type = trim $type;
+	$asterisk = $2;
+	$asterisk = trim $asterisk;
+	$name = $3;
+	$behavior = "(assign) ";
+	if ((defined($asterisk) &amp;&amp; length($asterisk) == 1) or ($type eq "id"))
+	{
+		$behavior = "(retain) ";
+	}
+	else
+	{
+		$asterisk = "";
+	}
+}
+else
+{
+	exit 1;
+}
+
+# Find the closing brace (end of the class variables section)
+my $remainderOfHeader = substr $headerFileContents, $selectionEndIndex;
+my $indexAfterClosingBrace = $selectionEndIndex + index($remainderOfHeader, "\n}\n") + 3;
+if ($indexAfterClosingBrace == -1)
+{
+	exit 1;
+}
+
+# Determine if we need to add a newline in front of the property declaration
+my $leadingNewline = "\n";
+if (substr($headerFileContents, $indexAfterClosingBrace, 1) eq "\n")
+{
+	$indexAfterClosingBrace += 1;
+	$leadingNewline = "";
+}
+
+# Determine if we need to add a newline after the property declaration
+my $trailingNewline = "\n";
+if (substr($headerFileContents, $indexAfterClosingBrace, 9) eq "\@property")
+{
+	$trailingNewline = "";
+}
+
+# Create and insert the propert declaration
+my $propertyDeclaration = $leadingNewline . "\@property " . $behavior . $type . " " . $asterisk . $name . ";\n" . $trailingNewline;
+substr($headerFileContents, $indexAfterClosingBrace, 0) = $propertyDeclaration;
+
+my $replaceFileContentsScript = &lt;&lt;'REPLACEFILESCRIPT';
+on run argv
+	set fileAlias to POSIX file (item 1 of argv)
+	set newDocText to (item 2 of argv)
+	tell application "Xcode"
+		set doc to open fileAlias
+		set text of doc to newDocText
+	end tell
+end run
+REPLACEFILESCRIPT
+
+# Use Applescript to replace the contents of the header file
+# (I could have used the "Output" of the Xcode user script instead)
+system 'osascript', '-e', $replaceFileContentsScript, $headerFilePath, $headerFileContents;
+
+# Stop now if the implementation file can't be found
+if (!(-e $implementationFilePath))
+{
+	exit 1;
+}
+
+my $getFileContentsScript = &lt;&lt;'GETFILESCRIPT';
+on run argv
+	set fileAlias to POSIX file (item 1 of argv)
+	tell application "Xcode"
+		set doc to open fileAlias
+		set docText to text of doc
+	end tell
+	return docText
+end run
+GETFILESCRIPT
+
+# Get the contents of the implmentation file
+open(SCRIPTFILE, '-|') || exec 'osascript', '-e', $getFileContentsScript, $implementationFilePath;
+chomp(my $implementationFileContents = do {local $/; &lt;SCRIPTFILE&gt;});
+close(SCRIPTFILE);
+
+# Look for the class implementation statement
+if (length($implementationFileContents) &amp;&amp; ($implementationFileContents =~ /(\@implementation [_A-Za-z][_A-Za-z0-9]*\n)/))
+{
+	my $matchString = $1;
+	my $indexAfterMatch = index($implementationFileContents, $matchString) + length($matchString);
+
+	# Determine if we want a newline before the synthesize statement
+	$leadingNewline = "\n";
+	if (substr($implementationFileContents, $indexAfterMatch, 1) eq "\n")
+	{
+		$indexAfterMatch += 1;
+		$leadingNewline = "";
+	}
+
+	# Determine if we want a newline after the synthesize statement
+	$trailingNewline = "\n";
+	if (substr($implementationFileContents, $indexAfterMatch, 11) eq "\@synthesize")
+	{
+		$trailingNewline = "";
+	}
+
+	# Create and insert the synthesize statement 
+	my $synthesizeStatement = $leadingNewline . "\@synthesize " . $name . ";\n" . $trailingNewline;
+	substr($implementationFileContents, $indexAfterMatch, 0) = $synthesizeStatement;
+	
+	# Use Applescript to replace the contents of the implementation file in Xcode
+	system 'osascript', '-e', $replaceFileContentsScript, $implementationFilePath, $implementationFileContents;
+}
+
+exit 0;
+</string>
 				<key>scriptError</key>
 				<integer>1</integer>
 				<key>scriptInput</key>
@@ -975,7 +1141,7 @@ print resultText,
 				<key>scriptWorkingDirectory</key>
 				<integer>3</integer>
 				<key>uuid</key>
-				<string>63BF1038-6BE7-4C40-AD87-66E7E1FDD034</string>
+				<string>8B453400-12D3-4445-9D05-BBE585AF3D40</string>
 			</dict>
 		</array>
 		<key>uuid</key>
@@ -1114,7 +1280,7 @@ echo -n "%%%{PBXSelection}%%%"</string>
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>0675B4BF-E884-4299-9936-C5E145A8E0C1</string>
+				<string>1CD7B754-013E-473B-8F59-6EA36733BC4C</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
@@ -1151,7 +1317,7 @@ echo -n "%%%{PBXSelection}%%%"
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>EE549CCF-1D8A-4E4E-AC20-48F37056B00E</string>
+				<string>6826DA1D-70BF-4A78-BD98-0F18C0A9A43D</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
@@ -1314,7 +1480,7 @@ exit 0;</string>
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>7FFB20DB-B3D0-4184-986A-ECED0E7FC273</string>
+				<string>978EA5C4-2440-4D23-9C03-6DDFDB9B009D</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
@@ -1628,7 +1794,7 @@ exit 0;</string>
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>CB55ECEB-8BD4-4810-9228-4C269D3E27F8</string>
+				<string>460956BB-CDE0-4AE0-8888-B22E3B6D12BA</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
@@ -1849,7 +2015,7 @@ exit 0;</string>
 				<key>ClassName</key>
 				<string>XCUserScriptSeparator</string>
 				<key>uuid</key>
-				<string>2F288B1E-430B-4CF4-900C-0C6F399C9459</string>
+				<string>CED74B00-BAC7-4AA0-A0DA-E17B6405A8DD</string>
 			</dict>
 			<dict>
 				<key>ClassName</key>
