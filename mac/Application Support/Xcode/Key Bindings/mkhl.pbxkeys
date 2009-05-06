@@ -280,14 +280,8 @@
 		<string>insertBacktab:</string>
 		<key></key>
 		<string>cancelOperation:</string>
-		<key>$@</key>
-		<string>moveToBeginningOfDocumentAndModifySelection:</string>
-		<key>$@</key>
-		<string>moveToEndOfDocumentAndModifySelection:</string>
-		<key>$@</key>
-		<string>moveToBeginningOfLineAndModifySelection:</string>
-		<key>$@</key>
-		<string>moveToEndOfLineAndModifySelection:</string>
+		<key>$^~r</key>
+		<string>PBX_executeSelectionAlertOutput:</string>
 		<key>$</key>
 		<string>moveUpAndModifySelection:</string>
 		<key>$</key>
@@ -308,10 +302,26 @@
 		<string>noop:</string>
 		<key>@"</key>
 		<string>splitCurrentNavigator:</string>
+		<key>@$</key>
+		<string>moveToBeginningOfDocumentAndModifySelection:</string>
+		<key>@$</key>
+		<string>moveToEndOfDocumentAndModifySelection:</string>
+		<key>@$</key>
+		<string>moveToBeginningOfLineAndModifySelection:</string>
+		<key>@$</key>
+		<string>moveToEndOfLineAndModifySelection:</string>
 		<key>@'</key>
 		<string>closeCurrentNavigator:</string>
 		<key>@.</key>
 		<string>cancelOperation:</string>
+		<key>@^</key>
+		<string>changeBaseWritingDirectionToRTL:</string>
+		<key>@^</key>
+		<string>changeBaseWritingDirectionToLTR:</string>
+		<key>@~</key>
+		<string>noop:</string>
+		<key>@~"</key>
+		<string>splitCurrentNavigatorHorizontally:</string>
 		<key>@</key>
 		<string>deleteToBeginningOfLine:</string>
 		<key>@</key>
@@ -339,20 +349,10 @@
 		<string>insertLineBreak:</string>
 		<key>^</key>
 		<string>selectPreviousKeyView:</string>
-		<key>^$A</key>
-		<string>moveToBeginningOfParagraphAndModifySelection:</string>
-		<key>^$B</key>
-		<string>moveBackwardAndModifySelection:</string>
-		<key>^$E</key>
-		<string>moveToEndOfParagraphAndModifySelection:</string>
-		<key>^$F</key>
-		<string>moveForwardAndModifySelection:</string>
-		<key>^$N</key>
-		<string>moveDownAndModifySelection:</string>
-		<key>^$P</key>
-		<string>moveUpAndModifySelection:</string>
-		<key>^$V</key>
-		<string>pageDownAndModifySelection:</string>
+		<key>^ </key>
+		<string>setMark:</string>
+		<key>^"</key>
+		<string>insertDoubleQuoteIgnoringSubstitution:</string>
 		<key>^$</key>
 		<string>moveSubWordBackwardAndModifySelection:</string>
 		<key>^$</key>
@@ -377,12 +377,20 @@
 		<string>completionPlaceholderSelectPrevious:</string>
 		<key>^@</key>
 		<string>setMark:</string>
-		<key>^@</key>
-		<string>changeBaseWritingDirectionToRTL:</string>
-		<key>^@</key>
-		<string>changeBaseWritingDirectionToLTR:</string>
-		<key>^\ </key>
-		<string>setMark:</string>
+		<key>^A</key>
+		<string>moveToBeginningOfParagraphAndModifySelection:</string>
+		<key>^B</key>
+		<string>moveBackwardAndModifySelection:</string>
+		<key>^E</key>
+		<string>moveToEndOfParagraphAndModifySelection:</string>
+		<key>^F</key>
+		<string>moveForwardAndModifySelection:</string>
+		<key>^N</key>
+		<string>moveDownAndModifySelection:</string>
+		<key>^P</key>
+		<string>moveUpAndModifySelection:</string>
+		<key>^V</key>
+		<string>pageDownAndModifySelection:</string>
 		<key>^a</key>
 		<string>moveToBeginningOfParagraph:</string>
 		<key>^b</key>
@@ -461,6 +469,11 @@
 			<array>
 				<string>insertText:</string>
 				<string>λ</string>
+			</array>
+			<key>^m</key>
+			<array>
+				<string>insertText:</string>
+				<string>☿</string>
 			</array>
 			<key>^n</key>
 			<array>
@@ -591,20 +604,10 @@
 		</dict>
 		<key>^y</key>
 		<string>yank:</string>
-		<key>^~$B</key>
-		<string>moveWordBackwardAndModifySelection:</string>
-		<key>^~$F</key>
-		<string>moveWordForwardAndModifySelection:</string>
-		<key>^~$r</key>
-		<string>PBX_executeSelectionAlertOutput:</string>
 		<key>^~1</key>
 		<string>popLoadedFilesPopUp:</string>
 		<key>^~2</key>
 		<string>popSymbolsPopUp:</string>
-		<key>^~b</key>
-		<string>moveWordBackward:</string>
-		<key>^~f</key>
-		<string>moveWordForward:</string>
 		<key>^~r</key>
 		<string>PBX_executeSelectionReplacingOutput:</string>
 		<key>^~</key>
@@ -646,14 +649,28 @@
 		<string>moveWordLeftAndModifySelection:</string>
 		<key>~$</key>
 		<string>moveWordRightAndModifySelection:</string>
-		<key>~@</key>
-		<string>noop:</string>
-		<key>~@"</key>
-		<string>splitCurrentNavigatorHorizontally:</string>
+		<key>~^B</key>
+		<string>moveWordBackwardAndModifySelection:</string>
+		<key>~^F</key>
+		<string>moveWordForwardAndModifySelection:</string>
+		<key>~^b</key>
+		<string>moveWordBackward:</string>
+		<key>~^f</key>
+		<string>moveWordForward:</string>
 		<key>~</key>
 		<string>deleteWordBackward:</string>
 		<key>~§</key>
 		<string>insertTextualRepresentationOfKeyEquivalent:</string>
+		<key>~</key>
+		<array>
+			<string>moveBackward:</string>
+			<string>moveToBeginningOfParagraph:</string>
+		</array>
+		<key>~</key>
+		<array>
+			<string>moveForward:</string>
+			<string>moveToEndOfParagraph:</string>
+		</array>
 		<key>~</key>
 		<string>moveWordLeft:</string>
 		<key>~</key>
