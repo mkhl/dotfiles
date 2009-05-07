@@ -245,6 +245,23 @@ return self;";
         IncludeContexts = ( "xcode.lang.objc.block" );
     },
     {
+        Identifier = objc.init.with;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "-initWithObject Definition";
+        TextString =
+"-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#object#>$(FunctionBlockSeparator){
+	self = [super initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)<#object#>];
+	if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == nil$(InExpressionsSpacing))
+		return nil;
+	<#!initializations!#>
+	return self;
+}
+";
+        CompletionPrefix = initw;
+    },
+    
+    {
         Identifier = objc.awakeFromNib;
         BasedOn = objc;
         IsMenuItem = YES;
