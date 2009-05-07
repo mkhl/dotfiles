@@ -71,7 +71,7 @@
         Identifier = c.return.value;
         BasedOn = c.return;
         IsMenuItem = NO;
-        Name = "Return Yes";
+        Name = "Return Value";
         ReturnValue = "<#!value!#>";
         CompletionPrefix = retv;
     },
