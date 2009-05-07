@@ -44,7 +44,7 @@
         BasedOn = objc;
         IsMenuItem = YES;
         Name = "@selector Expression";
-        TextString = "@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!selector!#>$(InExpressionsSpacing))";
+        TextString = "@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
         CompletionPrefix = sel;
     },
     {
@@ -52,7 +52,7 @@
         BasedOn = objc;
         IsMenuItem = YES;
         Name = "respondsToSelector: Call";
-        TextString = "respondsToSelector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!selector!#>$(InExpressionsSpacing))";
+        TextString = "respondsToSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
         CompletionPrefix = res;
     },
     {
@@ -60,7 +60,7 @@
         BasedOn = objc;
         IsMenuItem = YES;
         Name = "performSelector: Call";
-        TextString = "performSelector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!selector!#>$(InExpressionsSpacing))";
+        TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
         CompletionPrefix = per;
     },
     {
@@ -68,7 +68,7 @@
         BasedOn = objc;
         IsMenuItem = YES;
         Name = "Delayed performSelector: Call";
-        TextString = "performSelector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!selector!#>$(InExpressionsSpacing)) withObject:<#object#> afterDelay:<#delay#>";
+        TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) withObject:<#object#> afterDelay:<#delay#>";
         CompletionPrefix = del;
     },
     {
@@ -76,7 +76,7 @@
         BasedOn = objc;
         IsMenuItem = YES;
         Name = "Delayed performSelector: Cancel";
-        TextString = "[NSObject cancelPreviousPerformRequestsWithTarget:<#target#> selector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!selector!#>$(InExpressionsSpacing)) object:<#object#>];";
+        TextString = "[NSObject cancelPreviousPerformRequestsWithTarget:<#target#> selector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) object:<#object#>];";
         CompletionPrefix = can;
     },
     // Objective C language structure
