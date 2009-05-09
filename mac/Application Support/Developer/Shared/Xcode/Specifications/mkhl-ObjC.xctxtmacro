@@ -100,7 +100,7 @@
         IsMenuItem = YES;
         Name = "@interface Definition (Category)";
         TextString = "@interface <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@interface";
+        CompletionPrefix = "@interfacec";
         ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
     },
     {
@@ -122,7 +122,7 @@
         IsMenuItem = YES;
         Name = "@implementation Definition (Category)";
         TextString = "@implementation <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@implementation";
+        CompletionPrefix = "@implementationc";
         ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
     },
     // Objective C 2 properties
