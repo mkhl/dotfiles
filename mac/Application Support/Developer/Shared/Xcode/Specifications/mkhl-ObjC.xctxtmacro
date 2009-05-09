@@ -91,7 +91,7 @@
         ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
         CycleList = (
             objc.interface,
-            cobjc.interface.category,
+            objc.interface.category,
         );
     },
     {
