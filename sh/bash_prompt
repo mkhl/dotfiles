@@ -9,28 +9,42 @@ PS_DIRTY="*"
 PS_FAIL="!"
 PS_WINDOW=""
 # if [[ -n "$WINDOW" ]]; then
-#     PS_WINDOW="#$WINDOW:"
+# 	PS_WINDOW="#$WINDOW:"
 # fi
 
 # Helper functions
 autoload_from __git_ps1 "$HOME/.bash_completion.d/git-completion.bash"
-__svn_ps1 () {
-    if [[ -d '.svn' ]]; then
-        local svnroot="$(svn info|/usr/bin/sed -n 's/^Repository Root: //p')"
-        local svnpath="$(svn info|/usr/bin/sed -n 's/^URL: //p')"
-        builtin echo -ne " ($(/usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||" <<<"$svnpath"))"
-    fi
+function __svn_ps1 () {
+	if [[ -d '.svn' ]]; then
+		local svnroot="$(svn info|/usr/bin/sed -n 's/^Repository Root: //p')"
+		local svnpath="$(svn info|/usr/bin/sed -n 's/^URL: //p')"
+		builtin echo -ne " ($(/usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||" <<<"$svnpath"))"
+	fi
 }
-__pwd_with_tilde () {
-    /usr/bin/sed -e "s:$HOME:~:" <<<"$PWD"
+function __pwd_with_tilde () {
+	/usr/bin/sed -e "s:$HOME:~:" <<<"$PWD"
 }
+function __pwd_with_tilde_abbr () {
+	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
+}
+
 
 # Set the prompt
-PS1='\w$(__git_ps1)$(__svn_ps1)$PS_ARROW '
-
+PS_DIR='\w$(__git_ps1)$(__svn_ps1)'
+PS_ONE='$PS_ARROW'
 
 # Set terminal titles 
-__term_func () {
-    title "$is" "$USER@${HOSTNAME%.*}" "$(__pwd_with_tilde)"
+function __term_func () {
+	title "$is" "$USER@${HOSTNAME%.*}" "$(__pwd_with_tilde_abbr)"
 }
-PROMPT_COMMAND='__term_func'
+
+# Adapt prompt to PWD length
+function __prompt_func () {
+	if [[ $(__pwd_with_tilde | wc -c) -gt '35' ]]; then
+		PS1="$PS_DIR\n$PS_ONE "
+	else
+		PS1="$PS_DIR$PS_ONE "
+	fi
+}
+
+PROMPT_COMMAND='__prompt_func; __term_func'
