@@ -18,11 +18,11 @@ __svn_ps1 () {
     if [[ -d '.svn' ]]; then
         local svnroot="$(svn info|/usr/bin/sed -n 's/^Repository Root: //p')"
         local svnpath="$(svn info|/usr/bin/sed -n 's/^URL: //p')"
-        builtin echo -ne " ($(echo $svnpath | /usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||"))"
+        builtin echo -ne " ($(/usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||" <<<"$svnpath"))"
     fi
 }
 __pwd_with_tilde () {
-    echo $PWD | /usr/bin/sed -e "s:$HOME:~:"
+    /usr/bin/sed -e "s:$HOME:~:" <<<"$PWD"
 }
 
 # Set the prompt
