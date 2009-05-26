@@ -11,6 +11,7 @@ bookmarks =
 color =
 extdiff =
 fetch =
+mq =
 # pager =
 rebase =
 record =
