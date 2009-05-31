@@ -2,10 +2,14 @@
 
 on removing folder items from this_folder
 	tell application "Finder"
-		set source_ to folder "Templates" of folder "New Files" ¬
-			of (path to the library folder from the user domain)
-		set target_ to this_folder
-		set items_ to the files of source_
+		set source_ to folder "Templates" of parent of this_folder
+	end tell
+	rebuild(source_, this_folder)
+end removing
+
+on rebuild(source_, target_)
+	tell application "Finder"
+		set items_ to files of source_
 		repeat with file_ in items_
 			set name_ to name of file_
 			if not (exists name_ in target_) then
@@ -13,4 +17,4 @@ on removing folder items from this_folder
 			end if
 		end repeat
 	end tell
-end removing folder items from
+end rebuild
