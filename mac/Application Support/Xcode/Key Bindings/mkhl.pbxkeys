@@ -118,6 +118,8 @@
 		<string>buildAndGoBreakpointsOn:</string>
 		<key>@z</key>
 		<string>undo:</string>
+		<key>^</key>
+		<string>completionDictionaryExpandMacro:</string>
 		<key>^"</key>
 		<string>textMacro_c_quote</string>
 		<key>^$@B</key>
