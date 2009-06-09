@@ -44,8 +44,6 @@
 		<string>showDebugger:</string>
 		<key>$@Z</key>
 		<string>redo:</string>
-		<key>@</key>
-		<string>buildAndGo:</string>
 		<key>@+</key>
 		<string>previousBuildResult:</string>
 		<key>@,</key>
@@ -265,6 +263,11 @@
 	</dict>
 	<key>text</key>
 	<dict>
+		<key>@</key>
+    <array>
+        <string>moveToEndOfParagraph:</string>
+        <string>PBX_insertNewlineAndIndentWithEnter:</string>
+    </array>
 		<key></key>
 		<string>PBX_insertNewlineAndIndentWithEnter:</string>
 		<key></key>
