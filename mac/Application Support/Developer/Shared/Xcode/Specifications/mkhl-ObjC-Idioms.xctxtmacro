@@ -165,7 +165,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 [alert addButtonWithTitle:<#@\"OK\"#>];
 [alert beginSheetModalForWindow:[self window]
 	modalDelegate:self
-	didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+	didEndSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)alertDidEnd:returnCode:contextInfo:$(InFunctionArgsSpacing))
 	contextInfo:NULL];
 
 -$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)alertDidEnd$(PreColonSpacing):$(PostColonSpacing)(NSAlert *)$(MessageArgSpacing)alert
@@ -188,7 +188,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	types:<#types#>
 	modalForWindow:window
 	modalDelegate:self
-	didEndSelector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)openPanelDidEnd:returnCode:contextInfo:$(InExpressionsSpacing))
+	didEndSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)openPanelDidEnd:returnCode:contextInfo:$(InFunctionArgsSpacing))
 	contextInfo:NULL];
 
 -$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)openPanelDidEnd$(PreColonSpacing):$(PostColonSpacing)(NSOpenPanel *)$(MessageArgSpacing)openPanel
@@ -214,7 +214,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 	file:<#file#>
 	modalForWindow:window
 	modalDelegate:self
-	didEndSelector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)savePanelDidEnd:returnCode:contextInfo:$(InExpressionsSpacing))
+	didEndSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)savePanelDidEnd:returnCode:contextInfo:$(InFunctionArgsSpacing))
 	contextInfo:NULL];
 
 -$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)savePanelDidEnd$(PreColonSpacing):$(PostColonSpacing)(NSSavePanel *)$(MessageArgSpacing)savePanel
@@ -234,7 +234,7 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
         BasedOn = objc.idiom;
         IsMenuItem = YES;
         Name = "Notification: Add as Observer";
-        TextString = "[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector$(PreExpressionsSpacing)($(InExpressionsSpacing)<#selector#>$(InExpressionsSpacing)) name:<#!name!#> object:<#object#>];";
+        TextString = "[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) name:<#!name!#> object:<#object#>];";
         CompletionPrefix = obs;
     },
     {
