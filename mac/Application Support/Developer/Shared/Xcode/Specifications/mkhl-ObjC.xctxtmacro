@@ -495,6 +495,26 @@ return self;";
         ExcludeContexts = ( "xcode.lang.objc.block" );
     },
     {
+        Identifier = objc.imethod.return.number;
+        BasedOn = objc.imethod.return;
+        IsMenuItem = NO;
+        Name = "Instance Method returning NSNumber: Definition";
+        MethodType = "NSNumber";
+        CompletionPrefix = mn;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.imethod.return.number.decl;
+        BasedOn = objc.imethod.decl;
+        IsMenuItem = NO;
+        Name = "Instance Method returning NSNumber: Declaration";
+        MethodType = "NSNumber";
+        CompletionPrefix = mn;
+        IncludeContexts = ( "xcode.lang.objc.interface" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
         Identifier = objc.imethod.return.string;
         BasedOn = objc.imethod.return;
         IsMenuItem = NO;
@@ -571,6 +591,26 @@ return self;";
         Name = "Instance Method: Declaration";
         MethodType = "void";
         CompletionPrefix = mv;
+        IncludeContexts = ( "xcode.lang.objc.interface" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.imethod.return.value;
+        BasedOn = objc.imethod.return;
+        IsMenuItem = NO;
+        Name = "Instance Method returning NSValue: Definition";
+        MethodType = "NSValue";
+        CompletionPrefix = mw;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.imethod.return.value.decl;
+        BasedOn = objc.imethod.decl;
+        IsMenuItem = NO;
+        Name = "Instance Method returning NSValue: Declaration";
+        MethodType = "NSValue";
+        CompletionPrefix = mw;
         IncludeContexts = ( "xcode.lang.objc.interface" );
         ExcludeContexts = ( "xcode.lang.objc.block" );
     },
@@ -798,6 +838,26 @@ return self;";
         ExcludeContexts = ( "xcode.lang.objc.block" );
     },
     {
+        Identifier = objc.cmethod.return.number;
+        BasedOn = objc.cmethod.return;
+        IsMenuItem = NO;
+        Name = "Class Method returning NSNumber: Definition";
+        MethodType = "NSNumber";
+        CompletionPrefix = Mn;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.cmethod.return.number.decl;
+        BasedOn = objc.cmethod.decl;
+        IsMenuItem = NO;
+        Name = "Class Method returning NSNumber: Declaration";
+        MethodType = "NSNumber";
+        CompletionPrefix = Mn;
+        IncludeContexts = ( "xcode.lang.objc.interface" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
         Identifier = objc.cmethod.return.string;
         BasedOn = objc.cmethod.return;
         IsMenuItem = NO;
@@ -878,6 +938,26 @@ return self;";
         ExcludeContexts = ( "xcode.lang.objc.block" );
     },
     {
+        Identifier = objc.cmethod.return.value;
+        BasedOn = objc.cmethod.return;
+        IsMenuItem = NO;
+        Name = "Class Method returning NSValue: Definition";
+        MethodType = "NSValue";
+        CompletionPrefix = Mw;
+        IncludeContexts = ( "xcode.lang.objc.implementation" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
+        Identifier = objc.cmethod.return.value.decl;
+        BasedOn = objc.cmethod.decl;
+        IsMenuItem = NO;
+        Name = "Class Method returning NSValue: Declaration";
+        MethodType = "NSValue";
+        CompletionPrefix = Mw;
+        IncludeContexts = ( "xcode.lang.objc.interface" );
+        ExcludeContexts = ( "xcode.lang.objc.block" );
+    },
+    {
         Identifier = objc.cmethod.event;
         BasedOn = objc.cmethod.void;
         IsMenuItem = NO;
@@ -951,10 +1031,15 @@ return self;";
             objc.parameter.array,
             objc.parameter.bool,
             objc.parameter.dictionary,
-            objc.parameter.integer,
+            objc.parameter.int,
+            objc.parameter.id,
             objc.parameter.string,
             objc.parameter.set,
-            objc.parameter.unsigned-integer,
+            objc.parameter.uint,
+            objc.parameter.void,
+            objc.parameter.value,
+            objc.parameter.event,
+            objc.parameter.targetaction,
         );
     },
     {
@@ -990,6 +1075,14 @@ return self;";
         CompletionPrefix = ppi;
     },
     {
+        Identifier = objc.parameter.id;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: id";
+        ParameterType = "id";
+        CompletionPrefix = ppid;
+    },
+    {
         Identifier = objc.parameter.string;
         BasedOn = objc.parameter;
         IsMenuItem = NO;
@@ -1012,6 +1105,38 @@ return self;";
         Name = "Method Parameter: NSUInteger";
         ParameterType = "NSUInteger";
         CompletionPrefix = ppui;
+    },
+    {
+        Identifier = objc.parameter.void;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: void Pointer";
+        ParameterType = "void *";
+        CompletionPrefix = ppv;
+    },
+    {
+        Identifier = objc.parameter.value;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSValue";
+        ParameterType = "NSValue";
+        CompletionPrefix = ppw;
+    },
+    {
+        Identifier = objc.parameter.event;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSEvent";
+        ParameterType = "NSEvent";
+        CompletionPrefix = ppe;
+    },
+    {
+        Identifier = objc.parameter.targetaction;
+        BasedOn = objc;
+        IsMenuItem = NO;
+        Name = "Method Parameter: Target+Action";
+        TextString = "(id)$(MessageArgSpacing)sender";
+        CompletionPrefix = ppx;
     },
     {
         Identifier = objc.parameter.with-colon;
