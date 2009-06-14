@@ -1033,6 +1033,7 @@ return self;";
             objc.parameter.dictionary,
             objc.parameter.int,
             objc.parameter.id,
+            objc.parameter.number,
             objc.parameter.string,
             objc.parameter.set,
             objc.parameter.uint,
@@ -1081,6 +1082,14 @@ return self;";
         Name = "Method Parameter: id";
         ParameterType = "id";
         CompletionPrefix = ppid;
+    },
+    {
+        Identifier = objc.parameter.number;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSNumber";
+        ParameterType = "NSNumber";
+        CompletionPrefix = ppn;
     },
     {
         Identifier = objc.parameter.string;
