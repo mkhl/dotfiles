@@ -938,7 +938,20 @@ print resultText,
 				<string>#!/usr/bin/env ruby -wKU
 # -*- coding: utf-8 -*-
 
-print ARGF.read.gsub(/(;)?\s+\{$/, ';')
+# This regexp shamelessly stolen from the TextMate Objective-C bundle.
+proto_re = /
+            ^\s*                # Start of the line and optional space
+            [+-]\s*             # a plus or minus for method specifier
+            \([^)]+\)           # the return type in brackets
+            (?:(?:\n|[^{])*)    
+            (?m:.*?)            
+            \{                  
+          /x
+protos = []
+ARGF.read.scan(proto_re) { |match|
+  protos &lt;&lt; match.sub(/(;)?(?m:\s+)\{$/, ';')
+}
+puts protos.join("\n")
 </string>
 				<key>scriptError</key>
 				<integer>1</integer>
