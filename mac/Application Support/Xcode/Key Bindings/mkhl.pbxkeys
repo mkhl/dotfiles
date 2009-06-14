@@ -631,7 +631,7 @@
 		<string>moveSubWordForward:</string>
 		<key>^</key>
 		<string>deleteSubWordForward:</string>
-		<key>{</key>
+		<key>~8</key>
 		<string>processOpenBrace:</string>
 		<key>~</key>
 		<string>insertNewlineIgnoringFieldEditor:</string>
