@@ -10,6 +10,7 @@
 # export LESSEDIT="$EDITOR --line %lm %f"
 # # Aquamacs
 # export EDITOR="emacsclient"
+# export ALTERNATE_EDITOR="aquamacs"
 # export CVSEDITOR="$EDITOR"
 # export SVN_EDITOR="$EDITOR"
 # export GIT_EDITOR="$EDITOR"
