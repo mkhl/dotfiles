@@ -34,6 +34,14 @@
         CompletionPrefix = pimc;
     },
     {
+        Identifier = c.pragmamark.section;
+        BasedOn = c;
+        IsMenuItem = YES;
+        Name = "#Pragma Mark Section";
+        TextString = "#pragma mark -\n#pragma mark <#!label!#>";
+        CompletionPrefix = pms;
+    },
+    {
         Identifier = c.warning;
         BasedOn = c;
         IsMenuItem = YES;
