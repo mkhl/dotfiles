@@ -1031,14 +1031,18 @@ return self;";
             objc.parameter.array,
             objc.parameter.bool,
             objc.parameter.dictionary,
+            objc.parameter.range,
             objc.parameter.int,
             objc.parameter.id,
             objc.parameter.number,
+            objc.parameter.point,
+            objc.parameter.rect,
             objc.parameter.string,
             objc.parameter.set,
             objc.parameter.uint,
             objc.parameter.void,
             objc.parameter.value,
+            objc.parameter.size,
             objc.parameter.event,
             objc.parameter.targetaction,
         );
@@ -1068,6 +1072,14 @@ return self;";
         CompletionPrefix = ppd;
     },
     {
+        Identifier = objc.parameter.range;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSRange";
+        ParameterType = "NSRange";
+        CompletionPrefix = ppg;
+    },
+    {
         Identifier = objc.parameter.int;
         BasedOn = objc.parameter;
         IsMenuItem = NO;
@@ -1090,6 +1102,22 @@ return self;";
         Name = "Method Parameter: NSNumber";
         ParameterType = "NSNumber";
         CompletionPrefix = ppn;
+    },
+    {
+        Identifier = objc.parameter.point;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSPoint";
+        ParameterType = "NSPoint";
+        CompletionPrefix = ppp;
+    },
+    {
+        Identifier = objc.parameter.rect;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSRect";
+        ParameterType = "NSRect";
+        CompletionPrefix = ppr;
     },
     {
         Identifier = objc.parameter.string;
@@ -1130,6 +1158,14 @@ return self;";
         Name = "Method Parameter: NSValue";
         ParameterType = "NSValue";
         CompletionPrefix = ppw;
+    },
+    {
+        Identifier = objc.parameter.size;
+        BasedOn = objc.parameter;
+        IsMenuItem = NO;
+        Name = "Method Parameter: NSSize";
+        ParameterType = "NSSize";
+        CompletionPrefix = ppz;
     },
     {
         Identifier = objc.parameter.event;
