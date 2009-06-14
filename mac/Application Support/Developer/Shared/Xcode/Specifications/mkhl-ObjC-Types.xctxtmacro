@@ -301,6 +301,78 @@
         CompletionPrefix = nsnui;
     },
     {
+        Identifier = objc.types.nsw;
+        BasedOn = objc.types;
+        IsMenuItem = YES;
+        Name = "NSValue";
+        TextString = "NSValue";
+        CompletionPrefix = nsw;
+        CycleList = (
+            objc.nsw,
+            objc.nsw.decl,
+            objc.nsw.with.pointer,
+            objc.nsw.with.point,
+            objc.nsw.with.range,
+            objc.nsw.with.rect,
+            objc.nsw.with.size,
+        );
+    },
+    {
+        Identifier = objc.types.nsw.decl;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSValue Declaration";
+        TextString = "NSValue *<#!value!#>";
+        CompletionPrefix = nswp;
+    },
+    {
+        Identifier = objc.types.nsw.with;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSValue valueWith…";
+        TextString = "[NSValue valueWith$(ValueType):<#!value!#>]";
+    },
+    {
+        Identifier = objc.types.nsw.with.pointer;
+        BasedOn = objc.types.nsw.with;
+        IsMenuItem = NO;
+        Name = "NSValue Value With Pointer";
+        ValueType = "Pointer";
+        CompletionPrefix = "nsw*";
+    },
+    {
+        Identifier = objc.types.nsw.with.range;
+        BasedOn = objc.types.nsw.with;
+        IsMenuItem = NO;
+        Name = "NSValue Value With Range";
+        ValueType = "Range";
+        CompletionPrefix = nswg;
+    },
+    {
+        Identifier = objc.types.nsw.with.point;
+        BasedOn = objc.types.nsw.with;
+        IsMenuItem = NO;
+        Name = "NSValue Value With Point";
+        ValueType = "Point";
+        CompletionPrefix = nswp;
+    },
+    {
+        Identifier = objc.types.nsw.with.rect;
+        BasedOn = objc.types.nsw.with;
+        IsMenuItem = NO;
+        Name = "NSValue Value With Rect";
+        ValueType = "Rect";
+        CompletionPrefix = nswr;
+    },
+    {
+        Identifier = objc.types.nsw.with.size;
+        BasedOn = objc.types.nsw.with;
+        IsMenuItem = NO;
+        Name = "NSValue Value With Size";
+        ValueType = "Size";
+        CompletionPrefix = nswz;
+    },
+    {
         Identifier = objc.types.localizedstring;
         BasedOn = objc.types;
         IsMenuItem = YES;
