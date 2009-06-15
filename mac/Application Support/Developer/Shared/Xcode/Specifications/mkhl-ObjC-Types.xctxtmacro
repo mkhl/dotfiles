@@ -47,6 +47,7 @@
             objc.nsms,
             objc.nsms.decl,
             objc.nsms.decl.init,
+            objc.nsms.init,
         );
     },
     {
@@ -64,6 +65,14 @@
         Name = "NSMutableString Declaration and Initialization";
         TextString = "NSMutableString *<#!string!#> = [NSMutableString string];";
         CompletionPrefix = nsmspi;
+    },
+    {
+        Identifier = objc.types.nsms.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableString Initialization";
+        TextString = "[NSMutableString string]";
+        CompletionPrefix = nsmsi;
     },
     {
         Identifier = objc.types.nsa;
@@ -96,6 +105,7 @@
             objc.nsma,
             objc.nsma.decl,
             objc.nsma.decl.init,
+            objc.nsma.init,
         );
     },
     {
@@ -113,6 +123,14 @@
         Name = "NSMutableArray Declaration and Initialization";
         TextString = "NSMutableArray *<#!array!#> = [NSMutableArray array];";
         CompletionPrefix = nsmapi;
+    },
+    {
+        Identifier = objc.types.nsma.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableArray Initialization";
+        TextString = "[NSMutableArray array]";
+        CompletionPrefix = nsmai;
     },
     {
         Identifier = objc.types.nsd;
@@ -145,6 +163,7 @@
             objc.nsmd,
             objc.nsmd.decl,
             objc.nsmd.decl.init,
+            objc.nsmd.init,
         );
     },
     {
@@ -162,6 +181,14 @@
         Name = "NSMutableDictionary Declaration and Initialization";
         TextString = "NSMutableDictionary *<#!dict!#> = [NSMutableDictionary dictionary];";
         CompletionPrefix = nsmdpi;
+    },
+    {
+        Identifier = objc.types.nsmd.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableDictionary Initialization";
+        TextString = "[NSMutableDictionary dictionary]";
+        CompletionPrefix = nsmdi;
     },
     {
         Identifier = objc.types.nst;
@@ -194,6 +221,7 @@
             objc.nsmt,
             objc.nsmt.decl,
             objc.nsmt.decl.init,
+            objc.nsmt.init,
         );
     },
     {
@@ -211,6 +239,14 @@
         Name = "NSMutableSet Declaration and Initialization";
         TextString = "NSMutableSet *<#!set!#> = [NSMutableSet set];";
         CompletionPrefix = nsmtpi;
+    },
+    {
+        Identifier = objc.types.nsmt.init;
+        BasedOn = objc.types;
+        IsMenuItem = NO;
+        Name = "NSMutableSet Initialization";
+        TextString = "[NSMutableSet set]";
+        CompletionPrefix = nsmti;
     },
     {
         Identifier = objc.types.nsi;
