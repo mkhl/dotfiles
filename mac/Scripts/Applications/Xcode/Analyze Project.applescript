@@ -26,18 +26,17 @@ on analyze(this_file)
 			launch
 			activate
 			tell application "System Events"
-				tell process "AnalysisTool"
+				tell application process "AnalysisTool"
 					tell window 1
 						tell text field 1
-							--set focused to true
-							--set selected to true
 							set value of attribute "AXValue" to this_file
+							keystroke " "
+							key code 51
 							perform action "AXConfirm"
-							--set selected to false
-							--set focused to false
-							--delay 1
 						end tell
-						click button "Run analyses"
+						tell button "Run analyses"
+							click
+						end tell
 					end tell
 				end tell
 			end tell
