@@ -1,4 +1,6 @@
 {
+    /* Convenience */
+//     "@\U000A" = ("moveToEndOfParagraph:", "insertNewline:");
     /* For the GlyphInput bundle */
     // "^§" = "insertGlyphRepresentationOfKeyEquivalent:";     // Ctl-§
     // "~§" = "insertTextualRepresentationOfKeyEquivalent:";   // Opt-§
