@@ -5,22 +5,26 @@
 -- Analyze the current Xcode project with AnalysisTool.
 -- Relies on UI Scripting to access AnalysisTool. You have been warned.
 
-try
-	set _project to xcode_project_path()
-	analyze(_project)
-on error error_message
-	display dialog error_message ¬
-		with icon 2 ¬
-		buttons {"OK"} default button 1
-end try
+on run
+	try
+		set _project to xcode_project_path()
+		analyze(_project)
+	on error error_message
+		tell application "System Events"
+			display dialog error_message ¬
+				with icon 2 ¬
+				buttons {"OK"} default button 1
+		end tell
+	end try
+end run
 
 on xcode_project_path()
 	tell application "Xcode"
-		return path of project of active project document
+		return path of active project document
 	end tell
 end xcode_project_path
 
-on analyze(this_file)
+on analyze(_file)
 	try
 		tell application "AnalysisTool"
 			launch
@@ -29,7 +33,8 @@ on analyze(this_file)
 				tell application process "AnalysisTool"
 					tell window 1
 						tell text field 1
-							set value of attribute "AXValue" to this_file
+							set value of attribute "AXValue" to _file
+							-- Careful: huge hack!
 							keystroke " "
 							key code 51
 							perform action "AXConfirm"
@@ -42,8 +47,10 @@ on analyze(this_file)
 			end tell
 		end tell
 	on error error_message
-		display dialog error_message ¬
-			with icon 2 ¬
-			buttons {"OK"} default button 1
+		tell application "System Events"
+			display dialog error_message ¬
+				with icon 2 ¬
+				buttons {"OK"} default button 1
+		end tell
 	end try
 end analyze

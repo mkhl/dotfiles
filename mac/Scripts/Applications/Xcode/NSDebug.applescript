@@ -22,7 +22,9 @@ try
 	createvariable("NSAutoreleaseHighWaterMark", "0")
 	createvariable("NSAutoreleaseHighWaterResolution", "0")
 on error error_message
-	display dialog error_message ¬
-		with icon 2 ¬
-		buttons {"OK"} default button 1
+	tell application "System Events"
+		display dialog error_message ¬
+			with icon 2 ¬
+			buttons {"OK"} default button 1
+	end tell
 end try
