@@ -3,8 +3,8 @@
 on run
 	tell application "Finder"
 		set items_ to selection
+		my groupFiles(items_)
 	end tell
-	groupFiles(items_)
 end run
 
 on open(items_)
