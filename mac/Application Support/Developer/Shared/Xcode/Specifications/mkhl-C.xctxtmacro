@@ -1,118 +1,557 @@
 (
-    // C language basics
+    //
+    // C language macros
+    // =================
     {
-        Identifier = c.brace;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Brace Selection";
-        TextString = "{$(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing)}";
-        IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        Identifier = c;
+        Name = "C";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.c" );
+        ExcludeContexts = ( "xcode.lang.string",
+                            "xcode.lang.character",
+                            "xcode.lang.comment",
+                            "xcode.lang.c.preprocessor" );
     },
-    {
-        Identifier = c.conditional;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Conditional Expression";
-        TextString = "<#!condition!#> ? <#true-expression#> : <#false-expression#>";
-        CompletionPrefix = "?";
-        IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
-    },
-    {
-        Identifier = c.define;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "#Define";
-        TextString = "#define <#key#> <#value#>";
-        CompletionPrefix = def;
-    },
-    {
-        Identifier = c.import.cocoa;
-        BasedOn = c.import;
-        IsMenuItem = NO;
-        Name = "#Import Statement (Cocoa)";
-        TextString = "#import <Cocoa/Cocoa.h>";
-        CompletionPrefix = pimc;
-    },
-    {
-        Identifier = c.pragmamark.section;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "#Pragma Mark Section";
-        TextString = "#pragma mark -\n#pragma mark <#!label!#>";
-        CompletionPrefix = pms;
-    },
-    {
-        Identifier = c.warning;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "#Warning";
-        TextString = "#warning <#!message!#>";
-        CompletionPrefix = pw;
-    },
-    {
-        Identifier = c.function;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Function";
-        TextString = "<#type#> <#function#>$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#arguments#>$(InFunctionArgsSpacing))$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
-        CompletionPrefix = fun;
-    },
-    // C return values
-    {
-        Identifier = c.return;
-        BasedOn = c;
-        IsMenuItem = YES;
-        Name = "Return";
-        ReturnValue = "";
-        TextString = "return $(ReturnValue);";
-        CompletionPrefix = ret;
-        CycleList = (
-            c.return,
-            c.return.value,
-            c.return.yes,
-            c.return.no,
-            c.return.self,
-            c.return.nil,
-        );
-    },
-    {
-        Identifier = c.return.value;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Value";
-        ReturnValue = "<#!value!#>";
-        CompletionPrefix = retv;
-    },
-    {
-        Identifier = c.return.yes;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Yes";
-        ReturnValue = "YES";
-        CompletionPrefix = rety;
-    },
-    {
-        Identifier = c.return.no;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return No";
-        ReturnValue = "NO";
-        CompletionPrefix = retn;
-    },
-    {
-        Identifier = c.return.self;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Self";
-        ReturnValue = "self";
-        CompletionPrefix = rets;
-    },
-    {
-        Identifier = c.return.nil;
-        BasedOn = c.return;
-        IsMenuItem = NO;
-        Name = "Return Nil";
-        ReturnValue = "nil";
-        CompletionPrefix = retnil;
-    },
+        //
+        // Block Statements
+        // ----------------
+        {
+            Identifier = c.block;
+            BasedOn = c;
+            TextString = "$(Statement)$(BlockSeparator){\n\t<#!statements!#>\n}";
+            Statement = "$(Command)$(PreExpressionsSpacing)($(InExpressionsSpacing)$(Expressions)$(InExpressionsSpacing))";
+            IncludeContexts = ( "xcode.lang.c.block", "xcode.lang.java.block" );    // these all work in Java too
+            ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor", "xcode.lang.c.parenexpr", "xcode.lang.c.bracketexpr" );
+        },
+            {
+                Identifier = c.block.if;
+                BasedOn = c.block;
+                Name = "If Block";
+                IsMenuItem = YES;
+                Command = "if";
+                Expressions = "<#condition#>";
+                CompletionPrefix = if;
+                CycleList = (
+                    c.block.if,
+                    c.block.ifelse,
+                );
+            },
+            {
+                Identifier = c.block.ifelse;
+                BasedOn = c.block;
+                Name = "If / Else Block";
+                IsMenuItem = NO;
+                Command = "if";
+                Expressions = "<#condition#>";
+                TextString = "$(Statement)$(BlockSeparator){\n\t<#!statements!#>\n}$(PostBlockSeparator)else$(BlockSeparator){\n\t<#statements#>\n}";
+                CompletionPrefix = ifelse;
+            },
+            {
+                Identifier = c.block.else;
+                BasedOn = c.block;
+                IsMenuItem = YES;
+                Name = "Else Block";
+                TextString = "else$(BlockSeparator){\n\t<#!statements!#>\n}\n";
+                CompletionPrefix = else;
+                CycleList = (
+                    c.block.else,
+                    c.block.elseif,
+                );
+            },
+            {
+                Identifier = c.block.elseif;
+                BasedOn = c.block;
+                Name = "Else If Block";
+                IsMenuItem = NO;
+                Command = "else if";
+                Expressions = "<#condition#>";
+                CompletionPrefix = elseif;
+            },
+            
+            {
+                Identifier = c.block.for;
+                BasedOn = c.block;
+                Name = "For Loop";
+                IsMenuItem = YES;
+                Command = "for";
+                Expressions = "<#initial#>; <#condition#>; <#increment#>";
+                CompletionPrefix = for;
+                CycleList = (
+                    c.block.for,
+                    c.block.for.i,
+                );
+            },
+            {
+                Identifier = c.block.for.i;
+                BasedOn = c.block;
+                Name = "For i Loop";
+                IsMenuItem = NO;
+                Command = "for";
+                Expressions = "int i = 0; i < <#limit#>; i++";
+                CompletionPrefix = fori;
+            },
+            
+            {
+                Identifier = c.block.while;
+                BasedOn = c.block;
+                Name = "While Loop";
+                IsMenuItem = YES;
+                Command = "while";
+                Expressions = "<#condition#>";
+                CompletionPrefix = while;
+            },
+            {
+                Identifier = c.block.dowhile;
+                BasedOn = c.block;
+                Name = "Do While Loop";
+                IsMenuItem = YES;
+                Command = "while";
+                TextString = "do$(BlockSeparator){\n\t<#!statements!#>\n}$(PreExpressionsSpacing)$(Statement)";
+                Expressions = "<#condition#>";
+                CompletionPrefix = do;
+            },
+            
+            {
+                Identifier = c.block.switch;
+                BasedOn = c.block;
+                Name = "Switch Block";
+                IsMenuItem = YES;
+                Command = "switch";
+                TextString = "$(Statement)$(BlockSeparator){\n$(CaseStatementSpacing)case <#constant#>:\n$(CaseStatementSpacing)\t<#!statements!#>\n$(CaseStatementSpacing)\tbreak;\n$(CaseStatementSpacing)default:\n$(CaseStatementSpacing)\tbreak;\n}";
+                Expressions = "<#expression#>";
+                CompletionPrefix = switch;
+            },
+        
+        {
+            Identifier = c.caseblock;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Case Block";
+            TextString = "case <#constant#>:\n\t<#!statements!#>\n\tbreak;\n";
+            CompletionPrefix = case;
+            IncludeContexts = ( "xcode.lang.c.block", "xcode.lang.java.block" );    // this works in Java too
+            ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor", "xcode.lang.c.parenexpr", "xcode.lang.c.bracketexpr" );
+        },
+
+        //
+        // Type Declarations
+        // -----------------
+        {
+            Identifier = c.enum;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Enum Definition";
+            TextString = "enum <#enum_tag#>$(BlockSeparator){\n\t<#!values!#>\n}";
+            CompletionPrefix = enum;
+        },
+        {
+            Identifier = c.struct;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Struct Definition";
+            TextString = "struct <#struct_tag#>$(BlockSeparator){\n\t<#!fields!#>\n}";
+            CompletionPrefix = struct;
+        },
+        {
+            Identifier = c.union;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Union Definition";
+            TextString = "union$(PreExpressionsSpacing)<#union_tag#>$(BlockSeparator){\n\t<#!fields!#>\n}";
+            CompletionPrefix = union;
+        },
+        {
+            Identifier = c.typedef;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Type Definition";
+            TextString = "typedef <#!existing_type!#> <#new_name#>";
+            CompletionPrefix = typedef;
+        },
+
+        //
+        // Common Functions
+        // ----------------
+        {
+            Identifier = c.printf;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Printf() Call";
+            TextString = "printf$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)\"<#message#>\"$(InFunctionArgsSpacing));";
+            CompletionPrefix = printf;
+            IncludeContexts = ( "xcode.lang.c.block" );
+        },
+        
+        //
+        // Expressions
+        // -----------
+        {
+            Identifier = c.paren;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Parenthesize Selection";
+            TextString = "($(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing))";
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+        {
+            Identifier = c.bracket;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Bracket Selection";
+            TextString = "[$(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing)]";
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+            ExcludeContexts = ( "xcode.lang.objc" );                    // ObjectiveC uses brackets differently
+        },
+        {
+            Identifier = c.brace;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Brace Selection";
+            TextString = "{$(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing)}";
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+        {
+            Identifier = c.quote;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Quote Selection";
+            TextString = "\"<#!text!#>\"";
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+        
+        {
+            Identifier = c.conditional;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Conditional Expression";
+            TextString = "<#!condition!#> ? <#true-expression#> : <#false-expression#>";
+            CompletionPrefix = "cond";
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+
+        //
+        // Return Statements
+        // -----------------
+        {
+            Identifier = c.return;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Return";
+            ReturnValue = "<#!value!#>";
+            TextString = "return $(ReturnValue);";
+            CompletionPrefix = ret;
+            CycleList = (
+                c.return,
+                c.return.yes,
+                c.return.no,
+                c.return.self,
+                c.return.nil,
+            );
+        },
+            {
+                Identifier = c.return.yes;
+                BasedOn = c.return;
+                IsMenuItem = NO;
+                Name = "Return Yes";
+                ReturnValue = "YES";
+                CompletionPrefix = rety;
+            },
+            {
+                Identifier = c.return.no;
+                BasedOn = c.return;
+                IsMenuItem = NO;
+                Name = "Return No";
+                ReturnValue = "NO";
+                CompletionPrefix = retn;
+            },
+            {
+                Identifier = c.return.self;
+                BasedOn = c.return;
+                IsMenuItem = NO;
+                Name = "Return Self";
+                ReturnValue = "self";
+                CompletionPrefix = rets;
+            },
+            {
+                Identifier = c.return.nil;
+                BasedOn = c.return;
+                IsMenuItem = NO;
+                Name = "Return Nil";
+                ReturnValue = "nil";
+                CompletionPrefix = retnil;
+            },
+
+        //
+        // Preprocessor Macros
+        // -------------------
+        {
+            Identifier = c.pp;
+            BasedOn = c;
+            IsMenuItem = NO;
+            Name = "Preprocessor Macro";
+            IncludeContexts = ( "xcode.lang.c.preprocessor" );
+        },
+        {
+            Identifier = c.pragmamark;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#Pragma Mark";
+            TextString = "#pragma mark <#!label!#>";
+            CompletionPrefix = pm;
+        },
+            {
+                Identifier = c.pragmamark.section;
+                BasedOn = c.pragmamark;
+                IsMenuItem = NO;
+                Name = "#Pragma Mark Section";
+                TextString = "#pragma mark -\n#pragma mark <#!label!#>";
+                CompletionPrefix = pms;
+            },
+        {
+            Identifier = c.pp.pragmamark;
+            BasedOn = c.pp;
+            IsMenuItem = NO;
+            Name = "Pragma Mark";
+            TextString = "pragma mark <#!label!#>";
+            CompletionPrefix = pragma;
+        },
+        {
+            Identifier = c.define;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#Define";
+            TextString = "#define <#name#> <#value#>";
+            CompletionPrefix = pd;
+        },
+        {
+            Identifier = c.pp.define;
+            BasedOn = c.pp;
+            IsMenuItem = YES;
+            Name = "Define";
+            TextString = "define <#name#> <#value#>";
+            CompletionPrefix = define;
+        },
+        {
+            Identifier = c.warning;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#Warning";
+            TextString = "#warning <#!message!#>";
+            CompletionPrefix = pw;
+        },
+        {
+            Identifier = c.pp.warning;
+            BasedOn = c.pp;
+            IsMenuItem = YES;
+            Name = "Warning";
+            TextString = "warning <#!message!#>";
+            CompletionPrefix = pw;
+        },
+        //
+        // Imports
+        // -------
+        {
+            Identifier = c.import;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#Import Statement";
+            TextString = "#import \"<#!file!#>\"";
+            CompletionPrefix = pim;
+            CycleList = (
+                c.import,
+                c.import.sys,
+                c.import.fw,
+                c.import.cocoa,
+            );
+            ExcludeContexts = ( "xcode.lang.c.block", "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+        },
+            {
+                Identifier = c.import.sys;
+                BasedOn = c.import;
+                IsMenuItem = NO;
+                Name = "#Import Statement (System)";
+                TextString = "#import <<#!file!#>>";
+                CompletionPrefix = pims;
+            },
+            {
+                Identifier = c.import.fw;
+                BasedOn = c.import;
+                IsMenuItem = NO;
+                Name = "#Import Statement (Framework)";
+                TextString = "#import <<#framework#>/<#!file!#>>";
+                CompletionPrefix = pimf;
+            },
+            {
+                Identifier = c.import.cocoa;
+                BasedOn = c.import;
+                IsMenuItem = NO;
+                Name = "#Import Statement (Cocoa)";
+                TextString = "#import <Cocoa/Cocoa.h>";
+                CompletionPrefix = pimc;
+            },
+        //
+        // Includes
+        // --------
+        {
+            Identifier = c.include;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#Include Statement";
+            TextString = "#include \"<#!file!#>\"";
+            CompletionPrefix = pin;
+            CycleList = (
+                c.include,
+                c.include.sys
+            );
+            ExcludeContexts = ( "xcode.lang.c.block", "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+        },
+            {
+                Identifier = c.include.sys;
+                BasedOn = c.include;
+                IsMenuItem = NO;
+                Name = "#Include Statement (System)";
+                TextString = "#include <<#!file!#>>";
+                CompletionPrefix = pins;
+            },
+
+        //
+        // Ifdef
+        // -----
+        {
+            Identifier = c.pif;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "#If Block";
+            IfText = "if";
+            TextString = "#$(IfText) $(Expression)\n<#!statements!#>\n#endif";
+            Expression = "<#expression#>";
+            CompletionPrefix = pif;
+            CycleList = (
+                c.pif,
+                c.pifzero,
+                c.pifdef,
+                c.pifelse,
+                c.pifdefelse
+            );
+        },
+            {
+                Identifier = c.pifdef;
+                BasedOn = c.pif;
+                IsMenuItem = NO;
+                Name = "#Ifdef Block";
+                IfText = "ifdef";
+                CompletionPrefix = pifd;
+            },
+            {
+                Identifier = c.pifelse;
+                BasedOn = c.pif;
+                IsMenuItem = NO;
+                Name = "#If / Else Block";
+                TextString = "#$(IfText) $(Expression)\n<#!statements!#>\n#else\n<#statements#>\n#endif";
+                CompletionPrefix = pife;
+            },
+            {
+                Identifier = c.pifdefelse;
+                BasedOn = c.pifelse;
+                IsMenuItem = NO;
+                IfText = "ifdef";
+                Name = "#Ifdef / Else Block";
+                CompletionPrefix = pifde;
+            },
+            {
+                Identifier = c.pifzero;
+                BasedOn = c.pif;
+                IsMenuItem = NO;
+                Name = "#If 0 Block";
+                Expression = "0";
+                CompletionPrefix = pifz;
+            },
+
+        //
+        // Copyright Templates
+        // -------------------
+        {
+            Identifier = c.copyright;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Copyright Comment";
+            CopyrightNotice = "// All rights reserved.\n";
+            TextString = "//\n// Copyright (c) $(YEAR), $(ORGANIZATIONNAME)\n$(CopyrightNotice)//\n";
+            CompletionPrefix = copyright;
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+            CycleList = (
+                c.copyright,
+                c.copyright.mit,
+                c.copyright.apache,
+            );
+        },
+            {
+                Identifier = c.copyright.mit;
+                BasedOn = c.copyright;
+                IsMenuItem = NO;
+                Name = "Copyright Comment (MIT)";
+                CopyrightNotice = "// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+";
+                CompletionPrefix = copyrightmit;
+            },
+            {
+                Identifier = c.copyright.apache;
+                BasedOn = c.copyright;
+                IsMenuItem = NO;
+                Name = "Copyright Comment (Apache)";
+                CopyrightNotice = "// Licensed under the Apache License, Version 2.0 (the \"License\");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an \"AS IS\" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+";
+                CompletionPrefix = copyrightapache;
+            },
+
+        //
+        // Comments
+        // --------
+        {
+            Identifier = c.comment;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Comment Selection";
+            TextString = "/* <#!comment!#> */";
+            CompletionPrefix = comment;
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+
+        {
+            Identifier = c.separatorcomment;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Separator Comment";
+            TextString = "/****************************************************************************/\n";
+            CompletionPrefix = cseparator;
+            IncludeContexts = ( "xcode.lang.c", "xcode.lang.java" );    // this works in Java too
+        },
+
+        //
+        // Functions
+        // ---------
+        {
+            Identifier = c.function;
+            BasedOn = c;
+            IsMenuItem = YES;
+            Name = "Function";
+            TextString = "<#type#> <#function#>$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#arguments#>$(InFunctionArgsSpacing))$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
+            CompletionPrefix = function;
+        },
 )
