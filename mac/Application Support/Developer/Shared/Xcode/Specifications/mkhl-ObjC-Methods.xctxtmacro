@@ -1,0 +1,765 @@
+(
+    //
+    // Objective-C Methods
+    // ===================
+    {
+        Identifier = objc.methods;
+        Name = "Objective C - Methods";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.objc" );
+        ExcludeContexts = ( "xcode.lang.string",
+                            "xcode.lang.character",
+                            "xcode.lang.comment",
+                            "xcode.lang.c.preprocessor" );
+    },
+
+        //
+        // Instance Methods
+        // ----------------
+        {
+            Identifier = objc.methods.imethod;
+            BasedOn = objc.methods;
+            IsMenuItem = YES;
+            Name = "Instance Method: Definition";
+            MethodArgs = "";
+            MethodBody = "<#!statements!#>";
+            MethodType = "<#type#>";
+            TextString = "-$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs)$(FunctionBlockSeparator){\n\t$(MethodBody)\n}\n";
+            CompletionPrefix = m;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.methods.imethod.decl;
+            BasedOn = objc.methods;
+            IsMenuItem = YES;
+            Name = "Instance Method: Declaration";
+            MethodArgs = "";
+            MethodType = "<#type#>";
+            TextString = "-$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs);\n";
+            CompletionPrefix = m;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+            {
+                Identifier = objc.methods.imethod.return;
+                BasedOn = objc.methods.imethod;
+                IsMenuItem = NO;
+                Name = "Instance Method returning Something: Definition";
+                MethodBody = "<#!statements!#>\n\treturn <#expression#>;";
+            },
+            {
+                Identifier = objc.methods.imethod.return.array;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSArray: Definition";
+                MethodType = "NSArray *";
+                CompletionPrefix = ma;
+            },
+            {
+                Identifier = objc.methods.imethod.return.array.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSArray: Declaration";
+                MethodType = "NSArray *";
+                CompletionPrefix = ma;
+            },
+            {
+                Identifier = objc.methods.imethod.return.bool;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning BOOL: Definition";
+                MethodType = "BOOL";
+                CompletionPrefix = mb;
+            },
+            {
+                Identifier = objc.methods.imethod.return.bool.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning BOOL: Declaration";
+                MethodType = "BOOL";
+                CompletionPrefix = mb;
+            },
+            {
+                Identifier = objc.methods.imethod.return.dictionary;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSDictionary: Definition";
+                MethodType = "NSDictionary *";
+                CompletionPrefix = md;
+            },
+            {
+                Identifier = objc.methods.imethod.return.dictionary.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSDictionary: Declaration";
+                MethodType = "NSDictionary *";
+                CompletionPrefix = md;
+            },
+            {
+                Identifier = objc.methods.imethod.return.int;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSInteger: Definition";
+                MethodType = "NSInteger";
+                CompletionPrefix = mi;
+            },
+            {
+                Identifier = objc.methods.imethod.return.int.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSInteger: Declaration";
+                MethodType = "NSInteger";
+                CompletionPrefix = mi;
+            },
+            {
+                Identifier = objc.methods.imethod.return.id;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning id: Definition";
+                MethodType = "id";
+                CompletionPrefix = mid;
+            },
+            {
+                Identifier = objc.methods.imethod.return.id.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning id: Declaration";
+                MethodType = "id";
+                CompletionPrefix = mid;
+            },
+            {
+                Identifier = objc.methods.imethod.return.number;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSNumber: Definition";
+                MethodType = "NSNumber";
+                CompletionPrefix = mn;
+            },
+            {
+                Identifier = objc.methods.imethod.return.number.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSNumber: Declaration";
+                MethodType = "NSNumber";
+                CompletionPrefix = mn;
+            },
+            {
+                Identifier = objc.methods.imethod.return.string;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSString: Definition";
+                MethodType = "NSString *";
+                CompletionPrefix = ms;
+            },
+            {
+                Identifier = objc.methods.imethod.return.string.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSString: Declaration";
+                MethodType = "NSString *";
+                CompletionPrefix = ms;
+            },
+            {
+                Identifier = objc.methods.imethod.return.set;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSSet: Definition";
+                MethodType = "NSSet *";
+                CompletionPrefix = mt;
+            },
+            {
+                Identifier = objc.methods.imethod.return.set.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSSet: Declaration";
+                MethodType = "NSSet *";
+                CompletionPrefix = mt;
+            },
+            {
+                Identifier = objc.methods.imethod.return.uint;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSUInteger: Definition";
+                MethodType = "NSUInteger";
+                CompletionPrefix = mui;
+            },
+            {
+                Identifier = objc.methods.imethod.return.uint.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSUInteger: Declaration";
+                MethodType = "NSUInteger";
+                CompletionPrefix = mui;
+            },
+            {
+                Identifier = objc.methods.imethod.void;
+                BasedOn = objc.methods.imethod;
+                IsMenuItem = NO;
+                Name = "Instance Method: Definition";
+                MethodType = "void";
+                CompletionPrefix = mv;
+            },
+            {
+                Identifier = objc.methods.imethod.void.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method: Declaration";
+                MethodType = "void";
+                CompletionPrefix = mv;
+            },
+            {
+                Identifier = objc.methods.imethod.return.value;
+                BasedOn = objc.methods.imethod.return;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSValue: Definition";
+                MethodType = "NSValue";
+                CompletionPrefix = mw;
+            },
+            {
+                Identifier = objc.methods.imethod.return.value.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method returning NSValue: Declaration";
+                MethodType = "NSValue";
+                CompletionPrefix = mw;
+            },
+            {
+                Identifier = objc.methods.imethod.event;
+                BasedOn = objc.methods.imethod.void;
+                IsMenuItem = NO;
+                Name = "Instance Method (NSEvent): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
+                CompletionPrefix = me;
+            },
+            {
+                Identifier = objc.methods.imethod.event.decl;
+                BasedOn = objc.methods.imethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method (NSEvent): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
+                CompletionPrefix = me;
+            },
+            {
+                Identifier = objc.methods.imethod.targetaction;
+                BasedOn = objc.methods.imethod.void;
+                IsMenuItem = NO;
+                Name = "Instance Method (Target-Action): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
+                CompletionPrefix = mx;
+            },
+            {
+                Identifier = objc.methods.imethod.targetaction.decl;
+                BasedOn = objc.methods.imethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method (Target-Action): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
+                CompletionPrefix = mx;
+            },
+            {
+                Identifier = objc.methods.imethod.ibaction;
+                BasedOn = objc.methods.imethod.targetaction;
+                IsMenuItem = NO;
+                Name = "Instance Method (IBAction): Definition";
+                MethodType = "IBAction";
+                CompletionPrefix = miba;
+            },
+            {
+                Identifier = objc.methods.imethod.ibaction.decl;
+                BasedOn = objc.methods.imethod.targetaction.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method (IBAction): Declaration";
+                MethodType = "IBAction";
+                CompletionPrefix = miba;
+            },
+            {
+                Identifier = objc.methods.imethod.notification;
+                BasedOn = objc.methods.imethod.void;
+                IsMenuItem = NO;
+                Name = "Instance Method (NSNotification): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
+                CompletionPrefix = n;
+            },
+            {
+                Identifier = objc.methods.imethod.notification.decl;
+                BasedOn = objc.methods.imethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method (NSNotification): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
+                CompletionPrefix = n;
+            },
+            {
+                Identifier = objc.methods.imethod.varargs;
+                BasedOn = objc.methods.imethod;
+                IsMenuItem = NO;
+                Name = "Instance Method with VarArgs: Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)format, ...";
+                MethodBody = "va_list argList;\n\t\tva_start$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)argList, format$(InFunctionArgsSpacing));\n\t\tformat = [[[NSString alloc] initWithFormat:format arguments:argList] autorelease];\n\t\tva_end$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)argList$(InFunctionArgsSpacing));\n\t\t<#!statements!#>";
+                MethodType = "<#type#>";
+                CompletionPrefix = margs;
+            },
+            {
+                Identifier = objc.methods.imethod.varargs.decl;
+                BasedOn = objc.methods.imethod.decl;
+                IsMenuItem = NO;
+                Name = "Instance Method with VarArgs: Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)format, ...";
+                MethodType = "<#type#>";
+                CompletionPrefix = margs;
+            },
+
+        //
+        // Class Methods
+        // -------------
+        {
+            Identifier = objc.methods.cmethod;
+            BasedOn = objc.methods;
+            IsMenuItem = YES;
+            Name = "Class Method: Definition";
+            MethodArgs = "";
+            MethodBody = "<#!statements!#>";
+            MethodType = "<#type#>";
+            TextString = "+$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs)$(FunctionBlockSeparator){\n\t$(MethodBody)\n}\n";
+            CompletionPrefix = M;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.methods.cmethod.decl;
+            BasedOn = objc.methods;
+            IsMenuItem = YES;
+            Name = "Class Method: Declaration";
+            MethodArgs = "";
+            MethodType = "<#type#>";
+            TextString = "+$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs);\n";
+            CompletionPrefix = M;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+            {
+                Identifier = objc.methods.cmethod.return;
+                BasedOn = objc.methods.cmethod;
+                IsMenuItem = NO;
+                Name = "Class Method returning Something: Definition";
+                MethodBody = "<#!statements!#>\n\treturn <#expression#>;";
+            },
+            {
+                Identifier = objc.methods.cmethod.return.array;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSArray: Definition";
+                MethodType = "NSArray *";
+                CompletionPrefix = Ma;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.array.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSArray: Declaration";
+                MethodType = "NSArray *";
+                CompletionPrefix = Ma;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.bool;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning BOOL: Definition";
+                MethodType = "BOOL";
+                CompletionPrefix = Mb;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.bool.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning BOOL: Declaration";
+                MethodType = "BOOL";
+                CompletionPrefix = Mb;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.dictionary;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSDictionary: Definition";
+                MethodType = "NSDictionary *";
+                CompletionPrefix = Md;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.dictionary.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSDictionary: Declaration";
+                MethodType = "NSDictionary *";
+                CompletionPrefix = Md;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.int;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSInteger: Definition";
+                MethodType = "NSInteger";
+                CompletionPrefix = Mi;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.int.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSInteger: Declaration";
+                MethodType = "NSInteger";
+                CompletionPrefix = Mi;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.id;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning id: Definition";
+                MethodType = "id";
+                CompletionPrefix = Mid;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.id.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning id: Declaration";
+                MethodType = "id";
+                CompletionPrefix = Mid;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.number;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSNumber: Definition";
+                MethodType = "NSNumber";
+                CompletionPrefix = Mn;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.number.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSNumber: Declaration";
+                MethodType = "NSNumber";
+                CompletionPrefix = Mn;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.string;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSString: Definition";
+                MethodType = "NSString *";
+                CompletionPrefix = Ms;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.string.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSString: Declaration";
+                MethodType = "NSString *";
+                CompletionPrefix = Ms;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.set;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSSet: Definition";
+                MethodType = "NSSet *";
+                CompletionPrefix = Mt;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.set.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSSet: Declaration";
+                MethodType = "NSSet *";
+                CompletionPrefix = Mt;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.uint;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSUInteger: Definition";
+                MethodType = "NSUInteger";
+                CompletionPrefix = Mui;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.uint.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSUInteger: Declaration";
+                MethodType = "NSUInteger";
+                CompletionPrefix = Mui;
+            },
+            {
+                Identifier = objc.methods.cmethod.void;
+                BasedOn = objc.methods.cmethod;
+                IsMenuItem = NO;
+                Name = "Class Method: Definition";
+                MethodType = "void";
+                CompletionPrefix = Mv;
+            },
+            {
+                Identifier = objc.methods.cmethod.void.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method: Declaration";
+                MethodType = "void";
+                CompletionPrefix = Mv;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.value;
+                BasedOn = objc.methods.cmethod.return;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSValue: Definition";
+                MethodType = "NSValue";
+                CompletionPrefix = Mw;
+            },
+            {
+                Identifier = objc.methods.cmethod.return.value.decl;
+                BasedOn = objc.methods.cmethod.decl;
+                IsMenuItem = NO;
+                Name = "Class Method returning NSValue: Declaration";
+                MethodType = "NSValue";
+                CompletionPrefix = Mw;
+            },
+            {
+                Identifier = objc.methods.cmethod.event;
+                BasedOn = objc.methods.cmethod.void;
+                IsMenuItem = NO;
+                Name = "Class Method (NSEvent): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
+                CompletionPrefix = Me;
+            },
+            {
+                Identifier = objc.methods.cmethod.event.decl;
+                BasedOn = objc.methods.cmethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Class Method (NSEvent): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
+                CompletionPrefix = Me;
+            },
+            {
+                Identifier = objc.methods.cmethod.targetaction;
+                BasedOn = objc.methods.cmethod.void;
+                IsMenuItem = NO;
+                Name = "Class Method (Target+Action): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
+                CompletionPrefix = Mx;
+            },
+            {
+                Identifier = objc.methods.cmethod.targetaction.decl;
+                BasedOn = objc.methods.cmethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Class Method (Target+Action): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
+                CompletionPrefix = Mx;
+            },
+            {
+                Identifier = objc.methods.cmethod.ibaction;
+                BasedOn = objc.methods.cmethod.targetaction;
+                IsMenuItem = NO;
+                Name = "Class Method (IBAction): Definition";
+                MethodType = "IBAction";
+                CompletionPrefix = Miba;
+            },
+            {
+                Identifier = objc.methods.cmethod.ibaction.decl;
+                BasedOn = objc.methods.cmethod.targetaction.decl;
+                IsMenuItem = NO;
+                Name = "Class Method (IBAction): Declaration";
+                MethodType = "IBAction";
+                CompletionPrefix = Miba;
+            },
+            {
+                Identifier = objc.methods.cmethod.notification;
+                BasedOn = objc.methods.cmethod.void;
+                IsMenuItem = NO;
+                Name = "Class Method (NSNotification): Definition";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
+                CompletionPrefix = N;
+            },
+            {
+                Identifier = objc.methods.cmethod.notification.decl;
+                BasedOn = objc.methods.cmethod.void.decl;
+                IsMenuItem = NO;
+                Name = "Class Method (NSNotification): Declaration";
+                MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
+                CompletionPrefix = N;
+            },
+
+        //
+        // Method Parameters
+        // -----------------
+        {
+            Identifier = objc.methods.parameter;
+            BasedOn = objc.methods;
+            IsMenuItem = YES;
+            Name = "Method Parameter";
+            ParameterType = "<#type#>";
+            TextString = "($(ParameterType))$(MessageArgSpacing)<#!parameter!#>";
+            CompletionPrefix = pp;
+            CycleList = (
+                objc.methods.parameter,
+                objc.methods.parameter.array,
+                objc.methods.parameter.bool,
+                objc.methods.parameter.dictionary,
+                objc.methods.parameter.range,
+                objc.methods.parameter.int,
+                objc.methods.parameter.id,
+                objc.methods.parameter.number,
+                objc.methods.parameter.point,
+                objc.methods.parameter.rect,
+                objc.methods.parameter.string,
+                objc.methods.parameter.set,
+                objc.methods.parameter.uint,
+                objc.methods.parameter.void,
+                objc.methods.parameter.value,
+                objc.methods.parameter.size,
+                objc.methods.parameter.event,
+                objc.methods.parameter.targetaction,
+            );
+            IncludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+            {
+                Identifier = objc.methods.parameter.array;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSArray";
+                ParameterType = "NSArray *";
+                CompletionPrefix = ppa;
+            },
+            {
+                Identifier = objc.methods.parameter.bool;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: BOOL";
+                ParameterType = "BOOL";
+                CompletionPrefix = ppb;
+            },
+            {
+                Identifier = objc.methods.parameter.dictionary;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSDictionary";
+                ParameterType = "NSDictionary *";
+                CompletionPrefix = ppd;
+            },
+            {
+                Identifier = objc.methods.parameter.range;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSRange";
+                ParameterType = "NSRange";
+                CompletionPrefix = ppg;
+            },
+            {
+                Identifier = objc.methods.parameter.int;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSInteger";
+                ParameterType = "NSInteger";
+                CompletionPrefix = ppi;
+            },
+            {
+                Identifier = objc.methods.parameter.id;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: id";
+                ParameterType = "id";
+                CompletionPrefix = ppid;
+            },
+            {
+                Identifier = objc.methods.parameter.number;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSNumber";
+                ParameterType = "NSNumber";
+                CompletionPrefix = ppn;
+            },
+            {
+                Identifier = objc.methods.parameter.point;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSPoint";
+                ParameterType = "NSPoint";
+                CompletionPrefix = ppp;
+            },
+            {
+                Identifier = objc.methods.parameter.rect;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSRect";
+                ParameterType = "NSRect";
+                CompletionPrefix = ppr;
+            },
+            {
+                Identifier = objc.methods.parameter.string;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSString";
+                ParameterType = "NSString *";
+                CompletionPrefix = pps;
+            },
+            {
+                Identifier = objc.methods.parameter.set;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSSet";
+                ParameterType = "NSSet *";
+                CompletionPrefix = ppt;
+            },
+            {
+                Identifier = objc.methods.parameter.uint;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSUInteger";
+                ParameterType = "NSUInteger";
+                CompletionPrefix = ppui;
+            },
+            {
+                Identifier = objc.methods.parameter.void;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: void Pointer";
+                ParameterType = "void *";
+                CompletionPrefix = ppv;
+            },
+            {
+                Identifier = objc.methods.parameter.value;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSValue";
+                ParameterType = "NSValue";
+                CompletionPrefix = ppw;
+            },
+            {
+                Identifier = objc.methods.parameter.size;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSSize";
+                ParameterType = "NSSize";
+                CompletionPrefix = ppz;
+            },
+            {
+                Identifier = objc.methods.parameter.event;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: NSEvent";
+                ParameterType = "NSEvent";
+                CompletionPrefix = ppe;
+            },
+            {
+                Identifier = objc.methods.parameter.targetaction;
+                BasedOn = objc.methods.parameter;
+                IsMenuItem = NO;
+                Name = "Method Parameter: Target+Action";
+                TextString = "(id)$(MessageArgSpacing)sender";
+                CompletionPrefix = ppx;
+            },
+        {
+            Identifier = objc.methods.parameter.with-colon;
+            BasedOn = objc.methods;
+            IsMenuItem = NO;
+            Name = "Method Parameter: Declaration";
+            TextString = "$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#!parameter!#>";
+            CompletionPrefix = ":";
+        },
+)

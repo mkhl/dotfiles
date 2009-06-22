@@ -1,36 +1,47 @@
 (
-    // Objective C idioms
+    //
+    // Objective-C Idioms
+    // ==================
     {
         Identifier = objc.idiom;
         Name = "Objective C Idioms";
         IsMenu = YES;
         IncludeContexts = ( "xcode.lang.objc" );
-        ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+        ExcludeContexts = ( "xcode.lang.string",
+                            "xcode.lang.character",
+                            "xcode.lang.comment",
+                            "xcode.lang.c.preprocessor" );
     },
-    // Bundle Idioms
-    {
-        Identifier = objc.idiom.nib;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "Load Nib from Bundle";
-        TextString = "[NSBundle loadNibNamed:[[self class] description] owner:self];";
-        CompletionPrefix = nib;
-    },
-    {
-        Identifier = objc.idiom.plist;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "Load Resource from Bundle";
-        TextString = "NSBundle *bundle = [NSBundle bundleForClass:[self class]];\nNSString *path = [bundle pathForResource:<#!filename!#> ofType:<#plist#>];\nNSDictionary *<#dict#> = [NSDictionary dictionaryWithContentsOfFile:path];\n";
-        CompletionPrefix = plist;
-    },
-    // Protocol Idioms
-    {
-        Identifier = objc.idiom.coding;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "NSCoding Implementation";
-        TextString =
+
+        //
+        // Bundles
+        // -------
+        {
+            Identifier = objc.idiom.nib;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "Load Nib from Bundle";
+            TextString = "[NSBundle loadNibNamed:[[self class] description] owner:self];";
+            CompletionPrefix = nib;
+        },
+        {
+            Identifier = objc.idiom.plist;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "Load Resource from Bundle";
+            TextString = "NSBundle *bundle = [NSBundle bundleForClass:[self class]];\nNSString *path = [bundle pathForResource:<#!filename!#> ofType:<#plist#>];\nNSDictionary *<#dict#> = [NSDictionary dictionaryWithContentsOfFile:path];\n";
+            CompletionPrefix = plist;
+        },
+
+        //
+        // Protocols
+        // ---------
+        {
+            Identifier = objc.idiom.coding;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "NSCoding Implementation";
+            TextString =
 "#pragma mark -
 #pragma mark NSCoding
 
@@ -44,14 +55,14 @@
 	[encoder encodeObject:<#variable#> forKey:@\"<#key#>\"];
 }
 ";
-        CompletionPrefix = coding;
-    },
-    {
-        Identifier = objc.idiom.copying;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "NSCopying Implementation";
-        TextString =
+            CompletionPrefix = coding;
+        },
+        {
+            Identifier = objc.idiom.copying;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "NSCopying Implementation";
+            TextString =
 "#pragma mark -
 #pragma mark NSCopying
 
@@ -59,14 +70,14 @@
     return [self retain];
 }
 ";
-        CompletionPrefix = copy;
-    },
-    {
-        Identifier = objc.idiom.tabledatasource;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "NSTableDataSource Implementation";
-        TextString =
+            CompletionPrefix = copy;
+        },
+        {
+            Identifier = objc.idiom.tabledatasource;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "NSTableDataSource Implementation";
+            TextString =
 "#pragma mark -
 #pragma mark NSTableDataSource
 
@@ -89,15 +100,18 @@
 	[object setValue:value forKey:[tableColumn identifier]];
 }
 ";
-        CompletionPrefix = datasource;
-    },
-    // KVO Idioms
-    {
-        Identifier = objc.idiom.kvo;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "KVO Notifications";
-        TextString =
+            CompletionPrefix = datasource;
+        },
+
+        //
+        // KVO
+        // ---
+        {
+            Identifier = objc.idiom.kvo;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "KVO Notifications";
+            TextString =
 "#pragma mark -
 #pragma mark KVO Notifications
 
@@ -112,33 +126,47 @@
 	}
 }
 ";
-        CompletionPrefix = kvo;
-    },
-    {
-        Identifier = objc.idiom.kvo.register;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "KVO: Register self";
-        TextString =
+            CompletionPrefix = kvo;
+        },
+        {
+            Identifier = objc.idiom.kvo.register;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "KVO: Register self";
+            TextString =
 "// Register for KVO
 id controller = [NSUserDefaultsController sharedUserDefaultsController];
 [controller addObserver:self forKeyPath:<#!keyPath!#> options:0 context:NULL];
 ";
-        CompletionPrefix = kvoi;
-    },
-    {
-        Identifier = objc.idiom.kvo.unregister;
-        BasedOn = objc.idiom;
-        IsMenuItem = YES;
-        Name = "KVO: Unregister self";
-        TextString =
+            CompletionPrefix = kvor;
+        },
+        {
+            Identifier = objc.idiom.kvo.unregister;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "KVO: Unregister self";
+            TextString =
 "// Unregister KVO
 id controller = [NSUserDefaultsController sharedUserDefaultsController];
 [controller removeObserver:self forKeyPath:<#!keyPath!#>];
 ";
-        CompletionPrefix = kvod;
-    },
-    // GUI Idioms
+            CompletionPrefix = kvou;
+        },
+        {
+            Identifier = objc.idiom.kvo.accessor;
+            BasedOn = objc.idiom;
+            IsMenuItem = YES;
+            Name = "KVO: Accessors";
+            TextString =
+"[self willChangeValueForKey:<#keypath#>];
+<#!statements!#>
+[self didChangeValueForKey:<#keypath#>];";
+            CompletionPrefix = kvoac;
+        },
+
+    //
+    // GUI
+    // ---
     {
         Identifier = objc.idiom.alert;
         BasedOn = objc.idiom;
@@ -228,7 +256,10 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
 ";
         CompletionPrefix = savepanel;
     },
-    // Notification Idioms
+
+    //
+    // Notifications
+    // -------------
     {
         Identifier = objc.idiom.notification.observe;
         BasedOn = objc.idiom;
@@ -261,7 +292,10 @@ id controller = [NSUserDefaultsController sharedUserDefaultsController];
         TextString = "[self setKeys:<#!keys!#> triggerChangeNotificationsForDependentKey:<#dependentKey#>];";
         CompletionPrefix = trig;
     },
+
+    //
     // Other Idioms
+    // ------------
     {
         Identifier = objc.idiom.benchmark;
         BasedOn = objc.idiom;

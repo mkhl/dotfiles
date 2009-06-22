@@ -1,0 +1,167 @@
+/**
+    C++ text macro specifications
+
+    Copyright © 2004-2007 Apple Inc. All rights reserved.
+
+*/
+
+(
+    //
+    // C++ language macros (they also show up for Objective-C++)
+    //
+    {
+        Identifier = cpp;
+        Name = "C++";
+        IsMenu = YES;
+        DefaultSettings = {
+            PreExpressionsSpacing = " ";
+            InExpressionsSpacing = "";
+            BlockSeparator = " ";
+            PostBlockSeparator = "\n";
+        };
+        IncludeContexts = ( "xcode.lang.cpp", "xcode.lang.objcpp" );
+        ExcludeContexts = ( "xcode.lang.string", "xcode.lang.character", "xcode.lang.comment", "xcode.lang.c.preprocessor" );
+    },
+
+        {
+            Identifier = cpp.angle;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Angle Bracket Selection";
+            TextString = "<$(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing)>";
+            IncludeContexts = ( "xcode.lang.cpp", "xcode.lang.objcpp", "xcode.lang.java" );    // this works in Java too
+        },
+        {
+            Identifier = cpp.pifdefcpp;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "#Ifdef __cplusplus Block";
+            IfText = "if";
+            TextString = "#$(IfText) $(Expression)\n<#!statements!#>\n#endif";
+            Expression = "__cplusplus";
+            CompletionPrefix = pifdcpp;
+            CycleList = (
+                cpp.pifdefcpp,
+                cpp.pifdefcppelse
+            );
+        },
+        {
+            Identifier = cpp.pifdefcppelse;
+            BasedOn = cpp.pifdefcpp;
+            IsMenuItem = NO;
+            Name = "#Ifdef _cplusplus / Else Block";
+            IfText = "ifdef";
+            TextString = "#$(IfText) $(Expression)\n<#!statements!#>\n#else\n<#statements#>\n#endif";
+            CompletionPrefix = pifdecpp;
+        },
+        
+        
+        {
+            Identifier = cpp.staticcast;        // n.b. text macro identifiers can't contain underscores
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Static Cast";
+            TextString = "static_cast<$(InExpressionsSpacing)<#type#>$(InExpressionsSpacing)>$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing))";
+            CompletionPrefix = static_cast;
+        },
+
+        {
+            Identifier = cpp.dynamiccast;       // n.b. text macro identifiers can't contain underscores
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Dynamic Cast";
+            TextString = "dynamic_cast<$(InExpressionsSpacing)<#type#>$(InExpressionsSpacing)>$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing))";
+            CompletionPrefix = dynamic_cast;
+        },
+
+        {
+            Identifier = cpp.reinterpretcast;   // n.b. text macro identifiers can't contain underscores
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Reinterpret Cast";
+            TextString = "reinterpret_cast<$(InExpressionsSpacing)<#type#>$(InExpressionsSpacing)>$(PreExpressionsSpacing)($(InExpressionsSpacing)<#!expression!#>$(InExpressionsSpacing))";
+            CompletionPrefix = reinterpret_cast;
+        },
+
+        {
+            Identifier = cpp.try;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Try / Catch Block";
+            TextString = "try$(BlockSeparator){\n\t<#!statements!#>\n}$(PostBlockSeparator)catch$(PreExpressionsSpacing)($(InExpressionsSpacing)<#exception#>$(InExpressionsSpacing))$(BlockSeparator){\n\t<#handler#>\n}";
+            CompletionPrefix = try;
+            IncludeContexts = ( "xcode.lang.cpp.block", "xcode.lang.objcpp.block" );
+        },
+        
+        {
+            Identifier = cpp.catch;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Catch Block";
+            TextString = "catch$(PreExpressionsSpacing)($(InExpressionsSpacing)<#exception#>$(InExpressionsSpacing))$(BlockSeparator){\n\t<#!handler!#>\n}";
+            CompletionPrefix = catch;
+            IncludeContexts = ( "xcode.lang.cpp.block", "xcode.lang.objcpp.block" );
+        },
+
+        {
+            Identifier = cpp.cout;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Cout Statement";
+            TextString = "cout << <#!expression!#>;";
+            CompletionPrefix = cout;
+            CycleList = (
+                cpp.cout,
+                cpp.cout.message
+            );
+            IncludeContexts = ( "xcode.lang.cpp.block", "xcode.lang.objcpp.block" );
+        },
+        {
+            Identifier = cpp.cout.message;
+            BasedOn = cpp.cout;
+            IsMenuItem = NO;
+            Name = "Cout Message";
+            TextString = "cout << \"<#!message!#>\";";
+            CompletionPrefix = coutm;
+            IncludeContexts = ( "xcode.lang.cpp.block", "xcode.lang.objcpp.block" );
+        },
+        
+        {
+            Identifier = cpp.namespace;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Namespace Definition";
+            TextString = "namespace$(PreExpressionsSpacing)<#namespace_name#>$(BlockSeparator){\n\t<#!statements!#>\n}";
+            CompletionPrefix = namespace;
+        },
+        
+        {
+            Identifier = cpp.class;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Class Definition";
+            TextString = "class$(PreExpressionsSpacing)<#class_name#>$(PreExpressionsSpacing):$(PreExpressionsSpacing)public$(PreExpressionsSpacing)<#super_class#>$(BlockSeparator){\n\t<#!declarations!#>\n};";
+            CompletionPrefix = class;
+        },
+        
+        {
+            Identifier = cpp.extern;
+            BasedOn = cpp;
+            IsMenuItem = YES;
+            Name = "Extern \"C\" Statement";
+            TextString = "extern \"C\" <#!statement!#>;";
+            CompletionPrefix = extern;
+            CycleList = (
+                cpp.extern,
+                cpp.extern.block
+            );
+        },
+        {
+            Identifier = cpp.extern.block;
+            BasedOn = cpp.extern;
+            IsMenuItem = NO;
+            Name = "Extern \"C\" Block";
+            TextString = "extern \"C\" $(BlockSeparator){\n\t<#!statements!#>\n}";
+            CompletionPrefix = externb;
+        },
+)

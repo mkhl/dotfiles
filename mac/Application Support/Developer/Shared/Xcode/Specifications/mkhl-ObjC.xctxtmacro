@@ -1,1359 +1,720 @@
+/**
+    Based on:
+
+    Objective C text macro specifications
+
+    Copyright © 2004-2007 Apple Inc. All rights reserved.
+*/
+
 (
-    // Objective C Cleanup
+    //
+    // Objective-C language macros
+    // ===========================
     {
-        Identifier = objc.array;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "Array Declaration";
-        TextString = "NSArray *array;";
+        Identifier = objc;
+        Name = "Objective C";
+        IsMenu = YES;
+        IncludeContexts = ( "xcode.lang.objc" );
+        ExcludeContexts = ( "xcode.lang.string",
+                            "xcode.lang.character",
+                            "xcode.lang.comment",
+                            "xcode.lang.c.preprocessor" );
     },
-    {
-        Identifier = objc.mutablearray;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "Mutable Array Declaration";
-        TextString = "NSMutableArray *array;";
-    },
-    // Objective C language basics
-    {
-        // Removed extraneous whitespace
-        Identifier = objc.bracket;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Bracket Expression";
-        TextString = "[<#!expression!#>]";
-    },
-    {
-        Identifier = objc.string;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Obj-C String Literal";
-        TextString = "@\"<#!string!#>\"";
-        CompletionPrefix = str;
-    },
-    {
-        Identifier = objc.at-class;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@class Declaration";
-        TextString = "@class <#!class!#>;";
-        CompletionPrefix = cla;
-    },
-    {
-        Identifier = objc.at-selector;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@selector Expression";
-        TextString = "@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
-        CompletionPrefix = sel;
-    },
-    {
-        Identifier = objc.respondsto;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "respondsToSelector: Call";
-        TextString = "respondsToSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
-        CompletionPrefix = res;
-    },
-    {
-        Identifier = objc.perform;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "performSelector: Call";
-        TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
-        CompletionPrefix = per;
-    },
-    {
-        Identifier = objc.delay.perform;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Delayed performSelector: Call";
-        TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) withObject:<#object#> afterDelay:<#delay#>";
-        CompletionPrefix = del;
-    },
-    {
-        Identifier = objc.delay.cancel;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Delayed performSelector: Cancel";
-        TextString = "[NSObject cancelPreviousPerformRequestsWithTarget:<#target#> selector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) object:<#object#>];";
-        CompletionPrefix = can;
-    },
-    // Objective C language structure
-    {
-        // Prefer BlockSeparator for the ivars block.
-        Identifier = objc.interface;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@interface Definition";
-        TextString = "@interface <#class#> : <#superclass#>$(BlockSeparator){\n\t<#ivars#>\n}\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@interface";
-        ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
-        CycleList = (
-            objc.interface,
-            objc.interface.category,
-        );
-    },
-    {
-        Identifier = objc.interface.category;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@interface Definition (Category)";
-        TextString = "@interface <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@interfacec";
-        ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
-    },
-    {
-        Identifier = objc.implementation;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@implementation Definition";
-        TextString = "@implementation <#class#>\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@implementation";
-        ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
-        CycleList = (
-            objc.implementation,
-            objc.implementation.category,
-        );
-    },
-    {
-        Identifier = objc.implementation.category;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "@implementation Definition (Category)";
-        TextString = "@implementation <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
-        CompletionPrefix = "@implementationc";
-        ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
-    },
-    // Objective C 2 properties
-    {
-        Identifier = objc.at-property;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Property";
-        TextString = "@property$(PreExpressionsSpacing)($(InExpressionsSpacing)<#options#>$(InExpressionsSpacing)) <#type#> <#!ivar!#>;";
-        CompletionPrefix = prop;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.at-dynamic;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Dynamic Property Accessors";
-        TextString = "@dynamic <#!property!#>;";
-        CompletionPrefix = dyn;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.at-synthesize;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Synthesize Property Accessors";
-        TextString = "@synthesize <#!property!#>;";
-        CompletionPrefix = syn;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    // Objective C property accessors
-    {
-        Identifier = objc.accessor;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Property Accessors (assign): Definition";
-        NewValue = "<#value#>";
-        OldValue = "";
-        TextString =
-"-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)set<#Name#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#value#>$(FunctionBlockSeparator){$(OldValue)
-	<#name#> = $(NewValue);
-}
--$(PreMethodTypeSpacing)(<#type#>)$(PreMethodDeclSpacing)<#!name!#>$(FunctionBlockSeparator){
-	return <#name#>;
-}
-";
-        CompletionPrefix = ac;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.accessor.copy;
-        BasedOn = objc.accessor;
-        IsMenuItem = YES;
-        Name = "Property Accessors (copy): Definition";
-        NewValue = "[<#value#> copy]";
-        OldValue = "\n\t[<#name#> autorelease];";
-        CompletionPrefix = acc;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.accessor.retain;
-        BasedOn = objc.accessor;
-        IsMenuItem = YES;
-        Name = "Property Accessors (retain): Definition";
-        NewValue = "[<#value#> retain]";
-        OldValue = "\n\t[<#name#> autorelease];";
-        CompletionPrefix = acr;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.accessor.decl;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Property Accessors: Declaration";
-        TextString =
-"-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)set<#Name#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#value#>;
--$(PreMethodTypeSpacing)(<#type#>)$(PreMethodDeclSpacing)<#!name!#>;
-";
-        CompletionPrefix = ac;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    // Objective C common method definitions
-    {
-        Identifier = objc.init;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "-init Definition";
-        TextString =
-"-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)init$(FunctionBlockSeparator){
-	self = [super init];
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == nil$(InExpressionsSpacing))
-		return nil;
-	<#!initializations!#>
-	return self;
-}
-";
-        CompletionPrefix = init;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.init.body;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "-init Definition Body";
-        TextString =
-"self = [super init];
-if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == nil$(InExpressionsSpacing))
-	return nil;
-<#!initializations!#>
-return self;";
-        CompletionPrefix = init;
-        IncludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.init.with;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "-initWithObject Definition";
-        TextString =
-"-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#object#>$(FunctionBlockSeparator){
-	self = [super initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)<#object#>];
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == nil$(InExpressionsSpacing))
-		return nil;
-	<#!initializations!#>
-	return self;
-}
-";
-        CompletionPrefix = initw;
-    },
-    
-    {
-        Identifier = objc.awakeFromNib;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "-awakeFromNib Definition";
-        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)awakeFromNib$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
-        CompletionPrefix = awa;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.dealloc;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "-dealloc Definition";
-        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)dealloc$(FunctionBlockSeparator){\n\t<#!deallocations!#>\n\t[super dealloc];\n}\n";
-        CompletionPrefix = dealloc;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.finalize;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "-finalize Definition";
-        TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)finalize$(FunctionBlockSeparator){\n\t<#!finalizations!#>\n\t[super finalize];\n}\n";
-        CompletionPrefix = finalize;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.isequal;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "-isEqual: Definition";
-        TextString =
-"-$(PreMethodTypeSpacing)(BOOL)$(PreMethodDeclSpacing)isEqual$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)object$(FunctionBlockSeparator){
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)object == self$(InExpressionsSpacing))
-		return YES;
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)object == nil || ![object isKindOfClass:[self class]]$(InExpressionsSpacing))
-		return NO;
-	return <#!expression!#>;
-}
-";
-        CompletionPrefix = isequal;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.initialize;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "+initialize Definition";
-        TextString =
-"+$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)initialize$(FunctionBlockSeparator){
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)self == [<#classname#> class]$(InExpressionsSpacing))$(BlockSeparator){
-		<#!statements!#>
+
+        //
+        // Exceptions
+        // ----------
+        {
+            Identifier = objc.try;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Try / Catch Block";
+            TextString = "@try$(BlockSeparator){\n\t<#!statements!#>\n}$(PostBlockSeparator)@catch$(PreExpressionsSpacing)($(InExpressionsSpacing)NSException * error$(InExpressionsSpacing))$(BlockSeparator){\n\t<#handler#>\n}$(PostBlockSeparator)@finally$(BlockSeparator){\n\t<#statements#>\n}";
+            CompletionPrefix = "@try";
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.catch;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Catch Block";
+            TextString = "@catch$(PreExpressionsSpacing)($(InExpressionsSpacing)<#exception#>$(InExpressionsSpacing))$(BlockSeparator){\n\t<#!handler!#>\n}";
+            CompletionPrefix = "@catch";
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.finally;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Finally Block";
+            TextString = "@finally$(BlockSeparator){\n\t<#!handler!#>\n}";
+            CompletionPrefix = "@finally";
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        //
+        // Common Functions
+        // ----------------
+        {
+            Identifier = objc.log;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "NSLog() Call";
+            TextString = "NSLog$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)@\"<#message#>\"$(InFunctionArgsSpacing));";
+            CompletionPrefix = log;
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        //
+        // Expressions
+        // -----------
+        {
+            Identifier = objc.bracket;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "Bracket Expression";
+            TextString = "[<#!expression!#>]";
+            // Disabled; moved to C
+        },
+        
+        {
+            Identifier = objc.string;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "NSString Literal";
+            TextString = "@\"<#!string!#>\"";
+            CompletionPrefix = str;
+        },
+
+        //
+        // Common Messages
+        // ---------------
+        {
+            Identifier = objc.allocinit;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Alloc / Init Call";
+            TextString = "[[<#!class!#> alloc] init]";
+            CompletionPrefix = a;
+        },
+        {
+            Identifier = objc.allocinitautorelease;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Alloc / Init / Autorelease Call";
+            TextString = "[[[<#!class!#> alloc] init] autorelease]";
+            CompletionPrefix = aa;
+        },
+        {
+            Identifier = objc.autorelease;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Autorelease Call";
+            TextString = "[<#!object!#> autorelease]";
+            CompletionPrefix = ar;
+        },
+        {
+            Identifier = objc.release;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Release Call";
+            TextString = "[<#!object!#> release]";
+            CompletionPrefix = rr;
+        },
+        {
+            Identifier = objc.poseasclass;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Pose as Class";
+            TextString = "[self poseAsClass:<#!class!#>];";
+            CompletionPrefix = pose;
+        },
+        // Tests
+        {
+            Identifier = objc.msg.isequal;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "isEqual:";
+            TextString = "isEqual:<#!object!#>";
+            CompletionPrefix = eq;
+        },
+        {
+            Identifier = objc.msg.isequaltostring;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "isEqualToString:";
+            TextString = "isEqualToString:<#!string!#>";
+            CompletionPrefix = es;
+        },
+        {
+            Identifier = objc.msg.iskindofclass;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "isKindOfClass:";
+            TextString = "isKindOfClass:[<#!class!#> class]";
+            CompletionPrefix = ik;
+        },
+        // Accessors
+        {
+            Identifier = objc.msg.characteratindex;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "characterAtIndex:";
+            TextString = "characterAtIndex:<#!index!#>";
+            CompletionPrefix = ci;
+        },
+        {
+            Identifier = objc.msg.objectenumerator;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "objectEnumerator";
+            TextString = "objectEnumerator";
+            CompletionPrefix = oe;
+        },
+        {
+            Identifier = objc.msg.objectatindex;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "objectAtIndex:";
+            TextString = "objectAtIndex:<#!index!#>";
+            CompletionPrefix = oi;
+        },
+        {
+            Identifier = objc.msg.objectforkey;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "objectForKey:";
+            TextString = "objectForKey:<#!key!#>";
+            CompletionPrefix = ok;
+        },
+        {
+            Identifier = objc.msg.setobjectforkey;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "setObject:forKey:";
+            TextString = "setObject:<#!object!#> forKey:<#key#>";
+            CompletionPrefix = so;
+        },
+        {
+            Identifier = objc.msg.valueforkey;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "valueForKey:";
+            TextString = "valueForKey:<#!key!#>";
+            CompletionPrefix = vk;
+        },
+        {
+            Identifier = objc.msg.setvalueforkey;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "setValue:forKey:";
+            TextString = "setValue:<#!value!#> forKey:<#key#>";
+            CompletionPrefix = sv;
+        },
+        {
+            Identifier = objc.msg.withobject;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "withObject:";
+            TextString = "withObject:<#!object!#>";
+            CompletionPrefix = wo;
+        },
+        // Other
+        {
+            Identifier = objc.msg.writetofile;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "writeToFile:atomically:";
+            TextString = "writeToFile:<#!path!#> atomically:YES";
+            CompletionPrefix = write;
+        },
+
+        //
+        // Common Types
+        // ------------
+        {
+            Identifier = objc.array;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "Array Declaration";
+            TextString = "NSArray *array;";
+            // CompletionPrefix = aa;
+            // Disabled; moved to ObjC-Types
+        },
+        {
+            Identifier = objc.mutablearray;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "Mutable Array Declaration";
+            TextString = "NSMutableArray *array;";
+            // CompletionPrefix = ma;
+            // Disabled; moved to ObjC-Types
+        },
+
+        //
+        // Iteration
+        // ---------
+        {
+            Identifier = objc.arrayiteration.foreach;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Array Foreach Loop";
+            TextString = "for$(PreExpressionsSpacing)($(InExpressionsSpacing)<#object#> in <#array#>$(InExpressionsSpacing))$(BlockSeparator){\n\t<#!statements!#>\n}";
+            CompletionPrefix = fore;
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.arrayiteration;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Array For Loop";
+            TextString = "NSUInteger i, count = [<#array#> count];\nfor$(PreExpressionsSpacing)($(InExpressionsSpacing)i = 0; i < count; i++$(InExpressionsSpacing))$(BlockSeparator){\n\t<#object#> = [<#array#> objectAtIndex:i];\n\t<#!statements!#>\n}";
+            CompletionPrefix = fora;
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.stringiteration;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "String For Loop";
+            TextString = "NSUInteger i, length = [<#string#> length];\nfor$(PreExpressionsSpacing)($(InExpressionsSpacing)i = 0; i < length; i++$(InExpressionsSpacing))$(BlockSeparator){\n\tunichar c = [<#string#> characterAtIndex:i];\n\t<#!statements!#>\n}";
+            CompletionPrefix = fors;
+        },
+        
+        {
+            Identifier = objc.enumeration;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Enumeration";
+            TextString = "NSEnumerator *<#enumerator#> = [<#collection#> objectEnumerator];\n<#type#> <#object#>;\nwhile$(PreExpressionsSpacing)($(InExpressionsSpacing)($(InExpressionsSpacing)<#object#> = [<#enumerator#> nextObject]$(InExpressionsSpacing)) != nil$(InExpressionsSpacing))$(BlockSeparator){\n\t<#!statements!#>\n}";
+            CompletionPrefix = oenum;
+        },
+
+        //
+        // Methods Templates
+        // -----------------
+        {
+            Identifier = objc.init;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "init Definition";
+            TextString = "-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)init$(FunctionBlockSeparator){\n\tself = [super init];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)self$(InExpressionsSpacing))$(BlockSeparator){\n\t\t<#!initializations!#>\n\t}\n\treturn self;\n}\n";
+            // TextString = "-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)init$(FunctionBlockSeparator){\n\tself = [super init];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)!self$(InExpressionsSpacing))\n\t\treturn nil;\n\t<#!initializations!#>\n\treturn self;\n}\n";
+            CompletionPrefix = init;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.init.body;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "-init Definition Body";
+            TextString = "self = [super init];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)self$(InExpressionsSpacing))$(BlockSeparator){\n\t\t<#!initializations!#>\n\t}\n\treturn self;";
+            // TextString = "self = [super init];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)!self$(InExpressionsSpacing))\n\t\treturn nil;\n\t<#!initializations!#>\n\treturn self;";
+            CompletionPrefix = init;
+            IncludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.init.with;
+            BasedOn = objc.init;
+            IsMenuItem = NO;
+            Name = "initWithObject Definition";
+            TextString = "-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#object#>$(FunctionBlockSeparator){\n\tself = [super initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)<#object#>];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)self$(InExpressionsSpacing))$(BlockSeparator){\n\t\t<#!initializations!#>\n\t}\n\treturn self;\n}\n";
+            // TextString = "-$(PreMethodTypeSpacing)(id)$(PreMethodDeclSpacing)initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#object#>$(FunctionBlockSeparator){\n\tself = [super initWith<#Type#>$(PreColonSpacing):$(PostColonSpacing)<#object#>];\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)!self$(InExpressionsSpacing))\n\t\treturn nil;\n\t<#!initializations!#>\n\treturn self;\n}\n";
+            CompletionPrefix = initwith;
+        },
+        
+        {
+            Identifier = objc.awakeFromNib;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "awakeFromNib Definition";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)awakeFromNib$(FunctionBlockSeparator){\n\t<#!statements!#>\n}\n";
+            CompletionPrefix = awakeFromNib;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.dealloc;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "dealloc Definition";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)dealloc$(FunctionBlockSeparator){\n\t<#!deallocations!#>\n\t[super dealloc];\n}\n";
+            CompletionPrefix = dealloc;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.finalize;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "finalize Definition";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)finalize$(FunctionBlockSeparator){\n\t<#!finalizations!#>\n\t[super finalizations];\n}\n";
+            CompletionPrefix = finalize;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        {
+            Identifier = objc.observe;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "observeValueForKeyPath: Definition";
+            TextString =
+"-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)observeValueForKeyPath$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)keyPath ofObject$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)object change$(PreColonSpacing):$(PostColonSpacing)(NSDictionary *)$(MessageArgSpacing)change context$(PreColonSpacing):$(PostColonSpacing)(void *)$(MessageArgSpacing)context$(FunctionBlockSeparator){
+    if$(PreExpressionsSpacing)($(InExpressionsSpacing)context == <#context#>$(InExpressionsSpacing))$(BlockSeparator){
+		<#work#>
+	}$(PostBlockSeparator)\telse$(BlockSeparator){
+		[$(InMessageSpacing)super observeValueForKeyPath$(PreColonSpacing):$(PostColonSpacing)keyPath ofObject$(PreColonSpacing):$(PostColonSpacing)object change$(PreColonSpacing):$(PostColonSpacing)change context$(PreColonSpacing):$(PostColonSpacing)context$(InMessageSpacing)];
 	}
 }
 ";
-        CompletionPrefix = initialize;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.load;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "+load Definition";
-        TextString =
-"+$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)load$(FunctionBlockSeparator){
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	<#!statements!#>
-	[pool release];
-}
-";
-        CompletionPrefix = load;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.sharedInstance;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "+sharedInstance Definition";
-        TextString =
-"+$(PreMethodTypeSpacing)(<#class#> *)$(PreMethodDeclSpacing)<#sharedInstance#>$(FunctionBlockSeparator){
-	static <#class#> *<#!singleton!#> = nil;
-	if$(PreExpressionsSpacing)($(InExpressionsSpacing)<#singleton#> == nil$(InExpressionsSpacing))$(BlockSeparator){
-		<#singleton#> = [[self alloc] init];
+            CompletionPrefix = observeValueForKeyPath;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.observe.decl;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "observeValueForKeyPath: Declaration";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)observeValueForKeyPath$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)keyPath ofObject$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)object change$(PreColonSpacing):$(PostColonSpacing)(NSDictionary *)$(MessageArgSpacing)change context$(PreColonSpacing):$(PostColonSpacing)(void *)$(MessageArgSpacing)context;\n";
+            CompletionPrefix = observeValueForKeyPath;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        {
+            Identifier = objc.bind;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "bind: Definition";
+            TextString =
+"-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)bind$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)binding toObject$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)observable withKeyPath$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)keyPath options$(PreColonSpacing):$(PostColonSpacing)(NSDictionary *)$(MessageArgSpacing)options$(FunctionBlockSeparator){
+	if$(PreExpressionsSpacing)($(InExpressionsSpacing)[$(InMessageSpacing)binding isEqualToString$(PreColonSpacing):$(PostColonSpacing)<#bindingName#>$(InMessageSpacing)]$(InExpressionsSpacing))$(BlockSeparator){
+		[$(InMessageSpacing)observable addObserver$(PreColonSpacing):$(PostColonSpacing)self forKeyPath$(PreColonSpacing):$(PostColonSpacing)keyPath options$(PreColonSpacing):$(PostColonSpacing)0 context$(PreColonSpacing):$(PostColonSpacing)<#context#>$(InMessageSpacing)];
+		<#store binding info#>
+	}$(PostBlockSeparator)\telse$(BlockSeparator){
+		[$(InMessageSpacing)super bind$(PreColonSpacing):$(PostColonSpacing)binding toObject$(PreColonSpacing):$(PostColonSpacing)observable withKeyPath$(PreColonSpacing):$(PostColonSpacing)keyPath options$(PreColonSpacing):$(PostColonSpacing)options$(InMessageSpacing)];
 	}
-	return <#singleton#>;
 }
 ";
-        CompletionPrefix = shi;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    // Objective C method templates
-    {
-        Identifier = objc.imethod;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Instance Method: Definition";
-        MethodArgs = "";
-        MethodBody = "<#!statements!#>";
-        MethodType = "<#type#>";
-        TextString = "-$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs)$(FunctionBlockSeparator){\n\t$(MethodBody)\n}\n";
-        CompletionPrefix = m;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.decl;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Instance Method: Declaration";
-        MethodArgs = "";
-        MethodType = "<#type#>";
-        TextString = "-$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs);\n";
-        CompletionPrefix = m;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return;
-        BasedOn = objc.imethod;
-        IsMenuItem = NO;
-        Name = "Instance Method returning Something: Definition";
-        MethodBody = "<#!statements!#>\n\treturn <#expression#>;";
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.array;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSArray: Definition";
-        MethodType = "NSArray *";
-        CompletionPrefix = ma;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.array.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSArray: Declaration";
-        MethodType = "NSArray *";
-        CompletionPrefix = ma;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.bool;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning BOOL: Definition";
-        MethodType = "BOOL";
-        CompletionPrefix = mb;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.bool.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning BOOL: Declaration";
-        MethodType = "BOOL";
-        CompletionPrefix = mb;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.dictionary;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSDictionary: Definition";
-        MethodType = "NSDictionary *";
-        CompletionPrefix = md;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.dictionary.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSDictionary: Declaration";
-        MethodType = "NSDictionary *";
-        CompletionPrefix = md;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.int;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSInteger: Definition";
-        MethodType = "NSInteger";
-        CompletionPrefix = mi;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.int.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSInteger: Declaration";
-        MethodType = "NSInteger";
-        CompletionPrefix = mi;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.id;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning id: Definition";
-        MethodType = "id";
-        CompletionPrefix = mid;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.id.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning id: Declaration";
-        MethodType = "id";
-        CompletionPrefix = mid;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.number;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSNumber: Definition";
-        MethodType = "NSNumber";
-        CompletionPrefix = mn;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.number.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSNumber: Declaration";
-        MethodType = "NSNumber";
-        CompletionPrefix = mn;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.string;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSString: Definition";
-        MethodType = "NSString *";
-        CompletionPrefix = ms;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.string.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSString: Declaration";
-        MethodType = "NSString *";
-        CompletionPrefix = ms;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.set;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSSet: Definition";
-        MethodType = "NSSet *";
-        CompletionPrefix = mt;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.set.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSSet: Declaration";
-        MethodType = "NSSet *";
-        CompletionPrefix = mt;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.uint;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSUInteger: Definition";
-        MethodType = "NSUInteger";
-        CompletionPrefix = mui;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.uint.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSUInteger: Declaration";
-        MethodType = "NSUInteger";
-        CompletionPrefix = mui;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.void;
-        BasedOn = objc.imethod;
-        IsMenuItem = NO;
-        Name = "Instance Method: Definition";
-        MethodType = "void";
-        CompletionPrefix = mv;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.void.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method: Declaration";
-        MethodType = "void";
-        CompletionPrefix = mv;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.value;
-        BasedOn = objc.imethod.return;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSValue: Definition";
-        MethodType = "NSValue";
-        CompletionPrefix = mw;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.return.value.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method returning NSValue: Declaration";
-        MethodType = "NSValue";
-        CompletionPrefix = mw;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.event;
-        BasedOn = objc.imethod.void;
-        IsMenuItem = NO;
-        Name = "Instance Method (NSEvent): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
-        CompletionPrefix = me;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.targetaction;
-        BasedOn = objc.imethod.void;
-        IsMenuItem = NO;
-        Name = "Instance Method (Target-Action): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
-        CompletionPrefix = mx;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.targetaction.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method (Target-Action): Declaration";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
-        CompletionPrefix = mx;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.ibaction;
-        BasedOn = objc.imethod.targetaction;
-        IsMenuItem = NO;
-        Name = "Instance Method (IBAction): Definition";
-        MethodType = "IBAction";
-        CompletionPrefix = miba;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.ibaction.decl;
-        BasedOn = objc.imethod.targetaction.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method (IBAction): Declaration";
-        MethodType = "IBAction";
-        CompletionPrefix = miba;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.notification;
-        BasedOn = objc.imethod.void;
-        IsMenuItem = NO;
-        Name = "Instance Method (NSNotification): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
-        CompletionPrefix = n;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.varargs;
-        BasedOn = objc.imethod;
-        IsMenuItem = NO;
-        Name = "Instance Method with VarArgs: Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)format, ...";
-        MethodBody =
-"va_list argList;
-	va_start$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)argList, format$(InFunctionArgsSpacing));
-	format = [[NSString alloc] initWithFormat:format arguments:argList];
-	va_end$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)argList$(InFunctionArgsSpacing));
-	<#!statements!#>
-	[format release];";
-        MethodType = "<#type#>";
-        CompletionPrefix = args;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.imethod.varargs.decl;
-        BasedOn = objc.imethod.decl;
-        IsMenuItem = NO;
-        Name = "Instance Method with VarArgs: Declaration";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)format, ...";
-        MethodType = "<#type#>";
-        CompletionPrefix = args;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Class Method: Definition";
-        MethodArgs = "";
-        MethodBody = "<#!statements!#>";
-        MethodType = "<#type#>";
-        TextString = "+$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs)$(FunctionBlockSeparator){\n\t$(MethodBody)\n}\n";
-        CompletionPrefix = M;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.decl;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Class Method: Declaration";
-        MethodArgs = "";
-        MethodType = "<#type#>";
-        TextString = "+$(PreMethodTypeSpacing)($(MethodType))$(PreMethodDeclSpacing)<#method#>$(MethodArgs);\n";
-        CompletionPrefix = M;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return;
-        BasedOn = objc.cmethod;
-        IsMenuItem = NO;
-        Name = "Class Method returning Something: Definition";
-        MethodBody = "<#!statements!#>\n\treturn <#expression#>;";
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.array;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSArray: Definition";
-        MethodType = "NSArray *";
-        CompletionPrefix = Ma;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.array.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSArray: Declaration";
-        MethodType = "NSArray *";
-        CompletionPrefix = Ma;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.bool;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning BOOL: Definition";
-        MethodType = "BOOL";
-        CompletionPrefix = Mb;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.bool.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning BOOL: Declaration";
-        MethodType = "BOOL";
-        CompletionPrefix = Mb;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.dictionary;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSDictionary: Definition";
-        MethodType = "NSDictionary *";
-        CompletionPrefix = Md;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.dictionary.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSDictionary: Declaration";
-        MethodType = "NSDictionary *";
-        CompletionPrefix = Md;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.int;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSInteger: Definition";
-        MethodType = "NSInteger";
-        CompletionPrefix = Mi;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.int.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSInteger: Declaration";
-        MethodType = "NSInteger";
-        CompletionPrefix = Mi;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.id;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning id: Definition";
-        MethodType = "id";
-        CompletionPrefix = Mid;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.id.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning id: Declaration";
-        MethodType = "id";
-        CompletionPrefix = Mid;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.number;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSNumber: Definition";
-        MethodType = "NSNumber";
-        CompletionPrefix = Mn;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.number.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSNumber: Declaration";
-        MethodType = "NSNumber";
-        CompletionPrefix = Mn;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.string;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSString: Definition";
-        MethodType = "NSString *";
-        CompletionPrefix = Ms;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.string.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSString: Declaration";
-        MethodType = "NSString *";
-        CompletionPrefix = Ms;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.set;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSSet: Definition";
-        MethodType = "NSSet *";
-        CompletionPrefix = Mt;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.set.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSSet: Declaration";
-        MethodType = "NSSet *";
-        CompletionPrefix = Mt;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.uint;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSUInteger: Definition";
-        MethodType = "NSUInteger";
-        CompletionPrefix = Mui;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.uint.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSUInteger: Declaration";
-        MethodType = "NSUInteger";
-        CompletionPrefix = Mui;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.void;
-        BasedOn = objc.cmethod;
-        IsMenuItem = NO;
-        Name = "Class Method: Definition";
-        MethodType = "void";
-        CompletionPrefix = Mv;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.void.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method: Declaration";
-        MethodType = "void";
-        CompletionPrefix = Mv;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.value;
-        BasedOn = objc.cmethod.return;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSValue: Definition";
-        MethodType = "NSValue";
-        CompletionPrefix = Mw;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.return.value.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method returning NSValue: Declaration";
-        MethodType = "NSValue";
-        CompletionPrefix = Mw;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.event;
-        BasedOn = objc.cmethod.void;
-        IsMenuItem = NO;
-        Name = "Class Method (NSEvent): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSEvent *)$(MessageArgSpacing)event";
-        CompletionPrefix = Me;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.targetaction;
-        BasedOn = objc.cmethod.void;
-        IsMenuItem = NO;
-        Name = "Class Method (Target+Action): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
-        CompletionPrefix = Mx;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.targetaction.decl;
-        BasedOn = objc.cmethod.decl;
-        IsMenuItem = NO;
-        Name = "Class Method (Target+Action): Declaration";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)sender";
-        CompletionPrefix = Mx;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.ibaction;
-        BasedOn = objc.cmethod.targetaction;
-        IsMenuItem = NO;
-        Name = "Class Method (IBAction): Definition";
-        MethodType = "IBAction";
-        CompletionPrefix = Miba;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.ibaction.decl;
-        BasedOn = objc.cmethod.targetaction.decl;
-        IsMenuItem = NO;
-        Name = "Class Method (IBAction): Declaration";
-        MethodType = "IBAction";
-        CompletionPrefix = Miba;
-        IncludeContexts = ( "xcode.lang.objc.interface" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.cmethod.notification;
-        BasedOn = objc.cmethod.void;
-        IsMenuItem = NO;
-        Name = "Class Method (NSNotification): Definition";
-        MethodArgs = "$(PreColonSpacing):$(PostColonSpacing)(NSNotification *)$(MessageArgSpacing)notification";
-        CompletionPrefix = N;
-        IncludeContexts = ( "xcode.lang.objc.implementation" );
-        ExcludeContexts = ( "xcode.lang.objc.block" );
-    },
-    // Objective C method parameters
-    {
-        Identifier = objc.parameter;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Method Parameter";
-        ParameterType = "<#type#>";
-        TextString = "($(ParameterType))$(MessageArgSpacing)<#!parameter!#>";
-        CompletionPrefix = pp;
-        CycleList = (
-            objc.parameter,
-            objc.parameter.array,
-            objc.parameter.bool,
-            objc.parameter.dictionary,
-            objc.parameter.range,
-            objc.parameter.int,
-            objc.parameter.id,
-            objc.parameter.number,
-            objc.parameter.point,
-            objc.parameter.rect,
-            objc.parameter.string,
-            objc.parameter.set,
-            objc.parameter.uint,
-            objc.parameter.void,
-            objc.parameter.value,
-            objc.parameter.size,
-            objc.parameter.event,
-            objc.parameter.targetaction,
-        );
-    },
-    {
-        Identifier = objc.parameter.array;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSArray";
-        ParameterType = "NSArray *";
-        CompletionPrefix = ppa;
-    },
-    {
-        Identifier = objc.parameter.bool;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: BOOL";
-        ParameterType = "BOOL";
-        CompletionPrefix = ppb;
-    },
-    {
-        Identifier = objc.parameter.dictionary;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSDictionary";
-        ParameterType = "NSDictionary *";
-        CompletionPrefix = ppd;
-    },
-    {
-        Identifier = objc.parameter.range;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSRange";
-        ParameterType = "NSRange";
-        CompletionPrefix = ppg;
-    },
-    {
-        Identifier = objc.parameter.int;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSInteger";
-        ParameterType = "NSInteger";
-        CompletionPrefix = ppi;
-    },
-    {
-        Identifier = objc.parameter.id;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: id";
-        ParameterType = "id";
-        CompletionPrefix = ppid;
-    },
-    {
-        Identifier = objc.parameter.number;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSNumber";
-        ParameterType = "NSNumber";
-        CompletionPrefix = ppn;
-    },
-    {
-        Identifier = objc.parameter.point;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSPoint";
-        ParameterType = "NSPoint";
-        CompletionPrefix = ppp;
-    },
-    {
-        Identifier = objc.parameter.rect;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSRect";
-        ParameterType = "NSRect";
-        CompletionPrefix = ppr;
-    },
-    {
-        Identifier = objc.parameter.string;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSString";
-        ParameterType = "NSString *";
-        CompletionPrefix = pps;
-    },
-    {
-        Identifier = objc.parameter.set;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSSet";
-        ParameterType = "NSSet *";
-        CompletionPrefix = ppt;
-    },
-    {
-        Identifier = objc.parameter.uint;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSUInteger";
-        ParameterType = "NSUInteger";
-        CompletionPrefix = ppui;
-    },
-    {
-        Identifier = objc.parameter.void;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: void Pointer";
-        ParameterType = "void *";
-        CompletionPrefix = ppv;
-    },
-    {
-        Identifier = objc.parameter.value;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSValue";
-        ParameterType = "NSValue";
-        CompletionPrefix = ppw;
-    },
-    {
-        Identifier = objc.parameter.size;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSSize";
-        ParameterType = "NSSize";
-        CompletionPrefix = ppz;
-    },
-    {
-        Identifier = objc.parameter.event;
-        BasedOn = objc.parameter;
-        IsMenuItem = NO;
-        Name = "Method Parameter: NSEvent";
-        ParameterType = "NSEvent";
-        CompletionPrefix = ppe;
-    },
-    {
-        Identifier = objc.parameter.targetaction;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "Method Parameter: Target+Action";
-        TextString = "(id)$(MessageArgSpacing)sender";
-        CompletionPrefix = ppx;
-    },
-    {
-        Identifier = objc.parameter.with-colon;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "Method Parameter: Declaration";
-        TextString = "$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#!parameter!#>";
-        CompletionPrefix = ":";
-    },
-    // Objective C common method calls
-    {
-        Identifier = objc.allocinit;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Alloc / Init Call";
-        TextString = "[[<#!class!#> alloc] init]";
-        CompletionPrefix = ai;
-    },
-    {
-        Identifier = objc.allocinitautorelease;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Alloc / Init / Autorelease Call";
-        TextString = "[[[<#!class!#> alloc] init] autorelease]";
-        CompletionPrefix = aa;
-    },
-    {
-        Identifier = objc.release;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Release Call";
-        TextString = "[<#!object!#> release];";
-        CompletionPrefix = rr;
-    },
-    {
-        Identifier = objc.poseasclass;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Pose as Superclass";
-        TextString = "[self poseAsClass:[self superclass]];";
-        CompletionPrefix = pose;
-    },
-    // Objective C common messages
-    {
-        Identifier = objc.msg.autorelease;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "autorelease";
-        TextString = "autorelease";
-        CompletionPrefix = ar;
-    },
-    {
-        Identifier = objc.msg.characteratindex;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "characterAtIndex:";
-        TextString = "characterAtIndex:<#!index!#>";
-        CompletionPrefix = ci;
-    },
-    {
-        Identifier = objc.msg.isequal;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "isEqual:";
-        TextString = "isEqual:<#!object!#>";
-        CompletionPrefix = eq;
-    },
-    {
-        Identifier = objc.msg.isequaltostring;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "isEqualToString:";
-        TextString = "isEqualToString:<#!string!#>";
-        CompletionPrefix = es;
-    },
-    {
-        Identifier = objc.msg.iskindofclass;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "isKindOfClass:";
-        TextString = "isKindOfClass:[<#!class!#> class]";
-        CompletionPrefix = ik;
-    },
-    {
-        Identifier = objc.msg.objectenumerator;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "objectEnumerator";
-        TextString = "objectEnumerator";
-        CompletionPrefix = oe;
-    },
-    {
-        Identifier = objc.msg.objectatindex;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "objectAtIndex:";
-        TextString = "objectAtIndex:<#!index!#>";
-        CompletionPrefix = oi;
-    },
-    {
-        Identifier = objc.msg.objectforkey;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "objectForKey:";
-        TextString = "objectForKey:<#!key!#>";
-        CompletionPrefix = ok;
-    },
-    {
-        Identifier = objc.msg.setobjectforkey;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "setObject:forKey:";
-        TextString = "setObject:<#!object!#> forKey:<#key#>";
-        CompletionPrefix = so;
-    },
-    {
-        Identifier = objc.msg.valueforkey;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "valueForKey:";
-        TextString = "valueForKey:<#!key!#>";
-        CompletionPrefix = vk;
-    },
-    {
-        Identifier = objc.msg.setvalueforkey;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "setValue:forKey:";
-        TextString = "setValue:<#!value!#> forKey:<#key#>";
-        CompletionPrefix = sv;
-    },
-    {
-        Identifier = objc.msg.withobject;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "withObject:";
-        TextString = "withObject:<#!object!#>";
-        CompletionPrefix = wo;
-    },
-    {
-        Identifier = objc.msg.writetofile;
-        BasedOn = objc;
-        IsMenuItem = NO;
-        Name = "writeToFile:atomically:";
-        TextString = "writeToFile:<#!path!#> atomically:YES";
-        CompletionPrefix = write;
-    },
-    // Objective C iteration
-    {
-        // Removed extraneous whitespace
-        Identifier = objc.arrayiteration;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Array For Loop";
-        TextString = "NSUInteger i, count = [<#array#> count];\nfor$(PreExpressionsSpacing)($(InExpressionsSpacing)i = 0; i < count; i++$(InExpressionsSpacing))$(BlockSeparator){\n\tNSObject *obj = [<#array#> objectAtIndex:i];\n\t<#!statements!#>\n}";
-        CompletionPrefix = fora;
-        IncludeContexts = ( "xcode.lang.objc.block" );
-    },
-    {
-        Identifier = objc.stringiteration;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "String For Loop";
-        TextString = "NSUInteger i, length = [<#string#> length];\nfor$(PreExpressionsSpacing)($(InExpressionsSpacing)i = 0; i < length; i++$(InExpressionsSpacing))$(BlockSeparator){\n\tunichar c = [<#string#> characterAtIndex:i];\n\t<#!statements!#>\n}";
-        CompletionPrefix = fors;
-    },
-    {
-        Identifier = objc.enumeration;
-        BasedOn = objc;
-        IsMenuItem = YES;
-        Name = "Enumeration";
-        TextString = "NSEnumerator *<#enumerator#> = [<#collection#> objectEnumerator];\n<#type#> <#object#>;\nwhile$(PreExpressionsSpacing)($(InExpressionsSpacing)($(InExpressionsSpacing)<#object#> = [<#enumerator#> nextObject]$(InExpressionsSpacing)) != nil$(InExpressionsSpacing))$(BlockSeparator){\n\t<#!statements!#>\n}";
-        CompletionPrefix = enum;
-    },
+            CompletionPrefix = bind;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.observe.bind;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "bind: Declaration";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)bind$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)binding toObject$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)observable withKeyPath$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)keyPath options$(PreColonSpacing):$(PostColonSpacing)(NSDictionary *)$(MessageArgSpacing)options;\n";
+            // CompletionPrefix = bind;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+            // Disabled; The identifier is all wrong ;)
+        },
+        {
+            Identifier = objc.bind.decl;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "bind: Declaration";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)bind$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)binding toObject$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)observable withKeyPath$(PreColonSpacing):$(PostColonSpacing)(NSString *)$(MessageArgSpacing)keyPath options$(PreColonSpacing):$(PostColonSpacing)(NSDictionary *)$(MessageArgSpacing)options;\n";
+            CompletionPrefix = bind;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.isequal;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "isEqual Definition";
+            TextString = "-$(PreMethodTypeSpacing)(BOOL)$(PreMethodDeclSpacing)isEqual$(PreColonSpacing):$(PostColonSpacing)(id)$(MessageArgSpacing)object$(FunctionBlockSeparator){\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)object == self$(InExpressionsSpacing))\n\t\treturn YES;\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)object == nil || ![object isKindOfClass:[self class]]$(InExpressionsSpacing))\n\t\treturn NO;\n\treturn <#!expression!#>;\n}\n";
+            CompletionPrefix = isEqual;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.initialize;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "initialize Definition";
+            TextString = "+$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)initialize$(FunctionBlockSeparator){\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)self == [<#classname#> class]$(InExpressionsSpacing))$(BlockSeparator){\n\t\t<#!statements!#>\n\t}\n}\n";
+            CompletionPrefix = initialize;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.load;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "load Definition";
+            TextString = "+$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)load$(FunctionBlockSeparator){\n\tNSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];\n\t<#!statements!#>\n\t[pool release];\n}\n";
+            CompletionPrefix = load;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        
+        {
+            Identifier = objc.sharedInstance;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "sharedInstance Definition";
+            TextString =
+    "+$(PreMethodTypeSpacing)(<#class#> *)$(PreMethodDeclSpacing)<#sharedInstance#>$(FunctionBlockSeparator){\n\tstatic <#class#> *<#!singleton!#> = nil;\n\tif$(PreExpressionsSpacing)($(InExpressionsSpacing)<#singleton#> == nil$(InExpressionsSpacing))$(BlockSeparator){\n\t\t<#singleton#> = [[self alloc] init];\n\t}\n\treturn <#singleton#>;\n}\n";
+            CompletionPrefix = sharedInstance;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        //
+        // Classes and Protocols
+        // ---------------------
+        {
+            Identifier = objc.class;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "@class Declaration";
+            TextString = "@class <#!class!#>;";
+            CompletionPrefix = "@class";
+            ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
+        },
+        
+        {
+            Identifier = objc.interface;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "@interface Definition";
+            TextString = "@interface <#class#> : <#superclass#>$(BlockSeparator){\n\t<#ivars#>\n}\n\n<#!methods!#>\n\n@end\n";
+            CompletionPrefix = "@interface";
+            ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
+            CycleList = (
+                objc.interface,
+                objc.interface.category,
+            );
+        },
+        {
+            Identifier = objc.interface.category;
+            BasedOn = objc.interface;
+            IsMenuItem = YES;
+            Name = "@interface Definition (Category)";
+            TextString = "@interface <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
+            CompletionPrefix = "@interfacecat";
+        },
+        
+        {
+            Identifier = objc.implementation;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "@implementation Definition";
+            TextString = "@implementation <#class#>\n\n<#!methods!#>\n\n@end\n";
+            CompletionPrefix = "@implementation";
+            ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
+            CycleList = (
+                objc.implementation,
+                objc.implementation.category,
+            );
+        },
+        {
+            Identifier = objc.implementation.category;
+            BasedOn = objc.implementation;
+            IsMenuItem = YES;
+            Name = "@implementation Definition (Category)";
+            TextString = "@implementation <#class#> (<#category#>)\n\n<#!methods!#>\n\n@end\n";
+            CompletionPrefix = "@implementationcat";
+        },
+        
+        {
+            Identifier = objc.protocol;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "@protocol Definition";
+            TextString = "@protocol <#protocol#>\n\n<#methods#>\n\n@end\n";
+            CompletionPrefix = "@protocol";
+            ExcludeContexts = ( "xcode.lang.objc.implementation", "xcode.lang.objc.interface", "xcode.lang.objc.protocol" );
+        },
+
+        //
+        // Properties
+        // ----------
+        {
+            Identifier = objc.property;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Property";
+            TextString = "@property$(PreExpressionsSpacing)($(InExpressionsSpacing)<#options#>$(InExpressionsSpacing)) <#type#> <#!ivar!#>;";
+            CompletionPrefix = "@property";
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.dynamic;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Dynamic Property Accessors";
+            TextString = "@dynamic <#!property!#>;";
+            CompletionPrefix = "@dynamic";
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.synthesize;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Synthesize Property Accessors";
+            TextString = "@synthesize <#!property!#>;";
+            CompletionPrefix = "@synthesize";
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        //
+        // Accessors
+        // ---------
+        {
+            Identifier = objc.accessor;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Property Accessors (assign): Definition";
+            NewValue = "<#value#>";
+            OldValue = "";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)set<#Name#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#value#>$(FunctionBlockSeparator){$(OldValue)\n\t<#name#> = $(NewValue);\n}\n-$(PreMethodTypeSpacing)(<#type#>)$(PreMethodDeclSpacing)<#!name!#>$(FunctionBlockSeparator){\n\treturn <#name#>;\n}\n";
+            CompletionPrefix = ac;
+            IncludeContexts = ( "xcode.lang.objc.implementation" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+        {
+            Identifier = objc.accessor.copy;
+            BasedOn = objc.accessor;
+            IsMenuItem = YES;
+            Name = "Property Accessors (copy): Definition";
+            NewValue = "[<#value#> copy]";
+            OldValue = "\n\t[<#name#> autorelease];";
+            CompletionPrefix = acc;
+        },
+        {
+            Identifier = objc.accessor.retain;
+            BasedOn = objc.accessor;
+            IsMenuItem = YES;
+            Name = "Property Accessors (retain): Definition";
+            NewValue = "[<#value#> retain]";
+            OldValue = "\n\t[<#name#> autorelease];";
+            CompletionPrefix = acr;
+        },
+        {
+            Identifier = objc.accessor.decl;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Property Accessors: Declaration";
+            TextString = "-$(PreMethodTypeSpacing)(void)$(PreMethodDeclSpacing)set<#Name#>$(PreColonSpacing):$(PostColonSpacing)(<#type#>)$(MessageArgSpacing)<#value#>;\n-$(PreMethodTypeSpacing)(<#type#>)$(PreMethodDeclSpacing)<#!name!#>;";
+            CompletionPrefix = ac;
+            IncludeContexts = ( "xcode.lang.objc.interface" );
+            ExcludeContexts = ( "xcode.lang.objc.block" );
+        },
+
+        //
+        // Common Class Shorthands
+        // -----------------------
+        //
+        // Moved to ObjC-Types.
+        //
+        {
+            Identifier = objc.nss;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSString";
+            TextString = "NSString";
+            // CompletionPrefix = nss;
+        },
+        {
+            Identifier = objc.nsms;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSMutableString";
+            TextString = "NSMutableString";
+            // CompletionPrefix = nsms;
+        },
+        {
+            Identifier = objc.nsa;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSArray";
+            TextString = "NSArray";
+            // CompletionPrefix = nsa;
+        },
+        {
+            Identifier = objc.nsma;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSMutableArray";
+            TextString = "NSMutableArray";
+            // CompletionPrefix = nsma;
+        },
+        {
+            Identifier = objc.nsd;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSDictionary";
+            TextString = "NSDictionary";
+            // CompletionPrefix = nsd;
+        },
+        {
+            Identifier = objc.nsmd;
+            BasedOn = objc;
+            IsMenuItem = NO;
+            Name = "NSMutableDictionary";
+            TextString = "NSMutableDictionary";
+            // CompletionPrefix = nsmd;
+        },
+
+        //
+        // Selector Macros
+        // ---------------
+        {
+            Identifier = objc.selector;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "@selector Expression";
+            TextString = "@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
+            CompletionPrefix = "@selector";
+        },
+        {
+            Identifier = objc.respondsto;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "respondsToSelector: Call";
+            TextString = "respondsToSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
+            CompletionPrefix = res;
+        },
+        {
+            Identifier = objc.perform;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "performSelector: Call";
+            TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing))";
+            CompletionPrefix = per;
+        },
+        {
+            Identifier = objc.delay.perform;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Delayed performSelector: Call";
+            TextString = "performSelector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) withObject:<#object#> afterDelay:<#delay#>";
+            CompletionPrefix = del;
+        },
+        {
+            Identifier = objc.delay.cancel;
+            BasedOn = objc;
+            IsMenuItem = YES;
+            Name = "Delayed performSelector: Cancel";
+            TextString = "[NSObject cancelPreviousPerformRequestsWithTarget:<#target#> selector:@selector$(PreFunctionArgsSpacing)($(InFunctionArgsSpacing)<#!selector!#>$(InFunctionArgsSpacing)) object:<#object#>];";
+            CompletionPrefix = can;
+        },
 )
