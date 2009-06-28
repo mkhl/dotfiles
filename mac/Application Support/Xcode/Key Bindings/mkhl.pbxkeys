@@ -185,7 +185,9 @@
 		<key>^@</key>
 		<string>debugTaskShowHUD:</string>
 		<key>^[</key>
-		<string>textMacro_objc_bracket</string>
+		<string>textMacro_c_bracket</string>
+		<key>^{</key>
+		<string>textMacro_c_brace</string>
 		<key>^u</key>
 		<string>unfoldAll:</string>
 		<key>^~@f</key>
