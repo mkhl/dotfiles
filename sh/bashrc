@@ -38,7 +38,7 @@ source_maybe "$HOME/.bash_completion_link"
 
 # Augment PATH
 munge PATH "$HOME/bin" before
-munge PATH . after
+# munge PATH . after
 
 # Load local overrides
 source_maybe "$HOME/.bashrc_local"
