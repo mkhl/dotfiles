@@ -1,6 +1,6 @@
 ;;  -*- mode: scheme -*-
 
-(use-modules (ice-9 slib))
+;; (use-modules (ice-9 slib))
 (use-modules (ice-9 readline))
 (activate-readline)
 (use-modules (srfi srfi-1))
