@@ -15,7 +15,7 @@ PS_WINDOW=""
 # fi
 
 # Set the prompt
-PROMPT="$PS_ARROW "
+PROMPT="%B%(?..[%?] )%b$PS_ARROW "
 RPROMPT="%55<...<%~"
 if [[ -n "$SSH_CLIENT" ]]; then
     RPROMPT="$RPROMPT|%n@%m"
