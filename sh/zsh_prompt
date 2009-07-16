@@ -15,9 +15,10 @@ PS_WINDOW=""
 # fi
 
 # Set the prompt
-prompt="$PS_WINDOW%~$PS_ARROW "
+PROMPT="$PS_ARROW "
+RPROMPT="%55<...<%~"
 if [[ -n "$SSH_CLIENT" ]]; then
-    rprompt="%n@%m"
+    RPROMPT="$RPROMPT|%n@%m"
 fi
 
 # Set the title
