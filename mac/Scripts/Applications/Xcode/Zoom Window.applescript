@@ -32,14 +32,14 @@ set editorWindowHeight to screenHeight - menubarHeight - 10
 set editorWindowBounds to {15, 5, 15 + editorWindowWidth, 5 + editorWindowHeight}
 
 tell application "Xcode"
-	set its_name to  the name of the front window
-	set an_ending to "." & the last item of the words of its_name
-	if its_name ends with an_ending then
-		set _bounds to the bounds of the front window
+	set _name to name of front window
+	set _extension to "." & last item of words of _name
+	if _name ends with _extension then
+		set _bounds to bounds of front window
 		set item 1 of editorWindowBounds to item 1 of _bounds
 		set item 3 of editorWindowBounds to item 1 of _bounds + editorWindowWidth
-		set the bounds of the front window to editorWindowBounds
+		set bounds of front window to editorWindowBounds
 	else
-		set the size of the front window to projectWindowSize
+		set size of front window to projectWindowSize
 	end if
 end tell
