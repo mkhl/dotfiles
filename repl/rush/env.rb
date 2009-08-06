@@ -5,15 +5,17 @@ user_path = lambda { |dir| root[OSX::NSSearchPathForDirectoriesInDomains(dir, OS
 root_path = lambda { |dir| root[OSX::NSSearchPathForDirectoriesInDomains(dir, OSX::NSLocalDomainMask, true).first.to_s] }
 
 projects = home['Projects']
+cocoa = projects['Cocoa']
+hets = projects['Hets/Hets']
 bin = home['bin']
 src = home['src']
 ext = src['ext']
-qsb = src['blacktree/qsb-mac']
+qsb = src['alchemy/qsb-mac']
 
 prefs = user_path[OSX::NSLibraryDirectory]['Preferences']
 appsup = user_path[OSX::NSApplicationSupportDirectory]
 mate = appsup['TextMate']
-esp = appsup['Espresso']
+espresso = appsup['Espresso']
 
 $prefs = root_path[OSX::NSLibraryDirectory]['Preferences']
 $appsup = root_path[OSX::NSApplicationSupportDirectory]
