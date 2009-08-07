@@ -42,6 +42,7 @@
 
         "^i"    = ("insertText:", "\U203D");  // C-i     interrobang
         "^k"    = ("insertText:", "\U2665");  // C-k     black heart
+        "k"     = ("insertText:", "\U2603");  // k       snowman
         "a"     = ("insertText:", "\UF8FF");  // a       apple logo
         "^l"    = ("insertText:", "\U03BB");  // C-l     lambda
         // "^p"    = ("insertText:", "\U03C0");  // C-p     pi // Available on ⌥P
