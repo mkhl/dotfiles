@@ -4,6 +4,7 @@
 # zsh-specific prompting
 autoload -U promptinit
 promptinit
+colors
 
 # Helper definitions
 PS_ARROW=">"
