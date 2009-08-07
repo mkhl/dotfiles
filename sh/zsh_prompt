@@ -16,7 +16,7 @@ PS_WINDOW=""
 # fi
 
 # Set the prompt
-PROMPT="%B%(?..[%?] )%b$PS_ARROW "
+PROMPT="%B%(?..[%?] )%b%N$PS_ARROW "
 RPROMPT="%{$fg_no_bold[blue]%}%55<...<%~%{$reset_color%}"
 if [[ -n "$SSH_CLIENT" ]]; then
     RPROMPT="$RPROMPT|%n@%m"
