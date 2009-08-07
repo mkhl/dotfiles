@@ -37,8 +37,8 @@
         "^u"    = ("insertText:", "\U21DE");  /* C-u     page up */
         "u"     = ("insertText:", "\U21DF");  /* u       page down */
 
-        "^x"    = ("insertText:", "\U238B");  /* C-x     escape */ 
-        "x"     = ("insertText:", "\U23CF");  /* x       eject */ 
+        "^x"    = ("insertText:", "\U238B");  /* C-x     escape */
+        "x"     = ("insertText:", "\U23CF");  /* x       eject */
 
         "^i"    = ("insertText:", "\U203D");  // C-i     interrobang
         "^k"    = ("insertText:", "\U2665");  // C-k     black heart
@@ -48,6 +48,7 @@
         "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
         "^m"    = ("insertText:", "\U263F");  // C-m     Mercury
     };
+
     /*IncrementalSearchInputManager*/
     "^s" = "ISIM_incrementalSearch:";
     "^r" = "ISIM_reverseIncrementalSearch:";
