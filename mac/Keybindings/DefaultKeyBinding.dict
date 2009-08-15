@@ -52,7 +52,7 @@
 
     /*IncrementalSearchInputManager*/
     "^s" = "ISIM_incrementalSearch:";
-    "^r" = "ISIM_reverseIncrementalSearch:";
+    "^S" = "ISIM_reverseIncrementalSearch:";
     "^g" = "abort:";
 
     // "~\Uf700" = "ISIM_handleOptionUpArrow:";
