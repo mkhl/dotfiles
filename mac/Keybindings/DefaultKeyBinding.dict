@@ -44,12 +44,11 @@
         "x"     = ("insertText:", "\U23CF");  /* x       eject */
 
         "^i"    = ("insertText:", "\U203D");  // C-i     interrobang
+        "i"     = ("insertText:", "\U221E");  // i       infinity
         "^k"    = ("insertText:", "\U2665");  // C-k     black heart
-        "k"     = ("insertText:", "\U2603");  // k       snowman
         "a"     = ("insertText:", "\UF8FF");  // a       apple logo
-        "^l"    = ("insertText:", "\U03BB");  // C-l     lambda
-        "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
         "^m"    = ("insertText:", "\U263F");  // C-m     Mercury
+        "m"     = ("insertText:", "\U2603");  // m       snowman
     };
 
     /* Greek unicode letters: start with C-g */
