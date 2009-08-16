@@ -22,6 +22,7 @@
         "^c"    = ("insertText:", "\U2303");  /* C-c     control */
         "^s"    = ("insertText:", "\U21E7");  /* C-s     shift */
         "s"     = ("insertText:", "\U21EA");  /* s       caps lock */
+        "c"     = ("insertText:", "\U2038");  /* c       caret */
 
         "^b"    = ("insertText:", "\U2190");  /* C-b     solid left */
         "^f"    = ("insertText:", "\U2192");  /* C-f     solid right */
@@ -31,6 +32,10 @@
         "f"     = ("insertText:", "\U21E2");  /* b       dotted right */
         "p"     = ("insertText:", "\U21E1");  /* p       dotted up */
         "n"     = ("insertText:", "\U21E3");  /* n       dotted down */
+        "B"     = ("insertText:", "\U21E0");  /* S-f     double left */
+        "F"     = ("insertText:", "\U21E2");  /* S-b     double right */
+        "P"     = ("insertText:", "\U21E1");  /* S-p     solid left-right */
+        "N"     = ("insertText:", "\U21E3");  /* S-n     double left-right */
 
         "^h"    = ("insertText:", "\U2196");  /* C-h     home */
         "h"     = ("insertText:", "\U2198");  /* h       end */
@@ -45,7 +50,6 @@
         "k"     = ("insertText:", "\U2603");  // k       snowman
         "a"     = ("insertText:", "\UF8FF");  // a       apple logo
         "^l"    = ("insertText:", "\U03BB");  // C-l     lambda
-        // "^p"    = ("insertText:", "\U03C0");  // C-p     pi // Available on ⌥P
         "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
         "^m"    = ("insertText:", "\U263F");  // C-m     Mercury
     };
