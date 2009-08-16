@@ -1,9 +1,7 @@
 {
     /* Convenience */
 //     "@\U000A" = ("moveToEndOfParagraph:", "insertNewline:");
-    /* For the GlyphInput bundle */
-    // "^§" = "insertGlyphRepresentationOfKeyEquivalent:";     // Ctl-§
-    // "~§" = "insertTextualRepresentationOfKeyEquivalent:";   // Opt-§
+
     /* Modifier keys: start with C-m */
     "^m" = {
         "^ "    = ("insertText:", "\U2423");  /* C-space space */
@@ -53,6 +51,97 @@
         "^z"    = ("insertText:", "\U03B6");  // C-z     zeta
         "^m"    = ("insertText:", "\U263F");  // C-m     Mercury
     };
+
+    /* Greek unicode letters: start with C-b */
+    // "^b" = {
+    //     /* Lowercase Greek letters */
+    //     "^a"    = ("insertText:", "\U03B1");        /* a            alpha */
+    //     "^b"    = ("insertText:", "\U03B2");        /* b            beta */
+    //     "^g"    = ("insertText:", "\U03B3");        /* g            gamma */       
+    //     "^d"    = ("insertText:", "\U03B4");        /* d            delta */
+    //     "^e"    = ("insertText:", "\U03B5");        /* e            epsilon         - latex varepsilon */
+    //     "^z"    = ("insertText:", "\U03B6");        /* z            zeta */
+    //     "^h"    = ("insertText:", "\U03B7");        /* h            eta */
+    //     "^q"    = ("insertText:", "\U03B8");        /* q            theta */
+    //     "^i"    = ("insertText:", "\U03B9");        /* i            iota */
+    //     "^k"    = ("insertText:", "\U03BA");        /* k            kappa */
+    //     "^l"    = ("insertText:", "\U03BB");        /* l            lambda */
+    //     "^m"    = ("insertText:", "\U03BC");        /* m            mu */
+    //     "^n"    = ("insertText:", "\U03BD");        /* n            nu */
+    //     "^x"    = ("insertText:", "\U03BE");        /* x            xi */
+    //     "^o"    = ("insertText:", "\U03BF");        /* o            omicron */
+    //     "^p"    = ("insertText:", "\U03C0");        /* p            pi */
+    //     "^r"    = ("insertText:", "\U03C1");        /* r            rho */
+    //     "^s"    = ("insertText:", "\U03C3");        /* s            sigma */
+    //     "^t"    = ("insertText:", "\U03C4");        /* t            tau */
+    //     "^u"    = ("insertText:", "\U03C5");        /* u            upsilon */
+    //     "^f"    = ("insertText:", "\U03D5");        /* f            phi variant     - latex phi */
+    //     "^c"    = ("insertText:", "\U03C7");        /* c            chi */
+    //     "^y"    = ("insertText:", "\U03C8");        /* y            psi */
+    //     "^w"    = ("insertText:", "\U03C9");        /* w            omega */
+    //     
+    //     /* let go ctrl for variants */
+    //     "q"     = ("insertText:", "\U03D1");        /* q            theta variant */
+    //     "e"     = ("insertText:", "\U03F5");        /* e            epsilon variant - latex epsilon*/
+    //     "p"     = ("insertText:", "\U03D6");        /* p            pi variant */
+    //     "r"     = ("insertText:", "\U03F1");        /* r            rho variant */
+    //     "s"     = ("insertText:", "\U03C2");        /* s            final sigma */
+    //     "f"     = ("insertText:", "\U03C6");        /* f            phi             - latex varphi */
+    //     
+    //     /* Capital Greek letters */
+    //     "A"     = ("insertText:", "\U0391");        /* A            Alpha */
+    //     "B"     = ("insertText:", "\U0392");        /* B            Beta */
+    //     "G"     = ("insertText:", "\U0393");        /* G            Gamma */
+    //     "D"     = ("insertText:", "\U0394");        /* D            Delta */
+    //     "E"     = ("insertText:", "\U0395");        /* E            Epsilon */
+    //     "Z"     = ("insertText:", "\U0396");        /* Z            Zeta */
+    //     "H"     = ("insertText:", "\U0397");        /* H            Eta */
+    //     "Q"     = ("insertText:", "\U0398");        /* Q            Theta */
+    //     "I"     = ("insertText:", "\U0399");        /* I            Iota */
+    //     "K"     = ("insertText:", "\U039A");        /* K            Kappa */
+    //     "L"     = ("insertText:", "\U039B");        /* L            Lambda */
+    //     "M"     = ("insertText:", "\U039C");        /* M            Mu */
+    //     "N"     = ("insertText:", "\U039D");        /* N            Nu */
+    //     "X"     = ("insertText:", "\U039E");        /* X            Xi */
+    //     "O"     = ("insertText:", "\U039F");        /* O            Omicron */
+    //     "P"     = ("insertText:", "\U03A0");        /* P            Pi */
+    //     "R"     = ("insertText:", "\U03A1");        /* R            Rho */
+    //     "S"     = ("insertText:", "\U03A3");        /* S            Sigma */
+    //     "T"     = ("insertText:", "\U03A4");        /* T            Tau */
+    //     "U"     = ("insertText:", "\U03A5");        /* U            Upsilon */
+    //     "F"     = ("insertText:", "\U03A6");        /* F            Phi */
+    //     "C"     = ("insertText:", "\U03A7");        /* C            Chi */
+    //     "Y"     = ("insertText:", "\U03A8");        /* Y            Psi */
+    //     "W"     = ("insertText:", "\U03A9");        /* W            Omega */
+    //     
+    //     /* Make sure unused letters do nothing */
+    //     "^j"    = "noop:";
+    //     "^v"    = "noop:";
+    //     "J"     = "noop:";
+    //     "V"     = "noop:";
+    //     "a"     = "noop:";
+    //     "b"     = "noop:";
+    //     "c"     = "noop:";
+    //     "d"     = "noop:";
+    //     /* e, f */
+    //     "g"     = "noop:";
+    //     "h"     = "noop:";
+    //     "i"     = "noop:";
+    //     "j"     = "noop:";
+    //     "k"     = "noop:";
+    //     "l"     = "noop:";
+    //     "m"     = "noop:";
+    //     "n"     = "noop:";
+    //     "o"     = "noop:";
+    //     /* p, q, r, s*/
+    //     "t"     = "noop:";
+    //     "u"     = "noop:";
+    //     "v"     = "noop:";
+    //     "w"     = "noop:";
+    //     "x"     = "noop:";
+    //     "y"     = "noop:";
+    //     "z"     = "noop:";
+    // };
 
     /*IncrementalSearchInputManager*/
     "^s" = "ISIM_incrementalSearch:";
