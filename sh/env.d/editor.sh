@@ -8,9 +8,9 @@ export FCEDIT="$CVSEDITOR"
 export VISUAL="$EDITOR"
 export TEXEDIT="$CVSEDITOR --line %d '%s'"
 export LESSEDIT="$EDITOR --line %lm %f"
-# # Aquamacs
+# # Emacs
 # export EDITOR="emacsclient"
-# export ALTERNATE_EDITOR="aquamacs"
+# # export ALTERNATE_EDITOR="aquamacs"
 # export CVSEDITOR="$EDITOR"
 # export SVN_EDITOR="$EDITOR +1"
 # export GIT_EDITOR="$EDITOR +1"
