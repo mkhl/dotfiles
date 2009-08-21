@@ -52,7 +52,7 @@
     };
 
     /* Greek unicode letters: start with C-g */
-    "^g" = {
+    "^v" = {
         /* Lowercase Greek letters */
         "^a"    = ("insertText:", "\U03B1");        /* a            alpha */
         "^b"    = ("insertText:", "\U03B2");        /* b            beta */
