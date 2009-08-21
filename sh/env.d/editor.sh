@@ -1,4 +1,5 @@
 # Default editor
+
 # TextMate
 export EDITOR="mate_wait"
 export CVSEDITOR="mate_wait"
@@ -8,6 +9,7 @@ export FCEDIT="$CVSEDITOR"
 export VISUAL="$EDITOR"
 export TEXEDIT="$CVSEDITOR --line %d '%s'"
 export LESSEDIT="$EDITOR --line %lm %f"
+
 # # Emacs
 # export EDITOR="emacsclient"
 # # export ALTERNATE_EDITOR="aquamacs"
