@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Run `irb` or `ruby`, depending on the number of parameters given.
+ruby () {
+    if (( $# == 0 )); then
+        command irb
+    else
+        command ruby "$@"
+    fi
+}
