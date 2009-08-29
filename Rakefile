@@ -1,3 +1,5 @@
+#  -*- mode: ruby -*-
+
 verbose(true) if verbose == :default
 
 BASEDIR = File.expand_path(File.dirname(__FILE__))
