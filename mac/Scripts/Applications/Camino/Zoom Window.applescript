@@ -7,7 +7,7 @@ end tell
 set screenWidth to screenHeight / 10 * 16
 set menubarHeight to 22
 set windowWidth to 1024
-set windowBounds to {4, menubarHeight + 4, windowWidth, screenHeight - 4}
+set windowBounds to {4, menubarHeight + 4, windowWidth + 4, screenHeight - 4}
 
 tell application "Camino"
 	set the bounds of the front window to windowBounds

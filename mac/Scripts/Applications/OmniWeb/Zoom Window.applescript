@@ -7,7 +7,7 @@ end tell
 set screenWidth to screenHeight / 10 * 16
 set menubarHeight to 22
 set windowWidth to 1024
-set windowBounds to {5, menubarHeight + 5, windowWidth, screenHeight - 5}
+set windowBounds to {5, menubarHeight + 5, windowWidth + 5, screenHeight - 5}
 
 tell application "OmniWeb"
 	set the bounds of the front window to windowBounds
