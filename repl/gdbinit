@@ -1,0 +1,12 @@
+# ObjC
+fb objc_exception_throw
+# Core Graphics
+fb CGPostError
+# Malloc
+fb malloc_printf
+# ObjC Runtime?
+fb _objc_error
+# ObjC GC
+fb objc_exception_during_finalize_error
+fb auto_zone_resurrection_error
+fb auto_refcount_underflow_error
