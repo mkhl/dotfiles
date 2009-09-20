@@ -23,11 +23,11 @@ end tell
 set screenWidth to screenHeight / 10 * 16
 set menubarHeight to 22
 
-set projectWindowWidth to 907
+set projectWindowWidth to 910
 set projectWindowHeight to screenHeight - menubarHeight
 set projectWindowSize to {projectWindowWidth, projectWindowHeight}
 
-set editorWindowWidth to 625
+set editorWindowWidth to 631
 set editorWindowHeight to screenHeight - menubarHeight - 10
 set editorWindowBounds to {15, 5, 15 + editorWindowWidth, 5 + editorWindowHeight}
 
