@@ -9,7 +9,7 @@
 		<key>InsertionPoint</key>
 		<string>0.000 0.000 0.000</string>
 		<key>Selection</key>
-		<string>0.737 0.835 0.976</string>
+		<string>0.788 0.816 0.853</string>
 		<key>xcode.syntax.attribute</key>
 		<string>0.512 0.423 0.157</string>
 		<key>xcode.syntax.character</key>
@@ -70,27 +70,27 @@
 	<key>Fonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.character</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.number</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.string</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 		<key>xcode.syntax.url</key>
-		<string>Inconsolata - 13.0</string>
+		<string>Menlo-Regular - 11.0</string>
 	</dict>
 </dict>
 </plist>
