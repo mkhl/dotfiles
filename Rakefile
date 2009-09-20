@@ -92,26 +92,8 @@ def filetype(ext, &block)
   @known_filetypes[".#{ext.to_s}"] = block
 end
 
-def submodule(subdir, destdir, pathmap, options = {})
-  name = subdir.to_sym
-  subdir = name.to_s unless subdir.is_a? String
-  subjoin = proc { |p| File.join(subdir, p) }
-  excludes = FileList[options.fetch(:exclude, []).map(&subjoin)]
-  shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
-  privates = FileList[options.fetch(:private, []).map(&subjoin)]
-  subfiles = FileList[subjoin['*']].exclude(subjoin["#{subdir}.rake"])
-  ignored = proc do |f|
-    options.fetch(:ignore, []).any? { |p| File.fnmatch?(p, File.basename(f)) }
-  end
-  @private_files += privates.existing
-
+def submodule_tasks(name, subdir, destdir)
   directory destdir
-  namespace name do
-    subfiles.exclude(*excludes).each do |src|
-      dest = File.join(destdir, src.pathmap(pathmap))
-      mirror src, dest, shallows.include?(src), ignored
-    end
-  end
   desc "Install the files under #{subdir}"
   task name => [destdir, "#{subdir}:all"]
   desc "Install the files under #{subdir} through copying"
@@ -127,6 +109,35 @@ def submodule(subdir, destdir, pathmap, options = {})
     Rake::Task[name].invoke
   end
   task :all => name
+end
+
+def submodule_options(subdir, options)
+  subjoin = proc { |p| File.join(subdir, p) }
+  excludes = FileList[options.fetch(:exclude, []).map(&subjoin)]
+  shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
+  privates = FileList[options.fetch(:private, []).map(&subjoin)]
+  ignores = options.fetch(:ignore, []).map { |p| File.join('**', p) }
+  subfiles = FileList[subjoin['*']]
+  subfiles.exclude(subjoin["#{subdir}.rake"])
+  subfiles.exclude(*excludes)
+  subfiles.exclude(*ignores)
+  @private_files += privates.existing
+  [excludes, shallows, subfiles]
+end
+
+def submodule(subdir, destdir, pathmap, options = {})
+  name = subdir.to_sym
+  subdir = subdir.to_s
+  excludes, shallows, subfiles = submodule_options(subdir, options)
+  ignored = proc { |f| subfiles.exclude? f }
+
+  namespace name do
+    subfiles.each do |src|
+      dest = File.join(destdir, src.pathmap(pathmap))
+      mirror src, dest, shallows.include?(src), ignored
+    end
+  end
+  submodule_tasks(name, subdir, destdir)
 end
 
 
@@ -174,8 +185,9 @@ task :default do
 end
 
 FileList['*/*.rake'].each do |rakefile|
-  next unless File.basename(File.dirname(rakefile)) == File.basename(rakefile.ext(''))
-  import rakefile
+  dirname = File.basename(File.dirname(rakefile))
+  basename = File.basename(rakefile.ext(''))
+  import rakefile  if dirname == basename
 end
 
 desc 'Just show what would be done'
