@@ -16,8 +16,9 @@ PS_WINDOW=""
 autoload_from __git_ps1 "$HOME/.bash_completion.d/git-completion.bash"
 function __svn_ps1 () {
 	if [[ -d '.svn' ]]; then
-		local svnroot="$(svn info|/usr/bin/sed -n 's/^Repository Root: //p')"
-		local svnpath="$(svn info|/usr/bin/sed -n 's/^URL: //p')"
+	    local svninfo="$(svn info)"
+		local svnroot="$(/usr/bin/sed -n 's/^Repository Root: //p' <<<"$svninfo")"
+		local svnpath="$(/usr/bin/sed -n 's/^URL: //p' <<<"$svninfo")"
 		builtin echo -ne " ($(/usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||" <<<"$svnpath"))"
 	fi
 }
