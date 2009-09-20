@@ -36,4 +36,4 @@ def install_applet(src, dest, srcicon)
   dest
 end
 
-submodule :mac, homedir('Library'), '%f', :ignore => ['*.icns']
+submodule :mac, homedir('Library'), '%f', :ignore => ['*.icns'], :exclude => ['Scripts/Services']
