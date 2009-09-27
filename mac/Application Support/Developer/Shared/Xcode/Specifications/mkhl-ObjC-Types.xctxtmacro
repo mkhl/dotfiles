@@ -588,7 +588,7 @@
             BasedOn = objc.types;
             IsMenuItem = YES;
             Name = "NSFileManager";
-            TextString = "NSFileManager *fileManager = [NSFileManager defaultManager];";
+            TextString = "NSFileManager *manager = [NSFileManager defaultManager];";
             CompletionPrefix = fm;
             CycleList = (
                 objc.filemanager,
