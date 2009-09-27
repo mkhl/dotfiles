@@ -51,7 +51,7 @@
                 IsMenuItem = NO;
                 Command = "if";
                 Expressions = "<#condition#>";
-                TextString = "$(Statement)$(BlockSeparator){\n\t<#!statements!#>\n}$(PostBlockSeparator)else$(BlockSeparator){\n\t<#statements#>\n}";
+                TextString = "$(Statement)$(BlockSeparator){\n\t<#!statements!#>\n}$(BlockSeparator)else$(BlockSeparator){\n\t<#statements#>\n}";
                 CompletionPrefix = ifelse;
             },
             {
