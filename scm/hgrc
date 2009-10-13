@@ -11,6 +11,7 @@ bookmarks =
 color =
 extdiff =
 fetch =
+graphlog =
 mq =
 # pager =
 rebase =
@@ -24,4 +25,13 @@ cmd.filemerge = opendiff
 [merge-tools]
 chdiff.args = $output $other
 filemerge.executable = opendiff
-filemrge.args = $local $other -ancestor $base -merge $output
+filemerge.args = $local $other -ancestor $base -merge $output
+
+[defaults]
+glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
+
+[alias]
+addrenames = addremove --similarity 100
+nudge = push --rev .
+show = log --color --patch --rev
+slog = log --template '{rev}:{node|short} {desc|firstline}\n'
