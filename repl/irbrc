@@ -1,40 +1,36 @@
 #  -*- mode: ruby -*-
 
-%w{rubygems pp what_methods}.each do |mod|
+def require_safe(string)
   begin
-    require mod
+    require string
   rescue LoadError
     nil
   end
 end
 
-# A grab-bag of tricks, tools, techniques, trifles, and toys for IRB
-begin
-  require "utility_belt"
-  UtilityBelt.equip :defaults
-  UtilityBelt::Themes.background :light
-rescue LoadError
-  %w{irb/completion irb/ext/save-history}.each(&method(:require))
-  begin
-    require 'wirble'
-    Wirble.init
-    Wirble.colorize
-  rescue LoadError
-    nil
-  end
-ensure
-  IRB.conf[:PROMPT][:SNAZZY] = {
-    :PROMPT_I => ">> ",
-    :PROMPT_C => "*> ",
-    :PROMPT_N => "%i> ",
-    :PROMPT_S => "%l> ",
-    :RETURN   => "==> %s\n"
-  }
-  IRB.conf[:PROMPT_MODE] = :SNAZZY
-  IRB.conf[:AUTO_INDENT] = true
-  IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
-  IRB.conf[:SAVE_HISTORY] = 5000
+require_safe 'rubygems'
+require_safe 'pp'
+
+require_safe 'wirble'
+if Wirble
+  Wirble.init
+  Wirble.colorize
 end
+
+require_safe 'irb/completion'
+require_safe 'irb/ext/save-history'
+
+IRB.conf[:PROMPT][:SNAZZY] = {
+  :PROMPT_I => ">> ",
+  :PROMPT_C => "*> ",
+  :PROMPT_N => "%i> ",
+  :PROMPT_S => "%l> ",
+  :RETURN   => "==> %s\n"
+}
+IRB.conf[:PROMPT_MODE] = :SNAZZY
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+IRB.conf[:SAVE_HISTORY] = 5000
 
 class Object
   def local_methods(obj = self)
