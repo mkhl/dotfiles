@@ -4,3 +4,6 @@
 # bash-specific programmable completion
 source_all "$HOME/.bash_completion.d"
 source_maybe "$HOME/.tabtab.bash"
+
+# Fix v3 completion for `cd'
+complete -o nospace -o dirnames -v -F _cd cd
