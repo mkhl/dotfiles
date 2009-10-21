@@ -1,9 +1,16 @@
 ;;  -*- mode: lisp -*-
 
-#+asdf
-(pushnew (merge-pathnames "lib/lisp/systems/" (user-homedir-pathname))
-         asdf:*central-registry*
-         :test #'equal)
+(let* ((lisp-path (merge-pathnames #P"lib/lisp/" (user-homedir-pathname)))
+       (site-path (merge-pathnames #P"site/" lisp-path))
+       (asdf-path (merge-pathnames #P"sytems/" lisp-path)))
+  #+asdf
+  (pushnew asdf-path asdf:*central-registry* :test #'equal)
+  #+asdf-install
+  (let* ((description "Local installation")
+         (location (list site-path asdf-path description)))
+    (pushnew location asdf-install:*locations* :test #'equal)
+    (setf asdf-install:*preferred-location* description)))
+
 (unless (fboundp 'asdf)
   (defun asdf (lib)
     "Shortcut for ASDF."
