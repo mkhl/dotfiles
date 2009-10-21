@@ -1,5 +1,5 @@
 # Default listing
-LS_OPTIONS="-Fq"
+LS_OPTIONS="-q"
 GLS_OPTIONS="$LS_OPTIONS -T 0 --color=auto"
 case "$(uname)" in
     *BSD|Darwin) LS_OPTIONS="$LS_OPTIONS -G" ;;
