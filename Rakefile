@@ -114,21 +114,21 @@ end
 def submodule_options(subdir, options)
   subjoin = proc { |p| File.join(subdir, p) }
   excludes = FileList[options.fetch(:exclude, []).map(&subjoin)]
-  shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
   privates = FileList[options.fetch(:private, []).map(&subjoin)]
+  shallows = FileList[options.fetch(:shallow, []).map(&subjoin)]
   ignores = options.fetch(:ignore, []).map { |p| File.join('**', p) }
   subfiles = FileList[subjoin['*']]
   subfiles.exclude(subjoin["#{subdir}.rake"])
   subfiles.exclude(*excludes)
   subfiles.exclude(*ignores)
   @private_files += privates.existing
-  [excludes, shallows, subfiles]
+  [shallows, subfiles]
 end
 
 def submodule(subdir, destdir, pathmap, options = {})
   name = subdir.to_sym
   subdir = subdir.to_s
-  excludes, shallows, subfiles = submodule_options(subdir, options)
+  shallows, subfiles = submodule_options(subdir, options)
   ignored = proc { |f| subfiles.exclude? f }
 
   namespace name do
