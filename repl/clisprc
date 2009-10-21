@@ -2,7 +2,8 @@
 
 #-asdf
 (load (merge-pathnames ".asdf" (user-homedir-pathname)))
-(load (merge-pathnames ".common" (user-homedir-pathname)))
 
 #-asdf-install
 (asdf:oos 'asdf:load-op :asdf-install)
+
+(load (merge-pathnames ".common" (user-homedir-pathname)))
