@@ -9,6 +9,9 @@ compinit
 autoload -U bashcompinit
 bashcompinit
 
+# Ignored extensions
+fignore=(DS_Store $fignore)
+
 # Colorful listings
 zstyle ':completion:*' list-colors $LS_COLORS
 
