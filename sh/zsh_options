@@ -21,8 +21,8 @@ opts=(
     # null_glob
     # History:
     hist_ignore_all_dups
-    hist_no_store
     hist_reduce_blanks
+    hist_verify
     inc_append_history
     # Input/Output:
     NO_clobber
@@ -30,6 +30,8 @@ opts=(
     # dvorak
     ignore_eof
     sun_keyboard_hack
+    # Job Control:
+    NO_hup
     # Prompting:
     transient_rprompt
     # Zle:
