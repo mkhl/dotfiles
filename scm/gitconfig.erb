@@ -19,8 +19,7 @@
 [core]
     excludesfile = $HOME/.gitexcludes
 [alias]
-# The name 'push?' is not supported
-    needs-pushing = cherry -v origin/master
+    outgoing = cherry -v
     ignored = ls-files --others --exclude-standard
     chainsaw = rebase --interactive
     st = status
