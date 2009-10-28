@@ -3,21 +3,29 @@
 [user]
     name = Martin Kuehl
     email = martin.kuehl@gmail.com
+
 [github]
     user = mkhl
     token = <%= $config[:github_token] %>
+
 [color]
     ui = auto
+
 [help]
    format = web
+
 [man]
 #    viewer = ManOpen
+
 [man.ManOpen]
     cmd = openman
+
 [man.Bwana]
     cmd = bwana
+
 [core]
     excludesfile = $HOME/.gitexcludes
+
 [alias]
     outgoing = cherry -v
     ignored = ls-files --others --exclude-standard
