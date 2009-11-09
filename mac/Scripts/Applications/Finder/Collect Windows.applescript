@@ -1,5 +1,5 @@
 #!/usr/bin/osascript
 
 tell application "Finder"
-	set bounds of every window to {310, 138, 1060, 552}
+	set bounds of every window to {343, 138, 1093, 560}
 end tell
