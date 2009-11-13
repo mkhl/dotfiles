@@ -12,7 +12,7 @@
 
 # Emacs
 export EDITOR="emacsclient"
-export ALTERNATE_EDITOR="zdit"
+export ALTERNATE_EDITOR="mg"
 export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR +1"
 export GIT_EDITOR="$EDITOR +1"
