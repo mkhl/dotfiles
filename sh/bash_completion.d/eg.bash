@@ -171,6 +171,18 @@ _eg_revert ()
   __git_complete_file
 }
 
+_eg_track ()
+{
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+  --*)
+    __gitcomp "--show --show-all --unset"
+    return
+    ;;
+  esac
+  __git_complete_remote_or_refspec
+}
+
 _eg ()
 {
   local i c=1 command __git_dir
@@ -258,6 +270,7 @@ _eg ()
   svn)         _git_svn ;;
   switch)      _git_checkout ;;
   tag)         _git_tag ;;
+  track)       _eg_track ;;
   # unstage)     COMPREPLY=() ;;  ## Already handled by default case
   whatchanged) _git_log ;;
   *)           COMPREPLY=() ;;
