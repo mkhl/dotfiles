@@ -6,9 +6,11 @@ tell application "Finder"
 end tell
 set screenWidth to screenHeight / 10 * 16
 set menubarHeight to 22
-set windowWidth to 1024
-set windowBounds to {5, menubarHeight + 5, windowWidth + 5, screenHeight - 5}
+set windowWidth to 1072
+set padding to 5
+set windowBounds to { padding, menubarHeight + padding, windowWidth + padding, screenHeight - padding }
 
 tell application "OmniWeb"
-	set the bounds of the front window to windowBounds
+	set _window to first window where titled is true
+	set the bounds of the _window to windowBounds
 end tell
