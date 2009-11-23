@@ -15,6 +15,12 @@ if [[ -n "$WINDOW" ]]; then
     PS_WINDOW='#$WINDOW:'
 fi
 
+# VCS information
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable svn git bzr darcs hg;
+zstyle ':vcs_info:*' actionformats "[%s/%b|%a]";
+zstyle ':vcs_info:*' formats       "[%s/%b]";
+
 # Set the prompt
 PROMPT='%B%(?..[%?] )%b$is$PS_ARROW '
 RPROMPT='%{${fg_no_bold[blue]}%}%55<...<%~${vcs_info_msg_0_}%{${reset_color}%}'
@@ -24,6 +30,7 @@ fi
 
 # Set the title
 precmd () {
+    vcs_info
     title "$is" "%n@%m" "%55<...<%~"
 }
 
