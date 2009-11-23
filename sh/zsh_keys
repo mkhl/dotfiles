@@ -4,5 +4,5 @@
 # zsh-specific key bindings
 
 # Prefer bash-style word functions
-autoload -U select-word-style
+autoload -Uz select-word-style
 select-word-style shell

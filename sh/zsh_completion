@@ -2,11 +2,11 @@
 #
 # zsh_completion
 # zsh-specific programmable completion
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # Bash compatibility
-autoload -U bashcompinit
+autoload -Uz bashcompinit
 bashcompinit
 
 # Ignored extensions

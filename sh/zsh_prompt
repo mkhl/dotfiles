@@ -2,7 +2,7 @@
 #
 # zsh_prompt
 # zsh-specific prompting
-autoload -U promptinit
+autoload -Uz promptinit
 promptinit
 colors
 
