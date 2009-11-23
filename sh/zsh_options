@@ -33,6 +33,7 @@ opts=(
     # Job Control:
     NO_hup
     # Prompting:
+    prompt_subst
     transient_rprompt
     # Zle:
     emacs
