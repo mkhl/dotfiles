@@ -5,4 +5,4 @@
 
 # Prefer bash-style word functions
 autoload -U select-word-style
-select-word-style bash
+select-word-style shell
