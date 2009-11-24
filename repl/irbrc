@@ -4,8 +4,9 @@ def require_safe(string)
   begin
     require string
   rescue LoadError
-    nil
+    return nil
   end
+  yield  if block_given?
 end
 
 require_safe 'rubygems'
@@ -33,8 +34,7 @@ class Object
   end
 end
 
-require_safe 'wirble'
-if Wirble
+require_safe 'wirble' do
   Wirble.init
   Wirble.colorize
 end
