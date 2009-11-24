@@ -28,13 +28,13 @@ IRB.conf[:PROMPT][:SNAZZY] = {
 }
 IRB.conf[:PROMPT_MODE] = :SNAZZY  if IRB.conf[:PROMPT_MODE] == :DEFAULT
 
+require_safe 'wirble' do
+  Wirble.init
+  Wirble.colorize
+end
+
 class Object
   def local_methods(obj = self)
     (obj.methods - (obj.class.superclass || Object).instance_methods).sort
   end
-end
-
-require_safe 'wirble' do
-  Wirble.init
-  Wirble.colorize
 end
