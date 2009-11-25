@@ -5,10 +5,6 @@
 autoload -Uz compinit
 compinit
 
-# Bash compatibility
-autoload -Uz bashcompinit
-bashcompinit
-
 # Ignored extensions
 fignore=(DS_Store $fignore)
 
