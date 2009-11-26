@@ -22,7 +22,7 @@ opts=(
     # History:
     hist_ignore_all_dups
     hist_reduce_blanks
-    hist_verify
+    NO_hist_verify
     inc_append_history
     # Input/Output:
     NO_clobber
