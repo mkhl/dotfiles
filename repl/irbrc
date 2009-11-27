@@ -38,3 +38,17 @@ class Object
     (obj.methods - (obj.class.superclass || Object).instance_methods).sort
   end
 end
+
+module ObjectSpace
+  def each_instance_of(klass)
+    each_object do |obj|
+      yield(obj) if obj.instance_of? klass
+    end
+  end
+
+  def each_kind_of(klass)
+    each_object do |obj|
+      yield(obj) if obj.kind_of? klass
+    end
+  end
+end
