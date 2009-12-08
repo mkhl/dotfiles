@@ -1,5 +1,3 @@
-
-GOROOT="$HOME/src/plang/go"
-GOOS="darwin"
-GOARCH="amd64"
-export GOROOT GOOS GOARCH
+export GOROOT="$HOME/src/plang/go"
+export GOARCH=amd64
+export GOOS=darwin
