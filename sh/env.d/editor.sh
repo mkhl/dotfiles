@@ -11,7 +11,6 @@
 # export LESSEDIT="$EDITOR --line %lm %f"
 
 # Emacs
-export EMACS_APP="$(launch -n -i org.gnu.Emacs)"
 export EDITOR="emacsclient"
 export ALTERNATE_EDITOR="mg"
 export CVSEDITOR="$EDITOR"
