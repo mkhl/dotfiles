@@ -1,5 +1,4 @@
 --sort-files
---context=1
 --follow
 --group
---all
+--all-types
