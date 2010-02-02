@@ -3,6 +3,7 @@
 defutf8 on
 defflow off
 # deflogin off                  # no utmp support on OS X, it seems
+defmonitor on
 defscrollback 10000
 # defzombie on                  # not sure I *always* want them...
 startup_message off
