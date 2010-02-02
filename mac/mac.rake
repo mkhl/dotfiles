@@ -2,9 +2,9 @@ filetype :applescript do |src, dest|
   icon = src.pathmap("%d/%{.*,*}n-*.icns") { |x| x.gsub(/\s+/, '').downcase }
   icon = FileList[icon].existing.first
   if icon.nil?
-    install_script src, dest.ext('scpt')
+    install_script(src, dest.ext('scpt'))
   else
-    install_applet src, dest.ext('app'), icon
+    install_applet(src, dest.ext('app'), icon)
   end
 end
 
