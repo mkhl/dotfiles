@@ -1,20 +1,14 @@
-set the_terminal to "Terminal"
+set _appname to "Terminal"
 
-if running of application the_terminal then
-	if frontmost of application the_terminal then
-		tell application "System Events"
-			tell application process the_terminal
-				set visible to false
-			end tell
+if frontmost of application _appname then
+	tell application "System Events"
+		tell application process _appname
+			set visible to false
 		end tell
-	else
-		tell application the_terminal
-			activate
-		end tell
-	end if
+	end tell
 else
-	tell application the_terminal
-		launch
+	tell application _appname
 		activate
 	end tell
 end if
+

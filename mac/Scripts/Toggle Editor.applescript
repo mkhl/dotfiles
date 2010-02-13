@@ -1,20 +1,14 @@
-set the_editor to "Emacs"
+set _appname to "Emacs"
 
-if running of application the_editor then
-	if frontmost of application the_editor then
-		tell application "System Events"
-			tell application process the_editor
-				set visible to false
-			end tell
+if frontmost of application _appname then
+	tell application "System Events"
+		tell application process _appname
+			set visible to false
 		end tell
-	else
-		tell application the_editor
-			activate
-		end tell
-	end if
+	end tell
 else
-	tell application the_editor
-		launch
+	tell application _appname
 		activate
 	end tell
 end if
+
