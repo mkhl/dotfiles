@@ -1,6 +1,9 @@
 ;;  -*- mode: scheme -*-
 
-;; (use-modules (ice-9 slib))
-(use-modules (ice-9 readline))
+(use-modules (ice-9 readline)
+             (ice-9 history)
+             (ice-9 pretty-print))
 (activate-readline)
+(define pp pretty-print)
 (use-modules (srfi srfi-1))
+;; (use-modules (ice-9 slib))
