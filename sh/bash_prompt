@@ -13,14 +13,13 @@ PS_WINDOW=""
 # fi
 
 # Helper functions
-autoload_from __git_ps1 "$HOME/.bash_completion.d/git-completion.bash"
-function __svn_ps1 () {
-	if [[ -d '.svn' ]]; then
-	    local svninfo="$(svn info)"
-		local svnroot="$(/usr/bin/sed -n 's/^Repository Root: //p' <<<"$svninfo")"
-		local svnpath="$(/usr/bin/sed -n 's/^URL: //p' <<<"$svninfo")"
-		builtin echo -ne " ($(/usr/bin/sed -e "s|$svnroot/||" -e "s|/.*||" <<<"$svnpath"))"
-	fi
+function __vc_prompt () {
+    has_cmd vcprompt || return
+    if [[ -d '.svn' ]]; then
+	vcprompt -f ' [%n:%r]'
+    else
+	vcprompt -f ' [%n:%b]'
+    fi
 }
 function __pwd_with_tilde () {
 	/usr/bin/sed -e "s:$HOME:~:" <<<"$PWD"
@@ -31,7 +30,7 @@ function __pwd_with_tilde_abbr () {
 
 
 # Set the prompt
-PS_DIR='\w$(__git_ps1)$(__svn_ps1)'
+PS_DIR='\w$(__vc_prompt)'
 PS_ONE='$PS_ARROW'
 
 # Set terminal titles 
