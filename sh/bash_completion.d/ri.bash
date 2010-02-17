@@ -41,7 +41,7 @@ _ri()
 	COMPREPLY=()
 	cur=${COMP_WORDS[COMP_CWORD]}
 
-	ri_path=$(type -p ri)
+	ri_path="$(command which ri)"
 	# which version of ri are we using?
 	# -W0 is required here to stop warnings from older versions of ri
 	# from being captured when used with Ruby 1.8.1 and later
