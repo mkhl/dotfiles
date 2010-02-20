@@ -1,6 +1,9 @@
 ;;  -*- mode: scheme -*-
 
+;; REPL features
+(use apropos)
 (use readline)
 (current-input-port (make-gnu-readline-port "csi> "))
-(use apropos)
-;; (use objc cocoa)
+;; SRFIs
+(use srfi-1)
+(use srfi-13)

@@ -1,9 +1,13 @@
 ;;  -*- mode: scheme -*-
 
+;; REPL features
 (use-modules (ice-9 readline)
              (ice-9 history)
              (ice-9 pretty-print))
 (activate-readline)
 (define pp pretty-print)
+;; SRFIs
 (use-modules (srfi srfi-1))
+(use-modules (srfi srfi-13))
+;; Slib
 ;; (use-modules (ice-9 slib))
