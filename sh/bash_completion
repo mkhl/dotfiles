@@ -3,17 +3,3 @@
 # bash_completion
 # bash-specific programmable completion
 source_all "$HOME/.bash_completion.d"
-
-# Tabtab-provided completions
-source_maybe "$HOME/.tabtab.$is"
-
-# Homebrew completion
-source_maybe "$(brew --prefix)/Library/Contributions/brew_bash_completion.sh"
-
-# Pip completion
-if has_cmd pip; then
-    eval "$(pip completion --$is)"
-fi
-
-# Fix v3 completion for `cd'
-complete -o nospace -o dirnames -v -F _cd cd
