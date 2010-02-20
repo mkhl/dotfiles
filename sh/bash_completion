@@ -3,7 +3,9 @@
 # bash_completion
 # bash-specific programmable completion
 source_all "$HOME/.bash_completion.d"
-source_maybe "$HOME/.tabtab.bash"
+
+# Tabtab-provided completions
+source_maybe "$HOME/.tabtab.$is"
 
 # Homebrew completion
 source_maybe "$(brew --prefix)/Library/Contributions/brew_bash_completion.sh"
