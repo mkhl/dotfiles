@@ -12,8 +12,9 @@ color =
 extdiff =
 fetch =
 graphlog =
+hggit =
 mq =
-# pager =
+pager =
 rebase =
 record =
 
