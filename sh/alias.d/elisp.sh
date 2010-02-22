@@ -1,5 +1,4 @@
 # Lisp byte-code compilers
-alias        emc='emacsclient --create-frame --no-wait'
 alias   ecompile='${EMACS:-emacs}     -batch -f batch-byte-compile'
 alias   ecompdir='${EMACS:-emacs}     -batch -f batch-byte-recompile-directory'
 alias  xecompile='${XEMACS:-xemacs}   -batch -f batch-byte-compile'

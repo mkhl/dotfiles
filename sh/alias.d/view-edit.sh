@@ -1,6 +1,9 @@
 # Viewing/editing files
-if type vim >/dev/null 2>&1; then
+if has_cmd vim; then
     alias vi='vim'
+fi
+if has_cmd emacsclient; then
+    alias emc='emacsclient --no-wait'
 fi
 alias e='$EDITOR'
 alias m='$PAGER'
