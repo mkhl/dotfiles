@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Print the current date in ISO-8601 format.
+# Usage: isodate
+isodate () {
+    command date +"%Y-%m-%d"
+}
