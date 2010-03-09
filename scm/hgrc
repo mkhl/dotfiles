@@ -4,7 +4,7 @@
 git = True
 
 [ui]
-username = Martin Kuehl <martin.kuehl@gmail.com>
+username = Martin Kühl <martin.kuehl@gmail.com>
 
 [extensions] 
 bookmarks =
