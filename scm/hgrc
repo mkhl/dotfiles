@@ -15,6 +15,7 @@ graphlog =
 hggit =
 mq =
 pager =
+progress =
 rebase =
 record =
 
