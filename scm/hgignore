@@ -1,0 +1,11 @@
+syntax: glob
+
+# Xcode noise
+build/
+Static analysis/
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.perspectivv3
+*.xcodeproj/*.mode1v3
+
+# OS X noise
+.DS_Store

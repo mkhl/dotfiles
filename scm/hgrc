@@ -5,6 +5,7 @@ git = True
 
 [ui]
 username = Martin Kühl <martin.kuehl@gmail.com>
+ignore = ~/.hgignore
 
 [extensions] 
 bookmarks =
