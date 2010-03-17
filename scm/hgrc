@@ -23,12 +23,11 @@ record =
 [extdiff]
 cmd.chdiff =
 opts.chdiff = --wait
-cmd.filemerge = opendiff
+cmd.opendiff =
 
 [merge-tools]
 chdiff.args = $output $other
-filemerge.executable = opendiff
-filemerge.args = $local $other -ancestor $base -merge $output
+opendiff.args = $local $other -ancestor $base -merge $output
 
 [defaults]
 glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
