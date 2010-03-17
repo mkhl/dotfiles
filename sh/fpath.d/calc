@@ -3,5 +3,9 @@
 # Pipe simple calculation through `bc`
 # Usage: calc [EXPRESSION]
 calc () {
-    echo "$*" | bc
+    if has_cmd calc; then
+        command calc "$@"
+    else
+        echo "$*" | bc
+    fi
 }
