@@ -1,16 +1,25 @@
 #!/bin/bash
 
 # Add a value to a variable containing a colon-separated list
-# Usage: munge VARIABLE VALUE [after]
+# Usage: munge VARIABLE VALUE [after|before]
 munge () {
     local var="\$$1"
     if eval test -z "\"$var\"" ; then
-        eval "$1=$2"
-    elif ! eval echo "$var" | egrep -q "(^|:)$2($|:)" ; then
-        if test "$3" == "after" ; then
-            eval "$1=\"$var:$2\""
+        eval "$1=\"$2\""
+    else
+        if test -z "$3" ; then
+            if ! eval echo "$var" | egrep -q "(^|:)$2($|:)" ; then
+                eval "$1=\"$var:$2\""
+            fi
         else
-            eval "$1=\"$2:$var\""
+            eval "$1=\"$(eval echo "$var"|sed -E "
+                    s,:$2:,:,g
+                    s,(^|:)$2($|:),,g
+                ")\""
+            case "$3" in
+                after)  eval "$1=\"$var:$2\"" ;;
+                before) eval "$1=\"$2:$var\"" ;;
+            esac
         fi
     fi
 }
