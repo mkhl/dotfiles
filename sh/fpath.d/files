@@ -4,6 +4,6 @@
 # Usage: files [DIR ...]
 files () {
     for d in "${@:-.}" ; do
-        find $d \( -type f -or -type l \) -print
+        find "$d" \( -type f -or -type l \) -print
     done
 }

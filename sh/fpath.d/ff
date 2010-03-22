@@ -4,6 +4,6 @@
 # Usage: ff [FILE ...]
 ff () {
     for f in "$@" ; do
-        find . -name $f -print
+        find . -name "$f" -print
     done
 }

@@ -6,7 +6,7 @@
 # From http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts
 gemdoc () {
     local gemdir="$(gem env gemdir)"
-    local gem="$(ls "$gemdir/doc" | grep -i $1 | sort | tail -n1)"
+    local gem="$(ls "$gemdir/doc" | grep -i "$1" | sort | tail -n1)"
     if [[ -n "$gem" ]]; then
         open "$gemdir/doc/$gem/rdoc/index.html"
     else
