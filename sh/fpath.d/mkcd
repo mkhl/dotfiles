@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Create the given directory and `cd' to it.
+# Usage: mkcd DIRECTORY
+mkcd () {
+    mkdir -p "$1"
+    cd "$1"
+}
