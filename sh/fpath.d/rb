@@ -2,7 +2,7 @@
 
 # Run `irb` or `ruby`, depending on the number of parameters given.
 rb () {
-    if (( $# == 0 )); then
+    if (($# == 0)); then
         command irb
     else
         command ruby "$@"

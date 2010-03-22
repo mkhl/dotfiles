@@ -2,7 +2,7 @@
 
 # Run `node` or `node-repl`, depending on the number of parameters given.
 node () {
-    if (( $# == 0 )); then
+    if (($# == 0)); then
         if has_cmd rlwrap; then
             command rlwrap node-repl
         else
