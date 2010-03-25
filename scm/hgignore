@@ -9,3 +9,6 @@ Static analysis/
 
 # OS X noise
 .DS_Store
+
+# Emacs noise
+*.elc
