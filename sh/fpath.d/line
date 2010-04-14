@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Print the specified line from all files.
+# Usage: line LINE [FILE ...]
+line () {
+	local pat="$1"; shift
+	sed -E -n -e "${pat}p" "$@"
+}
