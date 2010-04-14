@@ -5,8 +5,6 @@
 
 # Helper definitions
 PS_ARROW=">"
-PS_DIRTY="*"
-PS_FAIL="!"
 PS_WINDOW=""
 # if [[ -n "$WINDOW" ]]; then
 # 	PS_WINDOW="#$WINDOW:"
