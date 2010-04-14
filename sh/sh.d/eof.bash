@@ -1,0 +1,2 @@
+# EOF
+IGNOREEOF="t"
