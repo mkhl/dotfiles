@@ -1,0 +1,2 @@
+# Ignorance
+FIGNORE="~:#"
