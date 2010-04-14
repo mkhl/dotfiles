@@ -6,3 +6,68 @@
 # Use shell arguments as words
 autoload -Uz select-word-style
 select-word-style shell
+# Except for `emacs-*' functions
+WORDCHARS="${WORDCHARS/\//}"
+
+# Edit buffer in `EDITOR'
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^\' edit-command-line
+
+# Incremental completion
+autoload -Uz incremental-complete-word
+zle -N incremental-complete-word
+bindkey '^X^A' incremental-complete-word
+
+# Magic space
+bindkey ' ' magic-space
+
+# Shift-Tab
+bindkey '^[[Z' reverse-menu-complete
+
+# Control-Arrows
+bindkey '^[[5A' history-beginning-search-backward
+bindkey '^[[5B' history-beginning-search-forward
+bindkey '^[[5D' emacs-backward-word
+bindkey '^[[5C' emacs-forward-word
+
+# Meta-Arrows
+bindkey '^[p' history-beginning-search-backward
+bindkey '^[n' history-beginning-search-forward
+bindkey '^[P' history-beginning-search-backward
+bindkey '^[N' history-beginning-search-forward
+
+# Undo/Redo
+bindkey '^_' undo
+bindkey '^[_' redo
+
+# Region or Word
+backward-kill-region-or-word () {
+    if (($REGION_ACTIVE == 1)); then
+        zle kill-region
+    else
+        zle backward-kill-word
+    fi
+}
+kill-region-or-word () {
+    if (($REGION_ACTIVE == 1)); then
+        zle kill-region
+    else
+        zle kill-word
+    fi
+}
+zle -N backward-kill-region-or-word
+zle -N kill-region-or-word
+bindkey '^W' backward-kill-region-or-word
+bindkey '^[d' kill-region-or-word
+
+# Rationalised dot
+rationalise-dot () {
+    if [[ $LBUFFER = *.. ]]; then
+        LBUFFER+=/..
+    else
+        LBUFFER+=.
+    fi
+}
+zle -N rationalise-dot
+bindkey . rationalise-dot
