@@ -6,18 +6,18 @@
 # Helper definitions
 PS_ARROW=">"
 PS_WINDOW=""
-# if [[ -n "$WINDOW" ]]; then
-# 	PS_WINDOW="#$WINDOW:"
-# fi
+if [[ -n "$WINDOW" ]]; then
+	PS_WINDOW="#$WINDOW:"
+fi
 
 # Helper functions
 function __vc_prompt () {
-    has_cmd vcprompt || return
-    if [[ -d '.svn' ]]; then
-	vcprompt -f ' [%n:%r]'
-    else
-	vcprompt -f ' [%n:%b]'
-    fi
+	has_cmd vcprompt || return
+	if [[ -d '.svn' ]]; then
+		vcprompt -f ' [%n:%r]'
+	else
+		vcprompt -f ' [%n:%b]'
+	fi
 }
 function __pwd_with_tilde () {
 	/usr/bin/sed -E "s|^$HOME|~|" <<<"$PWD"
