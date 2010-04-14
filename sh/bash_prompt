@@ -26,23 +26,14 @@ function __pwd_with_tilde_abbr () {
 	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
 }
 
-
 # Set the prompt
-PS_DIR='\w$(__vc_prompt)'
+PS_DIR='$(__pwd_with_tilde_abbr)$(__vc_prompt)'
 PS_ONE='$PS_ARROW'
+PS1="$PS_DIR$PS_ONE "
 
-# Set terminal titles 
+# Set terminal titles
 function __term_func () {
 	title "$is" "$USER@${HOSTNAME%.*}" "$(__pwd_with_tilde_abbr)"
 }
 
-# Adapt prompt to PWD length
-function __prompt_func () {
-	if [[ $(__pwd_with_tilde | wc -c) -gt '35' ]]; then
-		PS1="$PS_DIR\n$PS_ONE "
-	else
-		PS1="$PS_DIR$PS_ONE "
-	fi
-}
-
-PROMPT_COMMAND='__prompt_func; __term_func'
+PROMPT_COMMAND='__term_func'
