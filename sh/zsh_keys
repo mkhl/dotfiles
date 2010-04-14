@@ -3,6 +3,6 @@
 # zsh_keys
 # zsh-specific key bindings
 
-# Prefer bash-style word functions
+# Use shell arguments as words
 autoload -Uz select-word-style
 select-word-style shell
