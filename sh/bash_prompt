@@ -20,7 +20,7 @@ function __vc_prompt () {
     fi
 }
 function __pwd_with_tilde () {
-	/usr/bin/sed -e "s:$HOME:~:" <<<"$PWD"
+	/usr/bin/sed -E "s|^$HOME|~|" <<<"$PWD"
 }
 function __pwd_with_tilde_abbr () {
 	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
