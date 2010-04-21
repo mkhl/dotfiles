@@ -9,6 +9,10 @@ PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW="#$WINDOW:"
 fi
+PS_SHELL="$is"
+if (($SHLVL > 1)); then
+	PS_SHELL="[$PS_SHELL]"
+fi
 
 # Helper functions
 function __vc_prompt () {
@@ -29,7 +33,7 @@ function __pwd_with_tilde_abbr () {
 # Set the prompt
 PS_DIR='$(__pwd_with_tilde_abbr)$(__vc_prompt)'
 PS_ONE='$PS_ARROW'
-PS1="$PS_DIR$PS_ONE "
+PS1="$PS_SHELL:$PS_DIR$PS_ONE "
 
 # Set terminal titles
 function __term_func () {

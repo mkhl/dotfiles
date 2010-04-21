@@ -12,6 +12,10 @@ PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
 fi
+PS_SHELL="$is"
+if (($SHLVL > 1)); then
+	PS_SHELL="[$PS_SHELL]"
+fi
 
 # VCS information
 autoload -Uz vcs_info
@@ -20,7 +24,7 @@ zstyle ':vcs_info:*' actionformats "[%s/%b|%a]";
 zstyle ':vcs_info:*' formats       "[%s/%b]";
 
 # Set the prompt
-PROMPT='%B%(?..[%?] )%b$is$PS_ARROW '
+PROMPT='%B%(?..[%?] )%b$PS_SHELL$PS_ARROW '
 RPROMPT='%{${fg_no_bold[blue]}%}%55<...<%~${vcs_info_msg_0_}%{${reset_color}%}'
 if [[ -n "$SSH_CLIENT" ]]; then
 	RPROMPT="$RPROMPT|%n@%m"
