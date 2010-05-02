@@ -1,0 +1,9 @@
+!  -*- mode: factor -*-
+
+USING: kernel assocs environment vocabs.loader ;
+
+"VISUAL" os-env [ "EDITOR" os-env ] unless*
+{ { "mate" "editors.textmate" }
+  { "mate_wait" "editors.textmate" }
+  { "emacsclient" "editors.emacs" } }
+at require
