@@ -1,5 +1,9 @@
 syntax: glob
 
+# Backup files
+*~
+*#
+
 # Xcode noise
 build/
 Static analysis/
