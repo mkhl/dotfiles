@@ -7,7 +7,7 @@ git = True
 username = Martin Kühl <martin.kuehl@gmail.com>
 ignore = ~/.hgignore
 
-[extensions] 
+[extensions]
 bookmarks =
 color =
 extdiff =
@@ -19,6 +19,8 @@ pager =
 progress =
 rebase =
 record =
+schemes =
+transplant =
 
 [extdiff]
 cmd.chdiff =
