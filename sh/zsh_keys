@@ -12,7 +12,7 @@ WORDCHARS="${WORDCHARS/\//}"
 # Edit buffer in `EDITOR'
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^X^\' edit-command-line
+bindkey '^X^E' edit-command-line
 
 # Incremental completion
 autoload -Uz incremental-complete-word
