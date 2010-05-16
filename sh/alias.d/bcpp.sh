@@ -1,1 +1,1 @@
-alias bcpp='bcpp -fnc $HOME/.bcpp'
+alias bcpp='bcpp -fnc "$HOME/.bcpp"'
