@@ -1,4 +1,15 @@
+# Sort the found files lexically.
 --sort-files
+
+# Follow symlinks.
 --follow
+
+# Print a filename heading above each file's results.
+# Print a break between results from different files.
 --group
+
+# All file types searched.
 --all-types
+
+# Pipes all `ack` output through a pager.
+--pager="$PAGER"
