@@ -6,6 +6,7 @@ typeset -xT LD_LIBRARY_PATH ld_library_path
 typeset -xT PERL5LIB perl5lib
 typeset -xT PYTHONPATH pythonpath
 typeset -xT RUBYLIB rubylib
+typeset -xT CLASSPATH classpath
 
 # Ignore duplicates
 typeset -xU path
@@ -17,6 +18,7 @@ typeset -xU ld_library_path
 typeset -xU perl5lib
 typeset -xU pythonpath
 typeset -xU rubylib
+typeset -xU classpath
 
 # Set library search path variables
 perl5lib=(
