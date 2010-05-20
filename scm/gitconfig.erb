@@ -1,72 +1,72 @@
 #  -*- mode: conf -*-
 
 [user]
-    name = Martin Kühl
-    email = martin.kuehl@gmail.com
+	name = Martin Kühl
+	email = martin.kuehl@gmail.com
 
 [github]
-    user = mkhl
-    token = <%= $config[:github_token] %>
+	user = mkhl
+	token = <%= $config[:github_token] %>
 
 [url "git@github.com:mkhl/"]
-    insteadOf = "git://github.com/mkhl/"
+	insteadOf = "git://github.com/mkhl/"
 
 [branch]
-    autosetupmerge = true
+	autosetupmerge = true
 
 [color]
-    ui = auto
+	ui = auto
 
 [help]
-    # format = web
+	# format = web
 
 [man]
-    # viewer = openman
+	# viewer = openman
 
 [man.openman]
-    cmd = openman
+	cmd = openman
 
 [diff]
-    tool = opendiff
+	tool = opendiff
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [merge]
-    tool = opendiff
+	tool = opendiff
 
 [mergetool]
-    prompt = false
+	prompt = false
 
 [core]
-    excludesfile = $HOME/.gitexcludes
+	excludesfile = $HOME/.gitexcludes
 
 [rerere]
-    enabled = 1
+	enabled = 1
 
 [alias]
-    chainsaw = rebase --interactive
-    outgoing = cherry -v
-    ignored = ls-files --others --exclude-standard
-    pending = log origin/master..master
-    missing = rev-list --pretty=oneline --reverse "^HEAD" origin
-    unpushed = log origin..HEAD
-    st = status
-    co = checkout
-    ci = commit
-    ca = commit --amend
-    cp = cherry-pick
-    fp = format-patch
-    br = branch
-    bs = bisect
-    dt = difftool
-    mt = mergetool
-    rb = rebase
-    irb = rebase --interactive
-    rbc = rebase --continue
-    rba = rebase --abort
-    rbs = rebase --skip
-    sub = submodule
-    msg = commit --allow-empty --message
-    glog = log --graph --pretty=format:'changeset:   %h %d%nsummary:     %s%n%n' --abbrev-commit
-    slog = log --oneline
+	chainsaw = rebase --interactive
+	outgoing = cherry -v
+	ignored = ls-files --others --exclude-standard
+	pending = log origin/master..master
+	missing = rev-list --pretty=oneline --reverse "^HEAD" origin
+	unpushed = log origin..HEAD
+	st = status
+	co = checkout
+	ci = commit
+	ca = commit --amend
+	cp = cherry-pick
+	fp = format-patch
+	br = branch
+	bs = bisect
+	dt = difftool
+	mt = mergetool
+	rb = rebase
+	irb = rebase --interactive
+	rbc = rebase --continue
+	rba = rebase --abort
+	rbs = rebase --skip
+	sub = submodule
+	msg = commit --allow-empty --message
+	glog = log --graph --pretty=format:'changeset:	 %h %d%nsummary:	 %s%n%n' --abbrev-commit
+	slog = log --oneline
