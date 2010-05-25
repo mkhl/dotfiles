@@ -5,10 +5,12 @@
 # Usage: gemdoc GEM
 # From http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts
 gemdoc () {
-	local gemdir="$(gem env gemdir)"
-	local gem="$(ls "$gemdir/doc" | grep -i "$1" | sort | tail -n1)"
+	if [[ -z "$GEMDIR" ]]; then
+		GEMDIR="$(gem env gemdir)"
+	fi
+	local gem="$(ls "$GEMDIR/doc" | grep -i "$1" | sort | tail -n1)"
 	if [[ -n "$gem" ]]; then
-		open "$gemdir/doc/$gem/rdoc/index.html"
+		open "$GEMDIR/doc/$gem/rdoc/index.html"
 	else
 		echo "$(basename -- $0): gem not found: $1" 1>&2
 		return 1
