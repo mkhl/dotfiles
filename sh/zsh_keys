@@ -3,9 +3,9 @@
 # zsh_keys
 # zsh-specific key bindings
 
-# Use shell arguments as words
+# Use bash-style words
 autoload -Uz select-word-style
-select-word-style shell
+select-word-style bash
 # Except for `emacs-*' functions
 WORDCHARS="${WORDCHARS/\//}"
 
