@@ -2,5 +2,5 @@
 
 # Return 0 if this shell is interactive.
 is_interactive () {
-    test -n "$PS1"
+	test -n "$PS1"
 }

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Pipe simple calculation through `bc`
+# Pipe simple calculation through `bc`.
 # Usage: calc [EXPRESSION]
 calc () {
-    if has_cmd calc; then
-        command calc "$@"
-    else
-        echo "$*" | bc
-    fi
+	if has_cmd calc; then
+		command calc "$@"
+	else
+		echo "$*" | bc
+	fi
 }

@@ -2,5 +2,5 @@
 
 # Remount the given filesystem with the given options.
 remount () {
-    mount -o remount,${1+"$@"}
+	mount -o remount,${1+"$@"}
 }

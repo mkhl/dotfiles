@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Run `coffee` or `coffee -i`, depending on the number of parameters given.
+# Run `coffee` scripts or a `coffee -i` REPL.
 coffee () {
-    if (($# == 0)); then
-        if has_cmd rlwrap; then
-            command rlwrap coffee --interactive
-        else
-            command coffee --interactive
-        fi
-    else
-        command coffee "$@"
-    fi
+	if (($# == 0)); then
+		if has_cmd rlwrap; then
+			command rlwrap coffee --interactive
+		else
+			command coffee --interactive
+		fi
+	else
+		command coffee "$@"
+	fi
 }

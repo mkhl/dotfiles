@@ -3,5 +3,5 @@
 # Print the current date in the format used by trivium
 # Usage: tdate
 tdate () {
-    command date +"%d%b%Y"
+	command date +"%d%b%Y"
 }

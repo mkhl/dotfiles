@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run `irb` or `ruby`, depending on the number of parameters given.
+# Run `ruby` scripts or an `irb` REPL.
 rb () {
     if (($# == 0)); then
         command irb

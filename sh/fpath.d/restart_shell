@@ -3,11 +3,11 @@
 # Restart the current shell
 # Usage: restart_shell
 restart_shell () {
-    if jobs | egrep -q . ; then
-        echo "Jobs running; won't restart." >&2
-        jobs -l >&2
-        return 1
-    else
-        exec "$is" "$@"
-    fi
+	if jobs | egrep -q . ; then
+		echo "Jobs running; won't restart." >&2
+		jobs -l >&2
+		return 1
+	else
+		exec "$is" "$@"
+	fi
 }

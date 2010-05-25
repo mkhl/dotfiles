@@ -3,7 +3,7 @@
 # Find plain files and symlinks below PWD/the given path.
 # Usage: files [DIR ...]
 files () {
-    for d in "${@:-.}" ; do
-        find "$d" \( -type f -or -type l \) -print
-    done
+	for d in "${@:-.}" ; do
+		find "$d" \( -type f -or -type l \) -print
+	done
 }
