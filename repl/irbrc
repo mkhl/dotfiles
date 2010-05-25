@@ -13,6 +13,7 @@ end
 
 require_safe 'rubygems'
 require_safe 'pp'
+require_safe 'ap'
 
 require_safe 'irb/completion'
 require_safe 'irb/ext/save-history'
