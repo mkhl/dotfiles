@@ -3,17 +3,6 @@
 # bash_prompt
 # bash-specific prompting
 
-# Helper definitions
-PS_ARROW=">"
-PS_WINDOW=""
-if [[ -n "$WINDOW" ]]; then
-	PS_WINDOW="#$WINDOW:"
-fi
-PS_SHELL="$is"
-if (($SHLVL > 1)); then
-	PS_SHELL="[$PS_SHELL]"
-fi
-
 # Helper functions
 function __vc_prompt () {
 	has_cmd vcprompt || return
@@ -30,10 +19,22 @@ function __pwd_with_tilde_abbr () {
 	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
 }
 
+# Helper definitions
+PS_ARROW="»"
+PS_WINDOW=""
+if [[ -n "$WINDOW" ]]; then
+	PS_WINDOW='#$WINDOW:'
+fi
+PS_SHLVL=""
+if (($SHLVL > 1)); then
+	PS_SHLVL='[$SHLVL]'
+fi
+PS_PWD='$(__pwd_with_tilde_abbr)'
+PS_VCS='$(__vc_prompt)'
+
 # Set the prompt
-PS_DIR='$(__pwd_with_tilde_abbr)$(__vc_prompt)'
 PS_ONE='$PS_ARROW'
-PS1="$PS_SHELL:$PS_DIR$PS_ONE "
+PS1="${PS_PWD}${PS_VCS} ${PS_SHLVL}${PS_ARROW} "
 
 # Set terminal titles
 function __term_func () {

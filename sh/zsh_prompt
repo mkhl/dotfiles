@@ -6,26 +6,29 @@ autoload -Uz promptinit
 promptinit
 colors
 
+# VCS information
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable svn git bzr darcs hg
+zstyle ':vcs_info:*' actionformats "[%s:%b|%a]"
+zstyle ':vcs_info:*' formats       "[%s:%b]"
+
 # Helper definitions
-PS_ARROW=">"
+PS_ARROW="»"
 PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
 fi
-PS_SHELL="$is"
+PS_SHLVL=""
 if (($SHLVL > 1)); then
-	PS_SHELL="[$PS_SHELL]"
+	PS_SHLVL='[$SHLVL]'
 fi
-
-# VCS information
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable svn git bzr darcs hg;
-zstyle ':vcs_info:*' actionformats "[%s/%b|%a]";
-zstyle ':vcs_info:*' formats       "[%s/%b]";
+PS_STATUS='%B%(?..[%?] )%b'
+PS_PWD='%{${fg_no_bold[blue]}%}%55<...<%~%{${reset_color}%}'
+PS_VCS='%{${fg_no_bold[magenta]}%}${vcs_info_msg_0_}%{${reset_color}%}'
 
 # Set the prompt
-PROMPT='%B%(?..[%?] )%b$PS_SHELL$PS_ARROW '
-RPROMPT='%{${fg_no_bold[blue]}%}%55<...<%~${vcs_info_msg_0_}%{${reset_color}%}'
+PROMPT="${PS_STATUS}${PS_PWD} ${PS_SHLVL}${PS_ARROW} "
+RPROMPT="${PS_VCS}"
 if [[ -n "$SSH_CLIENT" ]]; then
 	RPROMPT="$RPROMPT|%n@%m"
 fi
