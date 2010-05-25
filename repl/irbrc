@@ -34,6 +34,11 @@ IRB.conf[:PROMPT_MODE] = :SNAZZY  if IRB.conf[:PROMPT_MODE] == :DEFAULT
 
 require_safe 'interactive_editor'
 require_safe 'irb_rocket'
+
+require_safe 'bond' do
+  Bond.start
+end
+
 class Object
   def local_methods(obj = self)
     (obj.methods - (obj.class.superclass || Object).instance_methods).sort
