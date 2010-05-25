@@ -1,2 +1,2 @@
 # Default browser
-export BROWSER="chromium"
+export BROWSER="google chrome"
