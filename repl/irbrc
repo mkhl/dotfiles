@@ -1,5 +1,7 @@
 #  -*- mode: ruby -*-
 
+at_exit { puts }
+
 def require_safe(string)
   begin
     require string
