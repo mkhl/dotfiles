@@ -2,6 +2,11 @@
 
 # asdfg
 export EDITOR="asdfg"
+export LESSEDIT="$EDITOR"
+export SVN_EDITOR="$EDITOR"
+export BZR_EDITOR="$EDITOR"
+export GIT_EDITOR="$EDITOR"
+export HGEDITOR="$EDITOR"
 
 # # TextMate
 # export EDITOR="mate_wait"
