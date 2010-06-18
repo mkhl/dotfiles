@@ -1,3 +1,6 @@
+# Smart case distinction.
+--smart-case
+
 # Sort the found files lexically.
 --sort-files
 
