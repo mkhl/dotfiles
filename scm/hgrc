@@ -33,6 +33,11 @@ opts.ksdiff = hg
 chdiff.args = $output $other
 opendiff.args = $local $other -ancestor $base -merge $output
 
+[schemes]
+gh = git://github.com/
+ghs = git+ssh://git@github.com/
+bbs = ssh://hg@bitbucket.org/
+
 [defaults]
 glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
 
