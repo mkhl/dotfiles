@@ -1,3 +1,3 @@
 # Default pager
-export LESS="-acimRs"
+export LESS="-cimR"
 export PAGER="less"
