@@ -54,6 +54,7 @@
 	pending = log origin/master..master
 	missing = rev-list --pretty=oneline --reverse "^HEAD" origin
 	unpushed = log origin..HEAD
+	unstage = reset HEAD
 	st = status
 	co = checkout
 	ci = commit
@@ -71,5 +72,7 @@
 	rbs = rebase --skip
 	sub = submodule
 	msg = commit --allow-empty --message
+	out = cherry -v
+	uns = reset HEAD
 	glog = log --graph --pretty=format:'changeset:	 %h %d%nsummary:	 %s%n%n' --abbrev-commit
 	slog = log --oneline
