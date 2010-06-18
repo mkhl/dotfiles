@@ -32,6 +32,9 @@
 [difftool]
 	prompt = false
 
+[difftool "ksdiff"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+
 [merge]
 	tool = opendiff
 

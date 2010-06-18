@@ -26,6 +26,8 @@ transplant =
 cmd.chdiff =
 opts.chdiff = --wait
 cmd.opendiff =
+cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
+opts.ksdiff = hg
 
 [merge-tools]
 chdiff.args = $output $other
