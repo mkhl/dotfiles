@@ -1,2 +1,2 @@
 
-has_cmd hub && eval "$(hub alias -s $is)"
+# has_cmd hub && eval "$(hub alias -s $is)"
