@@ -15,4 +15,4 @@
 --all-types
 
 # Pipes all `ack` output through a pager.
---pager="$PAGER"
+--pager=$PAGER
