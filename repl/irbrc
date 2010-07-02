@@ -2,11 +2,11 @@
 
 at_exit { puts }
 
-def require_safe(string)
+def require_safe(library)
   begin
-    require string
-  rescue LoadError
-    return nil
+    require library
+  rescue LoadError => err
+    puts "Skipping '#{library}': #{err}"
   end
   yield  if block_given?
 end
