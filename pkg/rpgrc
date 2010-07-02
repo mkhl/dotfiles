@@ -1,0 +1,7 @@
+#  -*- mode: shell-script -*-
+
+if command -v brew &>/dev/null; then
+	RPGBIN="$(brew --cellar)/gems/rpg/bin"
+	RPGMAN="$(brew --cellar)/gems/rpg/share/man"
+	RPGLIB="$(brew --cellar)/gems/rpg/ruby/1.8"
+fi
