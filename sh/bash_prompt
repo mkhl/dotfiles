@@ -19,6 +19,11 @@ function __pwd_with_tilde_abbr () {
 	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
 }
 
+# Colours
+PS_CLEAR="\[\033[0m\]"
+PS_BLUE="\[\033[34m\]"
+PS_MAGENTA="\[\033[35m\]"
+
 # Helper definitions
 PS_ARROW=">"
 case "$TERM" in
@@ -36,8 +41,7 @@ PS_PWD='$(__pwd_with_tilde_abbr)'
 PS_VCS='$(__vc_prompt)'
 
 # Set the prompt
-PS_ONE='$PS_ARROW'
-PS1="${PS_PWD}${PS_VCS} ${PS_SHLVL}${PS_ARROW} "
+PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR} ${PS_SHLVL}${PS_ARROW} "
 
 # Set terminal titles
 function __term_func () {
