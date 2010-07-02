@@ -34,7 +34,9 @@ source_maybe "$HOME/.bash_prompt"
 source_all "$HOME/.alias.d"
 
 # Load advanced completion
-source_maybe "$HOME/.bash_completion_link"
+if [[ "$TERM_PROGRAM" != "DTerm" ]]; then
+	source_maybe "$HOME/.bash_completion_link"
+fi
 
 # Augment PATH
 munge PATH "$HOME/bin" before
