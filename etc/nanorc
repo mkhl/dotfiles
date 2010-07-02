@@ -1,4 +1,5 @@
-# -*- mode: text -*-
+# -*- mode: default-generic -*-
+# nano(1)
 
 ## Use auto-indentation.
 set autoindent

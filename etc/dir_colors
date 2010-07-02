@@ -1,4 +1,5 @@
-#  -*- mode: shell-script -*-
+# -*- mode: default-generic -*-
+# dircolors(1)
 
 ### When to colorize output
 # COLOR needs one of these arguments:

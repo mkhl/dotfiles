@@ -1,4 +1,5 @@
-#  -*- mode: shell-script -*-
+# -*- mode: default-generic -*-
+# readline(3)
 
 # Include system-wide settings
 $include /etc/inputrc

@@ -1,3 +1,5 @@
+# -*- mode: default-generic -*-
+# astyle(1)
 # style=kr
 convert-tabs
 indent=spaces=4
