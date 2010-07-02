@@ -1,0 +1,10 @@
+--- 
+:verbose: true
+:update_sources: true
+:backtrace: false
+:benchmark: false
+:bulk_threshold: 1000
+:sources:
+- http://rubygems.org/
+- http://merbi.st/
+gem: --no-rdoc --no-ri
