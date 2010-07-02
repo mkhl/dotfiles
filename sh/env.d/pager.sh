@@ -1,3 +1,3 @@
 # Default pager
-export LESS="-cimR"
+export LESS="-FiRSX"
 export PAGER="less"
