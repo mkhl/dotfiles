@@ -2,8 +2,12 @@
 
 exit 0 unless File.file?(File.join(Dir.pwd, 'Rakefile'))
 
-require 'rubygems'
-require 'rake'
+begin
+  require 'rake'
+rescue LoadError
+  require 'rubygems'
+  require 'rake'
+end
 
 DOTCACHE = File.join(File.expand_path('~'), ".rake_task_cache" , Dir.pwd.hash.to_s)
 RAKE_FILES = FileList[ __FILE__, 'Rakefile', '**/*.rake']
