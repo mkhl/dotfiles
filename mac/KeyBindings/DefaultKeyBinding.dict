@@ -142,11 +142,5 @@
         "z"     = "noop:";
     };
 
-    /*IncrementalSearchInputManager*/
-    "^s" = "ISIM_incrementalSearch:";
-    "^S" = "ISIM_reverseIncrementalSearch:";
     "^g" = "abort:";
-
-    // "~\Uf700" = "ISIM_handleOptionUpArrow:";
-    // "~\Uf701" = "ISIM_handleOptionDownArrow:";
 }
