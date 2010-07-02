@@ -13,7 +13,10 @@ zstyle ':vcs_info:*' actionformats "[%s:%b|%a]"
 zstyle ':vcs_info:*' formats       "[%s:%b]"
 
 # Helper definitions
-PS_ARROW="»"
+PS_ARROW=">"
+case "$TERM" in
+xterm*|screen*) PS_ARROW="»" ;;
+esac
 PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'

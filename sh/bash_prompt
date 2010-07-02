@@ -20,7 +20,10 @@ function __pwd_with_tilde_abbr () {
 }
 
 # Helper definitions
-PS_ARROW="»"
+PS_ARROW=">"
+case "$TERM" in
+xterm*|screen*) PS_ARROW="»" ;;
+esac
 PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
