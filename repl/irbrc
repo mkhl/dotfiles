@@ -11,7 +11,6 @@ def require_safe(string)
   yield  if block_given?
 end
 
-require_safe 'rubygems'
 require_safe 'pp'
 require_safe 'ap'
 require_safe 'dp'
