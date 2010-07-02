@@ -2,44 +2,38 @@
 
 defutf8 on
 defflow off
-# deflogin off                  # no utmp support on OS X, it seems
+# deflogin off
 defmonitor on
 defscrollback 10000
-# defzombie on                  # not sure I *always* want them...
 startup_message off
 
 altscreen on
 autodetach on
 compacthist on
+crlf off
 hardcopy_append on
 silencewait 15
 
 # Keybindings
-escape ^qq
-# escape "^\\\"
-# Use with the default escape sequence:
-# bind ^k
-# bind k
-# bind K kill
+escape ^bb
+# Copy screen clipboard to mac clipboard
+bind ^c eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+# Scroll with PgUp/PgDown
+bindkey "^[[5~" eval "copy" "stuff ^u"
+bindkey -m "^[[5~" stuff ^u
+bindkey -m "^[[6~" stuff ^d
 
 # Activity
-vbell on
 activity "%0c activity -> %n%f %t"
 bell_msg "%0c bell -> %n%f %t^G"
 vbell_msg "*beep*"
+vbell off
 
 # Modeline
 caption always " %d%M%y %0c | #%n | %t"
-# caption always " %d%M%y %0c | %{+r}%-w%{+b}%n %t%{-}%+w"
-# caption always " %d%M%y %0c | %>%{+r}%-w%{+b}%L>%n %t%{-}%+w%L<"
 
 # Terminal Title
 source $HOME/.screenrc_terminfo
-# defhstatus "$USER@H | # | t"
-# hardstatus off
-# I'd like PWD with tilde in the status, but I
-# backtick 1 0 1 echo $PWD | sed -e "s:$HOME:~:"    # can't get this to work..
-# hardstatus string "$USER@%H | #%n | %t:%1`"
 hardstatus string "$USER@%H | #%n | %t"
 
 # Default sessions
