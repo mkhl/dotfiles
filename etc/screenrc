@@ -30,13 +30,12 @@ bell_msg "%0c bell -> %n%f %t^G"
 vbell_msg "*beep*"
 vbell off
 
-# Modeline
-caption always " %d%M%y %0c | #%n | %t"
-
 # Terminal Title
 source $HOME/.screenrc_terminfo
-hardstatus string "$USER@%H | #%n | %t"
+# hardstatus string "$USER@%H | #%n | %t"
+hardstatus alwayslastline "%{.g} [$USER@%H] %-w%{+b}%n %t%{-b}%+w%=%0c %d%M%y "
 
 # Default sessions
 # screen 0 htop
-# screen 1 bash
+# monitor off
+# screen 1
