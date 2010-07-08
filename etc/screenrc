@@ -4,7 +4,7 @@
 defutf8 on
 defflow off
 # deflogin off
-defmonitor on
+defmonitor off
 defscrollback 10000
 startup_message off
 
