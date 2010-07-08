@@ -1,0 +1,1 @@
+alias mk=make
