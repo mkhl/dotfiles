@@ -33,7 +33,7 @@ vbell off
 # Terminal Title
 source $HOME/.screenrc_terminfo
 # hardstatus string "$USER@%H | #%n | %t"
-hardstatus alwayslastline "%{.g} [$USER@%H] %-w%{+b}%n %t%{-b}%+w%=%0c %d%M%y "
+hardstatus alwayslastline "%{.g} [$USER@%H] %-w%{+b}%n:%t%{-b}%+w%=%0c %d%M%y "
 
 # Default sessions
 # screen 0 htop
