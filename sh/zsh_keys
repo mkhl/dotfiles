@@ -43,18 +43,18 @@ bindkey '^[_' redo
 
 # Region or Word
 backward-kill-region-or-word () {
-    if (($REGION_ACTIVE == 1)); then
-        zle kill-region
-    else
-        zle backward-kill-word
-    fi
+	if (($REGION_ACTIVE == 1)); then
+		zle kill-region
+	else
+		zle backward-kill-word
+	fi
 }
 kill-region-or-word () {
-    if (($REGION_ACTIVE == 1)); then
-        zle kill-region
-    else
-        zle kill-word
-    fi
+	if (($REGION_ACTIVE == 1)); then
+		zle kill-region
+	else
+		zle kill-word
+	fi
 }
 zle -N backward-kill-region-or-word
 zle -N kill-region-or-word
@@ -63,11 +63,11 @@ bindkey '^[d' kill-region-or-word
 
 # Rationalised dot
 rationalise-dot () {
-    if [[ $LBUFFER = *.. ]]; then
-        LBUFFER+=/..
-    else
-        LBUFFER+=.
-    fi
+	if [[ $LBUFFER = *.. ]]; then
+		LBUFFER+=/..
+	else
+		LBUFFER+=.
+	fi
 }
 zle -N rationalise-dot
 bindkey . rationalise-dot

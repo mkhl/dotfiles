@@ -13,29 +13,29 @@ SH_ENV_DONE=t
 
 # System-wide profile
 if [[ -e "/etc/bash_profile" ]]; then
-    source "/etc/bash_profile"
+	source "/etc/bash_profile"
 elif [[ -e "/etc/profile" ]]; then
-    source "/etc/profile"
+	source "/etc/profile"
 fi
 
 # Remap <Caps-Lock> on ttys
 if uname | egrep -q "Linux" && type tty >/dev/null 2>&1 ; then
-    case "$(tty)" in
-        /dev/tty[0-9]*)
-            dumpkeys | perl -pe 's/\bCaps_Lock\b/Control/' | loadkeys --quiet -
-            ;;
-    esac
+	case "$(tty)" in
+	/dev/tty[0-9]*)
+		dumpkeys | perl -pe 's/\bCaps_Lock\b/Control/' | loadkeys --quiet -
+		;;
+	esac
 fi
 
 # Set up autoloading
 FPATH="$HOME/lib/bash:$HOME/.bash.d:$HOME/.fpath.d"
 if [[ -e "$HOME/.bash_autoload" ]]; then
-    # Load the autoload function
-    source "$HOME/.bash_autoload"
-    # Autoload shell functions from all executable files in bash.d.
-    # The executable bit is not necessary, but gives you an easy way to
-    # stop the autoloading of a particular shell function.
-    autoload $(find -H ~/.bash.d ~/.fpath.d -type f -perm -0111 | sed 's,^.*/,,')
+	# Load the autoload function
+	source "$HOME/.bash_autoload"
+	# Autoload shell functions from all executable files in bash.d.
+	# The executable bit is not necessary, but gives you an easy way to
+	# stop the autoloading of a particular shell function.
+	autoload $(find -H ~/.bash.d ~/.fpath.d -type f -perm -0111 | xargs basename)
 fi
 
 # Load environment settings

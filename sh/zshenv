@@ -14,10 +14,10 @@ SH_ENV_DONE=t
 # Set up autoloading
 typeset -xU fpath
 fpath=(
-    $HOME/lib/zsh
-    $fpath
-    $HOME/.zsh.d
-    $HOME/.fpath.d
+	$HOME/lib/zsh
+	$fpath
+	$HOME/.zsh.d
+	$HOME/.fpath.d
 )
 autoload -U $HOME/.{zsh,fpath}.d/*~*~(-N.x:t)
 

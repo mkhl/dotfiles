@@ -2,18 +2,18 @@
 
 # Display title
 title () {
-    if has_title ; then
-        # Escape '%' chars in $1, make nonprintables visible.
-        local cmd=${(V)1//\%/\%\%}
-        # Truncate command, and join lines.
-        cmd=$(print -Pn "%40>...>$cmd" | tr -d "\n")
-        case "$TERM" in
-        screen*)
-            print -Pn "${PROMPT_TS}$3 | $cmd${PROMPT_FS}"
-            ;;
-        *)
-            print -Pn "${PROMPT_TS}$2 :: $3 | $cmd${PROMPT_FS}"
-            ;;
-        esac
-    fi
+	if has_title ; then
+		# Escape '%' chars in $1, make nonprintables visible.
+		local cmd=${(V)1//\%/\%\%}
+		# Truncate command, and join lines.
+		cmd=$(print -Pn "%40>...>$cmd" | tr -d "\n")
+		case "$TERM" in
+		screen*)
+			print -Pn "${PROMPT_TS}$3 | $cmd${PROMPT_FS}"
+			;;
+		*)
+			print -Pn "${PROMPT_TS}$2 :: $3 | $cmd${PROMPT_FS}"
+			;;
+		esac
+	fi
 }

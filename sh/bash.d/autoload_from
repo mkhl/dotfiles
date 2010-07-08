@@ -2,7 +2,7 @@
 
 # Autoload the given function from the given source file if it exists.
 # Usage: autoload_from FUNCTION FILENAME
-function autoload_from () {
+autoload_from () {
 	local func="$1"; shift
 	local file="$1"; shift
 	eval "$func () {

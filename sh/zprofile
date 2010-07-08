@@ -4,12 +4,12 @@
 # zsh-specific login settings
 
 # Remap <Caps-Lock> on ttys
-if uname | egrep -q "Linux" && whence tty >/dev/null ; then
-    case $(tty) in
-        /dev/tty[0-9]*)
-            dumpkeys | perl -pe 's/\bCaps_Lock\b/Control/' | loadkeys --quiet -
-            ;;
-    esac
+if uname | egrep -q "Linux" && whence tty &>/dev/null ; then
+	case "$(tty)" in
+	/dev/tty[0-9]*)
+		dumpkeys | perl -pe 's/\bCaps_Lock\b/Control/' | loadkeys --quiet -
+		;;
+	esac
 fi
 
 # Load local overrides

@@ -3,12 +3,12 @@
 # Load all source files from the given directories into the running shell.
 # Usage: source_all [DIR ...]
 source_all () {
-    setopt local_options null_glob
-    for dir; do
-        if [[ -d $dir ]]; then
-            for file in $dir/*.{sh,$is}; do
-                source $file
-            done
-        fi
-    done
+	setopt local_options null_glob
+	for dir; do
+		if [[ -d $dir ]]; then
+			for file in $dir/*.{sh,$is}; do
+				source $file
+			done
+		fi
+	done
 }

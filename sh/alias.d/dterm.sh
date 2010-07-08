@@ -1,5 +1,5 @@
 if [[ "$TERM_PROGRAM" == "DTerm" ]]; then
-	function sudo () {
+	sudo () {
 		authexec /usr/bin/sudo "$@"
 	}
 fi

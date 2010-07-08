@@ -13,12 +13,12 @@ SH_RC_DONE=t
 
 # Load login/environment settings
 if [[ -e "$HOME/.bash_profile" ]]; then
-    source "$HOME/.bash_profile"
+	source "$HOME/.bash_profile"
 fi
 
 # System-wide bashrc
 if [[ -e "/etc/bashrc" ]]; then
-    source "/etc/bashrc"
+	source "/etc/bashrc"
 fi
 
 # Load common settings

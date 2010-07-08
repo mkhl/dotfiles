@@ -2,9 +2,9 @@
 
 # Run `ruby` scripts or an `irb` REPL.
 rb () {
-    if (($# == 0)); then
-        command irb
-    else
-        command ruby "$@"
-    fi
+	if (($# == 0)); then
+		command irb
+	else
+		command ruby "$@"
+	fi
 }

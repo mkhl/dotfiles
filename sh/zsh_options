@@ -5,39 +5,39 @@
 
 # Select zsh options
 opts=(
-    # Changing Directories:
-    auto_cd
-    auto_pushd
-    pushd_ignore_dups
-    # pushd_minus
-    pushd_silent
-    pushd_to_home
-    # Completion:
-    # list_rows_first
-    NO_rec_exact                # Some distros set this...
-    # Expansion and Globbing:
-    # csh_null_glob
-    extended_glob
-    # null_glob
-    # History:
-    hist_ignore_all_dups
-    hist_reduce_blanks
-    NO_hist_verify
-    inc_append_history
-    # share_history
-    # Input/Output:
-    NO_clobber
-    # correct
-    # dvorak
-    ignore_eof
-    sun_keyboard_hack
-    # Job Control:
-    NO_hup
-    # Prompting:
-    prompt_subst
-    transient_rprompt
-    # Zle:
-    emacs
+	# Changing Directories:
+	auto_cd
+	auto_pushd
+	pushd_ignore_dups
+	# pushd_minus
+	pushd_silent
+	pushd_to_home
+	# Completion:
+	# list_rows_first
+	NO_rec_exact                # Some distros set this...
+	# Expansion and Globbing:
+	# csh_null_glob
+	extended_glob
+	# null_glob
+	# History:
+	hist_ignore_all_dups
+	hist_reduce_blanks
+	NO_hist_verify
+	inc_append_history
+	# share_history
+	# Input/Output:
+	NO_clobber
+	# correct
+	# dvorak
+	ignore_eof
+	sun_keyboard_hack
+	# Job Control:
+	NO_hup
+	# Prompting:
+	prompt_subst
+	transient_rprompt
+	# Zle:
+	emacs
 )
 # Set zsh options
 setopt $opts

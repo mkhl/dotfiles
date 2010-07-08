@@ -7,4 +7,3 @@ history_meme () {
 	| sort -rn \
 	| head
 }
-

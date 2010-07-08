@@ -4,10 +4,10 @@
 # bash-specific logout script
 
 # Clear ttys
-if type tty >/dev/null 2>&1 ; then
-    case "$(tty)" in
-        /dev/tty[0-9]*) clear ;;
-    esac
+if command -v tty &>/dev/null ; then
+	case "$(tty)" in
+		/dev/tty[0-9]*) clear ;;
+	esac
 fi
 
 # Load local overrides

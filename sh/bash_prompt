@@ -4,7 +4,7 @@
 # bash-specific prompting
 
 # Helper functions
-function __vc_prompt () {
+__vc_prompt () {
 	has_cmd vcprompt || return
 	if [[ -d '.svn' ]]; then
 		vcprompt -f ' [%n:%r]'
@@ -12,10 +12,10 @@ function __vc_prompt () {
 		vcprompt -f ' [%n:%b]'
 	fi
 }
-function __pwd_with_tilde () {
+__pwd_with_tilde () {
 	/usr/bin/sed -E "s|^$HOME|~|" <<<"$PWD"
 }
-function __pwd_with_tilde_abbr () {
+__pwd_with_tilde_abbr () {
 	__pwd_with_tilde | /usr/bin/sed -E 's|^(.+)(.{27})$|...\2|'
 }
 
@@ -44,7 +44,7 @@ PS_VCS='$(__vc_prompt)'
 PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR} ${PS_SHLVL}${PS_ARROW} "
 
 # Set terminal titles
-function __term_func () {
+__term_func () {
 	title "$is" "$USER@${HOSTNAME%.*}" "$(__pwd_with_tilde_abbr)"
 }
 

@@ -4,10 +4,10 @@
 # zsh-specific logout script
 
 # Clear tty
-if whence tty >/dev/null; then
-    case $(tty) in
-        /dev/tty[0-9]*) clear ;;
-    esac
+if whence tty &>/dev/null; then
+	case $(tty) in
+		/dev/tty[0-9]*) clear ;;
+	esac
 fi
 
 # Load local overrides
