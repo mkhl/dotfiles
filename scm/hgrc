@@ -1,4 +1,5 @@
-#  -*- mode: conf -*-
+# -*- mode: conf -*-
+# hg(1)
 
 [diff]
 git = True

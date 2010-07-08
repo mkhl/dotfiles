@@ -1,3 +1,6 @@
+# -*- mode: default-generic -*-
+# hg(1)
+
 syntax: glob
 
 # Backup files
