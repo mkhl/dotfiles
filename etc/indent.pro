@@ -17,9 +17,9 @@
 -nfc1
 -i8
 -nip
--l512
+-l80
 -lp
 -npcs
--npsl
--nsc
+-psl
+-sc
 -nsob

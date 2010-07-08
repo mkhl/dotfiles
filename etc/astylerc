@@ -1,10 +1,16 @@
 # -*- mode: default-generic -*-
 # astyle(1)
-# style=kr
+
+# Linux style formatting.
+style=linux
+indent=tab
+brackets=linux
+
+align-pointer=name
 convert-tabs
-indent=spaces=4
-brackets=attach
-indent-cases
-pad=oper
-unpad=paren
-one-line=keep-blocks
+indent-preprocessor
+keep-one-line-blocks
+keep-one-line-statements
+min-conditional-indent=0
+pad-header
+unpad-paren
