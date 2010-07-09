@@ -13,8 +13,12 @@ $include /etc/inputrc
 "\e[6~": end-of-history
 "\e[3~": delete-char
 "\e[2~": quoted-insert
+"\e[5A": history-search-backward
+"\e[5B": history-search-forward
 "\e[5C": forward-word
 "\e[5D": backward-word
+"\e\e[A": history-search-backward
+"\e\e[B": history-search-forward
 "\e\e[C": forward-word
 "\e\e[D": backward-word
 "\e[3;5~": kill-word
