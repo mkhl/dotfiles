@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Return 0 if this shell is a login shell.
+is_login () {
+	shopt -q login_shell
+}
