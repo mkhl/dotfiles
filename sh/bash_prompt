@@ -41,7 +41,14 @@ PS_PWD='$(__pwd_with_tilde_abbr)'
 PS_VCS='$(__vc_prompt)'
 
 # Set the prompt
-PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR} ${PS_SHLVL}${PS_ARROW} "
+case "$TERM" in
+xterm*|screen*)
+	PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR} ${PS_SHLVL}${PS_ARROW} "
+	;;
+*)
+	PS1="${PS_PWD}${PS_VCS} ${PS_SHLVL}${PS_ARROW} "
+	;;
+esac
 
 # Set terminal titles
 __term_func () {
