@@ -21,16 +21,14 @@ PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
 fi
-PS_SHLVL=""
-if (($SHLVL > 1)); then
-	PS_SHLVL='[$SHLVL]'
-fi
 PS_STATUS='%B%(?..[%?] )%b'
 PS_PWD='%{${fg_no_bold[blue]}%}%55<...<%~%{${reset_color}%}'
 PS_VCS='%{${fg_no_bold[magenta]}%}${vcs_info_msg_0_}%{${reset_color}%}'
 
 # Set the prompt
-PROMPT="${PS_STATUS}${PS_PWD} ${PS_SHLVL}${PS_ARROW} "
+PROMPT="${PS_STATUS}${PS_PWD}"
+is_login || PROMPT="[${PROMPT}]"
+PROMPT="${PROMPT} ${PS_ARROW} "
 RPROMPT="${PS_VCS}"
 if [[ -n "$SSH_CLIENT" ]]; then
 	RPROMPT="$RPROMPT|%n@%m"
