@@ -1,4 +1,4 @@
 # EOF
 if is_login; then
-	IGNOREEOF="t"
+	setopt ignore_eof
 fi

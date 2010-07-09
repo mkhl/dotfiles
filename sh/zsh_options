@@ -29,7 +29,6 @@ opts=(
 	NO_clobber
 	# correct
 	# dvorak
-	ignore_eof
 	sun_keyboard_hack
 	# Job Control:
 	NO_hup
