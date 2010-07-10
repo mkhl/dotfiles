@@ -4,25 +4,36 @@
 # Include system-wide settings
 $include /etc/inputrc
 
-# Convenient motion
+# Xterm/VT220 "emulation"
 # Taken from <http://linuxart.com/log/index.php?s=inputrc>
+# More info: <http://invisible-island.net/xterm/ctlseqs/ctlseqs.html>
 # TODO: These should be hidden under some conditional...
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
-"\e[5~": beginning-of-history
-"\e[6~": end-of-history
-"\e[3~": delete-char
-"\e[2~": quoted-insert
-"\e[5A": history-search-backward
-"\e[5B": history-search-forward
-"\e[5C": forward-word
-"\e[5D": backward-word
-"\e\e[A": history-search-backward
-"\e\e[B": history-search-forward
-"\e\e[C": forward-word
-"\e\e[D": backward-word
-"\e[3;5~": kill-word
-"\e[3;3~": backward-kill-word
+"\e[1~": beginning-of-line              # Home (VT220)
+"\e[2~": quoted-insert                  # Insert
+"\e[3~": delete-char                    # Delete
+"\e[4~": end-of-line                    # End (VT220)
+"\e[5~": beginning-of-history           # PageUp
+"\e[6~": end-of-history                 # PageDown
+"\e[H": beginning-of-line               # Home (VT100)
+"\e[F": end-of-line                     # End (VT100)
+"\e[5A": history-search-backward        # C-Up
+"\e[5B": history-search-forward         # C-Down
+"\e[5C": forward-word                   # C-Right
+"\e[5D": backward-word                  # C-Left
+"\e[1;5A": history-search-backward      # C-Up
+"\e[1;5B": history-search-forward       # C-Down
+"\e[1;5C": forward-word                 # C-Right
+"\e[1;5D": backward-word                # C-Left
+"\e[1;9A": history-search-backward      # M-Up
+"\e[1;9B": history-search-forward       # M-Down
+"\e[1;9C": forward-word                 # M-Right
+"\e[1;9D": backward-word                # M-Left
+"\e\e[A": history-search-backward       # Esc-Up
+"\e\e[B": history-search-forward        # Esc-Down
+"\e\e[C": forward-word                  # Esc-Right
+"\e\e[D": backward-word                 # Esc-Left
+"\e[3;5~": kill-word                    # C-Delete
+"\e[3;3~": kill-word                    # A-Delete
 
 # Emacs line editing
 $if mode=emacs
