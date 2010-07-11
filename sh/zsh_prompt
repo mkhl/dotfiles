@@ -14,9 +14,9 @@ zstyle ':vcs_info:*' formats       "[%s:%b]"
 
 # Helper definitions
 PS_ARROW=">"
-case "$TERM" in
-xterm*|screen*) PS_ARROW="»" ;;
-esac
+if has_unicode; then
+	PS_ARROW="»"
+fi
 PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
@@ -27,7 +27,9 @@ PS_VCS='%{${fg_no_bold[magenta]}%}${vcs_info_msg_0_}%{${reset_color}%}'
 
 # Set the prompt
 PROMPT="${PS_STATUS}${PS_PWD}"
-is_login || PROMPT="[${PROMPT}]"
+if ! is_login; then
+	PROMPT="[${PROMPT}]"
+fi
 PROMPT="${PROMPT} ${PS_ARROW} "
 RPROMPT="${PS_VCS}"
 if [[ -n "$SSH_CLIENT" ]]; then

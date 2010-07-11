@@ -26,9 +26,9 @@ PS_MAGENTA="\[\033[35m\]"
 
 # Helper definitions
 PS_ARROW=">"
-case "$TERM" in
-xterm*|screen*) PS_ARROW="»" ;;
-esac
+if has_unicode; then
+	PS_ARROW="»"
+fi
 PS_WINDOW=""
 if [[ -n "$WINDOW" ]]; then
 	PS_WINDOW='#$WINDOW:'
@@ -37,15 +37,14 @@ PS_PWD='$(__pwd_with_tilde_abbr)'
 PS_VCS='$(__vc_prompt)'
 
 # Set the prompt
-case "$TERM" in
-xterm*|screen*)
+if has_color; then
 	PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR}"
-	;;
-*)
+else
 	PS1="${PS_PWD}${PS_VCS}"
-	;;
-esac
-is_login || PS1="[${PS1}]"
+fi
+if ! is_login; then
+	PS1="[${PS1}]"
+fi
 PS1="${PS1} ${PS_ARROW} "
 
 # Set terminal titles
