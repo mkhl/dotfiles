@@ -2,5 +2,5 @@
 
 # Return 0 if this shell is a login shell.
 is_login () {
-	shopt -q login_shell
+	shopt -q login_shell || test $SHLVL -lt 2
 }

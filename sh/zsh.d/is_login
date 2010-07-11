@@ -2,5 +2,5 @@
 
 # Return 0 if this shell is a login shell.
 is_login () {
-	set -o|egrep -q '^login +on$'
+	set -o|egrep -q '^login +on$' || test $SHLVL -lt 2
 }
