@@ -3,6 +3,8 @@
 # Load all source files from the given directories into the running shell.
 # Usage: source_all [DIR ...]
 source_all () {
+	local dir
+	local file
 	for dir; do
 		if [[ -d "$dir" ]]; then
 			for file in "$dir"/*.{sh,$is}; do
