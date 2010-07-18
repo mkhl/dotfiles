@@ -20,6 +20,10 @@ $include /etc/inputrc
 "\e[5B": history-search-forward         # C-Down
 "\e[5C": forward-word                   # C-Right
 "\e[5D": backward-word                  # C-Left
+"\eOa": history-search-backward         # Up ("Application" mode)
+"\eOb": history-search-forward          # Down ("Application" mode)
+"\eOc": forward-word                    # Right ("Application" mode)
+"\eOd": backward-word                   # Left ("Application" mode)
 "\e[1;5A": history-search-backward      # C-Up
 "\e[1;5B": history-search-forward       # C-Down
 "\e[1;5C": forward-word                 # C-Right
