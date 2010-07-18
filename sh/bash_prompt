@@ -49,7 +49,7 @@ PS1="${PS1} ${PS_ARROW} "
 
 # Set terminal titles
 __term_func () {
-	title "$is" "$USER@${HOSTNAME%.*}" "$(__pwd_with_tilde_abbr)"
+	title "$is" "$USER@${HOSTNAME%%.*}" "$(__pwd_with_tilde_abbr)"
 }
 
 PROMPT_COMMAND='__term_func'
