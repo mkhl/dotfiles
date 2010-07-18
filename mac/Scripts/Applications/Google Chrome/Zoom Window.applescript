@@ -8,7 +8,7 @@ set screenWidth to screenHeight / 10 * 16
 set menubarHeight to 22
 set windowWidth to 1072
 set padding to 22
-set windowBounds to { padding, menubarHeight + padding, windowWidth, screenHeight - (3 * padding) }
+set windowBounds to { (3.5 * padding), menubarHeight + (0.5 * padding), windowWidth, screenHeight - (3 * padding) }
 
 tell application "Google Chrome"
 	set _window to first window where titled is true
