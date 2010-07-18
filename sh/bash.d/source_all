@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Load all source files from the given directories into the running shell.
+# Load all source files from the given directories.
 # Usage: source_all [DIR ...]
 source_all () {
 	local dir
 	local file
 	for dir; do
 		if [[ -d "$dir" ]]; then
-			for file in "$dir"/*.{sh,$is}; do
-				source "$file"
+			for file in $(command ls "$dir"); do
+				case "$file" in
+				*.sh|*.$is)
+					source "$dir/$file"
+					;;
+				esac
 			done
 		fi
 	done
