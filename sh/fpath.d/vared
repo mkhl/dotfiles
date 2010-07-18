@@ -1,0 +1,14 @@
+#!/bin/bash
+
+vared () {
+	if [[ $# -ne 1 ]]; then
+		echo "Usage: $0 VAR" 1>&2
+		return 1
+	fi
+	local var="$1"; shift
+	TMPFILE="$(mktemp -t "$var")"
+	trap "rm -f '$TMPFILE'" EXIT INT HUP TERM
+	eval echo -n "\$$var" >| "$TMPFILE" &&
+	${EDITOR:-vi} "$TMPFILE" &&
+	eval "$var=$(cat "$TMPFILE")"
+}
