@@ -2,7 +2,6 @@
 #
 # bash_profile
 # bash-specific login/environment settings
-shopt -s nullglob
 
 # We're running the Bourne Again Shell
 is=bash

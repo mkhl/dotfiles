@@ -16,7 +16,6 @@ enable=(
 	histverify
 	hostcomplete
 	no_empty_cmd_completion
-	nullglob
 )
 # Select bash options to disable
 disable=(

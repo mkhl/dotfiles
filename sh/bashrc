@@ -2,7 +2,6 @@
 #
 # bashrc
 # bash-specific interactive settings
-shopt -s nullglob
 
 # Don't configure a non-interactive shell
 test -n "$PS1" || return
