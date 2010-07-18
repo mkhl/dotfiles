@@ -45,5 +45,5 @@ glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|fi
 [alias]
 addrenames = addremove --similarity 100
 nudge = push --rev .
-show = log --color --patch --rev
+show = log --patch --rev
 slog = log --template '{rev}:{node|short} {desc|firstline}\n'
