@@ -1,1 +1,1 @@
-submodule :sh, homedir, '.%f', :shallow => ['*.d']
+submodule :sh, homedir, '.%f', :shallow => ['*.d'], :exclude => ['fpath.d']

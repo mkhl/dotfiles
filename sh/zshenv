@@ -17,9 +17,8 @@ fpath=(
 	$HOME/lib/zsh
 	$fpath
 	$HOME/.zsh.d
-	$HOME/.fpath.d
 )
-autoload -U $HOME/.{zsh,fpath}.d/*~*~(-N.x:t)
+autoload -U $HOME/.zsh.d/*~*~(-N.x:t)
 
 # Load environment settings
 source_all $HOME/.env.d
