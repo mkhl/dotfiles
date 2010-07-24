@@ -13,6 +13,10 @@ zstyle ':vcs_info:*' actionformats "[%s:%b|%a]"
 zstyle ':vcs_info:*' formats       "[%s:%b]"
 
 # Helper definitions
+PS_ROOT=''
+if is_privileged; then
+	PS_ROOT='%{${fg_no_bold[red]}%}root:%{${reset_color}%}'
+fi
 PS_ARROW=">"
 if has_unicode; then
 	PS_ARROW="»"
@@ -27,7 +31,7 @@ PS_VCS='%{${fg_no_bold[magenta]}%}${vcs_info_msg_0_}%{${reset_color}%}'
 
 # Set the prompt
 PROMPT="${PS_STATUS}${PS_PWD}"
-if ! is_login; then
+if ! is_login && ! is_privileged; then
 	PROMPT="[${PROMPT}]"
 fi
 PROMPT="${PROMPT} ${PS_ARROW} "

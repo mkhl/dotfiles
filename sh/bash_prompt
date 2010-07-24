@@ -21,10 +21,15 @@ __pwd_with_tilde_abbr () {
 
 # Colours
 PS_CLEAR="\[\033[0m\]"
+PS_RED="\[\033[31m\]"
 PS_BLUE="\[\033[34m\]"
 PS_MAGENTA="\[\033[35m\]"
 
 # Helper definitions
+PS_ROOT=""
+if is_privileged; then
+	PS_ROOT="root:"
+fi
 PS_ARROW=">"
 if has_unicode; then
 	PS_ARROW="»"
@@ -38,11 +43,11 @@ PS_VCS='$(__vc_prompt)'
 
 # Set the prompt
 if has_color; then
-	PS1="${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR}"
+	PS1="${PS_RED}${PS_ROOT}${PS_BLUE}${PS_PWD}${PS_MAGENTA}${PS_VCS}${PS_CLEAR}"
 else
-	PS1="${PS_PWD}${PS_VCS}"
+	PS1="${PS_ROOT}${PS_PWD}${PS_VCS}"
 fi
-if ! is_login; then
+if ! is_login && ! is_privileged; then
 	PS1="[${PS1}]"
 fi
 PS1="${PS1} ${PS_ARROW} "
