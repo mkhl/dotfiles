@@ -1,5 +1,6 @@
 if [[ "$TERM_PROGRAM" == "DTerm" ]]; then
 	sudo () {
-		authexec /usr/bin/sudo "$@"
+		cmd="$1"; shift
+		authexec "$(command which "$cmd")" "$@"
 	}
 fi
