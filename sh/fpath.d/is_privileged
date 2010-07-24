@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Return 0 if this shell is privileged.
+is_privileged () {
+	test "$EUID" -eq 0
+}
