@@ -54,11 +54,15 @@
 [alias]
 	chainsaw = rebase --interactive
 	outgoing = cherry -v
-	ignored = ls-files --others --exclude-standard
+	ignored = ls-files --ignored
 	pending = log origin/master..master
 	missing = rev-list --pretty=oneline --reverse "^HEAD" origin
+	unmerged = ls-files --unmerged --exclude-standard
 	unpushed = log origin..HEAD
+	untracked = ls-files --others --exclude-standard
 	unstage = reset HEAD
+	wdiff = diff --word-diff
+	s = status --short --branch
 	st = status
 	co = checkout
 	ci = commit
@@ -79,4 +83,4 @@
 	out = cherry -v
 	uns = reset HEAD
 	glog = log --graph --pretty=format:'changeset:	 %h %d%nsummary:	 %s%n%n' --abbrev-commit
-	slog = log --oneline
+	slog = log --oneline --decorate
