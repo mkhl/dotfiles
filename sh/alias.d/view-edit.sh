@@ -4,6 +4,7 @@ if has_cmd vim; then
 fi
 if has_cmd emacsclient; then
 	alias emc='emacsclient --no-wait'
+	alias emacsclient='emacsclient --alternate-editor="" -c'
 fi
 alias e='$EDITOR'
 alias p='$PAGER'
