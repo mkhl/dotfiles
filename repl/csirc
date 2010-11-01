@@ -1,9 +1,14 @@
 ;;  -*- mode: scheme -*-
+;; csi(1)
 
-;; REPL features
+;; Documentation
 (use apropos)
-(use readline)
-(current-input-port (make-gnu-readline-port "csi> "))
+(use chicken-doc)
+
+;; Line editing
+(use linenoise)
+(current-input-port (make-linenoise-port))
+
 ;; SRFIs
 (use srfi-1)
 (use srfi-13)
