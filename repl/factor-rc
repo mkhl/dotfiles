@@ -1,9 +1,12 @@
 !  -*- mode: factor -*-
+! factor(1)
 
 USING: kernel assocs environment vocabs.loader ;
 
-"VISUAL" os-env [ "EDITOR" os-env ] unless*
+"EDITOR" os-env
 { { "mate" "editors.textmate" }
   { "mate_wait" "editors.textmate" }
+  { "mvim" "editors.macvim" }
   { "emacsclient" "editors.emacs" } }
-at require
+at "editors.textedit" or
+require
