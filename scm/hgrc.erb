@@ -1,16 +1,9 @@
 # -*- mode: conf -*-
 # hg(1)
 
-[diff]
-git = True
-
 [ui]
 username = Martin Kühl <martin.kuehl@gmail.com>
 ignore = ~/.hgignore
-
-[bb]
-username = mkhl
-password = <%= $config[:bitbucket_pwd] %>
 
 [extensions]
 bookmarks =
@@ -22,34 +15,60 @@ hggit =
 mq =
 pager =
 progress =
+purge =
 rebase =
 record =
 schemes =
 transplant =
 # crecord =
 # hgbb =
+# histedit =
+
+[bb]
+username = mkhl
+password = <%= $config[:bitbucket_pwd] %>
+
+[bookmarks]
+track.current = True
+
+[diff]
+git = True
 
 [extdiff]
+cmd.opendiff =
 cmd.chdiff =
 opts.chdiff = --wait
-cmd.opendiff =
-cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
-opts.ksdiff = hg
 
 [merge-tools]
 chdiff.args = $output $other
 opendiff.args = $local $other -ancestor $base -merge $output
 
 [schemes]
-gh = git://github.com/
+gh  = git://github.com/
 ghs = git+ssh://git@github.com/
 bbs = ssh://hg@bitbucket.org/
 
 [defaults]
-glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
+addremove = --similarity 100
+glog = --template '{rev}:{node|short} {desc|firstline}\n'
 
 [alias]
-addrenames = addremove --similarity 100
-nudge = push --rev .
-show = log --patch --rev
 slog = log --template '{rev}:{node|short} {desc|firstline}\n'
+show = log --verbose --patch --rev
+nudge = push --branch .
+ignored = status --no-status --ignored
+unknown = status --no-status --unknown
+d = diff
+s = status --quiet
+cm = commit --message
+br = branches
+rb = rebase
+rba = rebase --abort
+rbc = rebase --continue
+? = summary
+
+# Simple bug/todo tracking
+# Idea from Justin: http://gist.github.com/464871
+# Install t first: http://bitbucket.org/sjl/t/
+bug  = !t --task-dir="`"$HG" root`" --list=BUGS "$@"
+todo = !t --task-dir="`"$HG" root`" --list=TODO "$@"
