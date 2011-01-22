@@ -12,8 +12,8 @@
 [url "git@github.com:mkhl/"]
 	insteadOf = "git://github.com/mkhl/"
 
-[branch]
-	autosetupmerge = true
+[core]
+	excludesfile = ~/.gitignore
 
 [color]
 	ui = auto
@@ -21,20 +21,22 @@
 [help]
 	# format = web
 
-[man]
-	# viewer = openman
+[branch]
+	autosetupmerge = true
 
-[man.openman]
-	cmd = openman
+[push]
+	default = tracking
+
+[rerere]
+	enabled = true
 
 [diff]
+	mnemonicprefix = true
+	renames = copies
 	tool = opendiff
 
 [difftool]
 	prompt = false
-
-[difftool "ksdiff"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 
 [merge]
 	tool = opendiff
@@ -42,46 +44,62 @@
 [mergetool]
 	prompt = false
 
-[core]
-	excludesfile = $HOME/.gitexcludes
-
-[push]
-	default = tracking
-
-[rerere]
-	enabled = 1
-
 [alias]
 	chainsaw = rebase --interactive
-	outgoing = cherry -v
-	ignored = ls-files --ignored
-	pending = log origin/master..master
 	missing = rev-list --pretty=oneline --reverse "^HEAD" origin
-	unmerged = ls-files --unmerged --exclude-standard
+	pending = log origin/master..master
 	unpushed = log origin..HEAD
+	outgoing = cherry -v
+	ignored = ls-files --ignored --others --exclude-standard
+	unmerged = ls-files --unmerged --exclude-standard
 	untracked = ls-files --others --exclude-standard
+	amend = commit --amend -C HEAD
+	undo = reset --soft HEAD^
 	unstage = reset HEAD
 	wdiff = diff --word-diff
+	slog = log --oneline --decorate
+	glog = log --oneline --decorate --graph
+	msg = commit --allow-empty --message
+	out = cherry -v
+	uns = reset HEAD
+	b = branch
 	d = diff
+	h = help
+	l = log --oneline --decorate
+	r = remote
 	s = status --short --branch
 	st = status
+	a = add
+	aa = add --all
+	ae = add --edit
+	ai = add --interactive
+	ap = add --patch
+	au = add --update
 	co = checkout
+	cb = checkout -b
 	ci = commit
 	ca = commit --amend
+	cm = commit --message
+	cia = commit --all
+	cma = commit --all --message
 	cp = cherry-pick
 	fp = format-patch
 	br = branch
 	bs = bisect
+	ds = diff --staged
+	wd = diff --word-diff
 	dt = difftool
 	mt = mergetool
 	rb = rebase
 	irb = rebase --interactive
-	rbc = rebase --continue
 	rba = rebase --abort
+	rbc = rebase --continue
 	rbs = rebase --skip
+	sm = submodule
+	sma = submodule add
+	smu = submodule update --init
 	sub = submodule
-	msg = commit --allow-empty --message
-	out = cherry -v
-	uns = reset HEAD
-	glog = log --graph --pretty=format:'changeset:	 %h %d%nsummary:	 %s%n%n' --abbrev-commit
-	slog = log --oneline --decorate
+	sts = stash save
+	stc = stash clear
+	stl = stash list
+	stp = stash pop
