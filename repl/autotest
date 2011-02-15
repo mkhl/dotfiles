@@ -1,3 +1,6 @@
-require 'autotest/redgreen'
+#  -*- mode: ruby -*-
+# autotest(1)
+
+require 'redgreen/autotest'
 require 'autotest/growl'
 require 'autotest/fsevent'
