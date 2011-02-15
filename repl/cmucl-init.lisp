@@ -1,6 +1,6 @@
 ;;  -*- mode: lisp -*-
+;; lisp(1)
 
-#-asdf
-(load (merge-pathnames ".asdf" (user-homedir-pathname)))
-
-(load (merge-pathnames ".common" (user-homedir-pathname)))
+(let ((lisp-init (merge-pathnames ".common.lisp" (user-homedir-pathname))))
+  (when (probe-file lisp-init)
+    (load lisp-init)))
