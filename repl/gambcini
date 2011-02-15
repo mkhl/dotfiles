@@ -1,8 +1,0 @@
-;;  -*- mode: scheme -*-
-
-;; ;; Black Hole
-;; (load "~~/lib/modules/build")
-;; ;; SRFIs
-;; (import (std srfi/1)
-;;         (std srfi/13))
-
