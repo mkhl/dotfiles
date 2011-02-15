@@ -1,41 +1,35 @@
 #  -*- mode: ruby -*-
+# irb(1)
 
 at_exit { puts }
 
 def require_safe(library)
   begin
     require library
+    yield  if block_given?
   rescue LoadError => err
     puts "Skipping '#{library}': #{err}"
   end
-  yield  if block_given?
 end
+
+require 'rubygems'
 
 require_safe 'pp'
 require_safe 'ap'
 require_safe 'dp'
 
-require_safe 'irb/completion'
-require_safe 'irb/ext/save-history'
-
-IRB.conf[:AUTO_INDENT] = true
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
-IRB.conf[:SAVE_HISTORY] = 5000
-
-IRB.conf[:PROMPT][:SNAZZY] = {
-  :PROMPT_I => ">> ",
-  :PROMPT_C => "*> ",
-  :PROMPT_N => "%i> ",
-  :PROMPT_S => "%l> ",
-  :RETURN   => "==> %s\n"
-}
-IRB.conf[:PROMPT_MODE] = :SNAZZY  if IRB.conf[:PROMPT_MODE] == :DEFAULT
-
 require_safe 'interactive_editor'
 require_safe 'irb_rocket'
-
 require_safe 'bond' do
   Bond.start
+end
+
+# http://ozmm.org/posts/time_in_irb.html
+def time(times = 1)
+  require 'benchmark'
+  ret = nil
+  Benchmark.bm { |x| x.report { times.times { ret = yield } } }
+  ret
 end
 
 class Object
@@ -58,15 +52,11 @@ module ObjectSpace
   end
 end
 
-# http://ozmm.org/posts/time_in_irb.html
-def time(times = 1)
-  require 'benchmark'
-  ret = nil
-  Benchmark.bm { |x| x.report { times.times { ret = yield } } }
-  ret
-end
+if defined? IRB
+  IRB.conf[:AUTO_INDENT] = true
+  IRB.conf[:PROMPT_MODE] = :SIMPLE  if IRB.conf[:PROMPT_MODE] == :DEFAULT
 
-# reload this .irbrc
-def IRB.reload
-  load __FILE__
+  def IRB.reload
+    load __FILE__
+  end
 end
