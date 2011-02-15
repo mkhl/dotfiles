@@ -26,6 +26,9 @@ autocmd FileType perl   setlocal keywordprg=perldoc
 autocmd FileType python setlocal keywordprg=pydoc
 autocmd FileType ruby   setlocal keywordprg=ri
 
+" Define a Leader.
+let mapleader = ","
+
 " Disable cursor keys in insert mode.
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
