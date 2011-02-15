@@ -1,13 +1,14 @@
 ;;  -*- mode: scheme -*-
+;; guile(1)
 
-;; REPL features
-(use-modules (ice-9 readline)
-             (ice-9 history)
-             (ice-9 pretty-print))
-(activate-readline)
+;; Pretty-printing
+(use-modules (ice-9 pretty-print))
 (define pp pretty-print)
+
+;; Line editing
+(use-modules (ice-9 readline))
+(activate-readline)
+
 ;; SRFIs
-(use-modules (srfi srfi-1))
-(use-modules (srfi srfi-13))
-;; Slib
-;; (use-modules (ice-9 slib))
+(use-modules (srfi srfi-1))     ; Lists
+(use-modules (srfi srfi-13))    ; Strings
