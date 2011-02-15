@@ -2,7 +2,7 @@
 
 " List of fonts which will be used for the GUI version of Vim.
 if has("gui_macvim")
-    set guifont=Inconsolata:h13,Menlo\ Regular:h12,Monaco:h11
+    set guifont=Menlo\ Regular:h11,Monaco:h11
 endif
 
 " Disable cursor blinking in normal mode.
