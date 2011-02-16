@@ -1,11 +1,8 @@
-# ObjC
-fb objc_exception_throw
-
-# Core Graphics
-fb CGPostError
-
 # Malloc
 fb malloc_printf
+
+# ObjC
+fb objc_exception_throw
 
 # ObjC Runtime?
 fb _objc_error
@@ -15,10 +12,5 @@ fb objc_exception_during_finalize_error
 fb auto_zone_resurrection_error
 fb auto_refcount_underflow_error
 
-# F-Script
-define __fscript_inject
-  attach $arg0
-  p (char)[[NSBundle bundleWithPath:@"/Library/Frameworks/FScript.framework"] load]
-  p (void)[FScriptMenuItem insertInMainMenu]
-  continue
-end
+# Core Graphics
+fb CGPostError
