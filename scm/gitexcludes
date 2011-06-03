@@ -1,19 +1,88 @@
 # -*- mode: default-generic -*-
-# git(1)
+# gitignore(5)
 
-# Backup files
-*~
-*#
+### Operating Systems
 
-# Xcode noise
-build/
-Static analysis/
-*.xcodeproj/*.pbxuser
-*.xcodeproj/*.perspectivv3
-*.xcodeproj/*.mode1v3
-
-# OS X noise
+## OSX
 .DS_Store
+Icon?
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
 
-# Emacs noise
+### Source Control Systems
+
+## CVS
+/CVS/*
+*/CVS/*
+.cvsignore
+*/.cvsignore
+
+## Mercurial
+/.hg/*
+*/.hg/*
+.hgignore
+
+## SVN
+.svn/
+
+### Editors
+
+## Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
 *.elc
+
+## TextMate
+*.tmproj
+*.tmproject
+tmtags
+
+## Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+### File Types
+
+## Archives
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.bzip
+*.xz
+*.lzma
+#packing-only formats
+*.iso
+*.tar
+#package management formats
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+
+## Tags
+# Ignore tags created by etags and ctags
+TAGS
+tags
