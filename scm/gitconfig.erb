@@ -7,7 +7,7 @@
 
 [github]
 	user = mkhl
-	token = <%= $config[:github_token] %>
+	token = <%= YAML::load_file(ENV['CONFIG'])['github_token'] %>
 
 [url "git@github.com:mkhl/"]
 	insteadOf = "git://github.com/mkhl/"
