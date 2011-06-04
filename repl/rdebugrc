@@ -1,4 +1,7 @@
+#  -*- mode: default-generic -*-
+# rdebug(1)
 
 set autolist
 set autoeval
 set autoreload
+set history save off
