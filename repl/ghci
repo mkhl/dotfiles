@@ -1,3 +1,4 @@
 --  -*- mode: haskell -*-
+-- ghci(1)
 
 :def hoogle \x -> return $ ":!hoogle " ++ x
