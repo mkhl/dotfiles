@@ -1,1 +1,0 @@
-submodule :pkg, homedir, '.%f'
